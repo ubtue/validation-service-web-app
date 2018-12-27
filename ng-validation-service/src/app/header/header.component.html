@@ -1,3 +1,31 @@
-<p>
-  header works!
-</p>
+<!-- Grey with black text -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" (click)="onNavBarButtonPressed()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse active open" [ngClass]="{'collapse': this.navbarCollapsed}" id="collapsibleNavbar">
+    <a class="navbar-brand" href="#">Dspace Validator</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Batches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Reports</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Configurations</a>
+      </li>
+      
+    </ul>
+
+    <ul class="navbar-nav">
+        <li class="nav-item ">
+            <a class="nav-link" href="#">Settings</a>
+        </li>
+    </ul>
+  </div>
+
+</nav>

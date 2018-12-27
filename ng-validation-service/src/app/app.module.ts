@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BatchesComponent } from './batches/batches.component';
 import { RoutesModule } from './app-routes.module';
 import { HeaderComponent } from './header/header.component';
+import { DataService } from './shared/services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,10 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    RoutesModule
+    RoutesModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../shared/services/data.service';
+import { BatchPage } from '../shared/model/batches.model';
+import { Observable } from "rxjs";
+
 
 @Component({
   selector: 'app-batches',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BatchesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.dataService.getBatchesPage().subscribe(
+      (page: BatchPage) =>{
+        console.log(page);
+      }
+    )
   }
 
 }

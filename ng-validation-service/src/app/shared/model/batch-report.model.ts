@@ -1,7 +1,7 @@
-import { _link } from "../model/common-interfaces.model";
+import { Link } from "../model/common-interfaces.model";
 
 export interface BatchReport {
-	_links: _link[];
+	_links: Link[];
 	_embedded: any[];
 	id: number;
 	status: string;

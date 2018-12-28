@@ -16,13 +16,6 @@ export class DataService implements OnInit {
 
     }
 
-    getBatchById(id: number) {
-
-    }
-
-    getBatchesPage() {
-        return this.httpClient.get<BatchPage>(this.apiBaseUrl+'/batches');
-    }
 
 
 

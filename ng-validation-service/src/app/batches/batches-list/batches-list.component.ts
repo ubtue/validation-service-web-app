@@ -1,18 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../shared/services/data.service';
-import { BatchPage } from '../shared/model/batches.model';
-import { BatchesService } from './batches.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { BatchPage } from 'src/app/shared/model/batches.model';
+import { BatchesService } from '../batches.service';
 import { ActivatedRoute, Data } from '@angular/router';
-
-
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-batches',
-  templateUrl: './batches.component.html',
-  styleUrls: ['./batches.component.css']
+  selector: 'app-batches-list',
+  templateUrl: './batches-list.component.html',
+  styleUrls: ['./batches-list.component.css']
 })
-export class BatchesComponent implements OnInit, OnDestroy {
+export class BatchesListComponent implements OnInit {
 
   pageChangedSubscription: Subscription;
 
@@ -41,6 +38,14 @@ export class BatchesComponent implements OnInit, OnDestroy {
     //   }
     // )
 
+  }
+
+  loadPage(url: string) {
+    this.batchesService.getBatchesPage(url).subscribe(
+      (page: BatchPage) => {
+        this.page = page;
+      }
+    )
   }
 
   ngOnDestroy() {

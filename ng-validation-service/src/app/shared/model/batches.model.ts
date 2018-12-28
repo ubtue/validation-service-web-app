@@ -1,4 +1,4 @@
-import { _link } from "../model/common-interfaces.model";
+import { Link } from "../model/common-interfaces.model";
 import { Batch } from "../model/batch.model";
 
 export interface Embedded {
@@ -6,6 +6,6 @@ export interface Embedded {
 }
 
 export interface BatchPage {
-	_links: _link[];
+	_links: Link[];
 	_embedded: Embedded;
 }

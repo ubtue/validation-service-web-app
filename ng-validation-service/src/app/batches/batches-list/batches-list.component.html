@@ -1,25 +1,36 @@
-<table class="table table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th class="text-center">Batch Name <br>
-                <input type="text">
-            </th>
-            <th class="text-center">Creation Date <br>
-                <div class="btn-group-sm">
-                    <button type="button" class="btn btn-primary"> <i class="fa fa-caret-down"></i></button>
-                    <button type="button" class="btn "><i class="fa fa-caret-up"></i></button>
-                </div>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let batch of this.page._embedded.batches " style="cursor: pointer" [routerLink]="['/batches', batch.id]">
-            <td> <strong>{{batch.description}}</strong> </td>
-            <td>{{batch.creationDate | date:'medium' }}</td>
-        </tr>
+<table class="table table-striped table-hover">
+  <thead class="table-bordered">
+    <tr>
+      <th class="text-center">Batch Name <br>
+        <input type="text" (keyup)="this.searchTextChanged.next($event.target.value)">
+      </th>
+      <th class="text-center">Creation Date <br>
+        <div class="btn-group-sm">
+          <button type="button" class="btn" [ngClass]="{'btn-light': this.descendingSortOrder}" (click)="this.onChangeSortOrder(true)">
+            <i class="fa fa-caret-down"></i></button>
+          <button type="button" class="btn" [ngClass]="{'btn-light': !this.descendingSortOrder}" (click)="this.onChangeSortOrder(false)"><i
+              class="fa fa-caret-up"></i></button>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="table-bordered">
+    <tr *ngFor="let batch of this.page._embedded.batches " style="cursor: pointer" [routerLink]="['/batches', batch.id]">
+      <td> <strong>{{batch.description}}</strong> </td>
+      <td>{{batch.creationDate | date:'medium' }}</td>
+    </tr>
 
-    </tbody>
+    <tr *ngIf="this.page._embedded.batches.length === 0 ">
+      <td> </td>
+      <td> </td>
+    </tr>
+
+  </tbody>
+  <tfoot class="bg-dark text-light">
+    <td> {{ (this.page._embedded.batches.length === 0 ) ? 'No matches': ''}} </td>
+    <td> </td>
+  </tfoot>
 </table>
 <div>
-    <app-paginator [page]="this.page" (navigationRequested)="loadPage($event)"></app-paginator>
+  <app-paginator [page]="this.page" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>

@@ -15,7 +15,7 @@ export class BatchesListComponent implements OnInit {
 
   searchTextSubscription: Subscription;
 
-  page: BatchPage = { _embedded: null, _links: null };
+  page: BatchPage;
 
   descendingSortOrder: boolean = true;
 

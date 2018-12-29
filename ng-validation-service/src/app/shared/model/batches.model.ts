@@ -8,4 +8,6 @@ export interface Embedded {
 export interface BatchPage {
 	_links: Link[];
 	_embedded: Embedded;
+	count: number;
+	totalCount: number;
 }

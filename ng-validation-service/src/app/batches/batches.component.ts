@@ -16,7 +16,7 @@ export class BatchesComponent implements OnInit, OnDestroy {
 
   pageChangedSubscription: Subscription;
 
-  page: BatchPage = {_embedded: null, _links:null};
+  page: BatchPage;
 
   constructor(private batchesService: BatchesService, private route: ActivatedRoute) { }
 

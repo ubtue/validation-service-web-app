@@ -12,6 +12,7 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { BatchesService } from './batches/batches.service';
 import { BatchesResolver } from './batches/batches-list-resolver.service';
 import { BatchesListComponent } from './batches/batches-list/batches-list.component';
+import { BatchesStartComponent } from './batches/batches-start/batches-start.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BatchesListComponent } from './batches/batches-list/batches-list.compon
     BatchesComponent,
     HeaderComponent,
     PaginatorComponent,
-    BatchesListComponent
+    BatchesListComponent,
+    BatchesStartComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 <ul class="pagination justify-content-center">
 
   <!--  Dummies  -->
-  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('first')"><a class="page-link text-light" href="#">{{"<<"}}</a></li>
-  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('previous')"><a class="page-link text-light" href="#">{{"<"}}</a></li>
+  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('first')"><a class="page-link text-secondary bg-light" href="#">{{"<<"}}</a></li>
+  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('previous')"><a class="page-link text-secondary bg-light" href="#">{{"<"}}</a></li>
 
   <li class="page-item" *ngFor="let link of this.page._links">
-    <a class="page-link bg-light text-dark active" *ngIf="link.rel === 'self'" (click)="this.navigationRequested.next(link.href)" > {{ this.getPageNumberOfLink(link.href) }} </a>
-    <a class="page-link text-dark bg-light" *ngIf="link.rel === 'first'" (click)="this.navigationRequested.next(link.href)"> {{"<<"}} </a>
-    <a class="page-link text-dark bg-light" *ngIf="link.rel === 'previous'" (click)="this.navigationRequested.next(link.href)"> {{"<"}} </a>
-    <a class="page-link text-dark bg-light" *ngIf="link.rel === 'next'" (click)="this.navigationRequested.next(link.href)"> {{">"}} </a>
-    <a class="page-link text-dark bg-light" *ngIf="link.rel === 'last'" (click)="this.navigationRequested.next(link.href)"> {{">>"}} </a>
+    <a class="page-link bg-primary text-light active" *ngIf="link.rel === 'self'" (click)="this.navigationRequested.next(link.href)" > {{ this.getPageNumberOfLink(link.href) }} </a>
+    <a class="page-link text-primary bg-light" *ngIf="link.rel === 'first'" (click)="this.navigationRequested.next(link.href)"> {{"<<"}} </a>
+    <a class="page-link text-primary bg-light" *ngIf="link.rel === 'previous'" (click)="this.navigationRequested.next(link.href)"> {{"<"}} </a>
+    <a class="page-link text-primary bg-light" *ngIf="link.rel === 'next'" (click)="this.navigationRequested.next(link.href)"> {{">"}} </a>
+    <a class="page-link text-primary bg-light" *ngIf="link.rel === 'last'" (click)="this.navigationRequested.next(link.href)"> {{">>"}} </a>
   </li>
 
   <!--  Dummies  -->
-  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('next')"><a class="page-link text-light" href="#">{{">"}}</a></li>
-  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('last')"><a class="page-link text-light" href="#">{{">>"}}</a></li>
+  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('next')"><a class="page-link text-secondary bg-light" href="#">{{">"}}</a></li>
+  <li class="page-item disabled" *ngIf="!this.existsLinkWithRel('last')"><a class="page-link text-secondary bg-light" href="#">{{">>"}}</a></li>
 
 
 </ul>

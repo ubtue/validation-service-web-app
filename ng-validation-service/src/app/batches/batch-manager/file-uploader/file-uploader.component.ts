@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { ActivatedRoute, Data } from '@angular/router';
-
+import { Util } from 'src/app/shared/util';
 import { Link } from '../../../shared/model/common-interfaces.model';
 
 
@@ -13,6 +13,8 @@ import { Link } from '../../../shared/model/common-interfaces.model';
 })
 export class FileUploaderComponent implements OnInit {
 
+  hrefToRel = Util.getHrefForRel;
+
   selectedBatch: Batch;
 
   constructor(private route: ActivatedRoute) { }
@@ -23,14 +25,6 @@ export class FileUploaderComponent implements OnInit {
         this.selectedBatch = data['batch'];
       }
     )
-  }
-
-  getHrefForLink(representation: { _links: Link[] }, rel: string): string {
-    for (let link of representation._links) {
-      if (link.rel === rel)
-        return link.href
-    }
-    return null;
   }
 
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
+import { Util } from 'src/app/shared/util';
 
 @Component({
   selector: 'app-batches-list',
@@ -14,6 +15,7 @@ import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operator
 export class BatchesListComponent implements OnInit {
 
   searchTextSubscription: Subscription;
+  listReloadRequestedSubscription: Subscription;
 
   page: BatchPage;
 
@@ -44,6 +46,18 @@ export class BatchesListComponent implements OnInit {
         )
       }
     )
+
+    // handle refresh list requests (e.g. on deletion)
+    this.listReloadRequestedSubscription = this.batchesService.listReloadRequested.subscribe(
+      () => {
+        this.batchesService.getBatchesPage(Util.getHrefForRel(this.page, 'self')).subscribe(
+          (page: BatchPage) => {
+            this.page = page;
+          }
+        )
+      }
+    )
+
   }
 
   /**
@@ -74,6 +88,7 @@ export class BatchesListComponent implements OnInit {
 
   ngOnDestroy() {
     this.searchTextSubscription.unsubscribe();
+    this.listReloadRequestedSubscription.unsubscribe();
   }
 
 }

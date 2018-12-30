@@ -26,7 +26,7 @@
     </tr>
 
   </tbody>
-  <tfoot class="bg-dark text-light table-bordered">
+  <tfoot class="bg-light text-dark table-bordered">
     <td class="text-center" colspan="2" *ngIf="this.descriptionFilter.length > 0"> 
       {{ (this.page._embedded.batches.length === 0 ) ? 'No matching records':  'Matching records: ' + this.page.totalCount  }} 
     </td>

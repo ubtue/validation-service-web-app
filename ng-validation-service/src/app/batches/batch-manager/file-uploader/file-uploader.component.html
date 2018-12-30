@@ -1,8 +1,7 @@
-
 <div class="ui-fluid ">
-<p-fileUpload name="file" [url]="this.getHrefForLink(this.selectedBatch,'files')" multiple="multiple" [previewWidth]="0"  [showCancelButton]="true">
-
-  <!-- <ng-template let-file pTemplate='file'>
+  <p-fileUpload name="file" [url]="hrefToRel(this.selectedBatch,'files')" multiple="multiple" [previewWidth]="0"
+    [showCancelButton]="true">
+    <!-- <ng-template let-file pTemplate='file'>
     <div style=" max-width: 70%; word-wrap: break-word !important;">
         <p >{{file.name}} </p>
         <div>{{file.size }}</div>
@@ -10,8 +9,8 @@
         <hr style=" max-width: 90%;">
     </div>
     -->
-   
-<!-- </ng-template> -->
+    <!-- </ng-template> -->
+  </p-fileUpload>
 
-</p-fileUpload>
+
 </div>

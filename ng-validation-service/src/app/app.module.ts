@@ -13,6 +13,10 @@ import { BatchesService } from './batches/batches.service';
 import { BatchesResolver } from './batches/batches-list-resolver.service';
 import { BatchesListComponent } from './batches/batches-list/batches-list.component';
 import { BatchesStartComponent } from './batches/batches-start/batches-start.component';
+import { BatchManagerComponent } from './batches/batch-manager/batch-manager.component';
+import { FileUploaderComponent } from './batches/batch-manager/file-uploader/file-uploader.component';
+import { BatchResolver } from './batches/batch-manager/batch-resolver.service';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { BatchesStartComponent } from './batches/batches-start/batches-start.com
     HeaderComponent,
     PaginatorComponent,
     BatchesListComponent,
-    BatchesStartComponent
+    BatchesStartComponent,
+    BatchManagerComponent,
+    FileUploaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +35,9 @@ import { BatchesStartComponent } from './batches/batches-start/batches-start.com
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    FileUploadModule
   ],
-  providers: [DataService, BatchesService, BatchesResolver],
+  providers: [DataService, BatchesService, BatchesResolver, BatchResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

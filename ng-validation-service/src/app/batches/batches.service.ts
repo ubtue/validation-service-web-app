@@ -1,5 +1,7 @@
 import { DataService } from '../shared/services/data.service';
 import { BatchPage } from '../shared/model/batches.model';
+import { Link } from '../shared/model/common-interfaces.model';
+import { Batch } from '../shared/model/batch.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -15,7 +17,7 @@ export class BatchesService {
     constructor(private dataService: DataService, private httpClient: HttpClient){};
 
     getBatchById(id: number) {
-
+        return this.httpClient.get<Batch>(this.batchesResourceUrl + '/' +id);
     }
 
     getBatchesStartPage() {
@@ -41,6 +43,14 @@ export class BatchesService {
     //     }
     //     return null;
     // }
+
+    getHrefForLink(representation: {_links: Link[]}, rel: string): string {
+        for(let link of representation._links) {
+            if(link.rel === rel)
+                return link.href
+        }
+        return null;
+    }
 
 
 }

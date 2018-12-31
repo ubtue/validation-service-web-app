@@ -1,14 +1,14 @@
-<button type="button" name="" id="" class="btn btn-danger float-right" (click)="onDeleteBatch()" >Delete Batch</button>
+<!-- <button type="button" name="" id="" class="btn btn-danger float-right" (click)="onDeleteBatch()" >Delete Batch</button> -->
 <h5> {{this.selectedBatch.description}} </h5>
 
 <p>Created on {{this.selectedBatch.creationDate | date:'EEEE, d.M.y, HH:mm:ss' }}</p>
 
-<ul class="nav nav-pills nav-justified bg-light">
+<ul class="nav nav-pills nav-justified ">
     <li class="nav-item">
-      <a class="nav-link text-white bg-secondary" >File Upload</a>
+      <a class="nav-link active" >File Upload</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" >Manage Files</a>
+      <a class="nav-link" >Manage Batch</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" >Batch Reports</a>

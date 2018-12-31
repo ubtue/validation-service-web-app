@@ -17,6 +17,12 @@ import { BatchManagerComponent } from './batches/batch-manager/batch-manager.com
 import { FileUploaderComponent } from './batches/batch-manager/file-uploader/file-uploader.component';
 import { BatchResolver } from './batches/batch-manager/batch-resolver.service';
 import {FileUploadModule} from 'primeng/fileupload';
+import { MessagesModule} from 'primeng/messages';
+import { MessageModule} from 'primeng/message';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { BatchDefineComponent } from './batches/batch-define/batch-define.component';
+import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,7 @@ import {FileUploadModule} from 'primeng/fileupload';
     BatchesStartComponent,
     BatchManagerComponent,
     FileUploaderComponent,
+    BatchDefineComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +42,12 @@ import {FileUploadModule} from 'primeng/fileupload';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    FileUploadModule
+    FileUploadModule,
+    MessagesModule,
+    MessageModule, 
+    ConfirmDialogModule
   ],
-  providers: [DataService, BatchesService, BatchesResolver, BatchResolver],
+  providers: [DataService, BatchesService, BatchesResolver, BatchResolver, CanDeactivateGuard, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@
   <thead class="table-bordered">
     <tr>
       <th class="text-center">Batch Name <br>
-        <input type="text" (keyup)="this.searchTextChanged.next($event.target.value)">
+        <input type="text" (keyup)="this.searchTextChanged.next($event.target.value)" #filter>
       </th>
       <th class="text-center">Creation Date <br>
         <div class="btn-group-sm">

@@ -15,11 +15,13 @@ export class BatchManagerComponent implements OnInit {
   constructor(private route: ActivatedRoute, private batchesService: BatchesService, private router: Router) { }
 
   ngOnInit() {
-    this.route.data.subscribe(
+    this.route.data.subscribe(  
       (data: Data) => {
         this.selectedBatch = data['batch'];
       }
     )
+
+    
   }
 
   onDeleteBatch() {
@@ -30,7 +32,7 @@ export class BatchManagerComponent implements OnInit {
       },
 
       (error) => {
-
+        console.log(error);
       }
 
     )

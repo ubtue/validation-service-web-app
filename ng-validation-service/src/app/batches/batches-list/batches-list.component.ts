@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BatchPage } from 'src/app/shared/model/batches.model';
 import { BatchesService } from '../batches.service';
 import { ActivatedRoute, Data } from '@angular/router';
@@ -14,16 +14,20 @@ import { Util } from 'src/app/shared/util';
 })
 export class BatchesListComponent implements OnInit {
 
-  searchTextSubscription: Subscription;
-  listReloadRequestedSubscription: Subscription;
-
+  // the displayed page
   page: BatchPage;
 
-  descendingSortOrder: boolean = true;
-
-  descriptionFilter: string = "";
-
+  // subscriptions and subjects
+  searchTextSubscription: Subscription;
+  listReloadRequestedSubscription: Subscription;
+  resetListRequestedSubscription: Subscription;
   searchTextChanged = new Subject<string>();
+
+  // ordering and filtering
+  descendingSortOrder: boolean = true;
+  descriptionFilter: string = "";
+  
+  @ViewChild('filter') filterInput: ElementRef;
 
   constructor(private batchesService: BatchesService, private route: ActivatedRoute) { }
 
@@ -53,6 +57,20 @@ export class BatchesListComponent implements OnInit {
         this.batchesService.getBatchesPage(Util.getHrefForRel(this.page, 'self')).subscribe(
           (page: BatchPage) => {
             this.page = page;
+          }
+        )
+      }
+    )
+
+    // reset interface and go to start page (on create batch)
+    this.resetListRequestedSubscription = this.batchesService.resetListRequested.subscribe(
+      () => {
+        this.batchesService.getBatchesStartPage().subscribe(
+          (page: BatchPage) => {
+            this.page = page;
+            this.descriptionFilter = '';
+            this.filterInput.nativeElement.value = '';
+            this.descendingSortOrder = true;
           }
         )
       }
@@ -89,6 +107,7 @@ export class BatchesListComponent implements OnInit {
   ngOnDestroy() {
     this.searchTextSubscription.unsubscribe();
     this.listReloadRequestedSubscription.unsubscribe();
+    this.resetListRequestedSubscription.unsubscribe();
   }
 
 }

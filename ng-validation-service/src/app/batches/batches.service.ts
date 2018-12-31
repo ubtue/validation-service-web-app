@@ -13,9 +13,14 @@ export class BatchesService {
 
     batchesResourceUrl: string = environment.apiBaseUrl+'/batches';
 
+    resetListRequested:  Subject<void> = new Subject<void>();
     listReloadRequested: Subject<void> = new Subject<void>();
     
     constructor(private dataService: DataService, private httpClient: HttpClient){};
+
+    createBatch(batch: Batch) {
+        return this.httpClient.post<Batch>(this.batchesResourceUrl, batch);
+    }
 
     getBatchById(id: number) {
         return this.httpClient.get<Batch>(this.batchesResourceUrl + '/' +id);

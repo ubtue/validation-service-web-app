@@ -6,7 +6,7 @@ export interface Embedded {
 	['batch-reports']: BatchReport[];
 }
 
-export interface Batch {
+export class Batch {
 	_links: Link[];
 	_embedded: Embedded;
 	id: number;

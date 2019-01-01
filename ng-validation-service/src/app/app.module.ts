@@ -23,6 +23,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import { BatchDefineComponent } from './batches/batch-define/batch-define.component';
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
+import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch-viewer.component';
+import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolver.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.servi
     BatchManagerComponent,
     FileUploaderComponent,
     BatchDefineComponent,
+    BatchViewerComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.servi
     MessageModule, 
     ConfirmDialogModule
   ],
-  providers: [DataService, BatchesService, BatchesResolver, BatchResolver, CanDeactivateGuard, ConfirmationService],
+  providers: [DataService, BatchesService, BatchesResolver, BatchResolver, FilesResolver, CanDeactivateGuard, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

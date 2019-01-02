@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Batch } from 'src/app/shared/model/batch.model';
-import { Message } from 'src/app/shared/primeng-message.model';
+import { Message } from 'src/app/shared/model/primeng-message.model';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Util } from 'src/app/shared/util';
 import { Link } from '../../../shared/model/common-interfaces.model';

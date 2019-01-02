@@ -25,6 +25,8 @@ import { BatchDefineComponent } from './batches/batch-define/batch-define.compon
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch-viewer.component';
 import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolver.service';
+import { FileSizePipe } from './shared/pipes/file-size.pipe';
+import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolv
     FileUploaderComponent,
     BatchDefineComponent,
     BatchViewerComponent,
+    FileSizePipe,
+    BatchInfoComponent
   ],
   imports: [
     BrowserModule,

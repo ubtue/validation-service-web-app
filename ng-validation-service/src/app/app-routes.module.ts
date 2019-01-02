@@ -10,6 +10,7 @@ import { BatchDefineComponent } from './batches/batch-define/batch-define.compon
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch-viewer.component';
 import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolver.service';
+import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
         {path: '', component: BatchesStartComponent},
         {path:'new', component:BatchDefineComponent},
         {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
-            {path:'', redirectTo:"manage", pathMatch:'full'},
+            {path:'', redirectTo:'info', pathMatch:'full'},
+            {path:'info', component: BatchInfoComponent},
             {path:'upload', component:FileUploaderComponent, canDeactivate:[CanDeactivateGuard]},
             {path:'manage', component:BatchViewerComponent, resolve: {filesPage: FilesResolver}}
         ]}

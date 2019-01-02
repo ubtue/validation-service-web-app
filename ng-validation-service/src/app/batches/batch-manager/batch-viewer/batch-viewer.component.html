@@ -1,0 +1,41 @@
+  
+  <!-- <div class="btn-toolbar mb-3 mt-3" role="toolbar" aria-label="">
+  <div class="btn-group mr-2" role="group" aria-label="">
+    <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Batch</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="">
+    <button type="button" class="btn btn-secondary"><i class="fa fa-trash"></i> Delete Files</button>
+  </div>
+</div> -->
+
+<ul class="list-group mb-3">
+  <div class="list-group-item list-group-item-light">
+    <div class="input-group">
+      <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)">
+    </div>
+  </div>
+
+  <li class="list-group-item file-item-text" *ngFor="let file of filesPage._embedded.files">
+      
+    <div style="max-width: 90%;">{{file.fileName}}</div>
+    <span class="float-right">
+        <a class="btn btn-link btn-sm btn-secondary" (click)="onDeleteFile(file)" style="color:white">
+            <i class="fa fa-trash"></i> Delete
+        </a>
+      </span>
+    <div><small>File size:  <strong>{{file.size | fileSize}}</strong>, uploaded on {{file.creationDate | date:'dd.MM.y, HH:mm'}} </small></div>
+      
+  </li>
+
+  <li class="list-group-item list-group-item-light" *ngIf="filesPage._embedded.files.length == 0">
+    <div class="text-center">No files found</div>
+  </li>
+  <li class="list-group-item bg-light" *ngIf="filesPage._embedded.files.length != 0">
+      <div class="text-center">Files found: {{filesPage._embedded.files.length}}</div>
+  </li>
+
+</ul>
+
+<div>
+  <app-paginator [page]="this.filesPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+</div>

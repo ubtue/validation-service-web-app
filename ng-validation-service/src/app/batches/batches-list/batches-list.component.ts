@@ -52,7 +52,7 @@ export class BatchesListComponent implements OnInit {
     )
 
     // handle refresh list requests (e.g. on deletion)
-    this.listReloadRequestedSubscription = this.batchesService.listReloadRequested.subscribe(
+    this.listReloadRequestedSubscription = this.batchesService.batchListReloadRequested.subscribe(
       () => {
         this.batchesService.getBatchesPage(Util.getHrefForRel(this.page, 'self')).subscribe(
           (page: BatchPage) => {
@@ -63,7 +63,7 @@ export class BatchesListComponent implements OnInit {
     )
 
     // reset interface and go to start page (on create batch)
-    this.resetListRequestedSubscription = this.batchesService.resetListRequested.subscribe(
+    this.resetListRequestedSubscription = this.batchesService.resetBatchListRequested.subscribe(
       () => {
         this.batchesService.getBatchesStartPage().subscribe(
           (page: BatchPage) => {

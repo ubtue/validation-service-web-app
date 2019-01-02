@@ -10,32 +10,11 @@ import { BatchesService } from 'src/app/batches/batches.service';
 })
 export class BatchManagerComponent implements OnInit {
 
-  selectedBatch: Batch;
 
   constructor(private route: ActivatedRoute, private batchesService: BatchesService, private router: Router) { }
 
   ngOnInit() {
-    this.route.data.subscribe(  
-      (data: Data) => {
-        this.selectedBatch = data['batch'];
-      }
-    )
-
     
-  }
-
-  onDeleteBatch() {
-    this.batchesService.deleteBatch(this.selectedBatch).subscribe(
-      (success) =>{
-        this.batchesService.listReloadRequested.next();
-        this.router.navigate(["../../"],{relativeTo: this.route})
-      },
-
-      (error) => {
-        console.log(error);
-      }
-
-    )
   }
 
 }

@@ -23,7 +23,7 @@ export class BatchDefineComponent implements OnInit {
     batch.description = this.form.value.name;
     this.batchesService.createBatch(batch).subscribe(
       (batch: Batch) => {
-        this.batchesService.resetListRequested.next();
+        this.batchesService.resetBatchListRequested.next();
         this.router.navigate(['../', batch.id], {relativeTo: this.route});
       }
     )

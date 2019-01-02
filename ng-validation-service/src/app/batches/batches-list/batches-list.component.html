@@ -2,7 +2,7 @@
   <thead class="table-bordered">
     <tr>
       <th class="text-center">Batch Name <br>
-        <input type="text" (keyup)="this.searchTextChanged.next($event.target.value)" #filter>
+        <input type="text" class="" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)" #filter>
       </th>
       <th class="text-center">Creation Date <br>
         <div class="btn-group-sm">
@@ -17,7 +17,7 @@
   <tbody class="table-bordered">
     <tr *ngFor="let batch of this.page._embedded.batches " style="cursor: pointer" [routerLink]="['/batches', batch.id]" routerLinkActive="bg-secondary text-light selected-row">
       <td> <strong>{{batch.description}}</strong> </td>
-      <td>{{batch.creationDate | date:'d.M.y, HH:mm' }}</td>
+      <td>{{batch.creationDate | date:'dd.MM.y, HH:mm' }}</td>
     </tr>
 
     <tr *ngIf="this.page._embedded.batches.length === 0 ">

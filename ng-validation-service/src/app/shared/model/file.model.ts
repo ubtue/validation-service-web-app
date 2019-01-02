@@ -7,5 +7,6 @@ export interface File {
 	_embedded: Embedded[];
 	id: number;
 	fileName: string;
-	size: number;
+    size: number;
+    creationDate: number;
 }

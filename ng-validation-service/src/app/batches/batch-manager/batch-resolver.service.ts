@@ -27,7 +27,7 @@ export class BatchResolver implements Resolve<Batch> {
                     (error) => {
                         console.log('Retrieval error: ${error}')
                         this.router.navigate(['/batches'])
-                        this.batchesService.listReloadRequested.next();
+                        this.batchesService.batchListReloadRequested.next();
                         return of(null);
                     }
                 )

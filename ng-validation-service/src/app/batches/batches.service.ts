@@ -2,19 +2,24 @@ import { DataService } from '../shared/services/data.service';
 import { BatchPage } from '../shared/model/batches.model';
 import { Link } from '../shared/model/common-interfaces.model';
 import { Batch } from '../shared/model/batch.model';
+import { FilesPage } from '../shared/model/files.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Util } from '../shared/util';
+import { File } from '../shared/model/file.model';
 
 @Injectable()
 export class BatchesService {
 
     batchesResourceUrl: string = environment.apiBaseUrl+'/batches';
 
-    resetListRequested:  Subject<void> = new Subject<void>();
-    listReloadRequested: Subject<void> = new Subject<void>();
+    resetBatchListRequested:  Subject<void> = new Subject<void>();
+    batchListReloadRequested: Subject<void> = new Subject<void>();
+
+    // resetFileListRequested:  Subject<void> = new Subject<void>();
+    // fileListReloadRequested: Subject<void> = new Subject<void>();
     
     constructor(private dataService: DataService, private httpClient: HttpClient){};
 
@@ -44,6 +49,25 @@ export class BatchesService {
         }
 
         return this.httpClient.get<BatchPage>(url, {params: params}) ;
+    }
+
+    getFilesPage(url: string, fileNameFilter = '') {
+        let params: HttpParams = new HttpParams();
+
+        if(fileNameFilter.length > 0) {
+            params = params.append('fileNameFilter', fileNameFilter );
+        }
+        return this.httpClient.get<FilesPage>(url, {params: params});
+    }
+
+    refetchFilesPage(page: FilesPage) {
+        console.log('files')
+        console.log(page)
+        return this.httpClient.get<FilesPage>(Util.getHrefForRel(page,'self'));
+    }
+
+    deleteFile(file: File) {
+        return this.httpClient.delete(Util.getHrefForRel(file,'self'));
     }
 
     

@@ -19,7 +19,7 @@ const routes: Routes = [
         {path: '', component: BatchesStartComponent},
         {path:'new', component:BatchDefineComponent},
         {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
-            {path:'', redirectTo:'info', pathMatch:'full'},
+            {path:'', redirectTo:'manage', pathMatch:'full'},
             {path:'info', component: BatchInfoComponent},
             {path:'upload', component:FileUploaderComponent, canDeactivate:[CanDeactivateGuard]},
             {path:'manage', component:BatchViewerComponent, resolve: {filesPage: FilesResolver}}

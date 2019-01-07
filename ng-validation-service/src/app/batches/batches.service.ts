@@ -18,9 +18,6 @@ export class BatchesService {
     resetBatchListRequested:  Subject<void> = new Subject<void>();
     batchListReloadRequested: Subject<void> = new Subject<void>();
 
-    // resetFileListRequested:  Subject<void> = new Subject<void>();
-    // fileListReloadRequested: Subject<void> = new Subject<void>();
-    
     constructor(private dataService: DataService, private httpClient: HttpClient){};
 
     createBatch(batch: Batch) {
@@ -70,5 +67,5 @@ export class BatchesService {
         return this.httpClient.delete(Util.getHrefForRel(file,'self'));
     }
 
-    
+
 }

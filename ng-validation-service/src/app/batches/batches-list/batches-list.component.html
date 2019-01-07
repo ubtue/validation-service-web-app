@@ -16,7 +16,7 @@
   </thead>
   <tbody class="table-bordered">
     <tr *ngFor="let batch of this.page._embedded.batches " style="cursor: pointer" [routerLink]="['/batches', batch.id]" routerLinkActive="bg-secondary text-light selected-row">
-      <td> <strong>{{batch.description}}</strong> </td>
+      <td class="td-break-all"> <strong>{{batch.description}}</strong> </td>
       <td>{{batch.creationDate | date:'dd.MM.y, HH:mm' }}</td>
     </tr>
 

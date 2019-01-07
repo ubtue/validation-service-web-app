@@ -1,4 +1,4 @@
-  
+
   <!-- <div class="btn-toolbar mb-3 mt-3" role="toolbar" aria-label="">
   <div class="btn-group mr-2" role="group" aria-label="">
     <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Delete Batch</button>
@@ -16,7 +16,7 @@
   </div>
 
   <li class="list-group-item file-item-text" *ngFor="let file of filesPage._embedded.files">
-      
+
     <div style="max-width: 90%;">{{file.fileName}}</div>
     <span class="float-right">
         <a class="btn btn-link btn-sm btn-secondary" (click)="onDeleteFile(file)" style="color:white">
@@ -24,14 +24,14 @@
         </a>
       </span>
     <div><small>File size:  <strong>{{file.size | fileSize}}</strong>, uploaded on {{file.creationDate | date:'dd.MM.y, HH:mm'}} </small></div>
-      
+
   </li>
 
   <li class="list-group-item list-group-item-light" *ngIf="filesPage._embedded.files.length == 0">
     <div class="text-center">No files found</div>
   </li>
   <li class="list-group-item bg-light" *ngIf="filesPage._embedded.files.length != 0">
-      <div class="text-center">Files found: {{filesPage._embedded.files.length}}</div>
+      <div class="text-center">Files found: {{filesPage.totalCount}}</div>
   </li>
 
 </ul>

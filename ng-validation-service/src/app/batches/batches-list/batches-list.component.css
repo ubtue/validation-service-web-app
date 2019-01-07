@@ -2,3 +2,7 @@
     outline: none;
 }
 
+ tbody td {
+  word-break: break-all;
+}
+

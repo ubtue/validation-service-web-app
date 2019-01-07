@@ -27,6 +27,7 @@ import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch
 import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolver.service';
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
+import { ConfigurationsComponent } from './configurations/configurations.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-inf
     BatchDefineComponent,
     BatchViewerComponent,
     FileSizePipe,
-    BatchInfoComponent
+    BatchInfoComponent,
+    ConfigurationsComponent
   ],
   imports: [
     BrowserModule,

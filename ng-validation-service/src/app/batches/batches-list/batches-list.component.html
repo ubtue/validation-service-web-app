@@ -27,11 +27,11 @@
 
   </tbody>
   <tfoot class="bg-light text-dark table-bordered">
-    <td class="text-center" colspan="2" *ngIf="this.descriptionFilter.length > 0"> 
-      {{ (this.page._embedded.batches.length === 0 ) ? 'No matching records':  'Matching records: ' + this.page.totalCount  }} 
+    <td class="text-center" colspan="2" *ngIf="this.descriptionFilter.length > 0">
+      {{ (this.page._embedded.batches.length === 0 ) ? 'No matching records':  'Matching records: ' + this.page.totalCount  }}
     </td>
     <td class="text-center" colspan="2" *ngIf="this.descriptionFilter.length == 0">
-      {{ (this.page._embedded.batches.length === 0 ) ? 'No records':  'Total records: ' + this.page.totalCount  }} 
+      {{ (this.page._embedded.batches.length === 0 ) ? 'No records':  'Total records: ' + this.page.totalCount  }}
     </td>
   </tfoot>
 </table>

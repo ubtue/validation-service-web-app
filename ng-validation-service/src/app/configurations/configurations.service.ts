@@ -9,10 +9,12 @@ import { environment } from '../../environments/environment';
 import { Util } from '../shared/util';
 import { File } from '../shared/model/file.model';
 
+@Injectable()
 export class ConfigurationsService {
+
   configurationsResourceUrl: string = environment.apiBaseUrl + '/configurations';
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) { }
 
   getConfigurationsPage(url: string) {
     this.httpClient.get<ConfigurationsPage>(url);

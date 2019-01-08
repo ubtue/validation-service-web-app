@@ -14,7 +14,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 })
 export class BatchesComponent implements OnInit, OnDestroy {
 
-  pageChangedSubscription: Subscription;
+  // pageChangedSubscription: Subscription;
 
   page: BatchPage;
 
@@ -44,7 +44,7 @@ export class BatchesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.pageChangedSubscription.unsubscribe();
+    // this.pageChangedSubscription.unsubscribe();
   }
 
 }

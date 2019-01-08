@@ -28,6 +28,12 @@ import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolv
 import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
+import { ConfigurationsService } from './configurations/configurations.service';
+// import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +49,9 @@ import { ConfigurationsComponent } from './configurations/configurations.compone
     BatchViewerComponent,
     FileSizePipe,
     BatchInfoComponent,
-    ConfigurationsComponent
+    ConfigurationsComponent,
+    BreadcrumbComponent,
+    ConfigurationsListComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +61,20 @@ import { ConfigurationsComponent } from './configurations/configurations.compone
     FormsModule,
     FileUploadModule,
     MessagesModule,
-    MessageModule, 
-    ConfirmDialogModule
+    MessageModule,
+    ConfirmDialogModule,
+    RouterModule
+
   ],
-  providers: [DataService, BatchesService, BatchesResolver, BatchResolver, FilesResolver, CanDeactivateGuard, ConfirmationService],
+  providers: [
+    DataService,
+    BatchesService,
+    ConfigurationsService,
+    BatchesResolver,
+    BatchResolver,
+    FilesResolver,
+    CanDeactivateGuard,
+    ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

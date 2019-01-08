@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Batch} from '../../shared/model/batch.model'
+import {Batch} from '../../shared/model/batch.model';
 import { BatchesService } from '../batches.service';
 import { Router, ActivatedRoute } from '@angular/router';
 

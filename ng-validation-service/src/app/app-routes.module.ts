@@ -27,9 +27,8 @@ const routes: Routes = [
             {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver}}
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent,  children: [
-      {path: '', component: ConfigurationsComponent, pathMatch: 'full'},
-      {path: 'list', component: ConfigurationsListComponent}
+    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'},  children: [
+      {path: '', component: ConfigurationsListComponent, data: {breadcrumb: 'Configurations'}},
     ]},
     // { path: '**', redirectTo: 'batches' }
 ];

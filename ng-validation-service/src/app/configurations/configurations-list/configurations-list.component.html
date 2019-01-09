@@ -1,3 +1,33 @@
-<p>
-  configurations-list works!
-</p>
+<ul class="list-group mb-3">
+  <div class="list-group-item list-group-item-light">
+    <div class="input-group">
+      <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)">
+    </div>
+  </div>
+
+  <li class="list-group-item list-group-item-action file-item-text" *ngFor="let config of configurationsPage._embedded.configurations">
+
+    <div style="max-width: 90%;">{{config.description}}</div>
+    <span class="float-right">
+        <a class="btn btn-link btn-sm btn-secondary" (click)="onDeleteFile(file)" style="color:white">
+            <i class="fa fa-trash"></i> Delete
+        </a>
+      </span>
+    <div><small>Created on {{config.creationDate | date:'dd.MM.y, HH:mm'}} </small></div>
+
+    <!-- <div><small>File size:  <strong>{{file.size | fileSize}}</strong>, uploaded on {{file.creationDate | date:'dd.MM.y, HH:mm'}} </small></div> -->
+
+  </li>
+
+  <li class="list-group-item list-group-item-light" *ngIf="configurationsPage._embedded.configurations.length == 0">
+    <div class="text-center">No configurations found</div>
+  </li>
+  <li class="list-group-item bg-light" *ngIf="configurationsPage._embedded.configurations != 0">
+      <div class="text-center">{{configurationsPage.totalCount}} Configurations</div>
+  </li>
+
+</ul>
+
+<div>
+  <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+</div>

@@ -33,7 +33,9 @@ import { ConfigurationsService } from './configurations/configurations.service';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
-
+import {TableModule} from 'primeng/table';
+import { ConfigurationsStartComponent } from './configurations/coonfigurations-start/configurations-start.component';
+import { ConfigurationsResolver } from './configurations/configurations-list-resolver.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { ConfigurationsListComponent } from './configurations/configurations-lis
     BatchInfoComponent,
     ConfigurationsComponent,
     BreadcrumbComponent,
-    ConfigurationsListComponent
+    ConfigurationsListComponent,
+    ConfigurationsStartComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { ConfigurationsListComponent } from './configurations/configurations-lis
     MessagesModule,
     MessageModule,
     ConfirmDialogModule,
-    RouterModule
+    RouterModule,
+    TableModule
 
   ],
   providers: [
@@ -74,7 +78,9 @@ import { ConfigurationsListComponent } from './configurations/configurations-lis
     BatchResolver,
     FilesResolver,
     CanDeactivateGuard,
-    ConfirmationService],
+    ConfirmationService,
+    ConfigurationsResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

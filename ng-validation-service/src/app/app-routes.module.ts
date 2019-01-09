@@ -13,22 +13,24 @@ import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolv
 import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
+import { ConfigurationsStartComponent } from './configurations/coonfigurations-start/configurations-start.component';
+import { ConfigurationsResolver } from './configurations/configurations-list-resolver.service';
 
 
 const routes: Routes = [
-    { path: '', redirectTo: '/batches', pathMatch: 'full' },
-    { path: 'batches', component: BatchesComponent, resolve: {startPage: BatchesResolver}, children: [
-        {path: '', component: BatchesStartComponent, pathMatch: 'full'},
-        {path: 'new', component: BatchDefineComponent},
-        {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
-            {path: '', redirectTo: 'manage', pathMatch: 'full'},
-            {path: 'info', component: BatchInfoComponent},
-            {path: 'upload', component: FileUploaderComponent, canDeactivate:[CanDeactivateGuard]},
-            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver}}
+    { path: '', redirectTo: '/batches', pathMatch: 'full', data: {breadcrumb: ''} },
+    { path: 'batches', component: BatchesComponent, resolve: {startPage: BatchesResolver}, data: {breadcrumb: ''}, children: [
+        {path: '', component: BatchesStartComponent, pathMatch: 'full', data: {breadcrumb: ''}},
+        {path: 'new', component: BatchDefineComponent, data: {breadcrumb: ''}},
+        {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, data: {breadcrumb: ''}, children: [
+            {path: '', redirectTo: 'manage', pathMatch: 'full', data: {breadcrumb: ''}},
+            {path: 'info', component: BatchInfoComponent, data: {breadcrumb: ''}},
+            {path: 'upload', component: FileUploaderComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: ''}},
+            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver}, data: {breadcrumb: ''}}
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'},  children: [
-      {path: '', component: ConfigurationsListComponent, data: {breadcrumb: 'Configurations'}},
+    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver},  children: [
+      {path: '', component: ConfigurationsStartComponent, pathMatch: 'full', data: {breadcrumb: 'Configurations'}},
     ]},
     // { path: '**', redirectTo: 'batches' }
 ];

@@ -16,11 +16,16 @@ export class ConfigurationsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getConfigurationsPage(url: string) {
-    this.httpClient.get<ConfigurationsPage>(url);
+  getConfigurationsPage(url: string, descriptionFilter = '') {
+    let params: HttpParams = new HttpParams();
+    if(descriptionFilter.length > 0) {
+        params = params.append('descriptionFilter', descriptionFilter );
+    }
+
+    return this.httpClient.get<ConfigurationsPage>(url, {params: params}) ;
   }
 
-  getConfigurationsStartPage(url: string) {
+  getConfigurationsStartPage() {
     return this.getConfigurationsPage(this.configurationsResourceUrl);
   }
 
@@ -39,6 +44,8 @@ export class ConfigurationsService {
   putConfiguration(configuration: Configuration) {
     return this.httpClient.put<Configuration>(Util.getHrefForRel(configuration, 'self'), configuration);
   }
+
+
 
 
 }

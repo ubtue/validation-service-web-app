@@ -45,6 +45,14 @@ export class ConfigurationsService {
     return this.httpClient.put<Configuration>(Util.getHrefForRel(configuration, 'self'), configuration);
   }
 
+  deleteConfiguration(configuration: Configuration) {
+    return this.httpClient.delete(Util.getHrefForRel(configuration,'self'));
+  }
+
+  refetchConfigurationsPage(page: ConfigurationsPage) {
+    return this.httpClient.get<ConfigurationsPage>(Util.getHrefForRel(page,'self'));
+  }
+
 
 
 

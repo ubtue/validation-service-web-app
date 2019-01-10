@@ -13,8 +13,10 @@ import { FilesResolver } from './batches/batch-manager/batch-viewer/files-resolv
 import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
-import { ConfigurationsStartComponent } from './configurations/coonfigurations-start/configurations-start.component';
 import { ConfigurationsResolver } from './configurations/configurations-list-resolver.service';
+import { ConfigurationManagerComponent } from './configurations/configuration-manager/configuration-manager.component';
+import { ConfigurationEditComponent } from './configurations/configuration-manager/configuration-edit/configuration-edit.component';
+import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
 
 
 const routes: Routes = [
@@ -30,7 +32,10 @@ const routes: Routes = [
         ]}
     ]},
     {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver},  children: [
-      {path: '', component: ConfigurationsStartComponent, pathMatch: 'full', data: {breadcrumb: 'Configurations'}},
+      {path: ':id', component: ConfigurationManagerComponent, pathMatch: 'full', data: {breadcrumb: ''}, resolve: {configuration: ConfigurationResolver}, children: [
+        {path: '', component: ConfigurationEditComponent, data: {breadcrumb: 'Configuration Details'}},
+
+      ]},
     ]},
     // { path: '**', redirectTo: 'batches' }
 ];

@@ -8,5 +8,7 @@ export interface Embedded {
 
 export interface ConfigurationsPage {
 	_links: Link[];
-	_embedded: Embedded;
+  _embedded: Embedded;
+  count: number;
+  totalCount: number;
 }

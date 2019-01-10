@@ -34,8 +34,13 @@ import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
 import {TableModule} from 'primeng/table';
-import { ConfigurationsStartComponent } from './configurations/coonfigurations-start/configurations-start.component';
 import { ConfigurationsResolver } from './configurations/configurations-list-resolver.service';
+import { ConfigurationManagerComponent } from './configurations/configuration-manager/configuration-manager.component';
+import { ConfigurationEditComponent } from './configurations/configuration-manager/configuration-edit/configuration-edit.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +59,8 @@ import { ConfigurationsResolver } from './configurations/configurations-list-res
     ConfigurationsComponent,
     BreadcrumbComponent,
     ConfigurationsListComponent,
-    ConfigurationsStartComponent
+    ConfigurationManagerComponent,
+    ConfigurationEditComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,9 @@ import { ConfigurationsResolver } from './configurations/configurations-list-res
     MessageModule,
     ConfirmDialogModule,
     RouterModule,
-    TableModule
+    TableModule,
+    InputSwitchModule,
+    RadioButtonModule
 
   ],
   providers: [
@@ -79,7 +87,8 @@ import { ConfigurationsResolver } from './configurations/configurations-list-res
     FilesResolver,
     CanDeactivateGuard,
     ConfirmationService,
-    ConfigurationsResolver
+    ConfigurationsResolver,
+    ConfigurationResolver
   ],
   bootstrap: [AppComponent]
 })

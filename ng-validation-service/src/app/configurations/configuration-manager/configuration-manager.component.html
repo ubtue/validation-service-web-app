@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col col-md-12">
+    <ul class="nav nav-pills nav-justified ">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['']" routerLinkActive="active">
+          General Setup
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['namerules']" routerLinkActive="active"
+          >File Name Rules</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['fitsrules']" routerLinkActive="active"
+          >FITS Result Rules</a
+        >
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" [routerLink]="['verapdf']" routerLinkActive="active"
+            >VeraPDF Configuration</a
+          >
+        </li>
+    </ul>
+    <hr />
+  </div>
+</div>
+
+<router-outlet> </router-outlet>

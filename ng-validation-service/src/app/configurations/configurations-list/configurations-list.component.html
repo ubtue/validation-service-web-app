@@ -1,10 +1,9 @@
-<ul class="list-group mb-3">
+<!-- <ul class="list-group mb-3">
   <div class="list-group-item list-group-item-light">
     <div class="input-group">
       <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)">
     </div>
   </div>
-
   <li class="list-group-item list-group-item-action file-item-text" *ngFor="let config of configurationsPage._embedded.configurations">
 
     <div style="max-width: 90%;">{{config.description}}</div>
@@ -15,7 +14,6 @@
       </span>
     <div><small>Created on {{config.creationDate | date:'dd.MM.y, HH:mm'}} </small></div>
 
-    <!-- <div><small>File size:  <strong>{{file.size | fileSize}}</strong>, uploaded on {{file.creationDate | date:'dd.MM.y, HH:mm'}} </small></div> -->
 
   </li>
 
@@ -30,4 +28,98 @@
 
 <div>
   <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-md-12">
+      <div class="text-left">
+      <a routerLink="/batches/new">
+        <button type="button" name="" id="" class="btn btn-primary">
+          <i class="fa fa-plus"></i> New Configuration
+        </button>
+      </a>
+
+    </div>
+  </div>
+
+</div> -->
+
+<div class="row mb-3">
+  <div class="col-md-4 mt-2">
+      <a routerLink="/batches/new">
+        <button type="button" name="" id="" class="btn btn-primary">
+          <i class="fa fa-plus"></i> New Configuration
+        </button>
+      </a>
+  </div>
+  <div class="offset-md-4 col-md-4 mt-2">
+    <input
+      id="nameText"
+      type="text"
+      class="form-control"
+      placeholder="Search name ..."
+      (keyup)="this.searchTextChanged.next($event.target.value)"
+    />
+  </div>
+</div>
+
+<table class="table">
+  <thead class="  table-light">
+    <tr>
+      <th>Name</th>
+      <th>FITS</th>
+      <th>VeraPDF Mode</th>
+      <th>Creation Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let config of this.configurationsPage._embedded.configurations">
+      <td>{{ config.description }}</td>
+      <td>{{ config.fitsEnabled === true ? "Enabled" : "Disabled" }}</td>
+      <td>
+        <span class="capitalize">{{
+          config._embedded["verapdf-setup"].executionMode
+        }}</span>
+      </td>
+      <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
+      <td>
+        <a style="color: white" class="btn link btn-primary mr-2 mt-1 mb-1" [routerLink]="config.id" role="button">Modify</a>
+        <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteFile(config)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot class="bg-light text-dark table-bordered">
+    <tr>
+      <td
+        colspan="5"
+        class="text-center"
+        *ngIf="this.descriptionFilter.length > 0"
+      >
+        {{
+          this.configurationsPage._embedded.configurations.length === 0
+            ? "No matching records"
+            : "Matching records: " + this.configurationsPage.totalCount
+        }}
+      </td>
+      <td
+        colspan="5"
+        class="text-center"
+        *ngIf="this.descriptionFilter.length == 0"
+      >
+        {{
+          this.configurationsPage._embedded.configurations.length === 0
+            ? "No records"
+            : "Total records: " + this.configurationsPage.totalCount
+        }}
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<div>
+  <app-paginator
+    [page]="this.configurationsPage"
+    (navigationRequested)="onLoadPage($event)"
+  ></app-paginator>
 </div>

@@ -10,9 +10,10 @@
 </div>
 <div class="row mt-0">
   <div class="col-md-12">
-    {{this.router.url == null}}
-    <app-configurations-list [hidden]="this.router == null || this.router.url !== '/configurations'"></app-configurations-list>
+    <!-- <app-configurations-list [hidden]="this.router == null || this.router.url !== '/configurations'"></app-configurations-list> -->
+    <router-outlet></router-outlet></div>
+
   </div>
   <div class="col-md-12">
-    <router-outlet></router-outlet></div>
+    <!-- <router-outlet></router-outlet></div> -->
 </div>

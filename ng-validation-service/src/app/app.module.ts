@@ -44,6 +44,8 @@ import { FileNameRulesResolver } from './configurations/configuration-manager/na
 import { NameRuleEditComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component';
 import { NameRuleStartComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-start/name-rule-start.component';
 import { FileNameRuleResolver } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-resolver.service';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 @NgModule({
@@ -82,7 +84,8 @@ import { FileNameRuleResolver } from './configurations/configuration-manager/nam
     RouterModule,
     TableModule,
     InputSwitchModule,
-    RadioButtonModule
+    RadioButtonModule,
+    DropdownModule
 
   ],
   providers: [

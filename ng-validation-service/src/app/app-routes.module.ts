@@ -37,16 +37,20 @@ const routes: Routes = [
         ]}
     ]},
     {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver}, children: [
-      {path: ':id', component: ConfigurationManagerComponent, data: {breadcrumb: ''}, runGuardsAndResolvers: 'always', resolve: {configuration: ConfigurationResolver}, children: [
-        {path: '', redirectTo: 'general', pathMatch: 'full', data: {breadcrumb: ''}},
-        {path: 'general', component: ConfigurationEditComponent,  pathMatch: 'full', canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
-        {path: 'namerules', component: NameRuleManagerComponent, resolve: {fileNameRulesPage: FileNameRulesResolver}, data: {breadcrumb: 'Configuration Details'},children: [
-            {path: '', redirectTo: 'select',  pathMatch: 'full',data: {breadcrumb: 'Configuration Details'}},
-            {path: 'select', component: NameRuleStartComponent,  data: {breadcrumb: 'Configuration Details'}},
-            {path: ':id', component: NameRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver}, data: {breadcrumb: 'Configuration Details'}},
-        ]},
-      ]},
-    ]},
+        {path: '', component: ConfigurationsListComponent, pathMatch:'full', data: {breadcrumb: 'Configurations'}},
+        {path: ':id', component: ConfigurationManagerComponent, data: {breadcrumb: ''}, runGuardsAndResolvers: 'always', resolve: {configuration: ConfigurationResolver}, children: [
+   
+            {path: '', redirectTo: 'general', pathMatch: 'full', data: {breadcrumb: 'Configuration Details'}},
+            {path: 'general', component: ConfigurationEditComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
+            {path: 'namerules', component: NameRuleManagerComponent, resolve: {fileNameRulesPage: FileNameRulesResolver}, data: {breadcrumb: 'Configuration Details'},children: [
+                {path: '', component: NameRuleStartComponent,data: {breadcrumb: 'Configuration Details'}},
+                // {path: 'select', component: NameRuleStartComponent,  data: {breadcrumb: 'Configuration Details'}},
+                {path: ':id', component: NameRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver}, data: {breadcrumb: 'Configuration Details'}},
+            ]}
+       
+        
+      ]}
+    ]}
     // { path: '**', redirectTo: 'batches' }
 ];
 

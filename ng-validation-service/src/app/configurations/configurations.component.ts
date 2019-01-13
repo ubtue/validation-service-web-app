@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 })
 export class ConfigurationsComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(public router: Router, public route: ActivatedRoute) { }
 
   ngOnInit() {
  

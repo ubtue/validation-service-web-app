@@ -29,7 +29,6 @@ import { FileSizePipe } from './shared/pipes/file-size.pipe';
 import { BatchInfoComponent } from './batches/batch-manager/batch-info/batch-info.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { ConfigurationsService } from './configurations/configurations.service';
-// import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ConfigurationsListComponent } from './configurations/configurations-list/configurations-list.component';
@@ -41,6 +40,10 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
 import { NameRuleManagerComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-manager.component';
+import { FileNameRulesResolver } from './configurations/configuration-manager/name-rule-manager/name-rules-resolver.service';
+import { NameRuleEditComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component';
+import { NameRuleStartComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-start/name-rule-start.component';
+import { FileNameRuleResolver } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-resolver.service';
 
 
 @NgModule({
@@ -62,7 +65,9 @@ import { NameRuleManagerComponent } from './configurations/configuration-manager
     ConfigurationsListComponent,
     ConfigurationManagerComponent,
     ConfigurationEditComponent,
-    NameRuleManagerComponent
+    NameRuleManagerComponent,
+    NameRuleEditComponent,
+    NameRuleStartComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,9 @@ import { NameRuleManagerComponent } from './configurations/configuration-manager
     CanDeactivateGuard,
     ConfirmationService,
     ConfigurationsResolver,
-    ConfigurationResolver
+    ConfigurationResolver,
+    FileNameRulesResolver,
+    FileNameRuleResolver
   ],
   bootstrap: [AppComponent]
 })

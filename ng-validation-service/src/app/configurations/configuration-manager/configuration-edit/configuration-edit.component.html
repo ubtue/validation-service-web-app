@@ -27,9 +27,9 @@
         </div>
         <div class="form-group" *ngIf="!form.pristine">
           <div class="row mt-3">
-            <div class="col-md-12  text-center ">
-              <button type="button" class="btn btn-secondary mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
-              <button type="submit" class="btn btn-success" [disabled]="!form.valid  || form.pristine">Save</button>
+            <div class=" col-md-6 offset-md-3 text-center ">
+              <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save changes</button>
+              <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
             </div>
           </div>
         </div>

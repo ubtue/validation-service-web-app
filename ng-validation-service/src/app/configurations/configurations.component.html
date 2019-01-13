@@ -10,7 +10,8 @@
 </div>
 <div class="row mt-0">
   <div class="col-md-12">
-    <app-configurations-list [hidden]="this.router.url != '/configurations'"></app-configurations-list>
+    {{this.router.url == null}}
+    <app-configurations-list [hidden]="this.router == null || this.router.url !== '/configurations'"></app-configurations-list>
   </div>
   <div class="col-md-12">
     <router-outlet></router-outlet></div>

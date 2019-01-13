@@ -16,6 +16,9 @@ export class ConfigurationsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  configUpdated: Subject<void> = new Subject<void>();;
+
+
   getConfigurationsPage(url: string, descriptionFilter = '') {
     let params: HttpParams = new HttpParams();
     if(descriptionFilter.length > 0) {
@@ -37,11 +40,12 @@ export class ConfigurationsService {
     return this.httpClient.get<Configuration>(url);
   }
 
-  createNewConfiguration(configuration: Configuration) {
-    return this.httpClient.post<Configuration>(this.configurationsResourceUrl, configuration);
+  createNewConfiguration() {
+    return this.httpClient.post<Configuration>(this.configurationsResourceUrl, '');
   }
 
-  putConfiguration(configuration: Configuration) {
+  updateConfiguration(configuration: Configuration) {
+    console.log('putting to: ' +  Util.getHrefForRel(configuration, 'self'))
     return this.httpClient.put<Configuration>(Util.getHrefForRel(configuration, 'self'), configuration);
   }
 

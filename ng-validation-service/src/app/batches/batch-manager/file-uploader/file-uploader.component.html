@@ -7,20 +7,6 @@
     (onSelect)="onSelectFiles()"
     (onError)="onUploadError()"
     (onClear)="onClearWithoutFullUpload()">
-    <!-- <ng-template let-file pTemplate='file'>
-    <div >
-        <p >{{file.name}} </p>
-        <small>{{file.size }}</small>
-        <br>
-        <br>
-        <div style="display:table"><button class="btn btn-warning btn-block" icon="fa fa-close" pButton type="button" label="Remove" ></button></div>
-        
-        <div>
-          <hr style="max-width: 90%;">
-        </div> 
-    </div>
-    
-   </ng-template> -->
   </p-fileUpload>
   <p-confirmDialog header="Upload in progress ..." icon="fa fa-warning" [acceptVisible]="false" [rejectLabel]="'OK'"> </p-confirmDialog>
 

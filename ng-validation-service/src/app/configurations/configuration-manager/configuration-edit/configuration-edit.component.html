@@ -1,34 +1,35 @@
 <div class="row">
     <div class="col-md-12">
-      <form (ngSubmit)="this.OnSave()" #form="ngForm">
+      <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
+      <form (ngSubmit)="this.onSave()" #form="ngForm">
         <div class="form-group">
           <label for="name">Configuration Name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId" [(ngModel)] ='selectedConfiguration.description' required #name="ngModel">
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId" [(ngModel)] ='configurationCopy.description' required #name="ngModel">
           <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the configuration</small>
           <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
         </div>
         <div class="form-group">
           <label for="fits" class="control-label">File Information Tool Set (FITS)</label>
-          <p-inputSwitch [(ngModel)]="selectedConfiguration.fitsEnabled" id="fits" name="fits"  class="form-control form-control-no-border"></p-inputSwitch>
+          <p-inputSwitch [(ngModel)]="configurationCopy.fitsEnabled" id="fits" name="fits"  class="form-control form-control-no-border"></p-inputSwitch>
           <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small>
         </div>
         <div class="form-group">
           <label for="execMode" class="control-label">VeraPDF</label>
-          <p-radioButton name="execMode" value="always" [(ngModel)]="selectedConfiguration._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run always (not recommended)" id="execMode"></p-radioButton>
-          <p-radioButton name="execMode" value="extension" [(ngModel)]="selectedConfiguration._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run only when file has .pdf file extension"></p-radioButton>
-          <p-radioButton name="execMode" value="fits" [(ngModel)]="selectedConfiguration._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run when a tool in FITS reports mime of type application/pdf"></p-radioButton>
-          <p-radioButton name="execMode" value="never" [(ngModel)]="selectedConfiguration._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Disabled"></p-radioButton>
+          <p-radioButton name="execMode" value="always" [(ngModel)]="configurationCopy._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run always (not recommended)" id="execMode"></p-radioButton>
+          <p-radioButton name="execMode" value="extension" [(ngModel)]="configurationCopy._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run only when file has .pdf file extension"></p-radioButton>
+          <p-radioButton name="execMode" value="fits" [(ngModel)]="configurationCopy._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Run when a tool in FITS reports mime of type application/pdf"></p-radioButton>
+          <p-radioButton name="execMode" value="never" [(ngModel)]="configurationCopy._embedded['verapdf-setup'].executionMode" class="form-control form-control-no-border" label="Disabled"></p-radioButton>
         </div>
         <div class="form-group">
           <label for="invalidate" class="control-label">Invalidate File Report on Tool Errors</label>
-          <p-inputSwitch [(ngModel)]="selectedConfiguration.invalidateOnToolError" id="invalidate" name="invalidate"  class="form-control form-control-no-border"></p-inputSwitch>
+          <p-inputSwitch [(ngModel)]="configurationCopy.invalidateOnToolError" id="invalidate" name="invalidate"  class="form-control form-control-no-border"></p-inputSwitch>
           <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!form.pristine">
           <div class="row mt-3">
             <div class="col-md-12  text-center ">
-              <button type="button" class="btn btn-secondary mr-1" [disabled]="form.pristine" (click)="onAbort()">Cancel</button>
-              <button type="submit" class="btn btn-success" [disabled]="!form.valid  || form.pristine" >Save</button>
+              <button type="button" class="btn btn-secondary mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+              <button type="submit" class="btn btn-success" [disabled]="!form.valid  || form.pristine">Save</button>
             </div>
           </div>
         </div>

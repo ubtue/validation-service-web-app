@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ConfigurationsPage } from "src/app/shared/model/configurations.model";
 import { Message } from "src/app/shared/model/primeng-message.model";
 import { Util } from "src/app/shared/util";
 import { Subscription, Subject } from "rxjs";
 import { ConfigurationsService } from "../configurations.service";
 import { ConfirmationService } from "primeng/api";
-import { ActivatedRoute, Data } from "@angular/router";
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ActivatedRoute, Data, Router } from "@angular/router";
+import { debounceTime, distinctUntilChanged, retry } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 
 @Component({
@@ -14,16 +14,20 @@ import { Configuration } from 'src/app/shared/model/configuration.model';
   templateUrl: "./configurations-list.component.html",
   styleUrls: ["./configurations-list.component.css"]
 })
-export class ConfigurationsListComponent implements OnInit {
+export class ConfigurationsListComponent implements OnInit, OnDestroy {
+
   configurationsPage: ConfigurationsPage;
   messages: Message[];
   hrefToRel = Util.getHrefForRel;
   searchTextSubscription: Subscription;
   searchTextChanged = new Subject<string>();
   descriptionFilter: string = "";
+  listRefreshSubscription: Subscription;
+
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private confirmationService: ConfirmationService,
     private configurationsService: ConfigurationsService
   ) {}
@@ -54,15 +58,15 @@ export class ConfigurationsListComponent implements OnInit {
       });
 
     // handle refresh list requests (e.g. on deletion)
-    // this.listReloadRequestedSubscription = this.batchesService.batchListReloadRequested.subscribe(
-    //   () => {
-    //     this.batchesService
-    //       .getBatchesPage(Util.getHrefForRel(this.page, "self"))
-    //       .subscribe((page: BatchPage) => {
-    //         this.page = page;
-    //       });
-    //   }
-    // );
+    this.listRefreshSubscription = this.configurationsService.configUpdated.pipe(retry(2)).subscribe(
+      () => {
+        this.configurationsService
+          .getConfigurationsPage(Util.getHrefForRel(this.configurationsPage, "self"))
+          .subscribe((page: ConfigurationsPage) => {
+            this.configurationsPage = page;
+          });
+      }
+    );
 
   //   // reset interface and go to start page (on create batch)
   //   this.resetListRequestedSubscription = this.batchesService.resetBatchListRequested.subscribe(
@@ -77,6 +81,11 @@ export class ConfigurationsListComponent implements OnInit {
   //         });
   //     }
   //   );
+  }
+
+  ngOnDestroy(): void {
+    this.listRefreshSubscription.unsubscribe();
+    this.searchTextSubscription.unsubscribe();
   }
 
   /**
@@ -94,7 +103,6 @@ export class ConfigurationsListComponent implements OnInit {
 
   onDeleteFile(config: Configuration) {
     this.configurationsService.deleteConfiguration(config).subscribe(
-
       (data) => {
         this.refreshConfigList();
       },
@@ -113,6 +121,15 @@ export class ConfigurationsListComponent implements OnInit {
 
       (error) => {
         console.log(error);
+      }
+    )
+  }
+
+  onCreateNew() {
+    this.configurationsService.createNewConfiguration().subscribe(
+      (configuration: Configuration) => {
+        this.router.navigate([configuration.id], {relativeTo: this.route});
+        this.refreshConfigList();
       }
     )
   }

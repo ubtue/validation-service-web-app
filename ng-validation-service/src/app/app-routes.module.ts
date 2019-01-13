@@ -18,7 +18,7 @@ import { ConfigurationManagerComponent } from './configurations/configuration-ma
 import { ConfigurationEditComponent } from './configurations/configuration-manager/configuration-edit/configuration-edit.component';
 import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
 
-
+//runGuardsAndResolvers: 'always',
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full', data: {breadcrumb: ''} },
     { path: 'batches', component: BatchesComponent, resolve: {startPage: BatchesResolver}, data: {breadcrumb: ''}, children: [
@@ -31,9 +31,9 @@ const routes: Routes = [
             {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver}, data: {breadcrumb: ''}}
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver},  children: [
+    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver}, children: [
       {path: ':id', component: ConfigurationManagerComponent, pathMatch: 'full', data: {breadcrumb: ''}, resolve: {configuration: ConfigurationResolver}, children: [
-        {path: '', component: ConfigurationEditComponent, data: {breadcrumb: 'Configuration Details'}},
+        {path: '', component: ConfigurationEditComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
 
       ]},
     ]},
@@ -42,7 +42,7 @@ const routes: Routes = [
 
 @NgModule({
     imports:[
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
     ],
     exports: [
         RouterModule

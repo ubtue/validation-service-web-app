@@ -40,6 +40,7 @@ import { ConfigurationEditComponent } from './configurations/configuration-manag
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
+import { NameRuleManagerComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-manager.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { ConfigurationResolver } from './configurations/configuration-manager/co
     BreadcrumbComponent,
     ConfigurationsListComponent,
     ConfigurationManagerComponent,
-    ConfigurationEditComponent
+    ConfigurationEditComponent,
+    NameRuleManagerComponent
   ],
   imports: [
     BrowserModule,

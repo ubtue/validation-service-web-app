@@ -3,6 +3,7 @@ import { BreadCrumbItem } from './breadcrumb-item.model';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { IfStmt } from '@angular/compiler';
+import { last } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -49,6 +50,10 @@ export class BreadcrumbComponent implements OnInit {
     if (breadcrumbs.length !== 0) {
       const lastCrumb = breadcrumbs.slice().pop();
       if (lastCrumb.path === breadcrumb.path) {
+        breadcrumbs.pop();
+      }
+
+      if(lastCrumb.description.length == 0) {
         breadcrumbs.pop();
       }
     }

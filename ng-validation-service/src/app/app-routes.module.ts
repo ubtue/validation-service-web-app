@@ -17,6 +17,7 @@ import { ConfigurationsResolver } from './configurations/configurations-list-res
 import { ConfigurationManagerComponent } from './configurations/configuration-manager/configuration-manager.component';
 import { ConfigurationEditComponent } from './configurations/configuration-manager/configuration-edit/configuration-edit.component';
 import { ConfigurationResolver } from './configurations/configuration-manager/configuration-resolver.service';
+import { NameRuleManagerComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-manager.component';
 
 //runGuardsAndResolvers: 'always',
 const routes: Routes = [
@@ -32,9 +33,9 @@ const routes: Routes = [
         ]}
     ]},
     {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver}, children: [
-      {path: ':id', component: ConfigurationManagerComponent, pathMatch: 'full', data: {breadcrumb: ''}, resolve: {configuration: ConfigurationResolver}, children: [
-        {path: '', component: ConfigurationEditComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
-
+      {path: ':id', component: ConfigurationManagerComponent, data: {breadcrumb: ''}, resolve: {configuration: ConfigurationResolver}, children: [
+        {path: 'general', component: ConfigurationEditComponent,  pathMatch: 'full', canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
+        {path: 'namerules', component: NameRuleManagerComponent, data: {breadcrumb: 'Configuration Details'}},
       ]},
     ]},
     // { path: '**', redirectTo: 'batches' }

@@ -5,11 +5,11 @@
 <div class="row mt-3">
   <div class="col-md-5">
     <div class="text-left">
-      <a routerLink="/batches/new">
-        <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i>Add Rule</button></a>
+      <a routerLink="new">
+        <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Rule</button></a>
     </div>
     <!-- <hr> -->
-    
+
     <ul class="list-group mb-3 mt-3">
       <!-- <div class="list-group-item list-group-item-light">
         <div class="input-group">
@@ -18,14 +18,14 @@
       </div> -->
       <li [routerLink]="rule.id" routerLinkActive="list-group-item-primary" class="list-group-item list-group-item-action rule-item-text" *ngFor="let rule of this.nameRulesPage._embedded['file-name-rules']">
 
-        <div style="max-width: 90%;">{{rule.ruleName}}</div>
+        <div style="max-width: 90%;"><strong>{{rule.ruleName}}</strong></div>
         <span class="float-right">
-          <a class="btn btn-link btn-sm btn-danger" (click)="onDeleteFile(config)" style="color:white">
+          <a class="btn btn-link btn-sm btn-dark" (click)="onDeleteRule(rule)" style="color:white">
             <i class="fa fa-trash"></i> Delete
           </a>
         </span>
-        <div><small><strong>Rule type:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
-        <div><small><strong>Value: </strong> {{this.resolveCamelCase(rule.value)}} </small></div>
+        <div><small><strong>Condition:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
+        <div><small><strong>Outcome: </strong> {{this.resolveCamelCase(rule.outcome)}} </small></div>
 
 
       </li>

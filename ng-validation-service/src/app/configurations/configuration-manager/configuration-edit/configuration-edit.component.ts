@@ -68,13 +68,12 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       (result) => {
         this.selectedConfiguration = <Configuration>Util.deepCopy(this.configurationCopy);
         this.onCancel();
-        this.configService.configUpdated.next();
       },
 
       (error) => {
         console.log(error);
       }
-    )
+    );
   }
 
 

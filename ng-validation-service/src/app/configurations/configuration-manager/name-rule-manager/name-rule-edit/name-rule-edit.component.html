@@ -2,32 +2,39 @@
 </p-confirmDialog>
 <form (ngSubmit)="this.onSave()" #form="ngForm">
   <div class="form-group">
-    <label for="name">Configuration Name</label>
+    <label for="name">Rule Name</label>
     <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId"
-      [(ngModel)]='configurationCopy.description' required #name="ngModel">
-    <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the configuration</small>
+      [(ngModel)]='ruleCopy.ruleName' required #name="ngModel">
+    <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the rule</small>
     <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
   </div>
   <div class="form-group">
-    <label for="fits" class="control-label">File Information Tool Set (FITS)</label>
-
-    <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small>
+    <label for="regEx" class="control-label">Regular Expression</label>
+    <input type="text" name="regEx" id="regEx" class="form-control" placeholder="Enter regular expression ..." aria-describedby="helpId"
+    [(ngModel)]='ruleCopy.value' required #regEx="ngModel">
+    <span *ngIf="!regEx.valid && regEx.touched" class="text-muted">Please enter a regular expression</span>
   </div>
   <div class="form-group">
-    <label for="execMode" class="control-label">VeraPDF</label>
-
+    <label for="types" class="control-label">Condition</label>
+    <div>
+      <p-dropdown [options]="this.ruleTypes" [(ngModel)]="this.ruleCopy.type" id="types" name="types"></p-dropdown>
+    </div>
+    <!-- <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small> -->
   </div>
   <div class="form-group">
-    <label for="invalidate" class="control-label">Invalidate File Report on Tool Errors</label>
-
-    <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small>
+    <label for="outcome" class="control-label">Outcome</label>
+    <div>
+      <p-dropdown [options]="this.outcomeTypes" [(ngModel)]="this.ruleCopy.outcome" id="outcome" name="outcome"></p-dropdown>
+    </div>
+    <!-- <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small> -->
   </div>
-  <div class="form-group" *ngIf="!form.pristine">
+  <div class="form-group" *ngIf="!form.pristine || creationMode">
     <div class="row mt-3">
       <div class=" col-md-6 offset-md-3 text-center ">
-        <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save changes</button>
-        <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">{{ creationMode ? 'Create' : 'Save changes'}}</button>
+        <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine && !creationMode" (click)="onCancel()">Cancel</button>
       </div>
     </div>
   </div>
 </form>
+

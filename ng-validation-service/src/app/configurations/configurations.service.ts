@@ -20,9 +20,10 @@ export class ConfigurationsService {
   constructor(private httpClient: HttpClient) { }
 
   configUpdated: Subject<void> = new Subject<void>();
+  fileNameRulesUpdated: Subject<void> = new Subject<void>();
 
   // ConfigurationPage
-  
+
   getConfigurationsStartPage() {
     return this.getConfigurationsPage(this.configurationsResourceUrl);
   }
@@ -73,8 +74,24 @@ export class ConfigurationsService {
     return this.httpClient.get<FileNameRulesPage>(url, {params: params}) ;
   }
 
+  refetchFileNameRulesPage(page: FileNameRulesPage) {
+    return this.httpClient.get<FileNameRulesPage>(Util.getHrefForRel(page,'self'));
+  }
+
   getFileNameRuleById(id: number) {
     return this.httpClient.get<FileNameRule>(this.fileNameRulesResourceUrl + '/' + id);
+  }
+
+  updateFileNameRule(rule: FileNameRule) {
+    return this.httpClient.put<void>(Util.getHrefForRel(rule, 'self'), rule);
+  }
+
+  createFileNameRule(rule: FileNameRule, config: Configuration) {
+    return this.httpClient.post<FileNameRule>(Util.getHrefForRel(config, 'file-name-rules'), rule);
+  }
+
+  deleteFileNameRule(rule: FileNameRule) {
+    return this.httpClient.delete(Util.getHrefForRel(rule, 'self'));
   }
 
 

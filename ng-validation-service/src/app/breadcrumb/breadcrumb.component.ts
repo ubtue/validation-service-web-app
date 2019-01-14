@@ -46,6 +46,8 @@ export class BreadcrumbComponent implements OnInit {
         description: label
     };
 
+    console.log(route.children);
+
     // Remove duplicate route entries
     if (breadcrumbs.length !== 0) {
       const lastCrumb = breadcrumbs.slice().pop();
@@ -53,7 +55,7 @@ export class BreadcrumbComponent implements OnInit {
         breadcrumbs.pop();
       }
 
-      if(lastCrumb.description.length == 0) {
+      if (lastCrumb.description.length == 0) {
         breadcrumbs.pop();
       }
     }

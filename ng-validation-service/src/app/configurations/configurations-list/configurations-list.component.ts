@@ -110,7 +110,7 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
       (error) => {
         console.log(error);
       }
-    )
+    );
   }
 
   refreshConfigList() {

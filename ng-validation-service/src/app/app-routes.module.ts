@@ -23,32 +23,30 @@ import { NameRuleStartComponent } from './configurations/configuration-manager/n
 import { NameRuleEditComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component';
 import { FileNameRuleResolver } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-resolver.service';
 
-//runGuardsAndResolvers: 'always',
 const routes: Routes = [
-    { path: '', redirectTo: '/batches', pathMatch: 'full', data: {breadcrumb: ''} },
-    { path: 'batches', component: BatchesComponent, resolve: {startPage: BatchesResolver}, data: {breadcrumb: ''}, children: [
-        {path: '', component: BatchesStartComponent, pathMatch: 'full', data: {breadcrumb: ''}},
-        {path: 'new', component: BatchDefineComponent, data: {breadcrumb: ''}},
-        {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, data: {breadcrumb: ''}, children: [
-            {path: '', redirectTo: 'manage', pathMatch: 'full', data: {breadcrumb: ''}},
-            {path: 'info', component: BatchInfoComponent, data: {breadcrumb: ''}},
-            {path: 'upload', component: FileUploaderComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: ''}},
-            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver}, data: {breadcrumb: ''}}
+    { path: '', redirectTo: '/batches', pathMatch: 'full' },
+    { path: 'batches', component: BatchesComponent, resolve: {startPage: BatchesResolver}, children: [
+        {path: '', component: BatchesStartComponent, pathMatch: 'full' },
+        {path: 'new', component: BatchDefineComponent },
+        {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
+            {path: '', redirectTo: 'manage', pathMatch: 'full'},
+            {path: 'info', component: BatchInfoComponent },
+            {path: 'upload', component: FileUploaderComponent, canDeactivate:[CanDeactivateGuard] },
+            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver} }
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, data: {breadcrumb: 'Configurations'}, resolve: {startPage: ConfigurationsResolver}, children: [
-        {path: '', component: ConfigurationsListComponent, pathMatch:'full', data: {breadcrumb: 'Configurations'}},
-        {path: ':id', component: ConfigurationManagerComponent, data: {breadcrumb: ''}, runGuardsAndResolvers: 'always', resolve: {configuration: ConfigurationResolver}, children: [
-   
-            {path: '', redirectTo: 'general', pathMatch: 'full', data: {breadcrumb: 'Configuration Details'}},
-            {path: 'general', component: ConfigurationEditComponent, canDeactivate:[CanDeactivateGuard], data: {breadcrumb: 'Configuration Details'}},
-            {path: 'namerules', component: NameRuleManagerComponent, resolve: {fileNameRulesPage: FileNameRulesResolver}, data: {breadcrumb: 'Configuration Details'},children: [
-                {path: '', component: NameRuleStartComponent,data: {breadcrumb: 'Configuration Details'}},
-                // {path: 'select', component: NameRuleStartComponent,  data: {breadcrumb: 'Configuration Details'}},
-                {path: ':id', component: NameRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver}, data: {breadcrumb: 'Configuration Details'}},
+    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', resolve: {startPage: ConfigurationsResolver}, children: [
+        {path: '', component: ConfigurationsListComponent, pathMatch:'full' },
+        {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
+        resolve: {configuration: ConfigurationResolver}, children: [
+            {path: '', redirectTo: 'general', pathMatch: 'full' },
+            {path: 'general', component: ConfigurationEditComponent, canDeactivate:[CanDeactivateGuard] },
+            {path: 'namerules', component: NameRuleManagerComponent, resolve: {fileNameRulesPage: FileNameRulesResolver}, children: [
+                {path: '', component: NameRuleStartComponent, pathMatch: 'full' },
+                {path: 'new', component: NameRuleEditComponent, canDeactivate: [CanDeactivateGuard] },
+                {path: ':id', component: NameRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver},
+                canDeactivate: [CanDeactivateGuard] },
             ]}
-       
-        
       ]}
     ]}
     // { path: '**', redirectTo: 'batches' }

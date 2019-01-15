@@ -47,6 +47,7 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
           this.rule.outcome = 'valid';
           this.rule.type = 'matchesRegularExpression';
           this.creationMode = true;
+          this.rule.errorMessage = '';
         }
 
         this.ruleCopy = <FileNameRule>Util.deepCopy(this.rule);
@@ -105,7 +106,8 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       name: this.rule.ruleName,
       regEx: this.rule.value,
       types: this.rule.type,
-      outcome: this.rule.outcome
+      outcome: this.rule.outcome,
+      dspace: this.rule.errorMessage
     });
   }
 
@@ -139,6 +141,13 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     }
 
 
+
+
+
+  }
+
+  onDspaceErrorMessageChange(ev) {
+    this.ruleCopy.errorMessage = ev.target.value;
 
   }
 

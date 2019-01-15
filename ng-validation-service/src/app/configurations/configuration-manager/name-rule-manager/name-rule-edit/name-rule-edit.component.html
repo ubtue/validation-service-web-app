@@ -1,40 +1,106 @@
-<p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'">
+<p-confirmDialog
+  header="Unsaved changes ..."
+  icon="fa fa-warning"
+  [acceptVisible]="true"
+  [rejectLabel]="'cancel'"
+>
 </p-confirmDialog>
 <form (ngSubmit)="this.onSave()" #form="ngForm">
-  <div class="form-group">
-    <label for="name">Rule Name</label>
-    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId"
-      [(ngModel)]='ruleCopy.ruleName' required #name="ngModel">
-    <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the rule</small>
-    <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
-  </div>
-  <div class="form-group">
-    <label for="regEx" class="control-label">Regular Expression</label>
-    <input type="text" name="regEx" id="regEx" class="form-control" placeholder="Enter regular expression ..." aria-describedby="helpId"
-    [(ngModel)]='ruleCopy.value' required #regEx="ngModel">
-    <span *ngIf="!regEx.valid && regEx.touched" class="text-muted">Please enter a regular expression</span>
-  </div>
-  <div class="form-group">
-    <label for="types" class="control-label">Condition</label>
-    <div>
-      <p-dropdown [options]="this.ruleTypes" [(ngModel)]="this.ruleCopy.type" id="types" name="types"></p-dropdown>
+  <fieldset class="form-group">
+    <div class="form-group">
+      <label for="name">Rule Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        placeholder="Enter name ..."
+        aria-describedby="helpId"
+        [(ngModel)]="ruleCopy.ruleName"
+        required
+        #name="ngModel"
+      />
+      <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted"
+        >A short description for the rule</small
+      >
+      <span *ngIf="!name.valid && name.touched" class="text-danger"
+        >Please enter a name</span
+      >
     </div>
-    <!-- <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small> -->
-  </div>
-  <div class="form-group">
-    <label for="outcome" class="control-label">Outcome</label>
-    <div>
-      <p-dropdown [options]="this.outcomeTypes" [(ngModel)]="this.ruleCopy.outcome" id="outcome" name="outcome"></p-dropdown>
+    <div class="form-group">
+      <label for="regEx" class="control-label">Regular Expression</label>
+      <input
+        type="text"
+        name="regEx"
+        id="regEx"
+        class="form-control"
+        placeholder="Enter regular expression ..."
+        aria-describedby="helpId"
+        [(ngModel)]="ruleCopy.value"
+        required
+        #regEx="ngModel"
+      />
+      <span *ngIf="!regEx.valid && regEx.touched" class="text-danger"
+        >Please enter a regular expression</span
+      >
     </div>
-    <!-- <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small> -->
-  </div>
+    <div class="form-group">
+      <label for="types" class="control-label">Condition</label>
+      <div>
+        <p-dropdown
+          [options]="this.ruleTypes"
+          [(ngModel)]="this.ruleCopy.type"
+          id="types"
+          name="types"
+        ></p-dropdown>
+      </div>
+      <!-- <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small> -->
+    </div>
+    <div class="form-group">
+      <label for="outcome" class="control-label">Outcome</label>
+      <div>
+        <p-dropdown
+          [options]="this.outcomeTypes"
+          [(ngModel)]="this.ruleCopy.outcome"
+          id="outcome"
+          name="outcome"
+        ></p-dropdown>
+      </div>
+      <!-- <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small> -->
+    </div>
+  </fieldset>
+  <fieldset class="form-group">
+    <div class="form-group">
+      <label for="dspace" class="control-label">DSpace User Message</label>
+      <textarea class="form-control" name="dspace" id="dspace" (change)="onDspaceErrorMessageChange($event)" required ngModel #dspace="ngModel">{{this.ruleCopy.errorMessage}}</textarea>
+      <ng-container *ngIf="!dspace.valid && dspace.touched; else elseTemplate">
+        <span *ngIf="!dspace.valid && dspace.touched" class="text-danger">Please enter a message</span>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <small class="text-muted">Will be shown to user in DSpace.</small>
+      </ng-template>
+    </div>
+  </fieldset>
+
   <div class="form-group" *ngIf="!form.pristine || creationMode">
     <div class="row mt-3">
       <div class=" col-md-6 offset-md-3 text-center ">
-        <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">{{ creationMode ? 'Create' : 'Save changes'}}</button>
-        <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine && !creationMode" (click)="onCancel()">Cancel</button>
+        <button
+          type="submit"
+          class="btn btn-success btn-block"
+          [disabled]="!form.valid || form.pristine"
+        >
+          {{ creationMode ? "Create" : "Save changes" }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary btn-block mr-1"
+          [disabled]="form.pristine && !creationMode"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   </div>
 </form>
-

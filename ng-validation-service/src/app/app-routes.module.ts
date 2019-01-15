@@ -22,6 +22,9 @@ import { FileNameRulesResolver } from './configurations/configuration-manager/na
 import { NameRuleStartComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-start/name-rule-start.component';
 import { NameRuleEditComponent } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component';
 import { FileNameRuleResolver } from './configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-resolver.service';
+import { FitsRuleManagerComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-manager.component';
+import { FitsRuleStartComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-start/fits-rule-start.component';
+import { FitsRuleEditComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -46,7 +49,13 @@ const routes: Routes = [
                 {path: 'new', component: NameRuleEditComponent, canDeactivate: [CanDeactivateGuard] },
                 {path: ':id', component: NameRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver},
                 canDeactivate: [CanDeactivateGuard] },
-            ]}
+            ]},
+            {path: 'fitsrules', component: FitsRuleManagerComponent, resolve: {fileNameRulesPage: FileNameRulesResolver}, children: [
+              {path: '', component: FitsRuleStartComponent, pathMatch: 'full' },
+              {path: 'new', component: FitsRuleEditComponent, canDeactivate: [CanDeactivateGuard] },
+              {path: ':id', component: FitsRuleEditComponent,  resolve: {fileNameRule: FileNameRuleResolver},
+              canDeactivate: [CanDeactivateGuard] },
+          ]}
       ]}
     ]}
     // { path: '**', redirectTo: 'batches' }

@@ -1,0 +1,45 @@
+<div class="row mt-3">
+    <div class="col-md-5">
+      <div class="text-left">
+        <a routerLink="new">
+          <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Rule</button></a>
+      </div>
+      <!-- <hr> -->
+
+      <ul class="list-group mb-3 mt-3">
+        <!-- <div class="list-group-item list-group-item-light">
+          <div class="input-group">
+            <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)">
+          </div>
+        </div> -->
+        <li [routerLink]="rule.id" routerLinkActive="list-group-item-primary" class="list-group-item list-group-item-action rule-item-text" *ngFor="let rule of this.nameRulesPage._embedded['file-name-rules']">
+
+          <div style="max-width: 90%;"><strong>{{rule.ruleName}}</strong></div>
+          <span class="float-right">
+            <a class="btn btn-link btn-sm btn-dark" (click)="onDeleteRule(rule)" style="color:white">
+              <i class="fa fa-trash"></i> Delete
+            </a>
+          </span>
+          <div><small><strong>Condition:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
+          <div><small><strong>Outcome: </strong> {{this.resolveCamelCase(rule.outcome)}} </small></div>
+
+
+        </li>
+
+        <li class="list-group-item list-group-item-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'].length == 0">
+          <div class="text-center">No rules found</div>
+        </li>
+        <li class="list-group-item bg-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'] != 0">
+          <div class="text-center">{{nameRulesPage.totalCount}} Rules</div>
+        </li>
+
+      </ul>
+
+      <div>
+        <app-paginator [page]="this.nameRulesPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+      </div>
+    </div>
+    <div class="col-md-6 offset-md-1">
+      <router-outlet></router-outlet>
+    </div>
+  </div>

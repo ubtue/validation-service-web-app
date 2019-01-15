@@ -48,6 +48,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import { FitsRuleManagerComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-manager.component';
 import { FitsRuleEditComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component';
 import { FitsRuleStartComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-start/fits-rule-start.component';
+import { FitsResultRulesResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rules-resolver.service';
+import { FitsResultRuleResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-resolver.service';
 
 
 
@@ -106,7 +108,9 @@ import { FitsRuleStartComponent } from './configurations/configuration-manager/f
     ConfigurationsResolver,
     ConfigurationResolver,
     FileNameRulesResolver,
-    FileNameRuleResolver
+    FileNameRuleResolver,
+    FitsResultRulesResolver,
+    FitsResultRuleResolver
   ],
   bootstrap: [AppComponent]
 })

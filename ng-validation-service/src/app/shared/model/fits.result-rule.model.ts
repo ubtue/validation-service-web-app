@@ -3,7 +3,8 @@ import { Link } from "../model/common-interfaces.model";
 export class FitsResultRule {
 	_links: Link[];
 	_embedded: {};
-	id: number;
+  id: number;
+  ruleName: string;
 	type: string;
 	mime: string;
 	puid?: any;

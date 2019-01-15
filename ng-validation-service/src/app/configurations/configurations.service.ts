@@ -10,17 +10,21 @@ import { Util } from '../shared/util';
 import { File } from '../shared/model/file.model';
 import { FileNameRulesPage } from '../shared/model/file-name-rules.model';
 import { FileNameRule } from '../shared/model/file-name-rule.model';
+import { FitsResultRulesPage } from '../shared/model/fits-result-rules.model';
+import { FitsResultRule } from '../shared/model/fits.result-rule.model';
 
 @Injectable()
 export class ConfigurationsService {
 
   configurationsResourceUrl: string = environment.apiBaseUrl + '/configurations';
   fileNameRulesResourceUrl: string = environment.apiBaseUrl + '/file-name-rules';
+  fitsResultRulesResourceUrl: string = environment.apiBaseUrl + '/fits-result-rules';
 
   constructor(private httpClient: HttpClient) { }
 
   configUpdated: Subject<void> = new Subject<void>();
   fileNameRulesUpdated: Subject<void> = new Subject<void>();
+  fitsResultRulesUpdated: Subject<void> = new Subject<void>();
 
   // ConfigurationPage
 
@@ -64,7 +68,7 @@ export class ConfigurationsService {
     return this.httpClient.delete(Util.getHrefForRel(configuration,'self'));
   }
 
-  // FileNameRulesPage
+  // FileNameRules
 
   getFileNameRulesPage(url: string, descriptionFilter = '') {
     let params: HttpParams = new HttpParams();
@@ -93,6 +97,38 @@ export class ConfigurationsService {
   deleteFileNameRule(rule: FileNameRule) {
     return this.httpClient.delete(Util.getHrefForRel(rule, 'self'));
   }
+
+  //FitsResultRules
+
+  getFitsResultRulesPage(url: string, descriptionFilter = '') {
+    let params: HttpParams = new HttpParams();
+    if(descriptionFilter.length > 0) {
+        params = params.append('descriptionFilter', descriptionFilter );
+    }
+    return this.httpClient.get<FitsResultRulesPage>(url, {params: params}) ;
+  }
+
+  refetchFitsResultRulesPage(page: FitsResultRulesPage) {
+    return this.httpClient.get<FitsResultRulesPage>(Util.getHrefForRel(page,'self'));
+  }
+
+  getFitsResultRuleById(id: number) {
+    console.log('getting to: ' + this.fitsResultRulesResourceUrl + '/' + id);
+    return this.httpClient.get<FitsResultRule>(this.fitsResultRulesResourceUrl + '/' + id);
+  }
+
+  createFitsResultRule(rule: FitsResultRule, config: Configuration) {
+    return this.httpClient.post<FitsResultRule>(Util.getHrefForRel(config, 'fits-result-rules'), rule);
+  }
+
+  updateFitsResultRule(rule: FitsResultRule) {
+    return this.httpClient.put<void>(Util.getHrefForRel(rule, 'self'), rule);
+  }
+
+  deleteFitsResultRule(rule: FitsResultRule) {
+    return this.httpClient.delete(Util.getHrefForRel(rule, 'self'));
+  }
+
 
 
 

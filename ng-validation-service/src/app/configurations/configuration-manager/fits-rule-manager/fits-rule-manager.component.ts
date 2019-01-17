@@ -61,16 +61,17 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
   }
 
   onDeleteRule(rule: FitsResultRule) {
-    // this.configService.deleteFileNameRule(rule).subscribe(
-    //   (data) => {
-    //     this.refreshConfigList();
-    //     this.router.navigate(['../namerules'], {relativeTo: this.route});
-    //   },
+    this.configService.deleteFitsResultRule(rule).subscribe(
+      (data) => {
+        this.configService.listItemDeleted.next();
+        this.refreshConfigList();
+        this.router.navigate(['../fitsrules'], {relativeTo: this.route});
+      },
 
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   refreshConfigList() {

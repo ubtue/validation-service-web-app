@@ -5,7 +5,7 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ConfigurationsService } from 'src/app/configurations/configurations.service';
 import { NgForm } from '@angular/forms';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subscription } from 'rxjs';
 import { Util } from 'src/app/shared/util';
 import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
@@ -25,7 +25,7 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
   ruleCopy: FileNameRule;
   ruleTypes: SelectItem[];
   outcomeTypes: SelectItem[];
-
+  listItemDeletedSubscription = new Subscription();
   configuration: Configuration;
 
   creationMode = false;
@@ -55,6 +55,13 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       }
     )
 
+    // Reset before delete to allow navigation
+    this.listItemDeletedSubscription = this.configService.listItemDeleted.subscribe(
+      () => {
+        this.form.reset();
+      }
+    );
+
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
       (data: Data) => {
@@ -73,6 +80,11 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       {label: 'Not valid', value: 'notValid'}
     ];
 
+  }
+
+
+  ngOnDestroy() {
+    this.listItemDeletedSubscription.unsubscribe();
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -148,7 +160,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
 
   onDspaceErrorMessageChange(ev) {
     this.ruleCopy.errorMessage = ev.target.value;
-
   }
 
 

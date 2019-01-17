@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FitsResultRule } from 'src/app/shared/model/fits.result-rule.model';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { ConfigurationsService } from 'src/app/configurations/configurations.service';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subscription, config } from 'rxjs';
 import { Util } from 'src/app/shared/util';
 import { NgForm } from '@angular/forms';
 
@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './fits-rule-edit.component.html',
   styleUrls: ['./fits-rule-edit.component.css']
 })
-export class FitsRuleEditComponent implements OnInit {
+export class FitsRuleEditComponent implements OnInit, OnDestroy {
 
   @ViewChild('form') form: NgForm;
 
@@ -22,6 +22,8 @@ export class FitsRuleEditComponent implements OnInit {
   ruleTypes: SelectItem[];
   toolTypes: SelectItem[];
   outcomeTypes: SelectItem[];
+
+  listItemDeletedSubscription = new Subscription();
 
   configuration: Configuration;
 
@@ -39,19 +41,29 @@ export class FitsRuleEditComponent implements OnInit {
       (data: Data) => {
         if (data['fitsResultRule']) {
           this.rule = data['fitsResultRule'];
+
         } else {
           this.rule = new FitsResultRule();
           this.rule.outcome = 'valid';
-          this.rule.type = 'matchesRegularExpression';
+          this.rule.type = 'mimeValid';
+          this.rule.mime = "application/pdf"
           this.rule.errorMessage = '';
           this.creationMode = true;
           this.rule.outcomeOnMissingFitsRecord = 'valid';
+          this.rule.toolName = "Jhove";
+          console.log('new')
         }
 
         this.ruleCopy = <FitsResultRule>Util.deepCopy(this.rule);
-        console.log(this.rule);
+        console.log(this.ruleCopy);
       }
-    )
+    );
+
+    this.listItemDeletedSubscription = this.configService.listItemDeleted.subscribe(
+      () => {
+        this.form.reset();
+      }
+    );
 
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
@@ -62,10 +74,7 @@ export class FitsRuleEditComponent implements OnInit {
 
     // Initialize dropdowns
     this.ruleTypes = [
-      {label: 'If file is not valid', value: 'fileValid'},
-      {label: 'If file with puid is not valid', value: 'puidValid'},
-      {label: 'If file with mime type is not valid', value: 'mimeValid'},
-      {label: 'If file with mime type doesn\'t have file extension', value: 'mimeExtension'},
+      {label: 'JHove Result: File with identified mime type must be valid', value: 'mimeValid'},
     ];
 
     this.outcomeTypes = [
@@ -90,6 +99,10 @@ export class FitsRuleEditComponent implements OnInit {
       {label: 'Tika', value: 'Tika'},
     ]
 
+  }
+
+  ngOnDestroy() {
+    this.listItemDeletedSubscription.unsubscribe();
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -121,7 +134,7 @@ export class FitsRuleEditComponent implements OnInit {
 
     this.form.reset({
       name: this.rule.ruleName,
-      // regEx: this.rule.value,
+      mime: this.rule.mime,
       types: this.rule.type,
       outcome: this.rule.outcome,
       dspace: this.rule.errorMessage
@@ -134,7 +147,7 @@ export class FitsRuleEditComponent implements OnInit {
       this.configService.createFitsResultRule(this.ruleCopy, this.configuration).subscribe(
         (result) => {
           this.rule = result;
-          this.configService.fileNameRulesUpdated.next();
+          this.configService.fitsResultRulesUpdated.next();
           this.form.reset();
           this.router.navigate(['../', this.rule.id], { relativeTo: this.route});
         },
@@ -160,7 +173,7 @@ export class FitsRuleEditComponent implements OnInit {
 
   onDspaceErrorMessageChange(ev) {
     this.ruleCopy.errorMessage = ev.target.value;
-
+    console.log('CHANGE');
   }
 
 }

@@ -45,7 +45,7 @@
       >
     </div>
     <div class="form-group">
-      <label for="types" class="control-label">Condition</label>
+      <label for="types" class="control-label">Test</label>
       <div>
         <p-dropdown
           [options]="this.ruleTypes"
@@ -72,7 +72,7 @@
   <fieldset class="form-group">
     <div class="form-group">
       <label for="dspace" class="control-label">DSpace User Message</label>
-      <textarea class="form-control" name="dspace" id="dspace" (change)="onDspaceErrorMessageChange($event)" required ngModel #dspace="ngModel">{{this.ruleCopy.errorMessage}}</textarea>
+      <textarea class="form-control" name="dspace" id="dspace" (change)="onDspaceErrorMessageChange($event)" required [(ngModel)]="ruleCopy.errorMessage" #dspace="ngModel">{{this.ruleCopy.errorMessage}}</textarea>
       <ng-container *ngIf="!dspace.valid && dspace.touched; else elseTemplate">
         <span *ngIf="!dspace.valid && dspace.touched" class="text-danger">Please enter a message</span>
       </ng-container>

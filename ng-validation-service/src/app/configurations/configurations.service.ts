@@ -22,6 +22,7 @@ export class ConfigurationsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  listItemDeleted: Subject<void> = new Subject<void>();
   configUpdated: Subject<void> = new Subject<void>();
   fileNameRulesUpdated: Subject<void> = new Subject<void>();
   fitsResultRulesUpdated: Subject<void> = new Subject<void>();

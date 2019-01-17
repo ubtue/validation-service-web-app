@@ -65,6 +65,7 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
   onDeleteRule(rule: FileNameRule) {
     this.configService.deleteFileNameRule(rule).subscribe(
       (data) => {
+        this.configService.listItemDeleted.next();
         this.refreshConfigList();
         this.router.navigate(['../namerules'], {relativeTo: this.route});
       },

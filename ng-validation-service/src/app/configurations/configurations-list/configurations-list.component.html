@@ -1,65 +1,13 @@
-<!-- <ul class="list-group mb-3">
-  <div class="list-group-item list-group-item-light">
-    <div class="input-group">
-      <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)">
-    </div>
-  </div>
-  <li class="list-group-item list-group-item-action file-item-text" *ngFor="let config of configurationsPage._embedded.configurations">
-
-    <div style="max-width: 90%;">{{config.description}}</div>
-    <span class="float-right">
-        <a class="btn btn-link btn-sm btn-secondary" (click)="onDeleteFile(config)" style="color:white">
-            <i class="fa fa-trash"></i> Delete
-        </a>
-      </span>
-    <div><small>Created on {{config.creationDate | date:'dd.MM.y, HH:mm'}} </small></div>
-
-
-  </li>
-
-  <li class="list-group-item list-group-item-light" *ngIf="configurationsPage._embedded.configurations.length == 0">
-    <div class="text-center">No configurations found</div>
-  </li>
-  <li class="list-group-item bg-light" *ngIf="configurationsPage._embedded.configurations != 0">
-      <div class="text-center">{{configurationsPage.totalCount}} Configurations</div>
-  </li>
-
-</ul>
-
-<div>
-  <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
-</div> -->
-
-<!-- <div class="row">
-  <div class="col-md-12">
-      <div class="text-left">
-      <a routerLink="/batches/new">
-        <button type="button" name="" id="" class="btn btn-primary">
-          <i class="fa fa-plus"></i> New Configuration
-        </button>
-      </a>
-
-    </div>
-  </div>
-
-</div> -->
-
 <div class="row mb-3">
   <div class="col-md-4 mt-2">
-      <a (click)="onCreateNew()">
-        <button type="button" name="" id="" class="btn btn-success">
-          <i class="fa fa-plus"></i> Create Configuration
-        </button>
-      </a>
+    <a (click)="onCreateNew()">
+      <button type="button" name="" id="" class="btn btn-success">
+        <i class="fa fa-plus"></i> Create Configuration
+      </button>
+    </a>
   </div>
   <div class="offset-md-4 col-md-4 mt-2">
-    <input
-      id="nameText"
-      type="text"
-      class="form-control"
-      placeholder="Search name ..."
-      (keyup)="this.searchTextChanged.next($event.target.value)"
-    />
+    <input id="nameText" type="text" class="form-control" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)" />
   </div>
 </div>
 
@@ -80,7 +28,7 @@
       <td>
         <span class="capitalize">{{
           config._embedded["verapdf-setup"].executionMode
-        }}</span>
+          }}</span>
       </td>
       <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
       <td>
@@ -91,26 +39,18 @@
   </tbody>
   <tfoot class="bg-light text-dark table-bordered">
     <tr>
-      <td
-        colspan="5"
-        class="text-center"
-        *ngIf="this.descriptionFilter.length > 0"
-      >
+      <td colspan="5" class="text-center" *ngIf="this.descriptionFilter.length > 0">
         {{
-          this.configurationsPage._embedded.configurations.length === 0
-            ? "No matching records"
-            : "Matching records: " + this.configurationsPage.totalCount
+        this.configurationsPage._embedded.configurations.length === 0
+        ? "No matching records"
+        : "Matching records: " + this.configurationsPage.totalCount
         }}
       </td>
-      <td
-        colspan="5"
-        class="text-center"
-        *ngIf="this.descriptionFilter.length == 0"
-      >
+      <td colspan="5" class="text-center" *ngIf="this.descriptionFilter.length == 0">
         {{
-          this.configurationsPage._embedded.configurations.length === 0
-            ? "No records"
-            : "Total records: " + this.configurationsPage.totalCount
+        this.configurationsPage._embedded.configurations.length === 0
+        ? "No records"
+        : "Total records: " + this.configurationsPage.totalCount
         }}
       </td>
     </tr>
@@ -118,8 +58,5 @@
 </table>
 
 <div>
-  <app-paginator
-    [page]="this.configurationsPage"
-    (navigationRequested)="onLoadPage($event)"
-  ></app-paginator>
+  <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>

@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BatchPage } from 'src/app/shared/model/batches.model';
 import { BatchesService } from '../batches.service';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
 import { Util } from 'src/app/shared/util';
+import { Batch } from 'src/app/shared/model/batch.model';
 
 @Component({
   selector: 'app-batches-list',
@@ -29,7 +30,7 @@ export class BatchesListComponent implements OnInit {
   
   @ViewChild('filter') filterInput: ElementRef;
 
-  constructor(private batchesService: BatchesService, private route: ActivatedRoute) { }
+  constructor(private batchesService: BatchesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     // fetch result from resolver
@@ -100,6 +101,20 @@ export class BatchesListComponent implements OnInit {
       (page: BatchPage) => {
         this.page = page;
       }
+    )
+  }
+
+  onDeleteBatch(batch: Batch) {
+    this.batchesService.deleteBatch(batch).subscribe(
+      (success) =>{
+        this.batchesService.batchListReloadRequested.next();
+        this.router.navigate(["../"],{relativeTo: this.route})
+      },
+
+      (error) => {
+        console.log(error);
+      }
+
     )
   }
 

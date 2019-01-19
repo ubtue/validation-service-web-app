@@ -50,6 +50,10 @@ import { FitsRuleEditComponent } from './configurations/configuration-manager/fi
 import { FitsRuleStartComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-start/fits-rule-start.component';
 import { FitsResultRulesResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rules-resolver.service';
 import { FitsResultRuleResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-resolver.service';
+import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
+import {SpinnerModule} from 'primeng/spinner';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 
 
@@ -77,7 +81,8 @@ import { FitsResultRuleResolver } from './configurations/configuration-manager/f
     NameRuleStartComponent,
     FitsRuleManagerComponent,
     FitsRuleEditComponent,
-    FitsRuleStartComponent
+    FitsRuleStartComponent,
+    VerapdfSetupEditComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +98,9 @@ import { FitsResultRuleResolver } from './configurations/configuration-manager/f
     TableModule,
     InputSwitchModule,
     RadioButtonModule,
-    DropdownModule
+    DropdownModule,
+    SpinnerModule,
+    CheckboxModule
 
   ],
   providers: [

@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12">
+    <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'">
+    </p-confirmDialog>
+    <form (ngSubmit)="this.onSave()" #form="ngForm">
+
+      <fieldset class="form-group">
+        <legend>PDF/A Validation</legend>
+
+        <div class="form-group">
+          <label for="profiles" class="control-label">Validation Profile</label>
+          <div>
+            <p-dropdown [options]="this.validationProfiles" [(ngModel)]="this.veraSetupCopy.validationProfile" id="profiles"
+              name="profiles"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="threshold" class="control-label">Failed Checks Threshold</label>
+          <div>
+              <p-spinner size="10" [(ngModel)]="this.veraSetupCopy.failedChecksThreshold" id="threshold" name="threshold" [min]="1" [max]="1000" required></p-spinner>
+          </div>
+          <small class="text-muted">Abort validation pre-maturely after specified number of failed checks.</small>
+        </div>
+        <div class="form-group">
+            <label for="checksPerRule" class="control-label">Logged Violations per Rule</label>
+            <div>
+                <p-spinner size="10" [(ngModel)]="this.veraSetupCopy.failedChecksPerRuleDisplayed" id="checksPerRule" name="checksPerRule" [min]="1" [max]="1000" required></p-spinner>
+            </div>
+            <small class="text-muted">How many check violations for a specific validation Rule should be logged.</small>
+          </div>
+
+        <div class="form-group">
+          <label for="fail" class="control-label">Enforce PDF/A Compliance</label>
+          <p-inputSwitch [(ngModel)]="veraSetupCopy.failOnInvalidPdfA" id="fail" name="fail" class="form-control form-control-no-border"></p-inputSwitch>
+          <small class="text-muted">Invalidate File Report if file is not valid PDF/A.</small>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset class="form-group">
+        <legend>PDF Validation</legend>
+        <div class="form-group">
+          <label for="trailerEncrypt" class="control-label">Custom policies for PDF validation</label>
+          <p-checkbox name="trailerEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryptInTrailer"
+            class="form-control form-control-no-border" label="Disallow encrypt in trailer dictionary" id="trailerEncrypt"></p-checkbox>
+          <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowOtherFormsOfEncrypt"
+            class="form-control form-control-no-border" label="Disallow other forms of encryption (e.g. open password)"
+            id="otherEncrypt"></p-checkbox>
+          <p-checkbox name="fonts" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFonts"
+            class="form-control form-control-no-border" label="Disallow non-embedded fonts" id="fonts"></p-checkbox>
+          <p-checkbox name="files" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFiles"
+            class="form-control form-control-no-border" label="Disallow embedded files" id="files"></p-checkbox>
+          <p-checkbox name="attachments" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowFileAttachments"
+            class="form-control form-control-no-border" label="Disallow file attachments" id="attachments"></p-checkbox>
+          <p-checkbox name="multimedia" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowMultimediaAnnotations"
+            class="form-control form-control-no-border" label="Disallow multimedia (Annotations: Screen, Movie, Sound, 3D)"
+            id="multimedia"></p-checkbox>
+          <p-checkbox name="parsable" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowNonParseableDocuments"
+            class="form-control form-control-no-border" label="Disallow non-parsable documents" id="parsable"></p-checkbox>
+        </div>
+
+      </fieldset>
+
+
+
+      <div class="form-group" *ngIf="!form.pristine">
+        <div class="row mt-5">
+          <div class=" col-md-4 offset-md-4 text-center ">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save
+              changes</button>
+            <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

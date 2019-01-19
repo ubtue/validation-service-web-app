@@ -27,6 +27,7 @@ import { FitsRuleStartComponent } from './configurations/configuration-manager/f
 import { FitsRuleEditComponent } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component';
 import { FitsResultRulesResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rules-resolver.service';
 import { FitsResultRuleResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-resolver.service';
+import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -57,7 +58,8 @@ const routes: Routes = [
               {path: 'new', component: FitsRuleEditComponent, canDeactivate: [CanDeactivateGuard] },
               {path: ':id', component: FitsRuleEditComponent,  resolve: {fitsResultRule: FitsResultRuleResolver},
               canDeactivate: [CanDeactivateGuard] },
-          ]}
+          ]},
+          {path: 'verapdf', component: VerapdfSetupEditComponent, canDeactivate:[CanDeactivateGuard] },
       ]}
     ]}
     // { path: '**', redirectTo: 'batches' }

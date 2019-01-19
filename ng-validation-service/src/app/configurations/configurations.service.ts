@@ -12,6 +12,7 @@ import { FileNameRulesPage } from '../shared/model/file-name-rules.model';
 import { FileNameRule } from '../shared/model/file-name-rule.model';
 import { FitsResultRulesPage } from '../shared/model/fits-result-rules.model';
 import { FitsResultRule } from '../shared/model/fits.result-rule.model';
+import { VerapdfSetup } from '../shared/model/verapdf-setup.model';
 
 @Injectable()
 export class ConfigurationsService {
@@ -129,6 +130,14 @@ export class ConfigurationsService {
   deleteFitsResultRule(rule: FitsResultRule) {
     return this.httpClient.delete(Util.getHrefForRel(rule, 'self'));
   }
+
+  updateVerapdfSetup(verapdfSetup: VerapdfSetup) {
+    console.log(verapdfSetup);
+    return this.httpClient.put<void>(Util.getHrefForRel(verapdfSetup, 'self'), verapdfSetup);
+  }
+  
+
+
 
 
 

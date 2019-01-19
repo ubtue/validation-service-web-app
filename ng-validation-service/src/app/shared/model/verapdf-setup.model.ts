@@ -11,4 +11,16 @@ export class VerapdfSetup {
 	reportPassedRules: boolean;
 	failedChecksThreshold: number;
 	failedChecksPerRuleDisplayed: number;
+	failOnInvalidPdfA: boolean;
+	pdfPolicies: PdfPolicy;
+}
+
+export interface PdfPolicy {
+	disallowEncryptInTrailer: boolean;
+	disallowOtherFormsOfEncrypt: boolean;
+	disallowEmbeddedFonts: boolean;
+	disallowEmbeddedFiles: boolean;
+	disallowFileAttachments: boolean;
+	disallowMultimediaAnnotations: boolean;
+	disallowNonParseableDocuments: boolean;
 }

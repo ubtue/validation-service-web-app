@@ -2,6 +2,7 @@
 </p-confirmDialog>
 <form (ngSubmit)="this.onSave()" #form="ngForm">
   <fieldset class="form-group">
+    <legend>Rule</legend>
     <div class="form-group">
       <label for="name">Rule Name</label>
       <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId"
@@ -24,8 +25,9 @@
     </div>
   </fieldset>
   <fieldset class="form-group">
+    <legend>DSpace</legend>
     <div class="form-group">
-      <label for="dspace" class="control-label">DSpace User Message</label>
+      <label for="dspace" class="control-label">Error Message</label>
       <textarea class="form-control" name="dspace" id="dspace" (change)="onDspaceErrorMessageChange($event)" required [(ngModel)]="ruleCopy.errorMessage" #dspace="ngModel"></textarea>
       <ng-container *ngIf="!dspace.valid && dspace.touched; else elseTemplate">
         <span *ngIf="!dspace.valid && dspace.touched" class="text-danger">Please enter a message</span>

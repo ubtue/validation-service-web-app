@@ -53,6 +53,7 @@ import { FitsResultRuleResolver } from './configurations/configuration-manager/f
 import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
 import {SpinnerModule} from 'primeng/spinner';
 import {CheckboxModule} from 'primeng/checkbox';
+import { ReportsComponent } from './reports/reports.component';
 
 
 
@@ -82,7 +83,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     FitsRuleManagerComponent,
     FitsRuleEditComponent,
     FitsRuleStartComponent,
-    VerapdfSetupEditComponent
+    VerapdfSetupEditComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

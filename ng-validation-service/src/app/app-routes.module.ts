@@ -28,6 +28,7 @@ import { FitsRuleEditComponent } from './configurations/configuration-manager/fi
 import { FitsResultRulesResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rules-resolver.service';
 import { FitsResultRuleResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-resolver.service';
 import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
+import { ReportsComponent } from './reports/reports.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -61,8 +62,9 @@ const routes: Routes = [
           ]},
           {path: 'verapdf', component: VerapdfSetupEditComponent, canDeactivate:[CanDeactivateGuard] },
       ]}
-    ]}
-    // { path: '**', redirectTo: 'batches' }
+    ]},
+    {path: 'reports', component: ReportsComponent}
+    //{ path: '**', redirectTo: 'batches' }
 ];
 
 @NgModule({

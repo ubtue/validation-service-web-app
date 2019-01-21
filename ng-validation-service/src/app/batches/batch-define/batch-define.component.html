@@ -1,7 +1,8 @@
 <div class="row">
   <div class="col-md-12">
     <form (ngSubmit)="this.OnSave()" #form="ngForm">
-      <div class="form-group">
+      <fieldset class="form-group">
+        <legend>Create Batch</legend>
         <label for="name">Batch name</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId" ngModel required #name="ngModel">
         <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description of the material that will be uploaded for validation</small>
@@ -13,7 +14,7 @@
             </div>
         </div>
 
-      </div>
+      </fieldset>
     </form>
   </div>
 </div>

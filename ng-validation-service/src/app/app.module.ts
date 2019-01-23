@@ -20,7 +20,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { MessagesModule} from 'primeng/messages';
 import { MessageModule} from 'primeng/message';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
+import {ConfirmationService, DialogService} from 'primeng/api';
 import { BatchDefineComponent } from './batches/batch-define/batch-define.component';
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch-viewer.component';
@@ -54,6 +54,9 @@ import { VerapdfSetupEditComponent } from './configurations/configuration-manage
 import {SpinnerModule} from 'primeng/spinner';
 import {CheckboxModule} from 'primeng/checkbox';
 import { ReportsComponent } from './reports/reports.component';
+import { BatchValidatorComponent } from './batches/batch-manager/batch-validator/batch-validator.component';
+import { DynamicDialogModule } from 'primeng/components/dynamicdialog/dynamicdialog';
+import { ConfigSelectorComponent } from './batches/batch-manager/batch-validator/config-selector/config-selector.component';
 
 
 
@@ -84,7 +87,9 @@ import { ReportsComponent } from './reports/reports.component';
     FitsRuleEditComponent,
     FitsRuleStartComponent,
     VerapdfSetupEditComponent,
-    ReportsComponent
+    ReportsComponent,
+    BatchValidatorComponent,
+    ConfigSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +107,8 @@ import { ReportsComponent } from './reports/reports.component';
     RadioButtonModule,
     DropdownModule,
     SpinnerModule,
-    CheckboxModule
+    CheckboxModule,
+    DynamicDialogModule
 
   ],
   providers: [
@@ -121,6 +127,7 @@ import { ReportsComponent } from './reports/reports.component';
     FitsResultRulesResolver,
     FitsResultRuleResolver
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfigSelectorComponent]
 })
 export class AppModule { }

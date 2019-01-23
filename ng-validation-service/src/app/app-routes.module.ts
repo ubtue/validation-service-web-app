@@ -29,6 +29,7 @@ import { FitsResultRulesResolver } from './configurations/configuration-manager/
 import { FitsResultRuleResolver } from './configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-resolver.service';
 import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
 import { ReportsComponent } from './reports/reports.component';
+import { BatchValidatorComponent } from './batches/batch-manager/batch-validator/batch-validator.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -39,7 +40,8 @@ const routes: Routes = [
             {path: '', redirectTo: 'manage', pathMatch: 'full'},
             {path: 'info', component: BatchInfoComponent },
             {path: 'upload', component: FileUploaderComponent, canDeactivate:[CanDeactivateGuard] },
-            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver} }
+            {path: 'manage', component: BatchViewerComponent, resolve: {filesPage: FilesResolver} },
+            {path: 'reports', component: BatchValidatorComponent, resolve: {startPage: ConfigurationsResolver} }
         ]}
     ]},
     {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', resolve: {startPage: ConfigurationsResolver}, children: [

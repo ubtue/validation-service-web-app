@@ -9,11 +9,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Util } from '../shared/util';
 import { File } from '../shared/model/file.model';
+import { BatchValidationOrder } from '../shared/model/batch-validation-order.model';
 
 @Injectable()
 export class BatchesService {
 
     batchesResourceUrl: string = environment.apiBaseUrl+'/batches';
+    queueResourceUrl: string = environment.apiBaseUrl+'/queue';
 
     resetBatchListRequested:  Subject<void> = new Subject<void>();
     batchListReloadRequested: Subject<void> = new Subject<void>();
@@ -65,6 +67,10 @@ export class BatchesService {
 
     deleteFile(file: File) {
         return this.httpClient.delete(Util.getHrefForRel(file,'self'));
+    }
+
+    submitValidationOrder(order: BatchValidationOrder) {
+      return this.httpClient.post<void>(this.queueResourceUrl, order);
     }
 
 

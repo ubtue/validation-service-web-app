@@ -15,6 +15,8 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   finishedReportsPage: BatchReportsPage;
   queuePage: QueuePage;
   refreshInterval: any;
+  showCompleted = false;
+
   hrefToRel = Util.getHrefForRel;
   resolveCamelCase = Util.unCamelCase;
 

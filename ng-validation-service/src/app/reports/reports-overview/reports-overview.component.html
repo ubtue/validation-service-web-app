@@ -1,25 +1,25 @@
 
-<div class="row">
+<div class="row mt-4">
   <div class="col-md-12">
-      <ul class="nav nav-pills nav-justified nav-fill">
+      <ul class="nav nav-pills nav-justified nav-fill nav-light">
           <li class="nav-item">
-            <a class="nav-link active" [routerLink]="['general']" routerLinkActive="active">
-              General Setup
-            </a>
+              <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = false" [ngClass]="{'active': !showCompleted, 'text-primary': showCompleted}">
+                Scheduled Reports <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-primary': showCompleted}">{{ this.queuePage.totalCount }}</span>
+              </span>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" [routerLink]="['general']" routerLinkActive="active">
-                General Setup
-              </a>
+        <li class="nav-item">
+            <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = true"  [ngClass]="{'active': showCompleted, 'text-primary': !showCompleted}">
+                Completed Reports <span class="badge" [ngClass]="{'badge-warning': showCompleted,'badge-primary': !showCompleted}">{{ this.finishedReportsPage.totalCount }}</span>
+            </span>
           </li>
       </ul>
   </div>
 
 </div>
 
-<div class="row mt-4">
+<div class="row mt-4" *ngIf="showCompleted">
     <div class="col-md-12">
-    <h4>Completed Reports</h4>
+    <!-- <h4>Completed Reports</h4> -->
 
     <table class="table">
         <thead class="table-light">
@@ -70,8 +70,8 @@
             <td colspan="8" class="text-center" >
               {{
               this.finishedReportsPage._embedded['batch-reports'].length === 0
-              ? "No records"
-              : "Total records: " + this.finishedReportsPage.totalCount
+              ? "No Reports"
+              : this.finishedReportsPage.totalCount + " Reports"
               }}
             </td>
           </tr>
@@ -80,61 +80,63 @@
     </div>
 </div>
 
-<div>
+<div *ngIf="showCompleted">
   <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>
 
 
-<div class="row mt-4" *ngIf="this.queuePage._embedded.orders.length != 0">
-    <h4>Scheduled Reports</h4>
+<div class="row mt-4" *ngIf="!showCompleted">
 
-    <table class="table">
-      <thead class="  table-light">
-        <tr>
-          <th>Batch</th>
-          <th>Configuration</th>
-          <th>Submitted</th>
-          <th>Progress</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of this.queuePage._embedded.orders">
-          <td><a [routerLink]="['/batches', order._embedded.batch.id]">{{ order._embedded.batch.description }}</a></td>
-          <td><a  [routerLink]="['/configurations', order._embedded.configuration.id]">{{ order._embedded.configuration.description }}</a></td>
-          <!-- <td>
-            <span class="capitalize">{{
-              config._embedded["verapdf-setup"].executionMode
-              }}</span>
-          </td>
-          <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
-          <td>
-            <a style="color: white" class="btn link btn-primary mr-2 mt-1 mb-1" [routerLink]="config.id +'/general'" role="button">Modify</a>
-            <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteFile(config)">Delete</a>
-          </td> -->
-          <td> {{ order.createdDate | date:'dd.MM.y, HH:mm'}} </td>
-          <td > <div class='progress progress-striped'>
-            <div class="progress-bar progress-bar-warning" role="progressbar" [style.width.%]="order.progress">
-              {{ order.progress/100 | percent:'1.2-5' }}
+  <div class="col-md-12">
+      <!-- <h4>Scheduled Reports</h4> -->
+      <table class="table">
+          <thead class="  table-light">
+            <tr>
+              <th>Batch</th>
+              <th>Configuration</th>
+              <th>Submitted</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of this.queuePage._embedded.orders">
+              <td><a [routerLink]="['/batches', order._embedded.batch.id]">{{ order._embedded.batch.description }}</a></td>
+              <td><a  [routerLink]="['/configurations', order._embedded.configuration.id]">{{ order._embedded.configuration.description }}</a></td>
+              <!-- <td>
+                <span class="capitalize">{{
+                  config._embedded["verapdf-setup"].executionMode
+                  }}</span>
+              </td>
+              <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
+              <td>
+                <a style="color: white" class="btn link btn-primary mr-2 mt-1 mb-1" [routerLink]="config.id +'/general'" role="button">Modify</a>
+                <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteFile(config)">Delete</a>
+              </td> -->
+              <td> {{ order.createdDate | date:'dd.MM.y, HH:mm'}} </td>
+              <td > <div class="progress">
+                <div class="progress-bar progress-bar-warning progress-bar-animated" role="progressbar" [style.width.%]="order.progress">
+                  {{ order.progress/100 | percent:'1.2-5' }}
+                </div>
+              </div>
+                </td>
+            </tr>
+          </tbody>
+          <tfoot class="bg-light text-dark table-bordered">
+            <tr>
+              <td colspan="5" class="text-center" >
+                {{
+                this.queuePage._embedded.orders.length === 0
+                ? "No Reports"
+                : this.queuePage.totalCount + " Reports"
+                }}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+  </div>
 
-            </div>
-          </div>
-            </td>
-        </tr>
-      </tbody>
-      <!-- <tfoot class="bg-light text-dark table-bordered">
-        <tr>
-          <td colspan="5" class="text-center" >
-            {{
-            this.queuePage._embedded.orders.length === 0
-            ? "No records"
-            : "Total records: " + this.queuePage.totalCount
-            }}
-          </td>
-        </tr>
-      </tfoot> -->
-    </table>
 
 </div>
-<div *ngIf="this.queuePage._embedded.orders.length != 0">
+<div *ngIf="!showCompleted">
     <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>

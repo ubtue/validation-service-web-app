@@ -30,6 +30,9 @@ import { FitsResultRuleResolver } from './configurations/configuration-manager/f
 import { VerapdfSetupEditComponent } from './configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component';
 import { ReportsComponent } from './reports/reports.component';
 import { BatchValidatorComponent } from './batches/batch-manager/batch-validator/batch-validator.component';
+import { ReportsOverviewComponent } from './reports/reports-overview/reports-overview.component';
+import { ReportsResolver } from './reports/reports-list-resolver.service';
+import { QueueResolver } from './reports/queue-list-resolver.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -65,7 +68,10 @@ const routes: Routes = [
           {path: 'verapdf', component: VerapdfSetupEditComponent, canDeactivate:[CanDeactivateGuard] },
       ]}
     ]},
-    {path: 'reports', component: ReportsComponent}
+    {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', children: [
+      {path: '', component: ReportsOverviewComponent, pathMatch: 'full', resolve: {reportsPage: ReportsResolver, queuePage: QueueResolver} },
+      // {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
+    ]}
     //{ path: '**', redirectTo: 'batches' }
 ];
 

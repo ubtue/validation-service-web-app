@@ -57,6 +57,10 @@ import { ReportsComponent } from './reports/reports.component';
 import { BatchValidatorComponent } from './batches/batch-manager/batch-validator/batch-validator.component';
 import { DynamicDialogModule } from 'primeng/components/dynamicdialog/dynamicdialog';
 import { ConfigSelectorComponent } from './batches/batch-manager/batch-validator/config-selector/config-selector.component';
+import { ReportsOverviewComponent } from './reports/reports-overview/reports-overview.component';
+import { ReportsResolver } from './reports/reports-list-resolver.service';
+import { ReportsService } from './reports/reports.service';
+import { QueueResolver } from './reports/queue-list-resolver.service';
 
 
 
@@ -89,7 +93,8 @@ import { ConfigSelectorComponent } from './batches/batch-manager/batch-validator
     VerapdfSetupEditComponent,
     ReportsComponent,
     BatchValidatorComponent,
-    ConfigSelectorComponent
+    ConfigSelectorComponent,
+    ReportsOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -125,7 +130,10 @@ import { ConfigSelectorComponent } from './batches/batch-manager/batch-validator
     FileNameRulesResolver,
     FileNameRuleResolver,
     FitsResultRulesResolver,
-    FitsResultRuleResolver
+    FitsResultRuleResolver,
+    ReportsResolver,
+    ReportsService,
+    QueueResolver
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

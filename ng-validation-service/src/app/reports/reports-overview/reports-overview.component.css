@@ -5,4 +5,8 @@
   margin-bottom: 0 !important;
 }
 
+.badge-outcome {
+  min-width: 90px ;
+}
+
 

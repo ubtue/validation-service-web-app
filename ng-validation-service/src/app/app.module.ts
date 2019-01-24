@@ -61,6 +61,9 @@ import { ReportsOverviewComponent } from './reports/reports-overview/reports-ove
 import { ReportsResolver } from './reports/reports-list-resolver.service';
 import { ReportsService } from './reports/reports.service';
 import { QueueResolver } from './reports/queue-list-resolver.service';
+import { ReportViewerComponent } from './reports/report-viewer/report-viewer.component';
+import { FileReportsListComponent } from './reports/report-viewer/file-reports-list/file-reports-list.component';
+import { FileReportsListResolver } from './reports/report-viewer/file-reports-list.resolver.service';
 
 
 
@@ -94,7 +97,9 @@ import { QueueResolver } from './reports/queue-list-resolver.service';
     ReportsComponent,
     BatchValidatorComponent,
     ConfigSelectorComponent,
-    ReportsOverviewComponent
+    ReportsOverviewComponent,
+    ReportViewerComponent,
+    FileReportsListComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +138,8 @@ import { QueueResolver } from './reports/queue-list-resolver.service';
     FitsResultRuleResolver,
     ReportsResolver,
     ReportsService,
-    QueueResolver
+    QueueResolver,
+    FileReportsListResolver
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

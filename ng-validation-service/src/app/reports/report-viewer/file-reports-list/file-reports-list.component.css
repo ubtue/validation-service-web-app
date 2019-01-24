@@ -1,0 +1,10 @@
+.badge {
+  min-width: 90px ;
+  /* display: inline-block; */
+  /* margin-bottom: 0px; */
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+

@@ -17,14 +17,20 @@ export interface Embedded {
 	batch: Batch;
 }
 
-
-
-
 export interface Summary {
   problematicFiles: number;
 	totalFiles: number;
 	validationOutcome: string;
 }
+
+
+
+
+
+
+
+
+
 
 
 

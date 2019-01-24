@@ -13,6 +13,7 @@
             </span>
           </li>
       </ul>
+      <hr>
   </div>
 
 </div>
@@ -41,11 +42,11 @@
             <td><a  [routerLink]="['/configurations', report._embedded.configuration.id]">{{ report._embedded.configuration.description }}</a></td>
             <td> {{ this.resolveCamelCase(report.status) }} </td>
             <td> {{ report.finishedDate | date:'dd.MM.y, HH:mm' }} </td>
-            <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
+            <td>  <span style="font-size: 16px;"  class="badge  badge-outcome"  [ngClass]="{'badge-danger' : report.summary.validationOutcome !== 'valid', 'badge-success' : report.summary.validationOutcome === 'valid'}" >{{ this.resolveCamelCase(report.summary.validationOutcome) }}</span> </td>
             <td> {{ report.summary.problematicFiles }} </td>
             <!-- <td> {{ report.summary.totalFiles }} </td> -->
 
-            <td><a class="btn btn-info" href="#">Details</a> </td>
+            <td><a class="btn btn-info" [routerLink]="[report.id]" >Details</a> </td>
             <!-- <td>
               <span class="capitalize">{{
                 config._embedded["verapdf-setup"].executionMode

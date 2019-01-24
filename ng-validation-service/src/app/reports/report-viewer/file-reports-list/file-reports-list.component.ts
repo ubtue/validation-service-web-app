@@ -1,0 +1,38 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
+import { FileReportsPage } from 'src/app/shared/model/file-reports.model';
+import { Util } from 'src/app/shared/util';
+import { ReportsService } from '../../reports.service';
+
+@Component({
+  selector: 'app-file-reports-list',
+  templateUrl: './file-reports-list.component.html',
+  styleUrls: ['./file-reports-list.component.css']
+})
+export class FileReportsListComponent implements OnInit {
+
+  @Input()fileReportsPage: FileReportsPage;
+
+  resolveCamelCase = Util.unCamelCase;
+
+  constructor(private route: ActivatedRoute, private reportsService: ReportsService) { }
+
+  ngOnInit() {
+
+  }
+
+  /**
+  * Load new page as triggered by paginator
+  * @param url the url of the page to load
+  */
+  onLoadFileReportsPage(url: string) {
+    this.reportsService
+      .getFileReportsPage(url)
+      .subscribe(
+        (page: FileReportsPage) => {
+          this.fileReportsPage = page;
+        });
+  }
+
+
+}

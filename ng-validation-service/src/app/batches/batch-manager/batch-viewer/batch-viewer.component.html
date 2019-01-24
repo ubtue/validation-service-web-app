@@ -16,10 +16,10 @@
 
   <li class="list-group-item file-item-text" *ngFor="let file of filesPage._embedded.files">
 
-    <div>{{file.fileName}}</div>
+    <div class="text-monospace">{{file.fileName}}</div>
 
     <div><small>File size: <strong>{{file.size | fileSize}}</strong></small>
-        
+
     </div>
 
     <div><small>Uploaded on: {{file.creationDate | date:'dd.MM.y,
@@ -28,7 +28,7 @@
           <a class="btn btn-link btn-sm btn-danger" (click)="onDeleteFile(file)" style="color:white">
             <i class="fa fa-trash"></i> Delete
           </a>
-        </span>  
+        </span>
   </div>
 
   </li>

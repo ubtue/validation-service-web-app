@@ -2,7 +2,7 @@
   <div class="col-md-12">
   <!-- <h4>Completed Reports</h4> -->
 
-  <table class="table">
+  <table class="table table-striped">
       <thead class="table-light">
         <tr>
           <th>File Name</th>
@@ -16,7 +16,7 @@
       <tbody>
           <!-- [ngClass]="{'text-danger' : report.validationOutcome !== 'valid', 'text-success' :  report.validationOutcome === 'valid'}" -->
         <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
-          <td class="text-monospace td-break-all" style="max-width:300px"> {{ report._embedded.file.fileName }}  </td>
+          <td class="text-monospace font-weight-bold td-break-all " style="max-width:350px; min-width: 190px;"> {{ report._embedded.file.fileName }}  </td>
           <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
           <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
           <td ><span style="font-size: 16px;" class="badge"  [ngClass]="{'badge-danger' : report.validationOutcome !== 'valid', 'badge-success' :  report.validationOutcome === 'valid'}" >{{ this.resolveCamelCase(report.validationOutcome) }}</span></td>
@@ -29,9 +29,9 @@
             </td>
         </tr>
       </tbody>
-      <tfoot class="bg-light text-dark table-bordered">
+      <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
         <tr>
-          <td colspan="5" class="text-center" >
+          <td colspan="6" class="text-center" >
             {{
               this.fileReportsPage._embedded['file-reports'].length === 0
             ? "No Reports"

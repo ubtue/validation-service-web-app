@@ -25,9 +25,12 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
       this.finishedReportsPage = data["reportsPage"];
-      console.log(this.finishedReportsPage);
       this.queuePage = data["queuePage"];
-      console.log(this.queuePage);
+
+      if(this.queuePage._embedded.orders.length === 0) {
+        this.showCompleted = true
+      }
+
       this.refreshInterval = setInterval(
         () => {
           this.refreshData();

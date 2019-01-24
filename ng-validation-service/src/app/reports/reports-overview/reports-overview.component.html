@@ -27,9 +27,11 @@
             <th>Batch</th>
             <th>Configuration</th>
             <th>Processing Status</th>
+            <th>Finish Date</th>
             <th>Validation Result</th>
             <th>Problematic Files</th>
-            <th>Files total</th>
+            <!-- <th>Files total</th> -->
+
             <th></th>
           </tr>
         </thead>
@@ -38,9 +40,11 @@
             <td><a [routerLink]="['/batches', report._embedded.batch.id ]">{{ report._embedded.batch.description }}</a></td>
             <td><a  [routerLink]="['/configurations', report._embedded.configuration.id]">{{ report._embedded.configuration.description }}</a></td>
             <td> {{ this.resolveCamelCase(report.status) }} </td>
+            <td> {{ report.finishedDate | date:'dd.MM.y, HH:mm' }} </td>
             <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
             <td> {{ report.summary.problematicFiles }} </td>
-            <td> {{ report.summary.totalFiles }} </td>
+            <!-- <td> {{ report.summary.totalFiles }} </td> -->
+
             <td><a class="btn btn-info" href="#">Details</a> </td>
             <!-- <td>
               <span class="capitalize">{{
@@ -113,10 +117,10 @@
                 <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteFile(config)">Delete</a>
               </td> -->
               <td> {{ order.createdDate | date:'dd.MM.y, HH:mm'}} </td>
-              <td > <div class="progress position-relative">
-                <div class="progress-bar progress-bar-warning progress-bar-animated" role="progressbar" [style.width.%]="order.progress">
+              <td > <div class="progress position-relative bg-warning">
+                <div class="progress-bar progress-bar-animated" role="progressbar" [style.width.%]="order.progress">
                     <small class="justify-content-center d-flex position-absolute w-100">{{ order.progress/100 | percent:'1.2-5' }}</small>
-                  
+
                 </div>
               </div>
                 </td>

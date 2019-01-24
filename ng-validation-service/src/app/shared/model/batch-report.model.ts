@@ -8,6 +8,7 @@ export interface BatchReport {
 	id: number;
   status: string;
   creationDate: number;
+  finishedDate: number;
 	summary: Summary;
 }
 

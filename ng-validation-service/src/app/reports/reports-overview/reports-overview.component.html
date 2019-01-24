@@ -85,7 +85,7 @@
 </div>
 
 <div *ngIf="showCompleted">
-  <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+  <app-paginator [page]="this.finishedReportsPage" (navigationRequested)="onLoadReportsPage($event)"></app-paginator>
 </div>
 
 
@@ -143,5 +143,5 @@
 
 </div>
 <div *ngIf="!showCompleted">
-    <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+    <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadQueuePage($event)"></app-paginator>
 </div>

@@ -57,7 +57,31 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     );
+  }
 
+  /**
+   * Load new page as triggered by paginator
+   * @param url the url of the page to load
+   */
+  onLoadQueuePage(url: string) {
+    this.reportsServcie
+      .getQueuePage(url)
+      .subscribe((page: QueuePage) => {
+        this.queuePage = page;
+      });
+  }
+
+  /**
+   * Load new page as triggered by paginator
+   * @param url the url of the page to load
+   */
+  onLoadReportsPage(url: string) {
+    this.reportsServcie
+      .getReportsPage(url)
+      .subscribe(
+        (page: BatchReportsPage) => {
+          this.finishedReportsPage = page;
+        });
   }
 
 }

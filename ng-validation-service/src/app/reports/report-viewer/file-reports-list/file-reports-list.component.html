@@ -2,8 +2,8 @@
   <div class="col-md-12">
   <!-- <h4>Completed Reports</h4> -->
 
-  <table class="table table-striped">
-      <thead class="table-light">
+  <table class="table table-striped ">
+      <thead class="">
         <tr>
           <th>File Name</th>
           <th>FITS Execution</th>
@@ -19,14 +19,11 @@
           <td class="text-monospace font-weight-bold td-break-all " style="max-width:350px; min-width: 190px;"> {{ report._embedded.file.fileName }}  </td>
           <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
           <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
-          <td ><span style="font-size: 16px;" class="badge"  [ngClass]="{'badge-danger' : report.validationOutcome !== 'valid', 'badge-success' :  report.validationOutcome === 'valid'}" >{{ this.resolveCamelCase(report.validationOutcome) }}</span></td>
+          <td><span style="font-size: 16px;" class="badge"  [ngClass]="{'badge-danger' : report.validationOutcome !== 'valid', 'badge-success' :  report.validationOutcome === 'valid'}" >{{ this.resolveCamelCase(report.validationOutcome) }}</span></td>
           <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
           <td> {{ report.summary.problematicFiles }} </td> -->
 
-          <td><a class="btn btn-info" [routerLink]="[report.id]" >Details</a> </td>
-
-          <td >
-            </td>
+          <td class="text-center"><a class="btn btn-info" [routerLink]="[report.id]" >Details</a> </td>
         </tr>
       </tbody>
       <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">

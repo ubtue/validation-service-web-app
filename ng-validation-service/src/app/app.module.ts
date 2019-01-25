@@ -64,6 +64,7 @@ import { QueueResolver } from './reports/queue-list-resolver.service';
 import { ReportViewerComponent } from './reports/report-viewer/report-viewer.component';
 import { FileReportsListComponent } from './reports/report-viewer/file-reports-list/file-reports-list.component';
 import { FileReportsListResolver } from './reports/report-viewer/file-reports-list.resolver.service';
+import { BatchReportResolver } from './reports/report-viewer/batch-report-resolver.service';
 
 
 
@@ -139,7 +140,8 @@ import { FileReportsListResolver } from './reports/report-viewer/file-reports-li
     ReportsResolver,
     ReportsService,
     QueueResolver,
-    FileReportsListResolver
+    FileReportsListResolver,
+    BatchReportResolver
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

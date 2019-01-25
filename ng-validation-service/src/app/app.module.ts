@@ -65,6 +65,7 @@ import { ReportViewerComponent } from './reports/report-viewer/report-viewer.com
 import { FileReportsListComponent } from './reports/report-viewer/file-reports-list/file-reports-list.component';
 import { FileReportsListResolver } from './reports/report-viewer/file-reports-list.resolver.service';
 import { BatchReportResolver } from './reports/report-viewer/batch-report-resolver.service';
+import { FileReportViewerComponent } from './reports/report-viewer/file-report-viewer/file-report-viewer.component';
 
 
 
@@ -100,7 +101,8 @@ import { BatchReportResolver } from './reports/report-viewer/batch-report-resolv
     ConfigSelectorComponent,
     ReportsOverviewComponent,
     ReportViewerComponent,
-    FileReportsListComponent
+    FileReportsListComponent,
+    FileReportViewerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,72 @@
+<div class="row mt-2">
+    <div class="col-md-12">
+        <ul class="nav nav-pills  nav-light">
+            <li class="nav-item">
+                <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 0" [ngClass]="{'active': displayIndex === 0, 'text-primary': displayIndex !== 0}">
+                  FITS
+                </span>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 1" [ngClass]="{'active': displayIndex === 1, 'text-primary': displayIndex !== 1}">
+                  VeraPDF <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
+                </span>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
+                  Custom Rule Checks <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
+                </span>
+            </li>
+        </ul>
+        <hr>
+    </div>
+</div>
+
+<div class="row mt-2" *ngIf="displayIndex === 0 && fileReport !== null">
+  <div class="col-md-12">
+    <h5>Identified Formats</h5>
+    <table class="table  table-striped ">
+        <thead class="table-light">
+          <tr>
+            <th>Tool</th>
+            <th>Version</th>
+            <th>Format</th>
+            <th>Mime</th>
+            <th>Puid</th>
+            <th>Valid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fitsResult of this.fileReport._embedded['fits-results']">
+            <td class="text-monospace font-weight-bold td-break-all " style="max-width:350px; min-width: 140px;"> {{ fitsResult.tool }}  </td>
+            <td> {{ fitsResult.toolVersion }} </td>
+            <td> {{ fitsResult.formatName }} </td>
+            <td> {{ fitsResult.mime }} </td>
+            <td> {{ fitsResult.puid ? fitsResult.puid : '' }} </td>
+            <td *ngIf="fitsResult.valid !== null" >
+              <span style="font-size: 16px;"
+               class="badge badge-outcome"
+               [ngClass]="{'badge-danger' : fitsResult.valid === false, 'badge-success' :  fitsResult.valid === true}" >
+                {{ fitsResult.valid === true ? 'Valid' : 'Not Valid' }}
+              </span>
+
+            <td *ngIf="fitsResult.valid === null" ></td>
+            <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
+            <td> {{ report.summary.problematicFiles }} </td> -->
+
+
+          </tr>
+        </tbody>
+        <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
+          <tr>
+            <td colspan="6" class="text-center" >
+              {{
+                this.fileReport._embedded['fits-results'].length === 0
+              ? "No Format Records"
+              : this.fileReport._embedded['fits-results'].length + " Format Records"
+              }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+  </div>
+</div>

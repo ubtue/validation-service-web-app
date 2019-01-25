@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { FileReportsPage } from 'src/app/shared/model/file-reports.model';
 import { Util } from 'src/app/shared/util';
 import { ReportsService } from '../../reports.service';
+import { Subject } from 'rxjs';
+import { FileReport } from 'src/app/shared/model/file-report.model';
 
 @Component({
   selector: 'app-file-reports-list',
@@ -12,6 +14,8 @@ import { ReportsService } from '../../reports.service';
 export class FileReportsListComponent implements OnInit {
 
   @Input()fileReportsPage: FileReportsPage;
+
+  @Output()fileSelected: Subject<FileReport> = new Subject<FileReport>();
 
   resolveCamelCase = Util.unCamelCase;
 

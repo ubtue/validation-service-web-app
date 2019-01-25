@@ -1,63 +1,86 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a [routerLink]="['../']" >Reports</a>
-    </li>
-    <li class="breadcrumb-item" [ngClass]="{'active': !this.showingFileReport}">
-      {{'Report ' + this.batchReport.id}}
-    </li>
-    <li class="breadcrumb-item active"*ngIf="this.showingFileReport">
-      File Details
-    </li>
-  </ol>
-</nav>
-<!-- [ngClass]="{disabled: this.items[this.items.length-1] ===  crumb}" [routerLink]="[crumb.path]" -->
-
-<h2>Batch Report</h2>
 <div class="row mt-3">
   <div class="col-md-12">
-  <h4>Summary</h4>
-
-  <table class="table mt-3 mb-4">
-      <thead class="">
-        <tr>
-          <th>Batch</th>
-          <th>Configuration</th>
-          <th>Processing Status</th>
-          <th>Submitted</th>
-          <th>Finished</th>
-          <th>Problematic Files</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
-            <a [routerLink]="['/batches', this.batchReport._embedded.batch.id ]">{{ this.batchReport._embedded.batch.description }}
-            </a>
-          </td>
-          <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
-            <a [routerLink]="['/configurations', this.batchReport._embedded.configuration.id ]">{{ this.batchReport._embedded.configuration.description }}
-            </a>
-          </td>
-          <td> {{ this.resolveCamelCase(this.batchReport.status) }} </td>
-          <td> {{ this.batchReport.creationDate | date:'HH:mm:ss' }} </td>
-          <td> {{ this.batchReport.finishedDate | date:'HH:mm:ss' }} </td>
-          <td> {{ this.batchReport.summary.problematicFiles }} </td>
-
-      </tbody>
-
-
-    </table>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
+        <li
+          class="breadcrumb-item disabled"
+          [ngClass]="{ active: !this.showingFileReport }"
+        >
+          <ng-container *ngIf="this.showingFileReport; else elseTemplate">
+            <a href="" (click)="showingFileReport = false">{{
+              "Report " + this.batchReport.id
+            }}</a>
+          </ng-container>
+          <ng-template #elseTemplate>
+            {{ "Report " + this.batchReport.id }}
+          </ng-template>
+        </li>
+        <li class="breadcrumb-item active" *ngIf="this.showingFileReport">
+          {{ this.fileReport._embedded.file.fileName }}
+        </li>
+      </ol>
+    </nav>
   </div>
 </div>
 
-<!-- <p>Batch: <a [routerLink]="['/batches', this.batchReport._embedded.batch.id ]">{{ this.batchReport._embedded.batch.description }}</a></p>
-<p>Configuration: {{ this.batchReport._embedded.configuration.description }}</p>
-<p>Processing Status: {{ this.resolveCamelCase(this.batchReport.status) }}</p>
-<p>Submitted on: {{ this.batchReport.creationDate | date:'HH:mm:ss' }}</p>
-<p>Finished on: {{ this.batchReport.finishedDate | date:'HH:mm:ss' }}</p>
-<p>Problematic Files: {{ this.batchReport.summary.problematicFiles }}</p> -->
+<div [hidden]="this.showingFileReport">
+  <h3 class="text-muted">Batch Report</h3>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <h5 class="text-dark">Summary</h5>
 
+      <table class="table table-striped mt-3 mb-4">
+        <thead class="">
+          <tr>
+            <th>Batch</th>
+            <th>Configuration</th>
+            <th>Processing Status</th>
+            <th>Submitted</th>
+            <th>Finished</th>
+            <th>Problematic Files</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class="text-monospace font-weight-bold td-break-all "
+              style="max-width:250px; min-width: 100px;"
+            >
+              <a
+                [routerLink]="['/batches', this.batchReport._embedded.batch.id]"
+                >{{ this.batchReport._embedded.batch.description }}
+              </a>
+            </td>
+            <td
+              class="text-monospace font-weight-bold td-break-all "
+              style="max-width:250px; min-width: 100px;"
+            >
+              <a
+                [routerLink]="[
+                  '/configurations',
+                  this.batchReport._embedded.configuration.id
+                ]"
+                >{{ this.batchReport._embedded.configuration.description }}
+              </a>
+            </td>
+            <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
+            <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
+            <td>{{ this.batchReport.finishedDate | date: "HH:mm:ss" }}</td>
+            <td>{{ this.batchReport.summary.problematicFiles }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<h4 class="mb-3">File Reports</h4>
-<app-file-reports-list [fileReportsPage]="this.fileReportsPage"></app-file-reports-list>
+  <h5 class="mb-3 mt-3 text-dark">File Reports</h5>
+  <app-file-reports-list
+    [fileReportsPage]="this.fileReportsPage"
+    (fileSelected)="onSelectFileReport($event)">
+  </app-file-reports-list>
+</div>
+
+<div [hidden]="!this.showingFileReport">
+  <app-file-report-viewer *ngIf="fileReport !== null && showingFileReport" [fileReport]="this.fileReport"></app-file-report-viewer>
+</div>

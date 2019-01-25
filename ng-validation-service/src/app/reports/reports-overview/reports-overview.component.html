@@ -4,18 +4,17 @@
       <ul class="nav nav-pills  nav-light">
           <li class="nav-item">
               <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = false" [ngClass]="{'active': !showCompleted, 'text-primary': showCompleted}">
-                Scheduled Reports <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-primary': showCompleted}">{{ this.queuePage.totalCount }}</span>
+                Scheduled Reports <span class="badge" [ngClass]="{'badge-light': !showCompleted,'badge-primary': showCompleted}">{{ this.queuePage.totalCount }}</span>
               </span>
           </li>
         <li class="nav-item">
             <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = true"  [ngClass]="{'active': showCompleted, 'text-primary': !showCompleted}">
-                Completed Reports <span class="badge" [ngClass]="{'badge-warning': showCompleted,'badge-primary': !showCompleted}">{{ this.finishedReportsPage.totalCount }}</span>
+                Completed Reports <span class="badge" [ngClass]="{'badge-light': showCompleted,'badge-primary': !showCompleted}">{{ this.finishedReportsPage.totalCount }}</span>
             </span>
           </li>
       </ul>
       <hr>
   </div>
-
 </div>
 
 <div class="row mt-4" *ngIf="showCompleted">

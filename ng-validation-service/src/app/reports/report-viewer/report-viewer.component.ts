@@ -4,6 +4,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { BatchReportResolver } from './batch-report-resolver.service';
 import { BatchReport } from 'src/app/shared/model/batch-report.model';
 import { Util } from 'src/app/shared/util';
+import { FileReport } from 'src/app/shared/model/file-report.model';
 
 @Component({
   selector: 'app-report-viewer',
@@ -14,6 +15,7 @@ export class ReportViewerComponent implements OnInit {
 
   fileReportsPage: FileReportsPage;
   batchReport: BatchReport;
+  fileReport: FileReport;
   resolveCamelCase = Util.unCamelCase;
   showingFileReport = false;
 
@@ -33,6 +35,11 @@ export class ReportViewerComponent implements OnInit {
         console.log(this.batchReport);
       }
     );
+  }
+
+  onSelectFileReport(report: FileReport) {
+    this.fileReport = report;
+    this.showingFileReport = true;
   }
 
 }

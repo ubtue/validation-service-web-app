@@ -1,47 +1,54 @@
 <div class="row mt-1">
   <div class="col-md-12">
-  <!-- <h4>Completed Reports</h4> -->
+    <!-- <h4>Completed Reports</h4> -->
+    <div class="table-responsive">
+      <table class="table table-striped ">
+        <thead class="">
+          <tr>
+            <th>Validity</th>
+            <th>File</th>
+            <th>FITS Execution</th>
+            <th>VeraPDF Execution</th>
 
-  <table class="table table-striped ">
-      <thead class="">
-        <tr>
-          <th>File Name</th>
-          <th>FITS Execution</th>
-          <th>VeraPDF Execution</th>
-          <th>Validation Result</th>
-          <!-- <th>Files total</th> -->
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
+            <!-- <th>Files total</th> -->
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
           <!-- [ngClass]="{'text-danger' : report.validationOutcome !== 'valid', 'text-success' :  report.validationOutcome === 'valid'}" -->
-        <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
-          <td class="text-monospace font-weight-bold td-break-all " style="max-width:350px; min-width: 190px;"> {{ report._embedded.file.fileName }}  </td>
-          <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
-          <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
-          <td><span style="font-size: 16px;" class="badge"  [ngClass]="{'badge-danger' : report.validationOutcome !== 'valid', 'badge-success' :  report.validationOutcome === 'valid'}" >{{ this.resolveCamelCase(report.validationOutcome) }}</span></td>
-          <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
+          <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
+            <td [ngClass]="{'bg-danger' : report.validationOutcome !== 'valid', 'bg-success' :  report.validationOutcome === 'valid'}"
+              class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">{{
+                this.resolveCamelCase(report.validationOutcome) }}</span></td>
+            <td class="text-monospace text-dark td-break-all " style="min-width: 200px; max-width: 400px;"> {{
+              report._embedded.file.fileName
+              }} </td>
+            <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
+            <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
+
+            <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
           <td> {{ report.summary.problematicFiles }} </td> -->
 
-          <td class="text-center text-light"><a class="btn btn-info" (click)="fileSelected.next(report)" >Details</a> </td>
-        </tr>
-      </tbody>
-      <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
-        <tr>
-          <td colspan="6" class="text-center" >
-            {{
+            <td class="text-center text-light"><a class="btn btn-secondary" (click)="fileSelected.next(report)">Details</a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
+          <tr>
+            <td colspan="6" class="text-center">
+              {{
               this.fileReportsPage._embedded['file-reports'].length === 0
-            ? "No Reports"
-            : this.fileReportsPage.totalCount + " Reports"
-            }}
-          </td>
-        </tr>
-      </tfoot>
-    </table>
+              ? "No Reports"
+              : this.fileReportsPage.totalCount + " Reports"
+              }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </div>
 
 <div>
-<app-paginator [page]="this.fileReportsPage" (navigationRequested)="onLoadFileReportsPage($event)"></app-paginator>
+  <app-paginator [page]="this.fileReportsPage" (navigationRequested)="onLoadFileReportsPage($event)"></app-paginator>
 </div>
-

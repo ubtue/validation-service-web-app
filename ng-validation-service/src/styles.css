@@ -6,7 +6,7 @@ input.ng-invalid.ng-touched {
 
 
 .td-break-all {
-  word-break: break-word;
+  word-break: break-all;
 }
 
 .capitalize {

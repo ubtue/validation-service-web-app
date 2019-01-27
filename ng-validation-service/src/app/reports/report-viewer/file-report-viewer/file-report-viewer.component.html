@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Custom Rule Checks <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
+                  Failed Custom Checks <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
                 </span>
             </li>
         </ul>
@@ -45,7 +45,7 @@
             <td *ngIf="fitsResult.valid !== null" >
               <span style="font-size: 16px;"
                class="badge badge-outcome"
-               [ngClass]="{'badge-danger' : fitsResult.valid === false, 'badge-success' :  fitsResult.valid === true}" >
+               [ngClass]="{'badge-danger badge-pill' : fitsResult.valid === false, 'badge-success' :  fitsResult.valid === true}" >
                 {{ fitsResult.valid === true ? 'Valid' : 'Not Valid' }}
               </span>
 

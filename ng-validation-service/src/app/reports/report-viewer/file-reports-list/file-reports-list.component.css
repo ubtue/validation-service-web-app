@@ -1,7 +1,8 @@
 .badge {
   min-width: 90px ;
   /* display: inline-block; */
-  /* margin-bottom: 0px; */
+  /* padding-bottom: 9px;
+  padding-top: 9px; */
 }
 
 .table > tbody > tr > td {

@@ -3,17 +3,14 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
-        <li
-          class="breadcrumb-item disabled"
-          [ngClass]="{ active: !this.showingFileReport }"
-        >
+        <li class="breadcrumb-item disabled" [ngClass]="{ active: !this.showingFileReport }">
           <ng-container *ngIf="this.showingFileReport; else elseTemplate">
             <a href="" (click)="showingFileReport = false">{{
-              "Report " + this.batchReport.id
-            }}</a>
+              "Batch Report " + this.batchReport.id
+              }}</a>
           </ng-container>
           <ng-template #elseTemplate>
-            {{ "Report " + this.batchReport.id }}
+            {{ "Batch Report " + this.batchReport.id }}
           </ng-template>
         </li>
         <li class="breadcrumb-item active" *ngIf="this.showingFileReport">
@@ -25,7 +22,7 @@
 </div>
 
 <div [hidden]="this.showingFileReport">
-  <h3 class="text-muted">Batch Report</h3>
+  <!-- <h3 class="text-dark">Batch Report</h3> -->
   <div class="row mt-3">
     <div class="col-md-12">
       <h5 class="text-dark">Summary</h5>
@@ -43,25 +40,17 @@
         </thead>
         <tbody>
           <tr>
-            <td
-              class="text-monospace font-weight-bold td-break-all "
-              style="max-width:250px; min-width: 100px;"
-            >
-              <a
-                [routerLink]="['/batches', this.batchReport._embedded.batch.id]"
-                >{{ this.batchReport._embedded.batch.description }}
+            <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
+              <a [routerLink]="['/batches', this.batchReport._embedded.batch.id]">{{
+                this.batchReport._embedded.batch.description }}
               </a>
             </td>
-            <td
-              class="text-monospace font-weight-bold td-break-all "
-              style="max-width:250px; min-width: 100px;"
-            >
-              <a
-                [routerLink]="[
+            <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
+              <a [routerLink]="[
                   '/configurations',
                   this.batchReport._embedded.configuration.id
-                ]"
-                >{{ this.batchReport._embedded.configuration.description }}
+                ]">{{
+                this.batchReport._embedded.configuration.description }}
               </a>
             </td>
             <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
@@ -75,9 +64,7 @@
   </div>
 
   <h5 class="mb-3 mt-3 text-dark">File Reports</h5>
-  <app-file-reports-list
-    [fileReportsPage]="this.fileReportsPage"
-    (fileSelected)="onSelectFileReport($event)">
+  <app-file-reports-list [fileReportsPage]="this.fileReportsPage" (fileSelected)="onSelectFileReport($event)">
   </app-file-reports-list>
 </div>
 

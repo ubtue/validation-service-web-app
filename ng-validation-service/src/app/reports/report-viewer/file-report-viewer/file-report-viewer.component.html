@@ -1,6 +1,6 @@
 <div class="row mt-2">
     <div class="col-md-12">
-        <ul class="nav nav-pills  nav-light">
+        <ul class="nav nav-pills nav-fill nav-light">
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 0" [ngClass]="{'active': displayIndex === 0, 'text-primary': displayIndex !== 0}">
                   FITS
@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Failed Custom Checks <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
+                  Rule Checks <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
                 </span>
             </li>
         </ul>
@@ -63,6 +63,38 @@
                 this.fileReport._embedded['fits-results'].length === 0
               ? "No Format Records"
               : this.fileReport._embedded['fits-results'].length + " Format Records"
+              }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+  </div>
+</div>
+
+<div class="row mt-2" *ngIf="displayIndex === 2 && fileReport !== null">
+  <div class="col-md-12">
+    <h5>Failed Checks</h5>
+    <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeCheckTypeFilter($event)"></p-dropdown>
+    <table class="table  table-striped ">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 20%">Check Type</th>
+            <th style="width: 80%">Error Message</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="this.checksPage">
+          <tr *ngFor="let check of this.checksPage._embedded['checks']">
+           <td> {{check.checkType === 'fits' ? 'Fits Result Check' :(check.checkType === 'verapdf' ? 'VeraPDF Policy' : 'File Name Check')}} </td>
+           <td>{{check.resultMessage}}</td>
+          </tr>
+        </tbody>
+        <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
+          <tr>
+            <td colspan="6" class="text-center" >
+              {{
+                this.fileReport._embedded['checks'].length === 0
+              ? "No Failed Checks"
+              : this.fileReport._embedded['checks'].length + " Failed Checks"
               }}
             </td>
           </tr>

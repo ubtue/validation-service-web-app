@@ -5,6 +5,7 @@ import { BatchReportsPage } from '../shared/model/batch-reports.model';
 import { QueuePage } from '../shared/model/queue-order.model';
 import { FileReportsPage } from '../shared/model/file-reports.model';
 import { BatchReport } from '../shared/model/batch-report.model';
+import { ChecksPage } from '../shared/model/checks.model';
 
 
 @Injectable()
@@ -56,6 +57,14 @@ export class ReportsService {
         params = params.append('descriptionFilter', descriptionFilter );
     }
     return this.httpClient.get<FileReportsPage>(url, {params: params}) ;
+  }
+
+  getChecksPage(url: string, typeFilter = '') {
+    let params: HttpParams = new HttpParams();
+    if (typeFilter.length > 0) {
+        params = params.append('type', typeFilter );
+    }
+    return this.httpClient.get<ChecksPage>(url, {params: params}) ;
   }
 
 

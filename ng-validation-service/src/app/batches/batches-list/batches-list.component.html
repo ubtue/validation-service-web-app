@@ -1,5 +1,9 @@
 <div class="row mb-3">
-  <div class=" offset-md-8 col-md-4 mt-2">
+  <div class="  col-md-4 text-left">
+    <a routerLink="/batches/new">
+      <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> New Batch</button></a>
+  </div>
+  <div class=" offset-md-4 col-md-4">
     <input type="text" class="form-control" placeholder="Search name" (keyup)="this.searchTextChanged.next($event.target.value)"
       #filter>
   </div>
@@ -7,7 +11,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <table class="table table table-hover">
+    <table class="table  table-hover table-striped">
       <thead class="">
         <tr>
           <th class="text-center">Batch Name
@@ -43,13 +47,12 @@
             </tr> -->
 
       </tbody>
-      <tfoot class="bg-light text-dark table-bordered">
+      <tfoot class="bg-light text-dark text-monospace font-weight-bold">
         <td class="text-center" colspan="3" *ngIf="this.descriptionFilter.length > 0">
-          {{ (this.page._embedded.batches.length === 0 ) ? 'No matching records': 'Matching records: ' +
-          this.page.totalCount }}
+          {{ (this.page._embedded.batches.length === 0 ) ? 'No matching Batches': this.page.totalCount + ' Matching Batches' }}
         </td>
         <td class="text-center" colspan="3" *ngIf="this.descriptionFilter.length == 0">
-          {{ (this.page._embedded.batches.length === 0 ) ? 'No records': 'Total records: ' + this.page.totalCount }}
+          {{ (this.page._embedded.batches.length === 0 ) ? 'No Batches': this.page.totalCount + ' Batches' }}
         </td>
       </tfoot>
     </table>

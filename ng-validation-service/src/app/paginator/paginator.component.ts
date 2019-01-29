@@ -17,9 +17,7 @@ export class PaginatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.page._links);
     let x: URLSearchParams = new URLSearchParams();
-    console.log(this.getParamValueFromUrl('page','http://localhost:8080/service/rest/batches?page=0'));
   }
 
   getPageNumberOfLink(url: string): number {

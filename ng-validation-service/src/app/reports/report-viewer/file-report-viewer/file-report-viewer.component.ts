@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FileReport } from 'src/app/shared/model/file-report.model';
 import { SelectItem } from 'primeng/api';
 import { ChecksPage } from 'src/app/shared/model/checks.model';
 import { ReportsService } from '../../reports.service';
 import { Util } from 'src/app/shared/util';
+import { ActivatedRoute, Data } from '@angular/router';
+import { ViewerStateService } from '../viewer-state.service';
 
 @Component({
   selector: 'app-file-report-viewer',
@@ -12,7 +14,7 @@ import { Util } from 'src/app/shared/util';
 })
 export class FileReportViewerComponent implements OnInit {
 
-  @Input() fileReport: FileReport;
+  fileReport: FileReport;
 
   displayIndex = 0;
 
@@ -23,10 +25,16 @@ export class FileReportViewerComponent implements OnInit {
 
   checksPage: ChecksPage;
 
-  constructor(private reportsService: ReportsService) { }
+  constructor(private reportsService: ReportsService, private route: ActivatedRoute, private viewerService: ViewerStateService) { }
 
   ngOnInit() {
-    console.log(this.fileReport)
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.fileReport = data['fileReport'];
+        this.viewerService.selectedFileReport.next(this.fileReport);
+      }
+    )
+
     this.failedCount = this.fileReport.failedFitsChecks + this.fileReport.failedNameChecks + (this.fileReport._embedded['verapdf-result'] ? this.fileReport._embedded['verapdf-result'].failedPolicyChecks : 0);
     this.options = [
       {label: 'All (' + this.failedCount + ')', value :'all', disabled: this.failedCount == 0},
@@ -47,8 +55,8 @@ export class FileReportViewerComponent implements OnInit {
 
       );
     }
-
   }
+
 
   onChangeCheckTypeFilter() {
     console.log('called');

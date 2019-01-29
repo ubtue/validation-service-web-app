@@ -5,7 +5,7 @@
         <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
         <li class="breadcrumb-item disabled" [ngClass]="{ active: !this.showingFileReport }">
           <ng-container *ngIf="this.showingFileReport; else elseTemplate">
-            <a href="" (click)="showingFileReport = false">{{
+            <a  (click)="showingFileReport = false" [routerLink]="'./'" >{{
               "Batch Report " + this.batchReport.id
               }}</a>
           </ng-container>
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div [hidden]="this.showingFileReport">
+<div [hidden]="this.route.children.length === 1">
   <!-- <h3 class="text-dark">Batch Report</h3> -->
   <div class="row mt-3">
     <div class="col-md-12">
@@ -68,6 +68,4 @@
   </app-file-reports-list>
 </div>
 
-<div [hidden]="!this.showingFileReport">
-  <app-file-report-viewer *ngIf="fileReport !== null && showingFileReport" [fileReport]="this.fileReport"></app-file-report-viewer>
-</div>
+<router-outlet></router-outlet>

@@ -37,6 +37,8 @@ import { FileReportsListComponent } from './reports/report-viewer/file-reports-l
 import { FileReportsListResolver } from './reports/report-viewer/file-reports-list.resolver.service';
 import { ReportViewerComponent } from './reports/report-viewer/report-viewer.component';
 import { BatchReportResolver } from './reports/report-viewer/batch-report-resolver.service';
+import { FileReportViewerComponent } from './reports/report-viewer/file-report-viewer/file-report-viewer.component';
+import { FileReportResolver } from './reports/report-viewer/file-report-resolver.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -74,7 +76,9 @@ const routes: Routes = [
     ]},
     {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', children: [
       {path: '', component: ReportsOverviewComponent, pathMatch: 'full', resolve: {reportsPage: ReportsResolver, queuePage: QueueResolver} },
-      {path: ':id', component: ReportViewerComponent, runGuardsAndResolvers: 'always', resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver} }
+      {path: ':id', component: ReportViewerComponent, resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver}, children: [
+        {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
+      ] },
     ]}
     //{ path: '**', redirectTo: 'batches' }
 ];

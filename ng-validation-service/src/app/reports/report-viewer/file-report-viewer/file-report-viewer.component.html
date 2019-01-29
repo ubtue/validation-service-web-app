@@ -1,4 +1,4 @@
-<div class="row mt-2">
+<div class="row mt-2 mb-2">
     <div class="col-md-12">
         <ul class="nav nav-pills nav-fill nav-light">
             <li class="nav-item">
@@ -42,13 +42,13 @@
             <td> {{ fitsResult.formatName }} </td>
             <td> {{ fitsResult.mime }} </td>
             <td> {{ fitsResult.puid ? fitsResult.puid : '' }} </td>
-            <td *ngIf="fitsResult.valid !== null" >
-              <span style="font-size: 16px;"
+            <td *ngIf="fitsResult.valid !== null" class="font-weight-bold" [ngClass]="{'text-success' : fitsResult.valid === true, 'text-danger' : fitsResult.valid !== true}">
+              <!-- <span style="font-size: 16px;"
                class="badge badge-outcome"
                [ngClass]="{'badge-danger badge-pill' : fitsResult.valid === false, 'badge-success' :  fitsResult.valid === true}" >
                 {{ fitsResult.valid === true ? 'Valid' : 'Not Valid' }}
-              </span>
-
+              </span> -->
+              {{ fitsResult.valid === true ? 'Valid' : 'Not Valid' }}
             <td *ngIf="fitsResult.valid === null" ></td>
             <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
             <td> {{ report.summary.problematicFiles }} </td> -->
@@ -92,9 +92,9 @@
           <tr>
             <td colspan="6" class="text-center" >
               {{
-                this.fileReport._embedded['checks'].length === 0
+                !this.checksPage || this.checksPage.totalCount === 0
               ? "No Failed Checks"
-              : this.fileReport._embedded['checks'].length + " Failed Checks"
+              : this.checksPage.totalCount + " Failed Checks"
               }}
             </td>
           </tr>

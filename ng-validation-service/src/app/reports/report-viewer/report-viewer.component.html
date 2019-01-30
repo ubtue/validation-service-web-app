@@ -5,7 +5,7 @@
         <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
         <li class="breadcrumb-item disabled" [ngClass]="{ active: !this.showingFileReport }">
           <ng-container *ngIf="this.showingFileReport; else elseTemplate">
-            <a  (click)="showingFileReport = false" [routerLink]="'./'" >{{
+            <a (click)="showingFileReport = false" [routerLink]="'./'">{{
               "Batch Report " + this.batchReport.id
               }}</a>
           </ng-container>
@@ -46,12 +46,16 @@
               </a>
             </td>
             <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
-              <a [routerLink]="[
-                  '/configurations',
-                  this.batchReport._embedded.configuration.id
-                ]">{{
-                this.batchReport._embedded.configuration.description }}
-              </a>
+              <ng-container *ngIf="this.batchReport._embedded.configuration; else elseTemplate">
+                  <a [routerLink]="['/configurations', this.batchReport._embedded.configuration.id]">
+                    {{ this.batchReport._embedded.configuration.description }}
+                  </a>
+              </ng-container>
+              <ng-template #elseTemplate>
+                  <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+              </ng-template>
+              
+             
             </td>
             <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
             <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>

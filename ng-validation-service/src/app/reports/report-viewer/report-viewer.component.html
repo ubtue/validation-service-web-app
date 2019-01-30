@@ -60,7 +60,15 @@
             <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
             <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
             <td>{{ this.batchReport.finishedDate | date: "HH:mm:ss" }}</td>
-            <td>{{ this.batchReport.summary.problematicFiles }}</td>
+            <td>
+              <ng-container *ngIf="this.batchReport.summary; else noSummary">
+                  {{ this.batchReport.summary.problematicFiles }}
+              </ng-container>
+              <ng-template #noSummary>
+                  {{ '0' }}
+              </ng-template>
+              
+              </td>
           </tr>
         </tbody>
       </table>

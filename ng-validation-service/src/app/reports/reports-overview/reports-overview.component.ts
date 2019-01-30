@@ -87,4 +87,13 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
         });
   }
 
+  onAbortOrder(order) {
+    this.reportsServcie.deleteOrder(order).subscribe(
+      () => {
+        console.log('calling refresh');
+        this.refreshData();
+      }
+    );
+  }
+
 }

@@ -1,87 +1,103 @@
-
 <div class="row mt-4">
   <div class="col-md-12">
-      <ul class="nav nav-pills nav-fill nav-light">
-          <li class="nav-item">
-              <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = false" [ngClass]="{'active': !showCompleted, 'text-primary': showCompleted}">
-                Scheduled Reports <span class="badge" [ngClass]="{'badge-light': !showCompleted,'badge-primary': showCompleted}">{{ this.queuePage.totalCount }}</span>
-              </span>
-          </li>
-        <li class="nav-item">
-            <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = true"  [ngClass]="{'active': showCompleted, 'text-primary': !showCompleted}">
-                Completed Reports <span class="badge" [ngClass]="{'badge-light': showCompleted,'badge-primary': !showCompleted}">{{ this.finishedReportsPage.totalCount }}</span>
-            </span>
-          </li>
-      </ul>
-      <hr>
+    <ul class="nav nav-pills nav-fill nav-light">
+      <li class="nav-item">
+        <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = false" [ngClass]="{'active': !showCompleted, 'text-primary': showCompleted}">
+          Scheduled Reports <span class="badge" [ngClass]="{'badge-light': !showCompleted,'badge-primary': showCompleted}">{{
+            this.queuePage.totalCount }}</span>
+        </span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = true" [ngClass]="{'active': showCompleted, 'text-primary': !showCompleted}">
+          Completed Reports <span class="badge" [ngClass]="{'badge-light': showCompleted,'badge-primary': !showCompleted}">{{
+            this.finishedReportsPage.totalCount }}</span>
+        </span>
+      </li>
+    </ul>
+    <hr>
   </div>
 </div>
 
 <div class="row mt-4" *ngIf="showCompleted">
-    <div class="col-md-12">
+  <div class="col-md-12">
     <!-- <h4>Completed Reports</h4> -->
     <div class="table-responsive">
-        <table class="table table-striped">
-            <thead class="table-light">
-              <tr>
-                <th>Batch</th>
-                <th>Configuration</th>
-                <th>Processing Status</th>
-                <th>Finished</th>
-                <th>Result</th>
-                <!-- <th>Problematic Files</th> -->
-                <!-- <th>Files total</th> -->
-    
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let report of this.finishedReportsPage._embedded['batch-reports']">
-                <td><a [routerLink]="['/batches', report._embedded.batch.id ]">{{ report._embedded.batch.description }}</a></td>
-                <td>
-                  <ng-container *ngIf="report._embedded.configuration; else elseTemplate">
-                      <a  [routerLink]="['/configurations', report._embedded.configuration.id]">{{ report._embedded.configuration.description }}</a>
-                  </ng-container>
-                  <ng-template #elseTemplate>
-                      <em>{{ 'Deleted Configuration' }}</em>
-                  </ng-template>
-                  
-                  
-                </td>
-                <td> {{ this.resolveCamelCase(report.status) }} </td>
-                <td> {{ report.finishedDate | date:'dd.MM.y, HH:mm' }} </td>
-                <td> 
-                  <!-- <span style="font-size: 16px;"
+      <table class="table table-striped">
+        <thead class="table-light">
+          <tr>
+            <th>Batch</th>
+            <th>Configuration</th>
+            <th>Processing Status</th>
+            <th>Finished</th>
+            <th>Result</th>
+            <!-- <th>Problematic Files</th> -->
+            <!-- <th>Files total</th> -->
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of this.finishedReportsPage._embedded['batch-reports']">
+            <td><a [routerLink]="['/batches', report._embedded.batch.id ]">{{ report._embedded.batch.description }}</a></td>
+            <td>
+              <ng-container *ngIf="report._embedded.configuration; else elseTemplate">
+                <a [routerLink]="['/configurations', report._embedded.configuration.id]">{{
+                  report._embedded.configuration.description }}</a>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <em>{{ 'Deleted Configuration' }}</em>
+              </ng-template>
+
+
+            </td>
+            <td> 
+              <span [ngClass]="{'text-danger' : report.status !== 'finished', 'font-weight-bold' : report.status !== 'finished'}">
+                  {{ this.resolveCamelCase(report.status) }}
+              </span>
+            </td>
+            <td> {{ report.finishedDate | date:'dd.MM.y, HH:mm' }} </td>
+            <td>
+              <!-- <span style="font-size: 16px;"
                     class="badge badge-pill badge-outcome"
                     [ngClass]="{'badge-danger' : report.summary.validationOutcome !== 'valid', 'badge-success' : report.summary.validationOutcome === 'valid'}" >
                       {{ this.resolveCamelCase(report.summary.validationOutcome) === 'Valid' ? 'OK' : 'Problems' }}
                   </span>  -->
-                  <span class="font-weight-bold"
-                    [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid', 'text-success' : report.summary.validationOutcome === 'valid'}" >
+
+                  <ng-container *ngIf="report.summary; else noSummary">
+                    <span class="font-weight-bold" 
+                      [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid', 'text-success' : report.summary.validationOutcome === 'valid'}">
                       {{ this.resolveCamelCase(report.summary.validationOutcome) === 'Valid' ? 'OK' : 'Problems' }}
-                  </span> 
-                </td>
-                <!-- <td> {{ report.summary.problematicFiles }} </td> -->
-                <td><a class="btn btn-secondary"  [routerLink]="[report.id]" >Details</a> </td>
-                <td> </td>
-              </tr>
-            </tbody>
-            <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
-              <tr>
-                <td colspan="7" class="text-center" >
-                  {{
-                  this.finishedReportsPage._embedded['batch-reports'].length === 0
-                  ? "No Reports"
-                  : this.finishedReportsPage.totalCount + " Reports"
-                  }}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+                    </span>
+                  </ng-container>
+                  <ng-template #noSummary>
+                      <span class="font-weight-bold text-danger">
+                      {{ 'Problems' }}
+                    </span>
+                  </ng-template>
+                  
+              
+            </td>
+            <!-- <td> {{ report.summary.problematicFiles }} </td> -->
+            <td><a class="btn btn-secondary" [routerLink]="[report.id]">Details</a> </td>
+            <td> </td>
+          </tr>
+        </tbody>
+        <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
+          <tr>
+            <td colspan="7" class="text-center">
+              {{
+              this.finishedReportsPage._embedded['batch-reports'].length === 0
+              ? "No Reports"
+              : this.finishedReportsPage.totalCount + " Reports"
+              }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
 
     </div>
-    
-    </div>
+
+  </div>
 </div>
 
 <div *ngIf="showCompleted">
@@ -92,30 +108,31 @@
 <div class="row mt-4" *ngIf="!showCompleted">
 
   <div class="col-md-12">
-      <!-- <h4>Scheduled Reports</h4> -->
-      <table class="table table-striped">
-          <thead class="table-light">
-            <tr>
-              <th>Batch</th>
-              <th>Configuration</th>
-              <th>Submitted</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let order of this.queuePage._embedded.orders">
-              <td><a [routerLink]="['/batches', order._embedded.batch.id]">{{ order._embedded.batch.description }}</a></td>
-              <td>
-                
-                <ng-container *ngIf="order._embedded.configuration; else configElse">
-                    <a [routerLink]="['/configurations', order._embedded.configuration.id]">{{ order._embedded.configuration.description }}</a>
-                </ng-container>
-                <ng-template #configElse>
-                    <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
-                </ng-template>
-                
-              </td>
-              <!-- <td>
+    <!-- <h4>Scheduled Reports</h4> -->
+    <table class="table table-striped">
+      <thead class="table-light">
+        <tr>
+          <th>Batch</th>
+          <th>Configuration</th>
+          <th>Submitted</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of this.queuePage._embedded.orders">
+          <td><a [routerLink]="['/batches', order._embedded.batch.id]">{{ order._embedded.batch.description }}</a></td>
+          <td>
+
+            <ng-container *ngIf="order._embedded.configuration; else configElse">
+              <a [routerLink]="['/configurations', order._embedded.configuration.id]">{{
+                order._embedded.configuration.description }}</a>
+            </ng-container>
+            <ng-template #configElse>
+              <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+            </ng-template>
+
+          </td>
+          <!-- <td>
                 <span class="capitalize">{{
                   config._embedded["verapdf-setup"].executionMode
                   }}</span>
@@ -125,32 +142,34 @@
                 <a style="color: white" class="btn link btn-primary mr-2 mt-1 mb-1" [routerLink]="config.id +'/general'" role="button">Modify</a>
                 <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteFile(config)">Delete</a>
               </td> -->
-              <td> {{ order.createdDate | date:'dd.MM.y, HH:mm'}} </td>
-              <td > <div class="progress position-relative bg-secondary">
-                <div class="progress-bar progress-bar-animated bg-primary" role="progressbar" [style.width.%]="order.progress">
-                    <small class="justify-content-center d-flex position-absolute w-100">{{ order.progress/100 | percent:'1.2-5' }}</small>
-
-                </div>
+          <td> {{ order.createdDate | date:'dd.MM.y, HH:mm'}} </td>
+          <td>
+            <div class="progress position-relative bg-secondary">
+              <div class="progress-bar progress-bar-animated bg-primary" role="progressbar" [style.width.%]="order.progress">
+                <small class="justify-content-center d-flex position-absolute w-100">
+                  {{ order.progress/100 | percent:'1.2-5' }}</small>
               </div>
-                </td>
-            </tr>
-          </tbody>
-          <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
-            <tr>
-              <td colspan="5" class="text-center" >
-                {{
-                this.queuePage._embedded.orders.length === 0
-                ? "No Reports"
-                : this.queuePage.totalCount + " Reports"
-                }}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+            </div>
+            <a class="badge badge-danger text-center btn-block text-light" *ngIf="order.status === 'processing'" (click)="onAbortOrder(order)" >Cancel</a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
+        <tr>
+          <td colspan="5" class="text-center">
+            {{
+            this.queuePage._embedded.orders.length === 0
+            ? "No Reports"
+            : this.queuePage.totalCount + " Reports"
+            }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 
 
 </div>
 <div *ngIf="!showCompleted">
-    <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadQueuePage($event)"></app-paginator>
+  <app-paginator [page]="this.queuePage" (navigationRequested)="onLoadQueuePage($event)"></app-paginator>
 </div>

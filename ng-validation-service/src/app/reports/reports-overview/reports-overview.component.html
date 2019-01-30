@@ -27,8 +27,8 @@
                 <th>Batch</th>
                 <th>Configuration</th>
                 <th>Processing Status</th>
-                <th>Finish Date</th>
-                <th>Validation Result</th>
+                <th>Finished</th>
+                <th>Result</th>
                 <!-- <th>Problematic Files</th> -->
                 <!-- <th>Files total</th> -->
     
@@ -105,7 +105,16 @@
           <tbody>
             <tr *ngFor="let order of this.queuePage._embedded.orders">
               <td><a [routerLink]="['/batches', order._embedded.batch.id]">{{ order._embedded.batch.description }}</a></td>
-              <td><a  [routerLink]="['/configurations', order._embedded.configuration.id]">{{ order._embedded.configuration.description }}</a></td>
+              <td>
+                
+                <ng-container *ngIf="order._embedded.configuration; else configElse">
+                    <a [routerLink]="['/configurations', order._embedded.configuration.id]">{{ order._embedded.configuration.description }}</a>
+                </ng-container>
+                <ng-template #configElse>
+                    <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+                </ng-template>
+                
+              </td>
               <!-- <td>
                 <span class="capitalize">{{
                   config._embedded["verapdf-setup"].executionMode

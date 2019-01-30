@@ -32,6 +32,7 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
       (data: Data) => {
         this.fileReportsPage = data['fileReportsPage'];
         this.batchReport = data['batchReport'];
+        console.log(this.batchReport);
       }
     );
 

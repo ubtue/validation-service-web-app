@@ -4,12 +4,12 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
         <li class="breadcrumb-item disabled" [ngClass]="{ active: !this.showingFileReport }">
-          <ng-container *ngIf="this.showingFileReport; else elseTemplate">
+          <ng-container *ngIf="this.showingFileReport; else elseReport">
             <a (click)="showingFileReport = false" [routerLink]="'./'">{{
               "Batch Report " + this.batchReport.id
               }}</a>
           </ng-container>
-          <ng-template #elseTemplate>
+          <ng-template #elseReport>
             {{ "Batch Report " + this.batchReport.id }}
           </ng-template>
         </li>

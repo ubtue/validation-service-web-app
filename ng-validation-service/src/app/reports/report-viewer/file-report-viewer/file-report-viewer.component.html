@@ -1,3 +1,4 @@
+<p-messages [(value)]="this.errorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
 <div class="row mt-2 mb-2">
     <div class="col-md-12">
         <ul class="nav nav-pills nav-fill nav-light">
@@ -13,7 +14,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Rule Checks <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
+                  Failed Rule Checks <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
                 </span>
             </li>
         </ul>
@@ -23,7 +24,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 0 && fileReport !== null">
   <div class="col-md-12">
-    <h5>Identified Formats</h5>
+    <!-- <h5>Identified Formats</h5> -->
     <table class="table  table-striped ">
         <thead class="table-light">
           <tr>
@@ -73,7 +74,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 2 && fileReport !== null">
   <div class="col-md-12">
-    <h5>Failed Checks</h5>
+    <!-- <h5>Failed Checks</h5> -->
     <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeCheckTypeFilter($event)"></p-dropdown>
     <table class="table  table-striped ">
         <thead class="table-light">

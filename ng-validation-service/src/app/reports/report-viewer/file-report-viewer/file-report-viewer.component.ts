@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { FileReport } from 'src/app/shared/model/file-report.model';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, Message } from 'primeng/api';
 import { ChecksPage } from 'src/app/shared/model/checks.model';
 import { ReportsService } from '../../reports.service';
 import { Util } from 'src/app/shared/util';
@@ -15,6 +15,7 @@ import { ViewerStateService } from '../viewer-state.service';
 export class FileReportViewerComponent implements OnInit {
 
   fileReport: FileReport;
+  errorMessages: Message[] = [];
 
   displayIndex = 0;
 
@@ -32,6 +33,11 @@ export class FileReportViewerComponent implements OnInit {
       (data: Data) => {
         this.fileReport = data['fileReport'];
         this.viewerService.selectedFileReport.next(this.fileReport);
+        for (const errorMessage of this.fileReport.errorMessages) {
+          console.log(this.fileReport);
+          let message: Message = {severity: 'error',summary:'Error:',detail:errorMessage,closable:false,sticky:true}
+          this.errorMessages.push(message);
+        }
       }
     )
 
@@ -41,7 +47,7 @@ export class FileReportViewerComponent implements OnInit {
       {label: 'File Name Checks (' + this.fileReport.failedNameChecks + ')', value :'name', disabled: this.fileReport.failedNameChecks == 0},
       {label: 'Fits Result Checks (' + this.fileReport.failedFitsChecks + ')', value :'fits', disabled: this.fileReport.failedFitsChecks == 0},
       {label: 'VeraPDF Policy (' + (this.fileReport._embedded['verapdf-result'] ? this.fileReport._embedded['verapdf-result'].failedPolicyChecks : 0) + ')',
-        value :'verapdf', disabled: this.fileReport._embedded['verapdf-result'] && this.fileReport._embedded['verapdf-result'].failedPolicyChecks == 0}
+        value :'verapdf', disabled: !this.fileReport._embedded['verapdf-result'] || this.fileReport._embedded['verapdf-result'] && this.fileReport._embedded['verapdf-result'].failedPolicyChecks == 0}
     ]
 
     if(this.failedCount > 0) {

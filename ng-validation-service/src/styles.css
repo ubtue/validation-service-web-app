@@ -13,3 +13,8 @@ input.ng-invalid.ng-touched {
   text-transform: capitalize;
 }
 
+html body .ui-messages {
+  margin-top: 0px;
+  /* padding-top: 0%; */
+
+}

@@ -20,4 +20,5 @@ export interface FileReport {
 	veraPdfExecutionOutcome: string;
 	failedNameChecks: number;
 	failedFitsChecks: number;
+	errorMessages: string[];
 }

@@ -77,4 +77,19 @@ export class FileReportViewerComponent implements OnInit {
     );
   }
 
+    /**
+  * Load new page as triggered by paginator
+  * @param url the url of the page to load
+  */
+  onLoadChecksPage(url: string) {
+    console.log(url)
+    this.reportsService
+      .getChecksPage(url)
+      .subscribe(
+        (page: ChecksPage) => {
+          this.checksPage = page;
+        });
+  }
+
+
 }

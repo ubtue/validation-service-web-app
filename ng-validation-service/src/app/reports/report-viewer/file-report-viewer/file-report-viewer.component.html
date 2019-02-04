@@ -101,5 +101,8 @@
           </tr>
         </tfoot>
       </table>
+      <div *ngIf="this.checksPage">
+        <app-paginator [page]="this.checksPage" (navigationRequested)="onLoadChecksPage($event)"></app-paginator>
+      </div>
   </div>
 </div>

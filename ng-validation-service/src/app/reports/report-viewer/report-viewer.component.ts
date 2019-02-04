@@ -8,6 +8,7 @@ import { ViewerStateService } from './viewer-state.service';
 import { Subscription } from 'rxjs';
 import { FileReportResolver } from './file-report-resolver.service';
 import { DataService } from 'src/app/shared/services/data.service';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-report-viewer',
@@ -23,8 +24,12 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
   resolveCamelCase = Util.unCamelCase;
   showingFileReport = false;
   viewerStateSubscription: Subscription;
+  errorMessages: Message[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private viewerService: ViewerStateService, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private viewerService: ViewerStateService,
+    private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -32,7 +37,10 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
       (data: Data) => {
         this.fileReportsPage = data['fileReportsPage'];
         this.batchReport = data['batchReport'];
-        console.log(this.batchReport);
+        if(!this.batchReport.summary) {
+          const message: Message = {severity: 'error', summary:'Error:', detail:'Batch processing failed. Check server log for details', closable:false, sticky:true}
+          this.errorMessages.push(message);
+        }
       }
     );
 

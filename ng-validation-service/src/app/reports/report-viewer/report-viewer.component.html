@@ -21,7 +21,10 @@
   </div>
 </div>
 
-<div [hidden]="this.route.children.length === 1">
+<p-messages [(value)]="this.errorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
+
+
+<div [hidden]="this.route.children.length === 1" *ngIf="this.batchReport.summary">
   <!-- <h3 class="text-dark">Batch Report</h3> -->
   <div class="row mt-3">
     <div class="col-md-12">
@@ -54,8 +57,8 @@
               <ng-template #elseTemplate>
                   <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
               </ng-template>
-              
-             
+
+
             </td>
             <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
             <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
@@ -67,7 +70,7 @@
               <ng-template #noSummary>
                   {{ '0' }}
               </ng-template>
-              
+
               </td>
           </tr>
         </tbody>

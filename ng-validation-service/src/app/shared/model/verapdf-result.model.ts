@@ -13,5 +13,6 @@ export interface VeraPdfResult {
 	failedRules: number;
 	passedChecks: number;
 	failedChecks: number;
-	failedPolicyChecks: number;
+  failedPolicyChecks: number;
+  errorMessage?: string;
 }

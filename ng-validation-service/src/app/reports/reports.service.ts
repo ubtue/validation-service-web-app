@@ -10,6 +10,8 @@ import { tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FileReport } from '../shared/model/file-report.model';
 import { Util } from '../shared/util';
+import { VeraPdfResult } from '../shared/model/verapdf-result.model';
+import { AssertionsPage } from '../shared/model/verapdf-assertion.model';
 
 
 @Injectable()
@@ -110,6 +112,14 @@ export class ReportsService {
       }
     }
     return this.httpClient.get<FileReport>(this.fileReportsResourceUrl + '/' + id);
+  }
+
+  getAssertionsStartPage(veraPdfResult: VeraPdfResult) {
+    return this.httpClient.get<AssertionsPage>(Util.getHrefForRel(veraPdfResult, 'assertions'));
+  }
+
+  getAssertionsPage(url: string) {
+    return this.httpClient.get<AssertionsPage>(url);
   }
 
 

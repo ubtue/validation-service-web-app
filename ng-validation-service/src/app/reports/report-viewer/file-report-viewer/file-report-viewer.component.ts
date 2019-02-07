@@ -6,6 +6,7 @@ import { ReportsService } from '../../reports.service';
 import { Util } from 'src/app/shared/util';
 import { ActivatedRoute, Data } from '@angular/router';
 import { ViewerStateService } from '../viewer-state.service';
+import { AssertionsPage } from 'src/app/shared/model/verapdf-assertion.model';
 
 @Component({
   selector: 'app-file-report-viewer',
@@ -14,8 +15,10 @@ import { ViewerStateService } from '../viewer-state.service';
 })
 export class FileReportViewerComponent implements OnInit {
 
+  resolveCamelCase = Util.unCamelCase;
   fileReport: FileReport;
   errorMessages: Message[] = [];
+  verapdfErrorMessages: Message[] = [];
 
   displayIndex = 0;
 
@@ -25,6 +28,8 @@ export class FileReportViewerComponent implements OnInit {
   failedCount = 0;
 
   checksPage: ChecksPage;
+  assertionsPage: AssertionsPage;
+  assertionIndex = -1;
 
   constructor(private reportsService: ReportsService, private route: ActivatedRoute, private viewerService: ViewerStateService) { }
 
@@ -34,10 +39,15 @@ export class FileReportViewerComponent implements OnInit {
         this.fileReport = data['fileReport'];
         this.viewerService.selectedFileReport.next(this.fileReport);
         for (const errorMessage of this.fileReport.errorMessages) {
-          console.log(this.fileReport);
-          let message: Message = {severity: 'error',summary:'Error:',detail:errorMessage,closable:false,sticky:true}
+          let message: Message = {severity: 'error', summary: 'Error:', detail: errorMessage, closable: false, sticky: true};
           this.errorMessages.push(message);
         }
+
+        if (this.fileReport._embedded['verapdf-result']) {
+          if(this.fileReport._embedded['verapdf-result'].errorMessage && !this.fileReport._embedded['verapdf-result'].encrypted)
+            this.verapdfErrorMessages.push({severity: 'warn', summary: 'Error Message:', detail: this.fileReport._embedded['verapdf-result'].errorMessage, closable: false, sticky: true});
+        }
+
       }
     )
 
@@ -61,6 +71,15 @@ export class FileReportViewerComponent implements OnInit {
 
       );
     }
+
+    if (this.fileReport._embedded['verapdf-result']) {
+      this.reportsService.getAssertionsStartPage(this.fileReport._embedded['verapdf-result']).subscribe(
+        (page: AssertionsPage) => {
+          this.assertionsPage = page;
+        }
+      );
+    }
+
   }
 
 
@@ -77,7 +96,7 @@ export class FileReportViewerComponent implements OnInit {
     );
   }
 
-    /**
+  /**
   * Load new page as triggered by paginator
   * @param url the url of the page to load
   */
@@ -90,6 +109,20 @@ export class FileReportViewerComponent implements OnInit {
           this.checksPage = page;
         });
   }
+
+      /**
+  * Load new page as triggered by paginator
+  * @param url the url of the page to load
+  */
+ onLoadAssertionsPage(url: string) {
+  console.log(url);
+  this.reportsService
+    .getAssertionsPage(url)
+    .subscribe(
+      (page: AssertionsPage) => {
+        this.assertionsPage = page;
+      });
+}
 
 
 }

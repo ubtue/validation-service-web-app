@@ -67,7 +67,7 @@ import { FileReportsListResolver } from './reports/report-viewer/file-reports-li
 import { BatchReportResolver } from './reports/report-viewer/batch-report-resolver.service';
 import { FileReportViewerComponent } from './reports/report-viewer/file-report-viewer/file-report-viewer.component';
 import { FileReportResolver } from './reports/report-viewer/file-report-resolver.service';
-
+import {PanelModule} from 'primeng/panel';
 
 
 
@@ -122,7 +122,8 @@ import { FileReportResolver } from './reports/report-viewer/file-report-resolver
     DropdownModule,
     SpinnerModule,
     CheckboxModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    PanelModule
 
   ],
   providers: [

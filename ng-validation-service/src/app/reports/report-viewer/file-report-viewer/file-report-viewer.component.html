@@ -14,7 +14,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Failed Rule Checks <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
+                  Custom Rules <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
                 </span>
             </li>
         </ul>
@@ -24,7 +24,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 0 && fileReport !== null">
   <div class="col-md-12">
-    <!-- <h5>Identified Formats</h5> -->
+    <h5>Identified Formats</h5>
     <table class="table  table-striped ">
         <thead class="table-light">
           <tr>
@@ -76,7 +76,6 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 1 && fileReport !== null">
   <div class="col-md-12">
-      <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
       <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else summaryTemplate">
         VeraPDF did not run
       </ng-container>
@@ -117,6 +116,7 @@
       </ng-template>
 
 
+      <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
 
 
 
@@ -125,7 +125,7 @@
         {{fileReport._embedded['verapdf-result'].errorMessage}}
         <h5 class="mt-3">Failed Rule Checks</h5>
          <div id="accordion" class="mt-4">
-           <div class="card" *ngFor="let assertion of this.assertionsPage._embedded.assertions; let i = index">
+           <div class="card mt-1" *ngFor="let assertion of this.assertionsPage._embedded.assertions; let i = index">
              <div class="card-header">
                <h5 class="mb-0">
                  <button class="btn btn-link  text-dark" aria-expanded="true" (click)=" this.assertionIndex === i ? this.assertionIndex = -1 : this.assertionIndex = i">
@@ -179,7 +179,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 2 && fileReport !== null">
   <div class="col-md-12">
-    <!-- <h5>Failed Checks</h5> -->
+    <h5>Failed Rule Checks</h5>
     <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeCheckTypeFilter($event)"></p-dropdown>
     <table class="table  table-striped ">
         <thead class="table-light">

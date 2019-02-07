@@ -44,8 +44,8 @@ export class FileReportViewerComponent implements OnInit {
         }
 
         if (this.fileReport._embedded['verapdf-result']) {
-          // if(this.fileReport._embedded['verapdf-result'].errorMessage && !this.fileReport._embedded['verapdf-result'].encrypted)
-            this.verapdfErrorMessages.push({severity: 'warn', summary: 'VeraPDF Message:', detail: this.fileReport._embedded['verapdf-result'].errorMessage, closable: false, sticky: true});
+          if(this.fileReport._embedded['verapdf-result'].errorMessage)
+            this.verapdfErrorMessages.push({severity: 'warn', summary: 'VeraPDF: ', detail: this.fileReport._embedded['verapdf-result'].errorMessage, closable: false, sticky: true});
         }
 
       }

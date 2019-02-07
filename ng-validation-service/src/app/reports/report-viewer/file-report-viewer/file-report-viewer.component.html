@@ -82,6 +82,7 @@
       <ng-template #summaryTemplate>
         <ng-container *ngIf="fileReport._embedded['verapdf-result']; else noRecordTemplate">
          <h5>Summary</h5>
+         <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
          <div class="table-responsive ">
             <table  class="table table-striped ">
                 <thead class="table-light">
@@ -89,7 +90,7 @@
                       <th>Execution Outcome</th>
                       <th>Validation Profile</th>
                       <th>Compliant</th>
-                      <th>Encrypted</th>
+                      <!-- <th>Encrypted</th> -->
                       <th>Passed Rules</th>
                       <th>Failed Rules</th>
                     </tr>
@@ -98,7 +99,7 @@
                     <td>{{ fileReport._embedded['verapdf-result'].executionError === false ? 'Success' : 'Error' }}</td>
                     <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
                     <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
-                    <td class="" [ngClass]="{'font-weight-bold text-danger': fileReport._embedded['verapdf-result'].encrypted === true}">{{ fileReport._embedded['verapdf-result'].encrypted === true ? 'true' : (fileReport._embedded['verapdf-result'].executionError ? '' : 'false')}}</td>
+                    <!-- <td class="" [ngClass]="{'font-weight-bold text-danger': fileReport._embedded['verapdf-result'].encrypted === true}">{{ fileReport._embedded['verapdf-result'].encrypted === true ? 'true' : (fileReport._embedded['verapdf-result'].executionError ? '' : 'false')}}</td> -->
                     <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
                     <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
                     <!-- <td>{{ fileReport._embedded['verapdf-result'].passedChecks }}</td>
@@ -116,7 +117,7 @@
       </ng-template>
 
 
-      <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
+      
 
 
 

@@ -44,9 +44,9 @@
         <div class="form-group">
           <label for="trailerEncrypt" class="control-label">Add user defined VeraPDF validation rules</label>
           <p-checkbox name="trailerEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryptInTrailer"
-            class="form-control form-control-no-border" label="Disallow metadata encryption" id="trailerEncrypt"></p-checkbox>
+            class="form-control form-control-no-border" label="Disallow encrypt in trailer dictionary" id="trailerEncrypt"></p-checkbox>
           <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowOtherFormsOfEncrypt"
-            class="form-control form-control-no-border" label="Disallow other forms of encryption"
+            class="form-control form-control-no-border" label="Disallow other forms of encryption (Checks for 'encrypted' in VeraPDF exception messages)"
             id="otherEncrypt"></p-checkbox>
           <p-checkbox name="fonts" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFonts"
             class="form-control form-control-no-border" label="Disallow non-embedded fonts" id="fonts"></p-checkbox>

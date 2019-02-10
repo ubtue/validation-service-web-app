@@ -5,7 +5,7 @@
       <table class="table table-striped ">
         <thead class="">
           <tr>
-            <th>Validity</th>
+            <th>Result</th>
             <th>File</th>
             <th>FITS Execution</th>
             <th>VeraPDF Execution</th>
@@ -18,8 +18,8 @@
           <!-- [ngClass]="{'text-danger' : report.validationOutcome !== 'valid', 'text-success' :  report.validationOutcome === 'valid'}" -->
           <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
             <td [ngClass]="{'bg-danger' : report.validationOutcome !== 'valid', 'bg-success' :  report.validationOutcome === 'valid'}"
-              class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">{{
-                this.resolveCamelCase(report.validationOutcome) }}</span></td>
+              class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">
+                {{ report.validationOutcome === 'valid' ? 'Valid' : 'Problem' }}</span></td>
             <td class="text-monospace text-dark td-break-all " style="min-width: 200px; max-width: 400px;"> {{
               report._embedded.file.fileName
               }} </td>

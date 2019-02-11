@@ -24,7 +24,8 @@ export class ConfigurationsService {
   constructor(private httpClient: HttpClient) { }
 
   listItemDeleted: Subject<void> = new Subject<void>();
-  configUpdated: Subject<void> = new Subject<void>();
+  // configUpdated: Subject<void> = new Subject<void>();
+  configLoaded: Subject<Configuration> = new Subject<Configuration>();
   fileNameRulesUpdated: Subject<void> = new Subject<void>();
   fitsResultRulesUpdated: Subject<void> = new Subject<void>();
 
@@ -135,7 +136,7 @@ export class ConfigurationsService {
     console.log(verapdfSetup);
     return this.httpClient.put<void>(Util.getHrefForRel(verapdfSetup, 'self'), verapdfSetup);
   }
-  
+
 
 
 

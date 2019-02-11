@@ -58,15 +58,15 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
       });
 
     // handle refresh list requests (e.g. on deletion)
-    this.listRefreshSubscription = this.configurationsService.configUpdated.pipe(retry(2)).subscribe(
-      () => {
-        this.configurationsService
-          .getConfigurationsPage(Util.getHrefForRel(this.configurationsPage, "self"))
-          .subscribe((page: ConfigurationsPage) => {
-            this.configurationsPage = page;
-          });
-      }
-    );
+    // this.listRefreshSubscription = this.configurationsService.configUpdated.pipe(retry(2)).subscribe(
+    //   () => {
+    //     this.configurationsService
+    //       .getConfigurationsPage(Util.getHrefForRel(this.configurationsPage, "self"))
+    //       .subscribe((page: ConfigurationsPage) => {
+    //         this.configurationsPage = page;
+    //       });
+    //   }
+    // );
 
   //   // reset interface and go to start page (on create batch)
   //   this.resetListRequestedSubscription = this.batchesService.resetBatchListRequested.subscribe(
@@ -84,7 +84,7 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.listRefreshSubscription.unsubscribe();
+    // this.listRefreshSubscription.unsubscribe();
     this.searchTextSubscription.unsubscribe();
   }
 

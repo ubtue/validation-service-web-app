@@ -29,8 +29,9 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       (data: Data) => {
         this.selectedConfiguration = data['configuration'];
         this.configurationCopy = <Configuration>Util.deepCopy(this.selectedConfiguration);
+        this.configService.configLoaded.next(this.configurationCopy);
       }
-    )
+    );
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -68,6 +69,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       (result) => {
         this.selectedConfiguration = <Configuration>Util.deepCopy(this.configurationCopy);
         this.onCancel();
+        this.configService.configLoaded.next(this.configurationCopy);
       },
 
       (error) => {

@@ -161,7 +161,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
         (result) => {
           this.rule = <FitsResultRule>Util.deepCopy(this.ruleCopy);
           this.onCancel();
-          this.configService.fileNameRulesUpdated.next();
+          this.configService.fitsResultRulesUpdated.next();
         },
 
         (error) => {

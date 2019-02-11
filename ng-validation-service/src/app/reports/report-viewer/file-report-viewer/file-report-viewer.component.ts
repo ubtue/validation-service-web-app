@@ -29,7 +29,7 @@ export class FileReportViewerComponent implements OnInit {
 
   checksPage: ChecksPage;
   assertionsPage: AssertionsPage;
-  assertionIndex = -1;
+  assertionIndex = 0;
 
   constructor(private reportsService: ReportsService, private route: ActivatedRoute, private viewerService: ViewerStateService) { }
 

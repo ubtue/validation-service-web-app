@@ -2,3 +2,8 @@
   min-width: 90px ;
 }
 
+.card {
+  overflow-y: auto;
+  max-height: 480px;
+}
+

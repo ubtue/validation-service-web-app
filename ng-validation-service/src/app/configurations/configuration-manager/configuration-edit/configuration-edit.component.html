@@ -2,13 +2,15 @@
     <div class="col-md-12">
       <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
       <form (ngSubmit)="this.onSave()" #form="ngForm">
-        <div class="form-group">
-          <label for="name">Configuration Name</label>
-          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId" [(ngModel)] ='configurationCopy.description' required #name="ngModel">
-          <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the configuration</small>
-          <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
-        </div>
-
+        <fieldset>
+          <legend>General</legend>
+          <div class="form-group">
+            <label for="name">Configuration Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." aria-describedby="helpId" [(ngModel)] ='configurationCopy.description' required #name="ngModel">
+            <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the configuration</small>
+            <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
+          </div>
+        </fieldset>
         <fieldset>
           <legend>File Information Tool Set (FITS)</legend>
           <div class="form-group">

@@ -4,6 +4,7 @@ import { BatchReportsPage } from 'src/app/shared/model/batch-reports.model';
 import { QueuePage } from 'src/app/shared/model/queue-order.model';
 import { ReportsService } from '../reports.service';
 import { Util } from 'src/app/shared/util';
+import { BatchReport } from 'src/app/shared/model/batch-report.model';
 
 @Component({
   selector: 'app-reports-overview',
@@ -27,15 +28,10 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
       this.finishedReportsPage = data["reportsPage"];
       this.queuePage = data["queuePage"];
 
-      let active = data["reportsPage"];
-      // if(this.queuePage._embedded.orders.length === 0) {
-      //   this.showCompleted = true;
-      // }
-
       this.refreshInterval = setInterval(
         () => {
           this.refreshData();
-        }, 2000);
+        }, 5000);
     });
 
     this.route.queryParams.subscribe(params => {
@@ -97,7 +93,15 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   onAbortOrder(order) {
     this.reportsServcie.deleteOrder(order).subscribe(
       () => {
-        console.log('calling refresh');
+        this.refreshData();
+      }
+    );
+  }
+
+  deleteReport(report: BatchReport) {
+    console.log(report);
+    this.reportsServcie.deleteBatchReport(report).subscribe(
+      () => {
         this.refreshData();
       }
     );

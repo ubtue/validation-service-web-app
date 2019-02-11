@@ -59,6 +59,10 @@ export class ReportsService {
     return this.httpClient.get<BatchReport>(this.batchReportsResourceUrl + '/' + id);
   }
 
+  deleteBatchReport(report: BatchReport) {
+    return this.httpClient.delete(Util.getHrefForRel(report,'self'));
+  }
+
   getQueueStartPage() {
     return this.getQueuePage(this.queueResourceUrl);
   }
@@ -121,6 +125,8 @@ export class ReportsService {
   getAssertionsPage(url: string) {
     return this.httpClient.get<AssertionsPage>(url);
   }
+
+
 
 
 }

@@ -11,9 +11,12 @@ export class Configuration {
 	id: number;
 	decompressArchives: boolean;
 	fitsEnabled: boolean;
-	invalidateOnToolError: boolean;
+	// invalidateOnToolError: boolean;
   description: string;
   creationDate: number;
+  fitsTimeOut: number;
+  veraPdfTimeOut: number;
+
 }
 
 

@@ -15,7 +15,7 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   finishedReportsPage: BatchReportsPage;
   queuePage: QueuePage;
   refreshInterval: any;
-  showCompleted = false;
+  showCompleted = true;
 
   hrefToRel = Util.getHrefForRel;
   resolveCamelCase = Util.unCamelCase;
@@ -27,15 +27,22 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
       this.finishedReportsPage = data["reportsPage"];
       this.queuePage = data["queuePage"];
 
-      if(this.queuePage._embedded.orders.length === 0) {
-        this.showCompleted = true
-      }
+      let active = data["reportsPage"];
+      // if(this.queuePage._embedded.orders.length === 0) {
+      //   this.showCompleted = true;
+      // }
 
       this.refreshInterval = setInterval(
         () => {
           this.refreshData();
         }, 2000);
     });
+
+    this.route.queryParams.subscribe(params => {
+        if(params['active']) {
+          this.showCompleted = !params['active'];
+        }
+      });
   }
 
   ngOnDestroy() {

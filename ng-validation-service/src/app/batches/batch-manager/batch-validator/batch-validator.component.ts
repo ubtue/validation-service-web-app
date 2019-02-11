@@ -66,7 +66,7 @@ export class BatchValidatorComponent implements OnInit {
     this.batchesService.submitValidationOrder(validationOrder).subscribe(
       () => {
         console.log('success');
-        this.router.navigate(["/reports"]);
+        this.router.navigate(["/reports"],{queryParams: {active: true}});
       },
       (error) => {
         console.log(error);

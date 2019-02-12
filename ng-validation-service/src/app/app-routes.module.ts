@@ -39,6 +39,8 @@ import { ReportViewerComponent } from './reports/report-viewer/report-viewer.com
 import { BatchReportResolver } from './reports/report-viewer/batch-report-resolver.service';
 import { FileReportViewerComponent } from './reports/report-viewer/file-report-viewer/file-report-viewer.component';
 import { FileReportResolver } from './reports/report-viewer/file-report-resolver.service';
+import { SettingsComponent } from './settings/settings.component';
+import { ApplicationSettingsResolver } from './settings/settings-resolver.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -79,7 +81,8 @@ const routes: Routes = [
       {path: ':id', component: ReportViewerComponent, resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver}, children: [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
-    ]}
+    ]},
+    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}}
     //{ path: '**', redirectTo: 'batches' }
 ];
 

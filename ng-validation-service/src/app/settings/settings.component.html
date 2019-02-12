@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-md-12">
+      <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
+      <form (ngSubmit)="this.onSave()" #form="ngForm">
+        <fieldset>
+          <legend>Global Settings</legend>
+          <div class="form-group">
+              <label for="parallelTasks" class="control-label">Parallel Tasks</label>
+              <div>
+                  <p-spinner size="10" [(ngModel)]="settingsCopy.parallelTasks" id="parallelTasks" name="parallelTasks" [min]="1" [max]="15" required></p-spinner>
+              </div>
+              <small class="text-muted">The numbert of batch reports to be processed at the same time.</small>
+          </div>
+          <div class="form-group">
+              <label for="threadsPerTask" class="control-label">Threads per Task</label>
+              <div>
+                  <p-spinner size="10" [(ngModel)]="settingsCopy.threadsPerTask" id="threadsPerTask" name="threadsPerTask" [min]="1" [max]="15" required></p-spinner>
+              </div>
+              <small class="text-muted">The number of files to be validated in parallel during batch report validation.</small>
+          </div>
+          <div class="form-group">
+              <label for="pageSize" class="control-label">Page Size</label>
+              <div>
+                  <p-spinner size="10" [(ngModel)]="settingsCopy.pageSize" id="pageSize" name="pageSize" [min]="1" [max]="100" required></p-spinner>
+              </div>
+              <small class="text-muted">Size of collection pages delivered by REST API.</small>
+          </div>
+        </fieldset>
+        <!-- <div class="form-group">
+          <label for="invalidate" class="control-label">Invalidate File Report on Tool Errors</label>
+          <p-inputSwitch [(ngModel)]="configurationCopy.invalidateOnToolError" id="invalidate" name="invalidate"  class="form-control form-control-no-border"></p-inputSwitch>
+          <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small>
+        </div> -->
+        <div class="form-group" *ngIf="!form.pristine">
+          <div class="row mt-5">
+            <div class=" col-md-4 offset-md-4 text-center ">
+              <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save changes</button>
+              <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

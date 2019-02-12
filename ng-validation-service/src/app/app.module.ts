@@ -68,6 +68,9 @@ import { BatchReportResolver } from './reports/report-viewer/batch-report-resolv
 import { FileReportViewerComponent } from './reports/report-viewer/file-report-viewer/file-report-viewer.component';
 import { FileReportResolver } from './reports/report-viewer/file-report-resolver.service';
 import {PanelModule} from 'primeng/panel';
+import { SettingsComponent } from './settings/settings.component';
+import { ApplicationSettingsResolver } from './settings/settings-resolver.service';
+import { SettingsService } from './settings/settings.service';
 
 
 
@@ -103,7 +106,8 @@ import {PanelModule} from 'primeng/panel';
     ReportsOverviewComponent,
     ReportViewerComponent,
     FileReportsListComponent,
-    FileReportViewerComponent
+    FileReportViewerComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +150,9 @@ import {PanelModule} from 'primeng/panel';
     QueueResolver,
     FileReportsListResolver,
     BatchReportResolver,
-    FileReportResolver
+    FileReportResolver,
+    ApplicationSettingsResolver,
+    SettingsService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

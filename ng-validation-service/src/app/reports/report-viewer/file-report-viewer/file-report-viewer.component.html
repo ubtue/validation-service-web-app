@@ -9,7 +9,15 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 1" [ngClass]="{'active': displayIndex === 1, 'text-primary': displayIndex !== 1}">
-                  VeraPDF <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ '6' }}</span>
+                  VeraPDF
+                  <ng-container *ngIf="this.verapdfErrorMessages && this.verapdfErrorMessages.length !== 0; else noErrorsTemplate">
+                      <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ this.verapdfErrorMessages.length }}</span>
+                  </ng-container>
+                  <ng-template #noErrorsTemplate>
+                      <ng-container *ngIf="fileReport.veraPdfExecutionOutcome !== 'didNotRun' && fileReport._embedded['verapdf-result'] && fileReport._embedded['verapdf-result'].failedRules !== 0">
+                          <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ fileReport._embedded['verapdf-result'].failedRules }}</span>
+                      </ng-container>
+                  </ng-template>
                 </span>
             </li>
             <li class="nav-item">

@@ -76,12 +76,47 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 1 && fileReport !== null">
   <div class="col-md-12">
-      <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else summaryTemplate">
+      <!-- <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else summaryTemplate">
         VeraPDF did not run
       </ng-container>
       <ng-template #summaryTemplate>
         <ng-container *ngIf="fileReport._embedded['verapdf-result']; else noRecordTemplate">
          <h5>Summary</h5>
+         <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
+         <div class="table-responsive ">
+            <table  class="table table-striped ">
+                <thead class="table-light">
+                    <tr>
+                      <th>Execution Outcome</th>
+                      <th>Validation Profile</th>
+                      <th>Compliant</th>
+
+                      <th>Passed Rules</th>
+                      <th>Failed Rules</th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-light">
+                    <td>{{ fileReport._embedded['verapdf-result'].executionError === false ? 'Success' : 'Error' }}</td>
+                    <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
+                    <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
+
+                    <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
+                    <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
+
+
+
+                  </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <ng-template #noRecordTemplate>
+          No Result
+        </ng-template>
+
+
+      </ng-template> -->
+
+      <h5>Summary</h5>
          <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
          <div class="table-responsive ">
             <table  class="table table-striped ">
@@ -96,27 +131,37 @@
                     </tr>
                   </thead>
                   <tbody class="bg-light">
-                    <td>{{ fileReport._embedded['verapdf-result'].executionError === false ? 'Success' : 'Error' }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
-                    <!-- <td class="" [ngClass]="{'font-weight-bold text-danger': fileReport._embedded['verapdf-result'].encrypted === true}">{{ fileReport._embedded['verapdf-result'].encrypted === true ? 'true' : (fileReport._embedded['verapdf-result'].executionError ? '' : 'false')}}</td> -->
-                    <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
-                    <!-- <td>{{ fileReport._embedded['verapdf-result'].passedChecks }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].failedChecks }}</td> -->
-
+                    <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else didRunTemplate">
+                      <td>Did Not Run</td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                      <td> </td>
+                    </ng-container>
+                    <ng-template #didRunTemplate>
+                      <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'failed' ||
+                                          (!fileReport._embedded['verapdf-result']) || (fileReport._embedded['verapdf-result'] && fileReport._embedded['verapdf-result'].executionError); else noErrorTemplate">
+                        <td>{{ 'Error' }}</td>
+                      </ng-container>
+                      <ng-template #noErrorTemplate>
+                          <td>{{ 'Success' }}</td>
+                      </ng-template>
+                      <ng-container *ngIf="!fileReport._embedded['verapdf-result']; else resultExistsTemplate">
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                      </ng-container>
+                      <ng-template #resultExistsTemplate>
+                          <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
+                          <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
+                          <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
+                          <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
+                      </ng-template>
+                    </ng-template>
                   </tbody>
             </table>
           </div>
-        </ng-container>
-        <ng-template #noRecordTemplate>
-          No Result
-        </ng-template>
-
-
-      </ng-template>
-
-
 
 
 

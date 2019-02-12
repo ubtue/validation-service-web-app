@@ -16,6 +16,7 @@ export class Configuration {
   creationDate: number;
   fitsTimeOut: number;
   veraPdfTimeOut: number;
+  veraPdfMaxHeapSize: number;
 
 }
 

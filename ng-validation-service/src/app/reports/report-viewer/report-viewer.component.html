@@ -29,52 +29,53 @@
   <div class="row mt-3">
     <div class="col-md-12">
       <h5 class="text-dark">Summary</h5>
+      <div class="table-responsive-sm">
+          <table class="table table-striped mt-3 mb-4">
+              <thead class="">
+                <tr>
+                  <th>Batch</th>
+                  <th>Configuration</th>
+                  <th>Processing Status</th>
+                  <th>Submitted</th>
+                  <th>Finished</th>
+                  <th>Problematic Files</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
+                    <a [routerLink]="['/batches', this.batchReport._embedded.batch.id]">{{
+                      this.batchReport._embedded.batch.description }}
+                    </a>
+                  </td>
+                  <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
+                    <ng-container *ngIf="this.batchReport._embedded.configuration; else elseTemplate">
+                        <a [routerLink]="['/configurations', this.batchReport._embedded.configuration.id]">
+                          {{ this.batchReport._embedded.configuration.description }}
+                        </a>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+                    </ng-template>
 
-      <table class="table table-striped mt-3 mb-4">
-        <thead class="">
-          <tr>
-            <th>Batch</th>
-            <th>Configuration</th>
-            <th>Processing Status</th>
-            <th>Submitted</th>
-            <th>Finished</th>
-            <th>Problematic Files</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
-              <a [routerLink]="['/batches', this.batchReport._embedded.batch.id]">{{
-                this.batchReport._embedded.batch.description }}
-              </a>
-            </td>
-            <td class="text-monospace font-weight-bold td-break-all " style="max-width:250px; min-width: 100px;">
-              <ng-container *ngIf="this.batchReport._embedded.configuration; else elseTemplate">
-                  <a [routerLink]="['/configurations', this.batchReport._embedded.configuration.id]">
-                    {{ this.batchReport._embedded.configuration.description }}
-                  </a>
-              </ng-container>
-              <ng-template #elseTemplate>
-                  <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
-              </ng-template>
 
+                  </td>
+                  <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
+                  <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
+                  <td>{{ this.batchReport.finishedDate | date: "HH:mm:ss" }}</td>
+                  <td>
+                    <ng-container *ngIf="this.batchReport.summary; else noSummary">
+                        {{ this.batchReport.summary.problematicFiles }}
+                    </ng-container>
+                    <ng-template #noSummary>
+                        {{ '0' }}
+                    </ng-template>
 
-            </td>
-            <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
-            <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
-            <td>{{ this.batchReport.finishedDate | date: "HH:mm:ss" }}</td>
-            <td>
-              <ng-container *ngIf="this.batchReport.summary; else noSummary">
-                  {{ this.batchReport.summary.problematicFiles }}
-              </ng-container>
-              <ng-template #noSummary>
-                  {{ '0' }}
-              </ng-template>
-
-              </td>
-          </tr>
-        </tbody>
-      </table>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
     </div>
   </div>
 

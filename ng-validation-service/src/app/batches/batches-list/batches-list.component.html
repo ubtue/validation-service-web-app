@@ -1,9 +1,9 @@
 <div class="row mb-3">
-  <div class="  col-md-4 text-left">
+  <div class="  col-md-6 text-left mb-1">
     <a routerLink="/batches/new">
-      <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> New Batch</button></a>
+      <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> Batch</button></a>
   </div>
-  <div class=" offset-md-4 col-md-4">
+  <div class=" col-md-6">
     <input type="text" class="form-control" placeholder="Search name" (keyup)="this.searchTextChanged.next($event.target.value)"
       #filter>
   </div>

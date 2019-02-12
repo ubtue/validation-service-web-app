@@ -154,7 +154,9 @@
                       </ng-container>
                       <ng-template #resultExistsTemplate>
                           <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
-                          <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
+                          <td [ngClass]="{'text-success': fileReport._embedded['verapdf-result'].compliant,'text-danger': !fileReport._embedded['verapdf-result'].compliant}" class="font-weight-bold">
+                            {{ fileReport._embedded['verapdf-result'].compliant }}
+                          </td>
                           <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
                           <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
                       </ng-template>

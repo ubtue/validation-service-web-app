@@ -1,51 +1,53 @@
+<div class="table-responsive-sm">
+    <table class="table">
+        <thead class="  table-light">
+          <tr>
+            <th>Name</th>
+            <th>FITS</th>
+            <th>VeraPDF Mode</th>
+            <th>Creation Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let config of this.configurationsPage._embedded.configurations">
+            <td>{{ config.description }}</td>
+            <td>{{ config.fitsEnabled === true ? "Enabled" : "Disabled" }}</td>
+            <td>
+              <span class="capitalize">{{
+                config._embedded["verapdf-setup"].executionMode
+                }}</span>
+            </td>
+            <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
+            <td>
+              <a style="color: white" class="btn btn-primary mt-1 mb-1" role="button" (click)="onSelectConfig(config)">Select</a>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="bg-light text-dark table-bordered">
+          <tr>
+            <!-- <td colspan="5" class="text-center" *ngIf="this.descriptionFilter.length > 0">
+              {{
+              this.configurationsPage._embedded.configurations.length === 0
+              ? "No matching records"
+              : "Matching records: " + this.configurationsPage.totalCount
+              }}
+            </td>
+            *ngIf="this.descriptionFilter.length == 0"
+          -->
+            <td colspan="5" class="text-center text-monospace font-weight-bold" >
+              {{
+              this.configurationsPage._embedded.configurations.length === 0
+              ? "No Configurations"
+              : this.configurationsPage.totalCount + " Configurations"
+              }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
 
-<table class="table">
-  <thead class="  table-light">
-    <tr>
-      <th>Name</th>
-      <th>FITS</th>
-      <th>VeraPDF Mode</th>
-      <th>Creation Date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let config of this.configurationsPage._embedded.configurations">
-      <td>{{ config.description }}</td>
-      <td>{{ config.fitsEnabled === true ? "Enabled" : "Disabled" }}</td>
-      <td>
-        <span class="capitalize">{{
-          config._embedded["verapdf-setup"].executionMode
-          }}</span>
-      </td>
-      <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
-      <td>
-        <a style="color: white" class="btn btn-primary mt-1 mb-1" role="button" (click)="onSelectConfig(config)">Select</a>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot class="bg-light text-dark table-bordered">
-    <tr>
-      <!-- <td colspan="5" class="text-center" *ngIf="this.descriptionFilter.length > 0">
-        {{
-        this.configurationsPage._embedded.configurations.length === 0
-        ? "No matching records"
-        : "Matching records: " + this.configurationsPage.totalCount
-        }}
-      </td>
-      *ngIf="this.descriptionFilter.length == 0"
-    -->
-      <td colspan="5" class="text-center" >
-        {{
-        this.configurationsPage._embedded.configurations.length === 0
-        ? "No records"
-        : "Total records: " + this.configurationsPage.totalCount
-        }}
-      </td>
-    </tr>
-  </tfoot>
-</table>
-
-<div>
-  <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+      <div>
+        <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
+      </div>
 </div>
+

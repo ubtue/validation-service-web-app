@@ -4,20 +4,23 @@ import { ApplicationSettings } from '../shared/model/settings.model';
 import { Util } from '../shared/util';
 import { NgForm } from '@angular/forms';
 import { SettingsService } from './settings.service';
+import { ConfirmationService } from 'primeng/api';
+import { CanDeactivateGuard } from '../shared/services/can-deactivate-guard.service';
+import { Observable, Observer } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, CanDeactivateGuard {
 
   settings: ApplicationSettings;
   settingsCopy: ApplicationSettings;
 
   @ViewChild('form') form: NgForm;
 
-  constructor(private route: ActivatedRoute, private settingsService: SettingsService) { }
+  constructor(private route: ActivatedRoute, private settingsService: SettingsService, private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -26,6 +29,27 @@ export class SettingsComponent implements OnInit {
         this.settingsCopy = <ApplicationSettings>Util.deepCopy(this.settings);
       }
     );
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    return Observable.create((observer: Observer<boolean>) => {
+      if (this.form.pristine) {
+        observer.next(true);
+        observer.complete();
+        return;
+      }
+      this.confirmationService.confirm({
+        message: 'Discard changes?',
+        accept: () => {
+          observer.next(true);
+          observer.complete();
+        },
+        reject: () => {
+          observer.next(false);
+          observer.complete();
+        }
+      });
+    });
   }
 
   onSave() {

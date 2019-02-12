@@ -82,7 +82,7 @@ const routes: Routes = [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
     ]},
-    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}}
+    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canDeactivate: [CanDeactivateGuard]}
     //{ path: '**', redirectTo: 'batches' }
 ];
 

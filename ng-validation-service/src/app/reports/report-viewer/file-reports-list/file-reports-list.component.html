@@ -20,8 +20,8 @@
             <td [ngClass]="{'bg-danger' : report.validationOutcome !== 'valid', 'bg-success' :  report.validationOutcome === 'valid'}"
               class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">
                 {{ report.validationOutcome === 'valid' ? 'Valid' : 'Problem' }}</span></td>
-            <td class="text-monospace text-dark td-break-all " style="min-width: 200px; max-width: 400px;"> {{
-              report._embedded.file.fileName
+            <td class="text-monospace td-break-all " style="min-width: 200px; max-width: 400px;" [ngClass]="{'text-danger': !report._embedded.file, 'text-dark': report._embedded.file}"> {{
+              report._embedded.file ? report._embedded.file.fileName : 'Deleted File'
               }} </td>
             <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
             <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>

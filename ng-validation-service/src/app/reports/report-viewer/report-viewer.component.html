@@ -14,7 +14,7 @@
           </ng-template>
         </li>
         <li class="breadcrumb-item active" *ngIf="this.showingFileReport">
-          {{ this.fileReport._embedded.file.fileName }}
+          {{ this.fileReport._embedded.file ? this.fileReport._embedded.file.fileName : 'Deleted File' }}
         </li>
       </ol>
     </nav>

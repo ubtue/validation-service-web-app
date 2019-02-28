@@ -22,7 +22,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Custom Rules <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
+                  Identified Problems <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
                 </span>
             </li>
         </ul>

@@ -42,17 +42,17 @@
         <td>
           <a
             style="color: white"
-            class="btn link btn-primary mr-2 mt-1 mb-1"
+            class="btn link btn-primary mr-2 mt-1 mb-1 text-nowrap"
             [routerLink]="config.id + '/general'"
             role="button"
-            >Modify</a
+            ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modify</a
           >
           <a
             style="color: white"
-            class="btn btn-danger mt-1 mb-1"
+            class="btn btn-danger mt-1 mb-1 text-nowrap"
             role="button"
             (click)="onDeleteFile(config)"
-            >Delete</a
+            ><i class="fa fa-trash"></i> Delete</a
           >
         </td>
       </tr>

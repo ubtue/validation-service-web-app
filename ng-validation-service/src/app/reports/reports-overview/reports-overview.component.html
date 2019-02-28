@@ -79,8 +79,8 @@
             </td>
             <!-- <td> {{ report.summary.problematicFiles }} </td> -->
             <td>
-              <a class="btn btn-secondary mr-2 mt-1 mb-1" [routerLink]="[report.id]">Details</a>
-              <a class="btn btn-danger  mt-1 mb-1 text-light" (click)="deleteReport(report)">Delete</a>
+              <a class="btn btn-secondary mr-2 mt-1 mb-1 text-nowrap" [routerLink]="[report.id]"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Details</a>
+              <a class="btn btn-danger  mt-1 mb-1 text-light text-nowrap" (click)="deleteReport(report)"><i class="fa fa-trash"></i> Delete</a>
             </td>
             <td> </td>
           </tr>

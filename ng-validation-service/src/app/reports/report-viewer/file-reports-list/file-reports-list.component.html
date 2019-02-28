@@ -29,7 +29,7 @@
             <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
           <td> {{ report.summary.problematicFiles }} </td> -->
 
-            <td class="text-center text-light"><a class="btn btn-secondary" (click)="fileSelected.next(report)">Details</a>
+            <td class="text-center text-light"><a class="btn btn-secondary text-nowrap" (click)="fileSelected.next(report)"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Details</a>
             </td>
           </tr>
         </tbody>

@@ -36,7 +36,7 @@
           <td class="td-break-all"> {{batch.description}}</td>
           <td>{{batch.creationDate | date:'dd.MM.y, HH:mm' }}</td>
           <td>
-            <a style="color: white" class="btn btn-danger mt-1 mb-1" role="button" (click)="onDeleteBatch(batch)">Delete</a>
+            <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)"><i class="fa fa-trash"></i> Delete</a>
           </td>
         </tr>
 

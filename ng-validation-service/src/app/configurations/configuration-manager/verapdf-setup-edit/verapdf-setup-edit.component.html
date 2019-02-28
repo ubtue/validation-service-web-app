@@ -42,12 +42,12 @@
       <fieldset class="form-group">
         <legend>Custom PDF Policies</legend>
         <div class="form-group">
-          <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files</label>
-          <p-checkbox name="trailerEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryptInTrailer"
-            class="form-control form-control-no-border" label="Disallow encrypt in trailer dictionary (Checks if encryptMetadata = true)" id="trailerEncrypt"></p-checkbox>
+          <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files. Most of these are redundant and should not be used if you choose to enforce PDF/A compliance.</label>
           <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowOtherFormsOfEncrypt"
-            class="form-control form-control-no-border" label="Disallow other forms of encryption (Checks for 'encrypted' in VeraPDF exception messages)"
+            class="form-control form-control-no-border" label="Disallow encryption"
             id="otherEncrypt"></p-checkbox>
+          <p-checkbox name="trailerEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryptInTrailer"
+            class="form-control form-control-no-border" label="Disallow 'encrypt' in PDF trailer dictionary" id="trailerEncrypt"></p-checkbox>
           <p-checkbox name="fonts" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFonts"
             class="form-control form-control-no-border" label="Disallow non-embedded fonts" id="fonts"></p-checkbox>
           <p-checkbox name="files" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFiles"
@@ -57,8 +57,12 @@
           <p-checkbox name="multimedia" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowMultimediaAnnotations"
             class="form-control form-control-no-border" label="Disallow multimedia (Annotations: Screen, Movie, Sound, 3D)"
             id="multimedia"></p-checkbox>
+          <!--
           <p-checkbox name="parsable" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowNonParseableDocuments"
             class="form-control form-control-no-border" label="Disallow non-parseable documents" id="parsable"></p-checkbox>
+          -->
+          <small class="text-muted">Please note that encrypted PDFs will cause veraPDF execution to fail. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
+              dspace uploaders will see a corresponding error message (and not just some more generic 'call system staff' message).</small>
         </div>
 
       </fieldset>

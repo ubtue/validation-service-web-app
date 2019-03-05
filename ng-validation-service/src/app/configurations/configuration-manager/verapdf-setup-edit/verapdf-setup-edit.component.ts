@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VerapdfSetup } from 'src/app/shared/model/verapdf-setup.model';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Util } from 'src/app/shared/util';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 import { ConfigurationsService } from '../../configurations.service';
 import { Observable, Observer } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Configuration } from 'src/app/shared/model/configuration.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-verapdf-setup-edit',
@@ -21,15 +24,22 @@ export class VerapdfSetupEditComponent implements OnInit {
   validationProfiles: SelectItem[];
 
 
-  constructor(private route: ActivatedRoute, private configService: ConfigurationsService, private confirmationService: ConfirmationService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private configService: ConfigurationsService,
+              private confirmationService: ConfirmationService,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
 
     this.route.parent.data.subscribe(
       (data: Data) => {
-        console.log(data['configuration']);
-
-        this.veraSetup = data['configuration']._embedded['verapdf-setup'];
+        let resolvedData: ResolvedData<Configuration> = data['configuration'];
+        if (!resolvedData.data) {
+          this.errorService.resolved = resolvedData;
+          this.router.navigate(['/error']);
+        }
+        this.veraSetup = resolvedData.data._embedded['verapdf-setup'];
         this.veraSetupCopy = Util.deepCopy(this.veraSetup);
       }
     );
@@ -46,7 +56,7 @@ export class VerapdfSetupEditComponent implements OnInit {
       {label: 'PDF/A-3u', value: '3u'},
       {label: 'PDF/A-4', value: '4'},
     ];
-  
+
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

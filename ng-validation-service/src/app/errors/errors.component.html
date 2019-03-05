@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+      <h2>Oooops...</h2>
+
+      <ng-container *ngIf="this.errorService.resolved; else elseTemplate">
+          <h3>{{ (this.errorService.resolved.errorStatusCode !== 0 ? 'HTTP Status:' + this.errorService.resolved.errorStatusCode + ' ' : '' ) + this.errorService.resolved.errorMessage }}</h3>
+      </ng-container>
+      <ng-template #elseTemplate>
+          <h3> Unknown Error </h3>
+      </ng-template>
+  </div>
+</div>
+
+
+
+
+
+

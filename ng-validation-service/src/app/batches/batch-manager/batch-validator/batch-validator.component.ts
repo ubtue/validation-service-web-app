@@ -8,6 +8,8 @@ import { Configuration } from 'src/app/shared/model/configuration.model';
 import { BatchesService } from '../../batches.service';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { BatchValidationOrder } from 'src/app/shared/model/batch-validation-order.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-batch-validator',
@@ -25,17 +27,30 @@ export class BatchValidatorComponent implements OnInit {
   constructor(public dialogService: DialogService,
     private route: ActivatedRoute,
     private batchesService: BatchesService,
-    private router: Router) {}
+    private router: Router,
+    private errorService: ErrorService) {}
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      this.configurationsPage = data["startPage"];
-      // this.messages = [];
+      let resolvedData: ResolvedData<ConfigurationsPage> = data["startPage"];
+
+      if (!resolvedData.data) {
+        this.errorService.resolved = resolvedData;
+        this.router.navigate(['/error']);
+      }
+      this.configurationsPage = resolvedData.data;
     });
 
     this.route.parent.data.subscribe(
       (data: Data) => {
-        this.selectedBatch = data['batch'];
+        const resolved: ResolvedData<Batch> = data['batch'];
+
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+
+        this.selectedBatch = resolved.data;
         // this.messages = [];
       }
     );

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FileNameRule } from 'src/app/shared/model/file-name-rule.model';
 import {SelectItem, ConfirmationService} from 'primeng/api';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router, ResolveData } from '@angular/router';
 import { ConfigurationsService } from 'src/app/configurations/configurations.service';
 import { NgForm } from '@angular/forms';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
@@ -10,6 +10,8 @@ import { Util } from 'src/app/shared/util';
 import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 
 @Component({
@@ -33,16 +35,27 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private configService: ConfigurationsService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
 
     // Resolve rule
     this.route.data.subscribe(
       (data: Data) => {
-        if (data['fileNameRule']) {
-          this.rule = data['fileNameRule'];
+
+        const resolved: ResolvedData<FileNameRule> = data['fileNameRule'];
+
+        if (resolved && !resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+
+        if (resolved) {
+          console.log('is resolved');
+          this.rule = resolved.data;
         } else {
+          console.log('is NOT resolved');
           this.rule = new FileNameRule();
           this.rule.outcome = 'valid';
           this.rule.type = 'matchesRegularExpression';
@@ -65,7 +78,12 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
       (data: Data) => {
-        this.configuration = data['configuration'];
+        const resolved: ResolvedData<Configuration> = data['configuration'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+        this.configuration = resolved.data;
       }
     );
 

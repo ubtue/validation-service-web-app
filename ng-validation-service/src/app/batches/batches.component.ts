@@ -14,37 +14,12 @@ import { ActivatedRoute, Data } from '@angular/router';
 })
 export class BatchesComponent implements OnInit, OnDestroy {
 
-  // pageChangedSubscription: Subscription;
-
-  page: BatchPage;
+  // page: BatchPage;
 
   constructor(private batchesService: BatchesService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-    this.route.data.subscribe(
-      (data: Data) => {
-        this.page = data['startPage']
-      }
-    )
-
-    // this.batchesService.getBatchesStartPage().subscribe(
-    //   (page: BatchPage) => {
-    //     this.page = page;
-    //     console.log('fetched!');
-    //   }
-    // )
-
-    // this.pageChangedSubscription = this.batchesService.pageChanged.subscribe(
-    //   (page: BatchPage) => {
-    //     this.page = page;
-    //   }
-    // )
-
-  }
-
-  ngOnDestroy() {
-    // this.pageChangedSubscription.unsubscribe();
-  }
+  ngOnDestroy() { }
 
 }

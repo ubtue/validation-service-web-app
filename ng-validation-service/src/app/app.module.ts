@@ -20,7 +20,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import { MessagesModule} from 'primeng/messages';
 import { MessageModule} from 'primeng/message';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService, DialogService} from 'primeng/api';
+import {ConfirmationService, DialogService, MessageService} from 'primeng/api';
 import { BatchDefineComponent } from './batches/batch-define/batch-define.component';
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 import { BatchViewerComponent } from './batches/batch-manager/batch-viewer/batch-viewer.component';
@@ -71,6 +71,9 @@ import {PanelModule} from 'primeng/panel';
 import { SettingsComponent } from './settings/settings.component';
 import { ApplicationSettingsResolver } from './settings/settings-resolver.service';
 import { SettingsService } from './settings/settings.service';
+import {ToastModule} from 'primeng/toast';
+import { ErrorsComponent } from './errors/errors.component';
+import { ErrorService } from './shared/services/error.service';
 
 
 
@@ -107,7 +110,8 @@ import { SettingsService } from './settings/settings.service';
     ReportViewerComponent,
     FileReportsListComponent,
     FileReportViewerComponent,
-    SettingsComponent
+    SettingsComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserModule,
@@ -127,7 +131,8 @@ import { SettingsService } from './settings/settings.service';
     SpinnerModule,
     CheckboxModule,
     DynamicDialogModule,
-    PanelModule
+    PanelModule,
+    ToastModule
 
   ],
   providers: [
@@ -152,7 +157,9 @@ import { SettingsService } from './settings/settings.service';
     BatchReportResolver,
     FileReportResolver,
     ApplicationSettingsResolver,
-    SettingsService
+    SettingsService,
+    MessageService,
+    ErrorService
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

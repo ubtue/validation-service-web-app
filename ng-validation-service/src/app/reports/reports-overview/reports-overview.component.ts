@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { BatchReportsPage } from 'src/app/shared/model/batch-reports.model';
 import { QueuePage } from 'src/app/shared/model/queue-order.model';
 import { ReportsService } from '../reports.service';
 import { Util } from 'src/app/shared/util';
 import { BatchReport } from 'src/app/shared/model/batch-report.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-reports-overview',
@@ -21,12 +23,29 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   hrefToRel = Util.getHrefForRel;
   resolveCamelCase = Util.unCamelCase;
 
-  constructor(private route: ActivatedRoute, private reportsServcie: ReportsService) { }
+  constructor(private route: ActivatedRoute,
+    private reportsServcie: ReportsService,
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      this.finishedReportsPage = data["reportsPage"];
-      this.queuePage = data["queuePage"];
+
+      const resolvedReports: ResolvedData<BatchReportsPage> = data["reportsPage"];
+      const resolvedQueuedItems: ResolvedData<QueuePage> = data["queuePage"];
+
+      if (!resolvedReports.data) {
+        this.errorService.resolved = resolvedReports;
+        this.router.navigate(['/error']);
+      }
+
+      if (!resolvedQueuedItems.data) {
+        this.errorService.resolved = resolvedQueuedItems;
+        this.router.navigate(['/error']);
+      }
+
+      this.finishedReportsPage = resolvedReports.data;
+      this.queuePage = resolvedQueuedItems.data;
 
       this.refreshInterval = setInterval(
         () => {
@@ -35,7 +54,7 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe(params => {
-        if(params['active']) {
+        if (params['active']) {
           this.showCompleted = !params['active'];
         }
       });

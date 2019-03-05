@@ -7,6 +7,8 @@ import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
 import { Util } from 'src/app/shared/util';
 import { Batch } from 'src/app/shared/model/batch.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-batches-list',
@@ -27,18 +29,28 @@ export class BatchesListComponent implements OnInit {
   // ordering and filtering
   descendingSortOrder: boolean = true;
   descriptionFilter: string = "";
-  
+
   @ViewChild('filter') filterInput: ElementRef;
 
-  constructor(private batchesService: BatchesService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private batchesService: BatchesService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
     // fetch result from resolver
     this.route.data.subscribe(
       (data: Data) => {
-        this.page = data['startPage']
+        let resolvedData: ResolvedData<BatchPage> = data['startPage'];
+
+        if (resolvedData.data) {
+          this.page = resolvedData.data;
+        } else {
+          this.errorService.resolved = resolvedData;
+          this.router.navigate(['/error']);
+        }
       }
-    )
+    );
 
     // handle search text input
     this.searchTextSubscription = this.searchTextChanged.pipe(debounceTime(400), distinctUntilChanged()).subscribe(
@@ -93,7 +105,7 @@ export class BatchesListComponent implements OnInit {
 
   /**
    * Handles changing sort order
-   * @param descendingOrder 
+   * @param descendingOrder
    */
   onChangeSortOrder(descendingOrder: boolean) {
     this.descendingSortOrder = descendingOrder;

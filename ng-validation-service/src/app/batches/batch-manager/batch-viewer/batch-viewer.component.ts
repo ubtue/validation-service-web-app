@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { Message } from 'src/app/shared/model/primeng-message.model';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, ResolveData, Router } from '@angular/router';
 import { Observable, Observer, Subject, Subscription } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { Util } from 'src/app/shared/util';
@@ -9,6 +9,8 @@ import { FilesPage } from 'src/app/shared/model/files.model';
 import { File } from 'src/app/shared/model/file.model';
 import { BatchesService } from '../../batches.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ErrorService } from 'src/app/shared/services/error.service';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
 
 @Component({
   selector: 'app-batch-viewer',
@@ -24,16 +26,24 @@ export class BatchViewerComponent implements OnInit {
   searchTextChanged = new Subject<string>();
   fileNameFilter: string = "";
 
-  constructor(private route: ActivatedRoute, private confirmationService: ConfirmationService, private batchesService: BatchesService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private confirmationService: ConfirmationService,
+              private batchesService: BatchesService,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        this.filesPage = data['filesPage'];
+        let resolvedData: ResolvedData<FilesPage> = data['filesPage'];
+        if(!resolvedData.data) {
+          this.errorService.resolved = resolvedData;
+          this.router.navigate(['/error']);
+        }
+        this.filesPage = resolvedData.data;
         this.messages = [];
-        console.log(this.filesPage)
       }
-    )
+    );
 
     // handle search text input
     this.searchTextSubscription = this.searchTextChanged.pipe(debounceTime(400), distinctUntilChanged()).subscribe(

@@ -20,7 +20,6 @@ export class ConfigurationManagerComponent implements OnInit, OnDestroy {
     this.configSubscription = this.configService.configLoaded.subscribe(
       (config: Configuration) => {
         this.config = config;
-        console.log('sssss' + config);
       }
     );
   }

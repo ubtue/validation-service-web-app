@@ -6,6 +6,8 @@ import { ConfigurationsService } from '../../configurations.service';
 import { ConfirmationService } from 'primeng/api';
 import { FitsResultRule } from 'src/app/shared/model/fits.result-rule.model';
 import { Util } from 'src/app/shared/util';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-fits-rule-manager',
@@ -21,14 +23,20 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private configService: ConfigurationsService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   resolveCamelCase = Util.unCamelCase;
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        this.fitsRulesPage = data['fitsResultRulesPage'];
+        const resolved: ResolvedData<FitsResultRulesPage> = data['fitsResultRulesPage'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+        this.fitsRulesPage = resolved.data;
       }
     );
 

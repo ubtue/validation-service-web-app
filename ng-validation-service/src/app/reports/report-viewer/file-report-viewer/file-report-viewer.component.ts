@@ -4,9 +4,11 @@ import { SelectItem, Message } from 'primeng/api';
 import { ChecksPage } from 'src/app/shared/model/checks.model';
 import { ReportsService } from '../../reports.service';
 import { Util } from 'src/app/shared/util';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ViewerStateService } from '../viewer-state.service';
 import { AssertionsPage } from 'src/app/shared/model/verapdf-assertion.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-file-report-viewer',
@@ -31,12 +33,23 @@ export class FileReportViewerComponent implements OnInit {
   assertionsPage: AssertionsPage;
   assertionIndex = 0;
 
-  constructor(private reportsService: ReportsService, private route: ActivatedRoute, private viewerService: ViewerStateService) { }
+  constructor(private reportsService: ReportsService,
+    private route: ActivatedRoute,
+    private viewerService: ViewerStateService,
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        this.fileReport = data['fileReport'];
+        const resolved: ResolvedData<FileReport> = data['fileReport'];
+
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+
+        this.fileReport = resolved.data;
         this.viewerService.selectedFileReport.next(this.fileReport);
         for (const errorMessage of this.fileReport.errorMessages) {
           let message: Message = {severity: 'error', summary: 'Error:', detail: errorMessage, closable: false, sticky: true};

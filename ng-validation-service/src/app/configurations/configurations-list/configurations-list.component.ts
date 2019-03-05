@@ -8,6 +8,8 @@ import { ConfirmationService } from "primeng/api";
 import { ActivatedRoute, Data, Router } from "@angular/router";
 import { debounceTime, distinctUntilChanged, retry } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: "app-configurations-list",
@@ -29,14 +31,19 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private confirmationService: ConfirmationService,
-    private configurationsService: ConfigurationsService
+    private configurationsService: ConfigurationsService,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      this.configurationsPage = data["startPage"];
+      let resolvedData: ResolvedData<ConfigurationsPage> = data["startPage"];
+      if (!resolvedData.data) {
+        this.errorService.resolved = resolvedData;
+        this.router.navigate(['/error']);
+      }
+      this.configurationsPage = resolvedData.data;
       this.messages = [];
-      console.log(this.configurationsPage);
     });
 
     // handle search text input

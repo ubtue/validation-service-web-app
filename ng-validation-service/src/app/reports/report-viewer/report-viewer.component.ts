@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { FileReportResolver } from './file-report-resolver.service';
 import { DataService } from 'src/app/shared/services/data.service';
 import { Message } from 'primeng/api';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-report-viewer',
@@ -29,16 +31,31 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private viewerService: ViewerStateService,
-    private changeDetectorRef: ChangeDetectorRef) { }
+    private changeDetectorRef: ChangeDetectorRef,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
 
     this.route.data.subscribe(
       (data: Data) => {
-        this.fileReportsPage = data['fileReportsPage'];
-        this.batchReport = data['batchReport'];
-        if(!this.batchReport.summary) {
-          const message: Message = {severity: 'error', summary:'Error:', detail:'Batch processing failed. Check server log for details', closable:false, sticky:true}
+
+        const resolvedBatchReport: ResolvedData<BatchReport> = data['batchReport'];
+        const resolvedFileReportsPage: ResolvedData<FileReportsPage> = data['fileReportsPage'];
+
+        if (!resolvedBatchReport.data) {
+          this.errorService.resolved = resolvedBatchReport;
+          this.router.navigate(['/error']);
+        }
+
+        if (!resolvedFileReportsPage.data) {
+          this.errorService.resolved = resolvedFileReportsPage;
+          this.router.navigate(['/error']);
+        }
+
+        this.fileReportsPage = resolvedFileReportsPage.data;
+        this.batchReport = resolvedBatchReport.data;
+        if (!this.batchReport.summary) {
+          const message: Message = {severity: 'error', summary:'Error:', detail:'Batch processing failed. Check server log for details', closable:false, sticky:true};
           this.errorMessages.push(message);
         }
       }

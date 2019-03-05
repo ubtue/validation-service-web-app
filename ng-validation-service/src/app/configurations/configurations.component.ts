@@ -12,9 +12,6 @@ export class ConfigurationsComponent implements OnInit {
 
   constructor(public router: Router, public route: ActivatedRoute) { }
 
-  ngOnInit() {
- 
-
-  }
+  ngOnInit() {}
 
 }

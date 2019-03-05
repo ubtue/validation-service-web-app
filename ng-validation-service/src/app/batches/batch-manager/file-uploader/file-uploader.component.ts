@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { Message } from 'src/app/shared/model/primeng-message.model';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Util } from 'src/app/shared/util';
 import { Link } from '../../../shared/model/common-interfaces.model';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
 import { Observable, Observer } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 
 @Component({
@@ -22,15 +24,25 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   messages: Message[];
   uploadInProgress: boolean;
 
-  constructor(private route: ActivatedRoute, private confirmationService: ConfirmationService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private confirmationService: ConfirmationService,
+              private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-        this.selectedBatch = data['batch'];
+        let resolvedData: ResolvedData<Batch> = data['batch'];
+
+        if (!resolvedData.data) {
+          this.errorService.resolved = resolvedData;
+          this.router.navigate(['/errors']);
+        }
+
+        this.selectedBatch = resolvedData.data;
         this.messages = [];
       }
-    )
+    );
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

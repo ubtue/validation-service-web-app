@@ -7,6 +7,8 @@ import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Util } from 'src/app/shared/util';
 import { Subscription } from 'rxjs';
 import { FileNameRule } from 'src/app/shared/model/file-name-rule.model';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-name-rule-manager',
@@ -23,16 +25,22 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private configService: ConfigurationsService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   resolveCamelCase = Util.unCamelCase;
 
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        this.nameRulesPage = data['fileNameRulesPage'];
+        let resolved: ResolvedData<FileNameRulesPage> = data['fileNameRulesPage'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+        this.nameRulesPage = resolved.data;
       }
-    )
+    );
 
     this.nameRuleChangedSubscription = this.configService.fileNameRulesUpdated.subscribe(
       () => {

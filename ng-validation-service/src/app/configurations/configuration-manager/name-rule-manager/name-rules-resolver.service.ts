@@ -2,32 +2,43 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@a
 import { FileNameRulesPage } from '../../../shared/model/file-name-rules.model';
 import { Observable, of, empty } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ConfigurationsService } from '../../configurations.service';
 import { Util } from 'src/app/shared/util';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
 
 
 
 @Injectable()
-export class FileNameRulesResolver implements Resolve<FileNameRulesPage> {
+export class FileNameRulesResolver implements Resolve<ResolvedData<FileNameRulesPage>> {
 
-    constructor(private configurationsService: ConfigurationsService, private router: Router) { }
+    constructor(private configurationsService: ConfigurationsService,
+      private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<FileNameRulesPage> {
-        let config: Configuration =  route.parent.data['configuration'];
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FileNameRulesPage>> {
+      const resolved: ResolvedData<Configuration> = route.parent.data['configuration'];
 
-        return this.configurationsService.getFileNameRulesPage(Util.getHrefForRel(config,'file-name-rules'))
-            .pipe(
-                catchError(
-                    (error) => {
-                        console.log(`Retrieval error: ${error}`);
-                        this.router.navigate(['/configurations']);
-                        // this.batchesService.batchListReloadRequested.next();
-                        return of(null);
-                    }
-                )
-            )
+      if (!resolved.data) {
+        return of({
+          data: null,
+          errorMessage: resolved.errorMessage,
+          errorStatusCode: resolved.errorStatusCode
+        });
+      }
+
+      let config: Configuration =  resolved.data;
+
+      return this.configurationsService.getFileNameRulesPage(Util.getHrefForRel(config,'file-name-rules'))
+        .pipe(
+          map(result => ({ data: result })),
+          catchError(
+            (error) => {
+              console.log(`Retrieval of file name rules failed with error: ${error}`);
+              return of({ data: null, errorMessage: 'Retrieval of file name rules failed', errorStatusCode: error.status });
+            }
+          )
+        );
     }
 
 }

@@ -1,32 +1,49 @@
-import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { FilesPage } from 'src/app/shared/model/files.model';
-import { BatchesService } from '../../batches.service';
-import { Observable, of, empty } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Batch } from 'src/app/shared/model/batch.model';
-import { Util } from 'src/app/shared/util';
-import { catchError } from 'rxjs/operators';
-
+import {
+  Resolve,
+  Router,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot
+} from "@angular/router";
+import { FilesPage } from "src/app/shared/model/files.model";
+import { BatchesService } from "../../batches.service";
+import { Observable, of, empty } from "rxjs";
+import { Injectable } from "@angular/core";
+import { Batch } from "src/app/shared/model/batch.model";
+import { Util } from "src/app/shared/util";
+import { catchError, map } from "rxjs/operators";
+import { ResolvedData } from "src/app/shared/model/resolved-data.model";
 
 @Injectable()
-export class FilesResolver implements Resolve<FilesPage> {
-    
-    constructor(private batchesService: BatchesService, private router: Router) { }
+export class FilesResolver implements Resolve<ResolvedData<FilesPage>> {
+  constructor(private batchesService: BatchesService, private router: Router) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<FilesPage> {
-        let batch: Batch = route.parent.data['batch'];
-        console.log(route.parent.data['batch']);
-
-        return this.batchesService.getFilesPage(Util.getHrefForRel(batch,'files'))
-            .pipe(
-                catchError(
-                    (error) => {
-                        console.log(`Retrieval error: ${error}`)
-                        this.router.navigate(['/batches'])
-                        this.batchesService.batchListReloadRequested.next();
-                        return of(null);
-                    }
-                )
-            )
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<ResolvedData<FilesPage>> {
+    let resolvedData: ResolvedData<Batch> = route.parent.data["batch"];
+    if (!resolvedData.data) {
+      return of({
+        data: null,
+        errorMessage: resolvedData.errorMessage,
+        errorStatusCode: resolvedData.errorStatusCode
+      });
     }
+
+    let batch: Batch = resolvedData.data;
+
+    return this.batchesService
+      .getFilesPage(Util.getHrefForRel(batch, "files"))
+      .pipe(
+        map(result => ({ data: result })),
+        catchError(error => {
+          console.log(`Retrieval of files failed with error: ${error}`);
+          return of({
+            data: null,
+            errorMessage: "Retrieval of files failed",
+            errorStatusCode: error.status
+          });
+        })
+      );
+  }
 }

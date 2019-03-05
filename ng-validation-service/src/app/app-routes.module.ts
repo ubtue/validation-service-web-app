@@ -41,6 +41,7 @@ import { FileReportViewerComponent } from './reports/report-viewer/file-report-v
 import { FileReportResolver } from './reports/report-viewer/file-report-resolver.service';
 import { SettingsComponent } from './settings/settings.component';
 import { ApplicationSettingsResolver } from './settings/settings-resolver.service';
+import { ErrorsComponent } from './errors/errors.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -82,7 +83,8 @@ const routes: Routes = [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
     ]},
-    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canDeactivate: [CanDeactivateGuard]}
+    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canDeactivate: [CanDeactivateGuard]},
+    {path: 'error', component: ErrorsComponent}
     //{ path: '**', redirectTo: 'batches' }
 ];
 

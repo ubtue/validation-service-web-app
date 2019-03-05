@@ -7,6 +7,8 @@ import { ConfigurationsService } from 'src/app/configurations/configurations.ser
 import { Observable, Observer, Subscription, config } from 'rxjs';
 import { Util } from 'src/app/shared/util';
 import { NgForm } from '@angular/forms';
+import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-fits-rule-edit',
@@ -32,15 +34,24 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private configService: ConfigurationsService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
 
     // Resolve rule
     this.route.data.subscribe(
       (data: Data) => {
-        if (data['fitsResultRule']) {
-          this.rule = data['fitsResultRule'];
+
+        const resolved: ResolvedData<FitsResultRule> = data['fitsResultRule'];
+
+        if (resolved && !resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+
+        if (resolved) {
+          this.rule = resolved.data;
 
         } else {
           this.rule = new FitsResultRule();
@@ -51,11 +62,9 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
           this.creationMode = true;
           this.rule.outcomeOnMissingFitsRecord = 'valid';
           this.rule.toolName = "Jhove";
-          console.log('new')
         }
 
         this.ruleCopy = <FitsResultRule>Util.deepCopy(this.rule);
-        console.log(this.ruleCopy);
       }
     );
 
@@ -68,7 +77,12 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
       (data: Data) => {
-        this.configuration = data['configuration'];
+        const resolved: ResolvedData<Configuration> = data['configuration'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
+        }
+        this.configuration = resolved.data;
       }
     );
 

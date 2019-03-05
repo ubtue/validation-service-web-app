@@ -185,7 +185,6 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
 
   onDspaceErrorMessageChange(ev) {
     this.ruleCopy.errorMessage = ev.target.value;
-    console.log('CHANGE');
   }
 
 }

@@ -10,7 +10,7 @@ import { Util } from 'src/app/shared/util';
 import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 
@@ -44,7 +44,7 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     this.route.data.subscribe(
       (data: Data) => {
 
-        const resolved: ResolvedData<FileNameRule> = data['fileNameRule'];
+        const resolved: Resolved<FileNameRule> = data['fileNameRule'];
 
         if (resolved && !resolved.data) {
           this.errorService.resolved = resolved;
@@ -78,7 +78,7 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
       (data: Data) => {
-        const resolved: ResolvedData<Configuration> = data['configuration'];
+        const resolved: Resolved<Configuration> = data['configuration'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

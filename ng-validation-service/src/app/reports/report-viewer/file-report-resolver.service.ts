@@ -4,14 +4,14 @@ import { ReportsService } from '../reports.service';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { FileReport } from 'src/app/shared/model/file-report.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 @Injectable()
-export class FileReportResolver implements Resolve<ResolvedData<FileReport>> {
+export class FileReportResolver implements Resolve<Resolved<FileReport>> {
 
     constructor(private reportsService: ReportsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FileReport>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FileReport>> {
         const id = route.params['id'];
 
         if (isNaN(+id)) {

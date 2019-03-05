@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ResolvedData } from '../model/resolved-data.model';
+import { Resolved } from '../model/resolved.model';
 
 export class ErrorService {
-  resolved: ResolvedData<any>;
+  resolved: Resolved<any>;
 }

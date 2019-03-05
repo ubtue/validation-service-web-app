@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { BatchReportsPage } from 'src/app/shared/model/batch-reports.model';
 import { ReportsService } from './reports.service';
-import { ResolvedData } from '../shared/model/resolved-data.model';
+import { Resolved } from '../shared/model/resolved.model';
 
 
 
 @Injectable()
-export class ReportsResolver implements Resolve<ResolvedData<BatchReportsPage>> {
+export class ReportsResolver implements Resolve<Resolved<BatchReportsPage>> {
 
     constructor(private reportsService: ReportsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<BatchReportsPage>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<BatchReportsPage>> {
         return this.reportsService.getReportsStartPage()
             .pipe(
               map(result => ({ data: result })),

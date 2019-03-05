@@ -7,7 +7,7 @@ import { ConfigurationsService } from 'src/app/configurations/configurations.ser
 import { Observable, Observer, Subscription, config } from 'rxjs';
 import { Util } from 'src/app/shared/util';
 import { NgForm } from '@angular/forms';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data: Data) => {
 
-        const resolved: ResolvedData<FitsResultRule> = data['fitsResultRule'];
+        const resolved: Resolved<FitsResultRule> = data['fitsResultRule'];
 
         if (resolved && !resolved.data) {
           this.errorService.resolved = resolved;
@@ -77,7 +77,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     // Fetch configuration. Needed for creation mode.
     this.route.parent.parent.data.subscribe(
       (data: Data) => {
-        const resolved: ResolvedData<Configuration> = data['configuration'];
+        const resolved: Resolved<Configuration> = data['configuration'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

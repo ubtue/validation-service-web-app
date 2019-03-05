@@ -4,21 +4,21 @@ import { Resolve, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@a
 import { ReportsService } from './reports.service';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { ResolvedData } from '../shared/model/resolved-data.model';
+import { Resolved } from '../shared/model/resolved.model';
 
 @Injectable()
-export class QueueResolver implements Resolve<ResolvedData<QueuePage>> {
+export class QueueResolver implements Resolve<Resolved<QueuePage>> {
 
     constructor(private reportsService: ReportsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<QueuePage>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<QueuePage>> {
         return this.reportsService.getQueueStartPage()
             .pipe(
               map(result => ({ data: result })),
                 catchError(
                     (error) => {
                       console.log(`Loading of scheduled reports failed with error: ${error}`);
-                      return of({ data: null, errorMessage: '`Loading of scheduled reports failed', errorStatusCode: error.status });
+                      return of({ data: null, errorMessage: 'Loading of scheduled reports failed', errorStatusCode: error.status });
                     }
                 )
             );

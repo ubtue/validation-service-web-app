@@ -8,16 +8,16 @@ import { ConfigurationsService } from '../../../configurations.service';
 import { Util } from 'src/app/shared/util';
 import { FileNameRule } from 'src/app/shared/model/file-name-rule.model';
 import { FitsResultRule } from 'src/app/shared/model/fits.result-rule.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class FitsResultRuleResolver implements Resolve<ResolvedData<FitsResultRule>> {
+export class FitsResultRuleResolver implements Resolve<Resolved<FitsResultRule>> {
 
     constructor(private configurationsService: ConfigurationsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FitsResultRule>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FitsResultRule>> {
         let id = route.params['id'];
         if (isNaN(+id)) {
           console.log(`Error loading rule: Id is not a number: ${id} `);

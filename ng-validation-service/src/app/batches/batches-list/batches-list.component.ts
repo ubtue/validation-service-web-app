@@ -7,7 +7,7 @@ import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
 import { Util } from 'src/app/shared/util';
 import { Batch } from 'src/app/shared/model/batch.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class BatchesListComponent implements OnInit {
     // fetch result from resolver
     this.route.data.subscribe(
       (data: Data) => {
-        let resolvedData: ResolvedData<BatchPage> = data['startPage'];
+        let resolvedData: Resolved<BatchPage> = data['startPage'];
 
         if (resolvedData.data) {
           this.page = resolvedData.data;

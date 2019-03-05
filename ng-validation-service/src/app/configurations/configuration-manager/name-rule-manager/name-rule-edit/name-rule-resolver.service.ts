@@ -7,16 +7,16 @@ import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ConfigurationsService } from '../../../configurations.service';
 import { Util } from 'src/app/shared/util';
 import { FileNameRule } from 'src/app/shared/model/file-name-rule.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class FileNameRuleResolver implements Resolve<ResolvedData<FileNameRule>> {
+export class FileNameRuleResolver implements Resolve<Resolved<FileNameRule>> {
 
     constructor(private configurationsService: ConfigurationsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FileNameRule>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FileNameRule>> {
         let id = route.params['id'];
         console.log(id);
         if (isNaN(+id)) {

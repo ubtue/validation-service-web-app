@@ -8,7 +8,7 @@ import { ConfirmationService } from "primeng/api";
 import { ActivatedRoute, Data, Router } from "@angular/router";
 import { debounceTime, distinctUntilChanged, retry } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      let resolvedData: ResolvedData<ConfigurationsPage> = data["startPage"];
+      let resolvedData: Resolved<ConfigurationsPage> = data["startPage"];
       if (!resolvedData.data) {
         this.errorService.resolved = resolvedData;
         this.router.navigate(['/error']);

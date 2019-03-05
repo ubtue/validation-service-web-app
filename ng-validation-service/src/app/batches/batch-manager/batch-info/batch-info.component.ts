@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { BatchesService } from '../../batches.service';
 import { Batch } from 'src/app/shared/model/batch.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class BatchInfoComponent implements OnInit {
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolved: ResolvedData<Batch> = data['batch'];
+        let resolved: Resolved<Batch> = data['batch'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

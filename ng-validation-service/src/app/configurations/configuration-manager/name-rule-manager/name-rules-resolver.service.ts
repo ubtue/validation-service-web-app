@@ -6,18 +6,18 @@ import { catchError, map } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ConfigurationsService } from '../../configurations.service';
 import { Util } from 'src/app/shared/util';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class FileNameRulesResolver implements Resolve<ResolvedData<FileNameRulesPage>> {
+export class FileNameRulesResolver implements Resolve<Resolved<FileNameRulesPage>> {
 
     constructor(private configurationsService: ConfigurationsService,
       private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FileNameRulesPage>> {
-      const resolved: ResolvedData<Configuration> = route.parent.data['configuration'];
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FileNameRulesPage>> {
+      const resolved: Resolved<Configuration> = route.parent.data['configuration'];
 
       if (!resolved.data) {
         return of({

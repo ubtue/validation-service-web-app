@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { FileReportResolver } from './file-report-resolver.service';
 import { DataService } from 'src/app/shared/services/data.service';
 import { Message } from 'primeng/api';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -39,8 +39,8 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data: Data) => {
 
-        const resolvedBatchReport: ResolvedData<BatchReport> = data['batchReport'];
-        const resolvedFileReportsPage: ResolvedData<FileReportsPage> = data['fileReportsPage'];
+        const resolvedBatchReport: Resolved<BatchReport> = data['batchReport'];
+        const resolvedFileReportsPage: Resolved<FileReportsPage> = data['fileReportsPage'];
 
         if (!resolvedBatchReport.data) {
           this.errorService.resolved = resolvedBatchReport;

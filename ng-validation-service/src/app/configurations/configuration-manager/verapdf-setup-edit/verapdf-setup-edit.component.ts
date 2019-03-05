@@ -6,7 +6,7 @@ import { SelectItem, ConfirmationService } from 'primeng/api';
 import { ConfigurationsService } from '../../configurations.service';
 import { Observable, Observer } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
@@ -34,7 +34,7 @@ export class VerapdfSetupEditComponent implements OnInit {
 
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolvedData: ResolvedData<Configuration> = data['configuration'];
+        let resolvedData: Resolved<Configuration> = data['configuration'];
         if (!resolvedData.data) {
           this.errorService.resolved = resolvedData;
           this.router.navigate(['/error']);

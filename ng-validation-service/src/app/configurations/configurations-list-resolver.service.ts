@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { ConfigurationsPage } from '../shared/model/configurations.model';
 import { ConfigurationsService } from './configurations.service';
-import { ResolvedData } from '../shared/model/resolved-data.model';
+import { Resolved } from '../shared/model/resolved.model';
 
 
 @Injectable()
-export class ConfigurationsResolver implements Resolve<ResolvedData<ConfigurationsPage>> {
+export class ConfigurationsResolver implements Resolve<Resolved<ConfigurationsPage>> {
 
     constructor(private configurationService: ConfigurationsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<ConfigurationsPage>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<ConfigurationsPage>> {
       return this.configurationService.getConfigurationsStartPage()
         .pipe(
           map(startPage => ({ data: startPage })),

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
-export class ResolvedData<T> {
+export class Resolved<T> {
   data: T;
   errorMessage?: string;
   errorStatusCode?: number;

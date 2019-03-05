@@ -5,16 +5,16 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ConfigurationsService } from '../configurations.service';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class ConfigurationResolver implements Resolve<ResolvedData<Configuration>> {
+export class ConfigurationResolver implements Resolve<Resolved<Configuration>> {
 
     constructor(private configurationsService: ConfigurationsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<Configuration>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<Configuration>> {
       let id = route.params['id'];
 
       if (isNaN(+id)) {

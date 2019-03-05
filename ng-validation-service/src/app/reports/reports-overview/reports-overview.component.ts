@@ -5,7 +5,7 @@ import { QueuePage } from 'src/app/shared/model/queue-order.model';
 import { ReportsService } from '../reports.service';
 import { Util } from 'src/app/shared/util';
 import { BatchReport } from 'src/app/shared/model/batch-report.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -31,8 +31,8 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
 
-      const resolvedReports: ResolvedData<BatchReportsPage> = data["reportsPage"];
-      const resolvedQueuedItems: ResolvedData<QueuePage> = data["queuePage"];
+      const resolvedReports: Resolved<BatchReportsPage> = data["reportsPage"];
+      const resolvedQueuedItems: Resolved<QueuePage> = data["queuePage"];
 
       if (!resolvedReports.data) {
         this.errorService.resolved = resolvedReports;

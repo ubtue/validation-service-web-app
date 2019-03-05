@@ -5,14 +5,14 @@ import { ReportsService } from '../reports.service';
 import { Observable, of } from 'rxjs';
 import { FileReportsPage } from 'src/app/shared/model/file-reports.model';
 import { catchError, map } from 'rxjs/operators';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 @Injectable()
-export class BatchReportResolver implements Resolve<ResolvedData<BatchReport>> {
+export class BatchReportResolver implements Resolve<Resolved<BatchReport>> {
 
     constructor(private reportsService: ReportsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<BatchReport>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<BatchReport>> {
         const id = route.params['id'];
 
         if (isNaN(+id)) {

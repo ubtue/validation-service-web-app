@@ -9,7 +9,7 @@ import { retry } from 'rxjs/operators';
 import { Subject, Observable, Observer } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
     this.route.parent.data.subscribe(
       (data: Data) => {
 
-        const resolved: ResolvedData<Configuration> = data['configuration'];
+        const resolved: Resolved<Configuration> = data['configuration'];
 
         if (!resolved.data) {
           this.errorService.resolved = resolved;

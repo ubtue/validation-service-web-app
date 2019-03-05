@@ -3,7 +3,7 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { BatchesService } from 'src/app/batches/batches.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 @Component({
   selector: 'app-batch-manager',

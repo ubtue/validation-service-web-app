@@ -11,17 +11,17 @@ import { Injectable } from "@angular/core";
 import { Batch } from "src/app/shared/model/batch.model";
 import { Util } from "src/app/shared/util";
 import { catchError, map } from "rxjs/operators";
-import { ResolvedData } from "src/app/shared/model/resolved-data.model";
+import { Resolved } from "src/app/shared/model/resolved.model";
 
 @Injectable()
-export class FilesResolver implements Resolve<ResolvedData<FilesPage>> {
+export class FilesResolver implements Resolve<Resolved<FilesPage>> {
   constructor(private batchesService: BatchesService, private router: Router) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<ResolvedData<FilesPage>> {
-    let resolvedData: ResolvedData<Batch> = route.parent.data["batch"];
+  ): Observable<Resolved<FilesPage>> {
+    let resolvedData: Resolved<Batch> = route.parent.data["batch"];
     if (!resolvedData.data) {
       return of({
         data: null,

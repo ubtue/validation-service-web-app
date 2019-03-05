@@ -8,7 +8,7 @@ import { Configuration } from 'src/app/shared/model/configuration.model';
 import { BatchesService } from '../../batches.service';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { BatchValidationOrder } from 'src/app/shared/model/batch-validation-order.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class BatchValidatorComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      let resolvedData: ResolvedData<ConfigurationsPage> = data["startPage"];
+      let resolvedData: Resolved<ConfigurationsPage> = data["startPage"];
 
       if (!resolvedData.data) {
         this.errorService.resolved = resolvedData;
@@ -43,7 +43,7 @@ export class BatchValidatorComponent implements OnInit {
 
     this.route.parent.data.subscribe(
       (data: Data) => {
-        const resolved: ResolvedData<Batch> = data['batch'];
+        const resolved: Resolved<Batch> = data['batch'];
 
         if (!resolved.data) {
           this.errorService.resolved = resolved;

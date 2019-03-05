@@ -10,7 +10,7 @@ import { File } from 'src/app/shared/model/file.model';
 import { BatchesService } from '../../batches.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ErrorService } from 'src/app/shared/services/error.service';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 @Component({
   selector: 'app-batch-viewer',
@@ -35,7 +35,7 @@ export class BatchViewerComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        let resolvedData: ResolvedData<FilesPage> = data['filesPage'];
+        let resolvedData: Resolved<FilesPage> = data['filesPage'];
         if(!resolvedData.data) {
           this.errorService.resolved = resolvedData;
           this.router.navigate(['/error']);

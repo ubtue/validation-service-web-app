@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { FileReportsPage } from 'src/app/shared/model/file-reports.model';
 import { ReportsService } from '../reports.service';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class FileReportsListResolver implements Resolve<ResolvedData<FileReportsPage>> {
+export class FileReportsListResolver implements Resolve<Resolved<FileReportsPage>> {
 
     constructor(private reportsService: ReportsService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<FileReportsPage>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FileReportsPage>> {
         const id = route.params['id'];
 
         if (isNaN(+id)) {

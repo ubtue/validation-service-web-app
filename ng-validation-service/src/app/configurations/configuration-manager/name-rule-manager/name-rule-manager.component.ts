@@ -7,7 +7,7 @@ import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Util } from 'src/app/shared/util';
 import { Subscription } from 'rxjs';
 import { FileNameRule } from 'src/app/shared/model/file-name-rule.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        let resolved: ResolvedData<FileNameRulesPage> = data['fileNameRulesPage'];
+        let resolved: Resolved<FileNameRulesPage> = data['fileNameRulesPage'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

@@ -4,16 +4,16 @@ import { Observable, of, empty } from 'rxjs';
 import { BatchesService } from '../batches.service';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 
 
 @Injectable()
-export class BatchResolver implements Resolve<ResolvedData<Batch>> {
+export class BatchResolver implements Resolve<Resolved<Batch>> {
 
     constructor(private batchesService: BatchesService, private router: Router) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedData<Batch>> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<Batch>> {
         let id = route.params['id'];
 
         if (isNaN(+id)) {

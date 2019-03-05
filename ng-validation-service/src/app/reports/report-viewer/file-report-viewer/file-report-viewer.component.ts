@@ -7,7 +7,7 @@ import { Util } from 'src/app/shared/util';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { ViewerStateService } from '../viewer-state.service';
 import { AssertionsPage } from 'src/app/shared/model/verapdf-assertion.model';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
@@ -42,7 +42,7 @@ export class FileReportViewerComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        const resolved: ResolvedData<FileReport> = data['fileReport'];
+        const resolved: Resolved<FileReport> = data['fileReport'];
 
         if (!resolved.data) {
           this.errorService.resolved = resolved;

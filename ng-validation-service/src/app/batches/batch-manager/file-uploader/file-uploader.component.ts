@@ -7,7 +7,7 @@ import { Link } from '../../../shared/model/common-interfaces.model';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
 import { Observable, Observer } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
-import { ResolvedData } from 'src/app/shared/model/resolved-data.model';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 
@@ -32,7 +32,7 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolvedData: ResolvedData<Batch> = data['batch'];
+        let resolvedData: Resolved<Batch> = data['batch'];
 
         if (!resolvedData.data) {
           this.errorService.resolved = resolvedData;

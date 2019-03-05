@@ -22,12 +22,12 @@ export class BatchInfoComponent implements OnInit {
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolved: Resolved<Batch> = data['batch'];
+        const resolved: Resolved<Batch> = data['batch'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
-        this.selectedBatch = resolved.data;;
+        this.selectedBatch = resolved.data;
       }
     );
   }

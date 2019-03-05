@@ -33,9 +33,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-
         const resolved: Resolved<Configuration> = data['configuration'];
-
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

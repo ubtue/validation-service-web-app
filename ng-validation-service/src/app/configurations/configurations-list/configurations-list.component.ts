@@ -37,12 +37,12 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      let resolvedData: Resolved<ConfigurationsPage> = data["startPage"];
-      if (!resolvedData.data) {
-        this.errorService.resolved = resolvedData;
+      const resolved: Resolved<ConfigurationsPage> = data["startPage"];
+      if (!resolved.data) {
+        this.errorService.resolved = resolved;
         this.router.navigate(['/error']);
       }
-      this.configurationsPage = resolvedData.data;
+      this.configurationsPage = resolved.data;
       this.messages = [];
     });
 

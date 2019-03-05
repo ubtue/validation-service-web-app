@@ -35,12 +35,12 @@ export class BatchViewerComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        let resolvedData: Resolved<FilesPage> = data['filesPage'];
-        if(!resolvedData.data) {
-          this.errorService.resolved = resolvedData;
+        let resolved: Resolved<FilesPage> = data['filesPage'];
+        if(!resolved.data) {
+          this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
-        this.filesPage = resolvedData.data;
+        this.filesPage = resolved.data;
         this.messages = [];
       }
     );

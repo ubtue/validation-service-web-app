@@ -24,5 +24,4 @@ export class ConfigurationsResolver implements Resolve<Resolved<ConfigurationsPa
             )
         );
     }
-
 }

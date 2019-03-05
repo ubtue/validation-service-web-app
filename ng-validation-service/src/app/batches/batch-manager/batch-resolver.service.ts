@@ -17,8 +17,8 @@ export class BatchResolver implements Resolve<Resolved<Batch>> {
         let id = route.params['id'];
 
         if (isNaN(+id)) {
-            console.log('Batch id was not a number: ${id} ')
-            return of({ data: null, errorMessage: 'Retrieval of batch failed: id was not a number'});
+            console.log(`Retrieval of batch failed: id is not a number: ${id}`);
+            return of({ data: null, errorMessage: 'Retrieval of batch failed: id is not a number: ' + id});
         }
 
         return this.batchesService.getBatchById(+id)
@@ -26,12 +26,8 @@ export class BatchResolver implements Resolve<Resolved<Batch>> {
                 map(startPage => ({ data: startPage })),
                 catchError(
                     (error) => {
-                        // console.log('Retrieval error: ${error}')
-                        // this.router.navigate(['/batches'])
-                        // this.batchesService.batchListReloadRequested.next();
                         console.log(`Retrieval of batch failed with error: ${error}`);
                         return of({ data: null, errorMessage: 'Retrieval of batch failed', errorStatusCode: error.status });
-                        // return of(null);
                     }
                 )
             );

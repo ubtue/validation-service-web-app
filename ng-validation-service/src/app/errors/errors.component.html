@@ -2,10 +2,19 @@
   <div class="col-md-12 text-center">
       <h2>Oooops...</h2>
 
-      <ng-container *ngIf="this.errorService.resolved; else elseTemplate">
-          <h3>{{ (this.errorService.resolved.errorStatusCode !== 0 ? 'HTTP Status:' + this.errorService.resolved.errorStatusCode + ' ' : '' ) + this.errorService.resolved.errorMessage }}</h3>
+      <ng-container *ngIf="this.errorService.resolved; else unknownErrorTemplate">
+         <h4>{{ this.errorService.resolved.errorMessage }}</h4>
+         <h4 *ngIf="this.errorService.resolved.errorStatusCode">
+           <ng-container *ngIf="this.errorService.resolved.errorStatusCode === 0; else statusCodeTemplate">
+             {{ 'Failure to connect with server' }}
+           </ng-container>
+           <ng-template #statusCodeTemplate>
+              {{ 'HTTP ' + this.errorService.resolved.errorStatusCode }}
+           </ng-template>
+          </h4>
+
       </ng-container>
-      <ng-template #elseTemplate>
+      <ng-template #unknownErrorTemplate>
           <h3> Unknown Error </h3>
       </ng-template>
   </div>

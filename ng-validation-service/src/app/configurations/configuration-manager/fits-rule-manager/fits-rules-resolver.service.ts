@@ -38,7 +38,7 @@ export class FitsResultRulesResolver implements Resolve<Resolved<FitsResultRules
                       console.log(`Retrieval of fits result rules failed with error: ${error}`);
                       return of({
                         data: null,
-                        errorMessage: "Retrieval of fits result rules failed",
+                        errorMessage: 'Retrieval of fits result rules failed',
                         errorStatusCode: error.status
                       });
                     }

@@ -38,7 +38,6 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
 
     this.route.data.subscribe(
       (data: Data) => {
-
         const resolvedBatchReport: Resolved<BatchReport> = data['batchReport'];
         const resolvedFileReportsPage: Resolved<FileReportsPage> = data['fileReportsPage'];
 
@@ -46,7 +45,6 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
           this.errorService.resolved = resolvedBatchReport;
           this.router.navigate(['/error']);
         }
-
         if (!resolvedFileReportsPage.data) {
           this.errorService.resolved = resolvedFileReportsPage;
           this.router.navigate(['/error']);

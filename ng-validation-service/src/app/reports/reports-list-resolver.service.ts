@@ -20,7 +20,7 @@ export class ReportsResolver implements Resolve<Resolved<BatchReportsPage>> {
                 catchError(
                     (error) => {
                       console.log(`Loading of reports failed with error: ${error}`);
-                      return of({ data: null, errorMessage: '`Loading of reports failed', errorStatusCode: error.status });
+                      return of({ data: null, errorMessage: 'Loading of reports failed', errorStatusCode: error.status });
                     }
                 )
             );

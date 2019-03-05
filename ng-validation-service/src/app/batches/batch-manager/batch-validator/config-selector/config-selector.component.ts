@@ -16,7 +16,6 @@ export class ConfigSelectorComponent implements OnInit {
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private configurationsService: ConfigurationsService) { }
 
   ngOnInit() {
-    console.log(this.config.data.startPage);
     this.configurationsPage = this.config.data.startPage;
   }
 

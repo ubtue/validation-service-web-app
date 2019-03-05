@@ -29,8 +29,8 @@ export class FitsResultRuleResolver implements Resolve<Resolved<FitsResultRule>>
               map(result => ({ data: result })),
                 catchError(
                     (error) => {
-                      console.log(`Loading of rule failed with error: ${error}`);
-                      return of({ data: null, errorMessage: 'Loading of rule failed', errorStatusCode: error.status });
+                      console.log(`Loading of fits result rule failed with error: ${error}`);
+                      return of({ data: null, errorMessage: 'Loading of fits result rule failed', errorStatusCode: error.status });
                     }
                 )
             );

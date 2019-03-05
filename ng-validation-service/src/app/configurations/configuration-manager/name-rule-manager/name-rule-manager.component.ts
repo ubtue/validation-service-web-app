@@ -33,7 +33,7 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        let resolved: Resolved<FileNameRulesPage> = data['fileNameRulesPage'];
+        const resolved: Resolved<FileNameRulesPage> = data['fileNameRulesPage'];
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

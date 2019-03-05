@@ -30,7 +30,6 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-
       const resolvedReports: Resolved<BatchReportsPage> = data["reportsPage"];
       const resolvedQueuedItems: Resolved<QueuePage> = data["queuePage"];
 
@@ -38,7 +37,6 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
         this.errorService.resolved = resolvedReports;
         this.router.navigate(['/error']);
       }
-
       if (!resolvedQueuedItems.data) {
         this.errorService.resolved = resolvedQueuedItems;
         this.router.navigate(['/error']);

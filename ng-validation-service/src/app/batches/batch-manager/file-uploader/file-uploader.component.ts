@@ -32,14 +32,12 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   ngOnInit() {
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolvedData: Resolved<Batch> = data['batch'];
-
-        if (!resolvedData.data) {
-          this.errorService.resolved = resolvedData;
-          this.router.navigate(['/errors']);
+        const resolved: Resolved<Batch> = data['batch'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
+          this.router.navigate(['/error']);
         }
-
-        this.selectedBatch = resolvedData.data;
+        this.selectedBatch = resolved.data;
         this.messages = [];
       }
     );

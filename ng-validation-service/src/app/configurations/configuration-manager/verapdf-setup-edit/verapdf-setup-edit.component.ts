@@ -34,12 +34,12 @@ export class VerapdfSetupEditComponent implements OnInit {
 
     this.route.parent.data.subscribe(
       (data: Data) => {
-        let resolvedData: Resolved<Configuration> = data['configuration'];
-        if (!resolvedData.data) {
-          this.errorService.resolved = resolvedData;
+        let resolved: Resolved<Configuration> = data['configuration'];
+        if (!resolved.data) {
+          this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
-        this.veraSetup = resolvedData.data._embedded['verapdf-setup'];
+        this.veraSetup = resolved.data._embedded['verapdf-setup'];
         this.veraSetupCopy = Util.deepCopy(this.veraSetup);
       }
     );

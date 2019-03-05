@@ -29,8 +29,8 @@ export class FileNameRuleResolver implements Resolve<Resolved<FileNameRule>> {
               map(result => ({ data: result })),
                 catchError(
                     (error) => {
-                      console.log(`Loading of Rule failed with error: ${error}`);
-                      return of({ data: null, errorMessage: '`Loading of file name rule failed', errorStatusCode: error.status });
+                      console.log(`Loading of file name rule failed with error: ${error}`);
+                      return of({ data: null, errorMessage: 'Loading of file name rule failed', errorStatusCode: error.status });
                     }
                 )
             );

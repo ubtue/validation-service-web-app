@@ -12,21 +12,6 @@ import { Resolved } from 'src/app/shared/model/resolved.model';
 })
 export class BatchManagerComponent implements OnInit {
 
-
-  // constructor(private route: ActivatedRoute, private batchesService: BatchesService, private router: Router, private errorService: ErrorService) { }
-
-  ngOnInit() {
-    // this.route.data.subscribe(
-    //   (data: Data) => {
-    //     let resolvedBatch:ResolvedData<Batch> = data['batch'];
-    //     console.log('visited');
-    //     if(!resolvedBatch.data) {
-    //       console.log('visited');
-    //       this.errorService.resolved = resolvedBatch;
-    //       this.router.navigate(['/errors']);
-    //     }
-    //   }
-    // );
-  }
+  ngOnInit() { }
 
 }

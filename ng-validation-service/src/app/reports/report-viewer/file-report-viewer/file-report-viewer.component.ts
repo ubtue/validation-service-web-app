@@ -43,7 +43,6 @@ export class FileReportViewerComponent implements OnInit {
     this.route.data.subscribe(
       (data: Data) => {
         const resolved: Resolved<FileReport> = data['fileReport'];
-
         if (!resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

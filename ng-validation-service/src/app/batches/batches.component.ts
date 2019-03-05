@@ -14,9 +14,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 })
 export class BatchesComponent implements OnInit, OnDestroy {
 
-  // page: BatchPage;
-
-  constructor(private batchesService: BatchesService, private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() { }
 

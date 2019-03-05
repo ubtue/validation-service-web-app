@@ -9,7 +9,6 @@ export class BatchesStartComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

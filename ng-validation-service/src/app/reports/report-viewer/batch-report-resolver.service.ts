@@ -23,7 +23,6 @@ export class BatchReportResolver implements Resolve<Resolved<BatchReport>> {
         return this.reportsService.getBatchReportById(+id)
             .pipe(
               map(result => ({ data: result })),
-
                 catchError(
                     (error) => {
                       console.log(`Loading of batch report failed with error: ${error}`);

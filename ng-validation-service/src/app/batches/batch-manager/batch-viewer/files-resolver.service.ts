@@ -21,16 +21,16 @@ export class FilesResolver implements Resolve<Resolved<FilesPage>> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Resolved<FilesPage>> {
-    let resolvedData: Resolved<Batch> = route.parent.data["batch"];
-    if (!resolvedData.data) {
+    let resolved: Resolved<Batch> = route.parent.data["batch"];
+    if (!resolved.data) {
       return of({
         data: null,
-        errorMessage: resolvedData.errorMessage,
-        errorStatusCode: resolvedData.errorStatusCode
+        errorMessage: resolved.errorMessage,
+        errorStatusCode: resolved.errorStatusCode
       });
     }
 
-    let batch: Batch = resolvedData.data;
+    let batch: Batch = resolved.data;
 
     return this.batchesService
       .getFilesPage(Util.getHrefForRel(batch, "files"))

@@ -41,12 +41,11 @@ export class BatchesListComponent implements OnInit {
     // fetch result from resolver
     this.route.data.subscribe(
       (data: Data) => {
-        let resolvedData: Resolved<BatchPage> = data['startPage'];
-
-        if (resolvedData.data) {
-          this.page = resolvedData.data;
+        let resolved: Resolved<BatchPage> = data['startPage'];
+        if (resolved.data) {
+          this.page = resolved.data;
         } else {
-          this.errorService.resolved = resolvedData;
+          this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
       }

@@ -42,9 +42,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     // Resolve rule
     this.route.data.subscribe(
       (data: Data) => {
-
         const resolved: Resolved<FitsResultRule> = data['fitsResultRule'];
-
         if (resolved && !resolved.data) {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);

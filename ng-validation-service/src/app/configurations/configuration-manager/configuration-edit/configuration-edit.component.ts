@@ -88,7 +88,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       },
 
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to save changes', error);
       }
     );
   }

@@ -3,6 +3,7 @@ import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/api';
 import { ConfigurationsPage } from 'src/app/shared/model/configurations.model';
 import { Subscription, Subject } from 'rxjs';
 import { ConfigurationsService } from 'src/app/configurations/configurations.service';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-config-selector',
@@ -13,7 +14,10 @@ export class ConfigSelectorComponent implements OnInit {
 
   configurationsPage: ConfigurationsPage;
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private configurationsService: ConfigurationsService) { }
+  constructor(public ref: DynamicDialogRef,
+    public config: DynamicDialogConfig,
+    private configurationsService: ConfigurationsService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.configurationsPage = this.config.data.startPage;
@@ -30,9 +34,14 @@ export class ConfigSelectorComponent implements OnInit {
   onLoadPage(url: string) {
     this.configurationsService
       .getConfigurationsPage(url)
-      .subscribe((page: ConfigurationsPage) => {
-        this.configurationsPage = page;
-      });
+      .subscribe(
+        (page: ConfigurationsPage) => {
+          this.configurationsPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load configuration list', error);
+        }
+      );
   }
 
 

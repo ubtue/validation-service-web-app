@@ -46,16 +46,23 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
       () => {
         this.configService
           .getFileNameRulesPage(Util.getHrefForRel(this.nameRulesPage, "self"))
-          .subscribe((page: FileNameRulesPage) => {
-            this.nameRulesPage = page;
-          });
+          .subscribe(
+            (page: FileNameRulesPage) => {
+              this.nameRulesPage = page;
+            },
+            (error) => {
+              this.errorService.raiseGlobalErrorMessage('Failed to load rule list', error);
+            }
+          );
       }
     );
 
   }
 
   ngOnDestroy(): void {
-    this.nameRuleChangedSubscription.unsubscribe();
+    if (this.nameRuleChangedSubscription) {
+      this.nameRuleChangedSubscription.unsubscribe();
+    }
   }
 
     /**
@@ -65,9 +72,14 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
   onLoadPage(url: string) {
     this.configService
       .getFileNameRulesPage(url)
-      .subscribe((page: FileNameRulesPage) => {
-        this.nameRulesPage = page;
-      });
+      .subscribe(
+        (page: FileNameRulesPage) => {
+         this.nameRulesPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load rule list', error);
+        }
+      );
   }
 
   onDeleteRule(rule: FileNameRule) {
@@ -77,9 +89,14 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
         this.refreshConfigList();
         this.router.navigate(['../namerules'], {relativeTo: this.route});
       },
-
       (error) => {
-        console.log(error);
+        if (error.status === 404) {
+          this.configService.listItemDeleted.next();
+          this.refreshConfigList();
+          this.router.navigate(['../namerules'], {relativeTo: this.route});
+        } else {
+          this.errorService.raiseGlobalErrorMessage('Failed to delete rule', error);
+        }
       }
     );
   }
@@ -90,7 +107,7 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
         this.nameRulesPage = page;
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to load rule list', error);
       }
     );
   }

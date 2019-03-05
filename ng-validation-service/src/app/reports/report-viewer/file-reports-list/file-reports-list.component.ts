@@ -5,6 +5,7 @@ import { Util } from 'src/app/shared/util';
 import { ReportsService } from '../../reports.service';
 import { Subject } from 'rxjs';
 import { FileReport } from 'src/app/shared/model/file-report.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-file-reports-list',
@@ -19,7 +20,9 @@ export class FileReportsListComponent implements OnInit {
 
   resolveCamelCase = Util.unCamelCase;
 
-  constructor(private route: ActivatedRoute, private reportsService: ReportsService) { }
+  constructor(private route: ActivatedRoute,
+    private reportsService: ReportsService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
 
@@ -35,7 +38,11 @@ export class FileReportsListComponent implements OnInit {
       .subscribe(
         (page: FileReportsPage) => {
           this.fileReportsPage = page;
-        });
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load file reports', error);
+        }
+      );
   }
 
 

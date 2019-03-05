@@ -154,7 +154,6 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-
     if (this.creationMode) {
       this.configService.createFitsResultRule(this.ruleCopy, this.configuration).subscribe(
         (result) => {
@@ -165,7 +164,13 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
         },
 
         (error) => {
-          console.log(error);
+          if (error.status === 404) {
+            this.configService.fitsResultRulesUpdated.next();
+            this.form.reset();
+            this.router.navigate(['../'], { relativeTo: this.route});
+          } else {
+            this.errorService.raiseGlobalErrorMessage('Failed to create rule', error);
+          }
         }
       );
     } else {
@@ -175,9 +180,14 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
           this.onCancel();
           this.configService.fitsResultRulesUpdated.next();
         },
-
         (error) => {
-          console.log(error);
+          if (error.status === 404) {
+            this.configService.fitsResultRulesUpdated.next();
+            this.form.reset();
+            this.router.navigate(['../'], { relativeTo: this.route});
+          } else {
+            this.errorService.raiseGlobalErrorMessage('Failed to save changes', error);
+          }
         }
       );
     }

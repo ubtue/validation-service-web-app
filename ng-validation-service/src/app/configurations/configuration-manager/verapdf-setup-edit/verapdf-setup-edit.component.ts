@@ -103,9 +103,8 @@ export class VerapdfSetupEditComponent implements OnInit {
         this.veraSetup = <VerapdfSetup>Util.deepCopy(this.veraSetupCopy);
         this.onCancel();
       },
-
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to save configuration', error);
       }
     );
   }

@@ -32,7 +32,7 @@ export class BatchValidatorComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      let resolved: Resolved<ConfigurationsPage> = data["startPage"];
+      const resolved: Resolved<ConfigurationsPage> = data["startPage"];
       if (!resolved.data) {
         this.errorService.resolved = resolved;
         this.router.navigate(['/error']);
@@ -68,7 +68,6 @@ export class BatchValidatorComponent implements OnInit {
       if (config) {
           this.selecetedConfiguration = config;
           this.configurationDescription = config.description;
-          console.log(config);
       }
      });
   }
@@ -82,11 +81,9 @@ export class BatchValidatorComponent implements OnInit {
         this.router.navigate(["/reports"],{queryParams: {active: true}});
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to submit validation order', error);
       }
-
     );
-
   }
 
 

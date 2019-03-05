@@ -1,5 +1,6 @@
 
 import { Link } from '../shared/model/common-interfaces.model';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export  class Util {
 
@@ -55,5 +56,4 @@ export  class Util {
 
         throw new Error("Unable to copy obj! Its type isn't supported.");
     }
-
 }

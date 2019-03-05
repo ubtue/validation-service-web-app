@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { BatchPage } from 'src/app/shared/model/batches.model';
 import { BatchesService } from '../batches.service';
 import { ActivatedRoute, Data, Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { ErrorService } from 'src/app/shared/services/error.service';
   templateUrl: './batches-list.component.html',
   styleUrls: ['./batches-list.component.css']
 })
-export class BatchesListComponent implements OnInit {
+export class BatchesListComponent implements OnInit, OnDestroy {
 
   // the displayed page
   page: BatchPage;
@@ -58,10 +58,13 @@ export class BatchesListComponent implements OnInit {
         this.batchesService.getBatchesPage(this.batchesService.batchesResourceUrl, this.descendingSortOrder, this.descriptionFilter).subscribe(
           (page: BatchPage) => {
             this.page = page;
+          },
+          (error) => {
+            this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
           }
-        )
+        );
       }
-    )
+    );
 
     // handle refresh list requests (e.g. on deletion)
     this.listReloadRequestedSubscription = this.batchesService.batchListReloadRequested.subscribe(
@@ -69,10 +72,13 @@ export class BatchesListComponent implements OnInit {
         this.batchesService.getBatchesPage(Util.getHrefForRel(this.page, 'self')).subscribe(
           (page: BatchPage) => {
             this.page = page;
+          },
+          (error) => {
+            this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
           }
-        )
+        );
       }
-    )
+    );
 
     // reset interface and go to start page (on create batch)
     this.resetListRequestedSubscription = this.batchesService.resetBatchListRequested.subscribe(
@@ -83,10 +89,13 @@ export class BatchesListComponent implements OnInit {
             this.descriptionFilter = '';
             this.filterInput.nativeElement.value = '';
             this.descendingSortOrder = true;
+          },
+          (error) => {
+            this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
           }
-        )
+        );
       }
-    )
+    );
 
   }
 
@@ -98,8 +107,11 @@ export class BatchesListComponent implements OnInit {
     this.batchesService.getBatchesPage(url).subscribe(
       (page: BatchPage) => {
         this.page = page;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
       }
-    )
+    );
   }
 
   /**
@@ -111,24 +123,29 @@ export class BatchesListComponent implements OnInit {
     this.batchesService.getBatchesPage(this.batchesService.batchesResourceUrl, this.descendingSortOrder, this.descriptionFilter).subscribe(
       (page: BatchPage) => {
         this.page = page;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
       }
-    )
+    );
   }
 
   onDeleteBatch(batch: Batch) {
     this.batchesService.deleteBatch(batch).subscribe(
       (success) =>{
         this.batchesService.batchListReloadRequested.next();
-        this.router.navigate(["../"],{relativeTo: this.route})
+        this.router.navigate(["../"],{relativeTo: this.route});
       },
-
       (error) => {
-        console.log(error);
+        if (error.status === 404) {
+          this.batchesService.batchListReloadRequested.next();
+          this.router.navigate(["../"],{relativeTo: this.route});
+        } else {
+          this.errorService.raiseGlobalErrorMessage('Could not delete batch', error);
+        }
       }
-
-    )
+    );
   }
-
 
   ngOnDestroy() {
     this.searchTextSubscription.unsubscribe();

@@ -59,39 +59,18 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
             this.configurationsService.configurationsResourceUrl,
             this.descriptionFilter
           )
-          .subscribe((page: ConfigurationsPage) => {
-            this.configurationsPage = page;
-          });
+          .subscribe(
+            (page: ConfigurationsPage) => {
+              this.configurationsPage = page;
+            },
+            (error) => {
+              this.errorService.raiseGlobalErrorMessage('Search failed', error);
+            }
+          );
       });
-
-    // handle refresh list requests (e.g. on deletion)
-    // this.listRefreshSubscription = this.configurationsService.configUpdated.pipe(retry(2)).subscribe(
-    //   () => {
-    //     this.configurationsService
-    //       .getConfigurationsPage(Util.getHrefForRel(this.configurationsPage, "self"))
-    //       .subscribe((page: ConfigurationsPage) => {
-    //         this.configurationsPage = page;
-    //       });
-    //   }
-    // );
-
-  //   // reset interface and go to start page (on create batch)
-  //   this.resetListRequestedSubscription = this.batchesService.resetBatchListRequested.subscribe(
-  //     () => {
-  //       this.batchesService
-  //         .getBatchesStartPage()
-  //         .subscribe((page: BatchPage) => {
-  //           this.page = page;
-  //           this.descriptionFilter = "";
-  //           this.filterInput.nativeElement.value = "";
-  //           this.descendingSortOrder = true;
-  //         });
-  //     }
-  //   );
   }
 
   ngOnDestroy(): void {
-    // this.listRefreshSubscription.unsubscribe();
     this.searchTextSubscription.unsubscribe();
   }
 
@@ -102,20 +81,28 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
   onLoadPage(url: string) {
     this.configurationsService
       .getConfigurationsPage(url)
-      .subscribe((page: ConfigurationsPage) => {
-        this.configurationsPage = page;
-      });
+      .subscribe(
+        (page: ConfigurationsPage) => {
+          this.configurationsPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load configuration list', error);
+        }
+      );
   }
 
 
-  onDeleteFile(config: Configuration) {
+  onDeleteConfig(config: Configuration) {
     this.configurationsService.deleteConfiguration(config).subscribe(
       (data) => {
         this.refreshConfigList();
       },
-
       (error) => {
-        console.log(error);
+        if (error.status === 404) {
+          this.refreshConfigList();
+        } else {
+          this.errorService.raiseGlobalErrorMessage('Failed to delete configuration', error);
+        }
       }
     );
   }
@@ -125,11 +112,10 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
       (page: ConfigurationsPage) => {
         this.configurationsPage = page;
       },
-
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to load configuration list', error);
       }
-    )
+    );
   }
 
   onCreateNew() {
@@ -137,8 +123,11 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
       (configuration: Configuration) => {
         this.router.navigate([configuration.id], {relativeTo: this.route});
         this.refreshConfigList();
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Failed to create configuration', error);
       }
-    )
+    );
   }
 
 

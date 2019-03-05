@@ -49,11 +49,12 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
           });
       }
     );
-
   }
 
   ngOnDestroy(): void {
-    this.fitsRuleChangedSubscription.unsubscribe();
+    if (this.fitsRuleChangedSubscription) {
+      this.fitsRuleChangedSubscription.unsubscribe();
+    }
   }
 
     /**
@@ -63,9 +64,14 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
   onLoadPage(url: string) {
     this.configService
       .getFitsResultRulesPage(url)
-      .subscribe((page: FitsResultRulesPage) => {
-        this.fitsRulesPage = page;
-      });
+      .subscribe(
+        (page: FitsResultRulesPage) => {
+          this.fitsRulesPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load rule list', error);
+        }
+      );
   }
 
   onDeleteRule(rule: FitsResultRule) {
@@ -75,9 +81,14 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
         this.refreshConfigList();
         this.router.navigate(['../fitsrules'], {relativeTo: this.route});
       },
-
       (error) => {
-        console.log(error);
+        if (error.status === 404) {
+          this.configService.listItemDeleted.next();
+          this.refreshConfigList();
+          this.router.navigate(['../fitsrules'], {relativeTo: this.route});
+        } else {
+          this.errorService.raiseGlobalErrorMessage('Failed to delete rule', error);
+        }
       }
     );
   }
@@ -88,7 +99,7 @@ export class FitsRuleManagerComponent implements OnInit, OnDestroy {
         this.fitsRulesPage = page;
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to load rule list', error);
       }
     );
   }

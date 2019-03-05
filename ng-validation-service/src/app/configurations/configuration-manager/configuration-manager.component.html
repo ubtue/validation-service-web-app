@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a [routerLink]="['../']">Configurations</a></li>
-        <li class="breadcrumb-item active">
+        <li class="breadcrumb-item active" *ngIf="this.config">
             {{ this.config.description }}
         </li>
       </ol>

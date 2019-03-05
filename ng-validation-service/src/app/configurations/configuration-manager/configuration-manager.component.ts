@@ -2,7 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigurationsService } from '../configurations.service';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { Subscribable, Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorService } from 'src/app/shared/services/error.service';
+import { Resolved } from 'src/app/shared/model/resolved.model';
 
 @Component({
   selector: 'app-configuration-manager',
@@ -12,14 +14,28 @@ import { ActivatedRoute } from '@angular/router';
 export class ConfigurationManagerComponent implements OnInit, OnDestroy {
 
   config: Configuration;
-  constructor(private configService: ConfigurationsService, private route: ActivatedRoute) { }
+  constructor(private configService: ConfigurationsService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private errorService: ErrorService) { }
+
   configSubscription: Subscription;
 
   ngOnInit() {
-    this.config = this.route.snapshot.data['configuration'];
+
+    const resolved: Resolved<Configuration> = this.route.snapshot.data['configuration'];
+
+    if (!resolved || !resolved.data) {
+      this.errorService.resolved = resolved;
+      this.router.navigate(['/error']);
+    }
+    this.config = resolved.data;
     this.configSubscription = this.configService.configLoaded.subscribe(
       (config: Configuration) => {
         this.config = config;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Failed to load configuration', error);
       }
     );
   }

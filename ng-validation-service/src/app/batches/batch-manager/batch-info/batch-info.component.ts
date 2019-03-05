@@ -38,9 +38,8 @@ export class BatchInfoComponent implements OnInit {
         this.batchesService.batchListReloadRequested.next();
         this.router.navigate(["../../"],{relativeTo: this.route});
       },
-
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Deleting batch failed', error);
       }
     );
   }

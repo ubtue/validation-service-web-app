@@ -68,7 +68,7 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
         this.queuePage = page;
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to refresh scheduled reports', error);
       }
     );
 
@@ -77,7 +77,7 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
         this.finishedReportsPage = page;
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to refresh reports', error);
       }
     );
   }
@@ -89,9 +89,14 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   onLoadQueuePage(url: string) {
     this.reportsServcie
       .getQueuePage(url)
-      .subscribe((page: QueuePage) => {
-        this.queuePage = page;
-      });
+      .subscribe(
+        (page: QueuePage) => {
+          this.queuePage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load scheduled reports', error);
+        }
+      );
   }
 
   /**
@@ -104,13 +109,20 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
       .subscribe(
         (page: BatchReportsPage) => {
           this.finishedReportsPage = page;
-        });
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load reports', error);
+        }
+      );
   }
 
   onAbortOrder(order) {
     this.reportsServcie.deleteOrder(order).subscribe(
       () => {
         this.refreshData();
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Failed to cancel scheduled report', error);
       }
     );
   }
@@ -120,6 +132,13 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
     this.reportsServcie.deleteBatchReport(report).subscribe(
       () => {
         this.refreshData();
+      },
+      (error) => {
+        if (error.status === 404) {
+          this.refreshData();
+        } else {
+          this.errorService.raiseGlobalErrorMessage('Failed to delete report', error);
+        }
       }
     );
   }

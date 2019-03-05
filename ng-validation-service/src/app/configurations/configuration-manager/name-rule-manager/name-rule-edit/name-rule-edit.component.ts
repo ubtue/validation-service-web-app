@@ -91,7 +91,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       {label: 'Valid', value: 'valid'},
       {label: 'Not valid', value: 'notValid'}
     ];
-
   }
 
 
@@ -136,7 +135,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
   }
 
   onSave() {
-
     if (this.creationMode) {
       this.configService.createFileNameRule(this.ruleCopy, this.configuration).subscribe(
         (result) => {
@@ -145,9 +143,14 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
           this.form.reset();
           this.router.navigate(['../', this.rule.id], { relativeTo: this.route});
         },
-
         (error) => {
-          console.log(error);
+          if (error.status === 404) {
+            this.configService.fileNameRulesUpdated.next();
+            this.form.reset();
+            this.router.navigate(['../'], { relativeTo: this.route});
+          } else {
+            this.errorService.raiseGlobalErrorMessage('Failed to save rule', error);
+          }
         }
       );
     } else {
@@ -157,9 +160,14 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
           this.onCancel();
           this.configService.fileNameRulesUpdated.next();
         },
-
         (error) => {
-          console.log(error);
+          if (error.status === 404) {
+            this.configService.fileNameRulesUpdated.next();
+            this.form.reset();
+            this.router.navigate(['../'], { relativeTo: this.route});
+          } else {
+            this.errorService.raiseGlobalErrorMessage('Failed to save changes', error);
+          }
         }
       );
     }

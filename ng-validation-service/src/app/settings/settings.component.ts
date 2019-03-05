@@ -72,7 +72,7 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
       },
 
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to save changes', error);
       }
     );
   }

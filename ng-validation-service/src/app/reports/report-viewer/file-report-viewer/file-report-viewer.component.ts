@@ -78,9 +78,8 @@ export class FileReportViewerComponent implements OnInit {
           this.checksPage = checksPage;
         },
         (error) => {
-          console.log(error);
+          this.errorService.raiseGlobalErrorMessage('Failed to load checks', error);
         }
-
       );
     }
 
@@ -88,6 +87,9 @@ export class FileReportViewerComponent implements OnInit {
       this.reportsService.getAssertionsStartPage(this.fileReport._embedded['verapdf-result']).subscribe(
         (page: AssertionsPage) => {
           this.assertionsPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load verapdf report', error);
         }
       );
     }
@@ -102,9 +104,8 @@ export class FileReportViewerComponent implements OnInit {
         this.checksPage = checksPage;
       },
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to load checks', error);
       }
-
     );
   }
 
@@ -119,22 +120,30 @@ export class FileReportViewerComponent implements OnInit {
       .subscribe(
         (page: ChecksPage) => {
           this.checksPage = page;
-        });
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load checks', error);
+        }
+      );
   }
 
-      /**
+  /**
   * Load new page as triggered by paginator
   * @param url the url of the page to load
   */
- onLoadAssertionsPage(url: string) {
-  console.log(url);
-  this.reportsService
-    .getAssertionsPage(url)
-    .subscribe(
-      (page: AssertionsPage) => {
-        this.assertionsPage = page;
-      });
-}
+  onLoadAssertionsPage(url: string) {
+    console.log(url);
+    this.reportsService
+      .getAssertionsPage(url)
+      .subscribe(
+        (page: AssertionsPage) => {
+          this.assertionsPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load verapdf result', error);
+        }
+      );
+  }
 
 
 }

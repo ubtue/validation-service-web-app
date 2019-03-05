@@ -45,7 +45,6 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     return Observable.create((observer: Observer<boolean>) => {
-
       if (!this.uploadInProgress) {
         observer.next(true);
         observer.complete();

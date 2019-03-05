@@ -52,10 +52,13 @@ export class BatchViewerComponent implements OnInit {
         this.batchesService.getFilesPage(this.hrefToRel(this.route.parent.snapshot.data['batch'],'files'), this.fileNameFilter).subscribe(
           (page: FilesPage) => {
             this.filesPage = page;
+          },
+          (error) => {
+            this.errorService.raiseGlobalErrorMessage('Search failed', error);
           }
-        )
+        );
       }
-    )
+    );
   }
 
   /**
@@ -66,22 +69,26 @@ export class BatchViewerComponent implements OnInit {
     this.batchesService.getFilesPage(url).subscribe(
       (page: FilesPage) => {
         this.filesPage = page;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Failed to load file list', error);
       }
-    )
+    );
   }
 
   onDeleteFile(file: File) {
-    console.log(file)
     this.batchesService.deleteFile(file).subscribe(
-
       (data) => {
         this.refreshFileList();
       },
-
       (error) => {
-        console.log(error);
+        if (error.status === 404) {
+          this.refreshFileList();
+        } else {
+          this.errorService.raiseGlobalErrorMessage('File could not be deleted', error);
+        }
       }
-    )
+    );
   }
 
   refreshFileList() {
@@ -89,12 +96,9 @@ export class BatchViewerComponent implements OnInit {
       (page: FilesPage) => {
         this.filesPage = page;
       },
-
       (error) => {
-        console.log(error);
+        this.errorService.raiseGlobalErrorMessage('Failed to load file list', error);
       }
-    )
+    );
   }
-
-
 }

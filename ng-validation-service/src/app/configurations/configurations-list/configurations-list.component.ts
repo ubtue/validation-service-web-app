@@ -5,7 +5,7 @@ import { Util } from "src/app/shared/util";
 import { Subscription, Subject } from "rxjs";
 import { ConfigurationsService } from "../configurations.service";
 import { ConfirmationService } from "primeng/api";
-import { ActivatedRoute, Data, Router } from "@angular/router";
+import { ActivatedRoute, Data, Router, NavigationEnd } from "@angular/router";
 import { debounceTime, distinctUntilChanged, retry } from 'rxjs/operators';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { Resolved } from 'src/app/shared/model/resolved.model';
@@ -17,6 +17,9 @@ import { ErrorService } from 'src/app/shared/services/error.service';
   styleUrls: ["./configurations-list.component.css"]
 })
 export class ConfigurationsListComponent implements OnInit, OnDestroy {
+
+  // For refreshing configurations when component already active
+  navigationSubscription;
 
   configurationsPage: ConfigurationsPage;
   messages: Message[];
@@ -68,10 +71,23 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
             }
           );
       });
+
+      // Setup active page reload subscription
+      this.navigationSubscription = this.router.events.subscribe(
+        (e: any) => {
+          // If it is a NavigationEnd event re-initalise the component
+          if (e instanceof NavigationEnd) {
+           this.refreshConfigList();
+           }
+        }
+      );
   }
 
   ngOnDestroy(): void {
     this.searchTextSubscription.unsubscribe();
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
   }
 
   /**

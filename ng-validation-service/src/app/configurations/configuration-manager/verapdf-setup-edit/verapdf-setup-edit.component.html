@@ -42,7 +42,7 @@
       <fieldset class="form-group">
         <legend>Custom PDF Policies</legend>
         <div class="form-group">
-          <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files. Most of these are redundant and should not be used if you choose to enforce PDF/A compliance.</label>
+          <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files. Most of these are redundant if you choose to enforce PDF/A compliance. You might however still want to enable some of them to display more specific error messages in the DSpace submission step.</label>
           <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowOtherFormsOfEncrypt"
             class="form-control form-control-no-border" label="Disallow encryption"
             id="otherEncrypt"></p-checkbox>
@@ -61,8 +61,8 @@
           <p-checkbox name="parsable" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowNonParseableDocuments"
             class="form-control form-control-no-border" label="Disallow non-parseable documents" id="parsable"></p-checkbox>
           -->
-          <small class="text-muted">Please note that encrypted PDFs will cause veraPDF execution to fail. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
-              dspace uploaders will see a corresponding error message (and not just some more generic 'call system staff' message).</small>
+          <small class="text-muted">Please note that encrypted PDFs will cause veraPDF execution to exit with an exception. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
+              DSpace uploaders will see a corresponding error message (and not just some more generic 'call system staff' message).</small>
         </div>
 
       </fieldset>

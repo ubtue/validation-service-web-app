@@ -45,7 +45,7 @@ import { ErrorsComponent } from './errors/errors.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
-    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'always', resolve: {startPage: BatchesResolver}, children: [
+    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'paramsChange', resolve: {startPage: BatchesResolver}, children: [
         {path: '', component: BatchesStartComponent, pathMatch: 'full' },
         {path: 'new', component: BatchDefineComponent },
         {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
@@ -56,7 +56,7 @@ const routes: Routes = [
             {path: 'reports', component: BatchValidatorComponent, resolve: {startPage: ConfigurationsResolver} }
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', resolve: {startPage: ConfigurationsResolver}, children: [
+    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'paramsChange', resolve: {startPage: ConfigurationsResolver}, children: [
         {path: '', component: ConfigurationsListComponent, pathMatch:'full' },
         {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
         resolve: {configuration: ConfigurationResolver}, children: [

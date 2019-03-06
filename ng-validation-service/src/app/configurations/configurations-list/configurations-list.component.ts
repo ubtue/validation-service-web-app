@@ -18,7 +18,7 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class ConfigurationsListComponent implements OnInit, OnDestroy {
 
-  // For refreshing configurations when component already active
+  // Subscription for refreshing configurations when user reclicks button in main nav
   navigationSubscription;
 
   configurationsPage: ConfigurationsPage;
@@ -72,13 +72,15 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
           );
       });
 
-      // Setup active page reload subscription
+      // Reload page if user clicks on component link in the main menu while route is already active
       this.navigationSubscription = this.router.events.subscribe(
         (e: any) => {
           // If it is a NavigationEnd event re-initalise the component
           if (e instanceof NavigationEnd) {
-           this.refreshConfigList();
-           }
+            if ( e.url === ('/configurations')) {
+              this.loadStartPage();
+            }
+          }
         }
       );
   }
@@ -97,6 +99,19 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
   onLoadPage(url: string) {
     this.configurationsService
       .getConfigurationsPage(url)
+      .subscribe(
+        (page: ConfigurationsPage) => {
+          this.configurationsPage = page;
+        },
+        (error) => {
+          this.errorService.raiseGlobalErrorMessage('Failed to load configuration list', error);
+        }
+      );
+  }
+
+  loadStartPage() {
+    this.configurationsService
+      .getConfigurationsStartPage()
       .subscribe(
         (page: ConfigurationsPage) => {
           this.configurationsPage = page;

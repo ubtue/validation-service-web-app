@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { BatchPage } from 'src/app/shared/model/batches.model';
 import { BatchesService } from '../batches.service';
-import { ActivatedRoute, Data, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, Data, Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class BatchesListComponent implements OnInit, OnDestroy {
 
-  // For refreshing configurations when component already active
+  // Subscription for refreshing batches when user reclicks button in main nav
   navigationSubscription;
 
   // the displayed page
@@ -101,12 +101,14 @@ export class BatchesListComponent implements OnInit, OnDestroy {
     );
 
 
-      // Setup active page reload subscription
+      // Reload page if user clicks on component link in the main menu while route is already active
       this.navigationSubscription = this.router.events.subscribe(
         (e: any) => {
           // If it is a NavigationEnd event re-initalise the component
           if (e instanceof NavigationEnd) {
-            this.onLoadPage(Util.getHrefForRel(this.page, 'self'));
+            if ( e.url === ('/batches')) {
+              this.loadStartPage();
+            }
           }
         }
       );
@@ -118,6 +120,17 @@ export class BatchesListComponent implements OnInit, OnDestroy {
    */
   onLoadPage(url: string) {
     this.batchesService.getBatchesPage(url).subscribe(
+      (page: BatchPage) => {
+        this.page = page;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Loading of batches failed', error);
+      }
+    );
+  }
+
+  loadStartPage() {
+    this.batchesService.getBatchesStartPage().subscribe(
       (page: BatchPage) => {
         this.page = page;
       },

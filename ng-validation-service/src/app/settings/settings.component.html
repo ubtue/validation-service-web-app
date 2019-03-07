@@ -8,7 +8,7 @@
         </li>
         <li class="nav-item">
           <span class="nav-link" style="cursor: pointer;" (click)="showTranslations = true" [ngClass]="{'active': showTranslations, 'text-primary': !showTranslations}">
-            VeraPDF User Messages
+            VeraPDF Problem Messages
           </span>
         </li>
       </ul>
@@ -21,7 +21,7 @@
       <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
       <form (ngSubmit)="this.onSave()" #form="ngForm">
         <fieldset [hidden]="this.showTranslations">
-          <legend>Global Settings</legend>
+          <legend>Task Scheduling</legend>
           <div class="form-group">
               <label for="parallelTasks" class="control-label">Parallel Tasks</label>
               <div>
@@ -36,16 +36,21 @@
               </div>
               <small class="text-muted">The number of files to be validated in parallel during batch report validation.</small>
           </div>
-          <div class="form-group">
-              <label for="pageSize" class="control-label">Page Size</label>
-              <div>
-                  <p-spinner size="10" [(ngModel)]="settingsCopy.pageSize" id="pageSize" name="pageSize" [min]="1" [max]="100" required></p-spinner>
-              </div>
-              <small class="text-muted">Size of collection pages delivered by REST API.</small>
-          </div>
+
+        </fieldset>
+        <fieldset [hidden]="this.showTranslations">
+            <legend>REST API</legend>
+            <div class="form-group">
+                <label for="pageSize" class="control-label">Page Size</label>
+                <div>
+                    <p-spinner size="10" [(ngModel)]="settingsCopy.pageSize" id="pageSize" name="pageSize" [min]="1" [max]="100" required></p-spinner>
+                </div>
+                <small class="text-muted">Size of collection pages delivered by REST API.</small>
+            </div>
         </fieldset>
         <fieldset [hidden]="!this.showTranslations">
           <legend class="mb-3"> Message Translations</legend>
+          <p class="mb-4">Here you can define the messages that will be displayed if veraPDF identifies some problems.</p>
           <div class="form-group" [ngClass]="{'mt-5': i!=0}" *ngFor="let item of settingsCopy.messageTranslations | keyvalue; let i = index; trackBy:trackByFn;">
             <h6 class="text-capitalize text-dark font-weight-bold">{{this.resolveHeading(item.key)}}</h6>
              <div class="mt-3" *ngFor="let translation of settingsCopy.messageTranslations[item.key] | keyvalue; let k = index; trackBy:trackByFn2;">

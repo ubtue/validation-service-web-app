@@ -12,6 +12,7 @@ import { Configuration } from 'src/app/shared/model/configuration.model';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { Translations } from 'src/app/shared/model/fits.result-rule.model';
 
 
 @Component({
@@ -56,7 +57,9 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
           this.rule.outcome = 'valid';
           this.rule.type = 'matchesRegularExpression';
           this.creationMode = true;
-          this.rule.errorMessage = '';
+          this.rule.translations = new Translations();
+          this.rule.translations['de'] = '';
+          this.rule.translations['en'] = '';
         }
         this.ruleCopy = <FileNameRule>Util.deepCopy(this.rule);
       }
@@ -125,13 +128,18 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       this.router.navigate(['../'], {relativeTo: this.route});
     }
 
-    this.form.reset({
+    let resetValues = {
       name: this.rule.ruleName,
       regEx: this.rule.value,
       types: this.rule.type,
       outcome: this.rule.outcome,
-      dspace: this.rule.errorMessage
-    });
+    };
+
+    for (let key of Object.keys(this.rule.translations) ) {
+      resetValues[key] = this.rule.translations[key];
+    }
+
+    this.form.reset(resetValues);
   }
 
   onSave() {
@@ -171,17 +179,15 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
         }
       );
     }
-
-
-
-
-
   }
 
-  onDspaceErrorMessageChange(ev) {
-    this.ruleCopy.errorMessage = ev.target.value;
-  }
+  // onDspaceErrorMessageChange(ev) {
+  //   this.ruleCopy.errorMessage = ev.target.value;
+  // }
 
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 
 
 }

@@ -12,5 +12,10 @@ export class FitsResultRule {
 	toolName?: any;
 	outcome: string;
 	outcomeOnMissingFitsRecord: string;
-	errorMessage: string;
+	translations: Translations;
+}
+
+export class Translations {
+	de: string;
+	en: string;
 }

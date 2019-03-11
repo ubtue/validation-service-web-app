@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { FitsResultRule } from 'src/app/shared/model/fits.result-rule.model';
+import { FitsResultRule, Translations } from 'src/app/shared/model/fits.result-rule.model';
 import { SelectItem, ConfirmationService } from 'primeng/api';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ActivatedRoute, Router, Data } from '@angular/router';
@@ -56,10 +56,12 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
           this.rule.outcome = 'valid';
           this.rule.type = 'mimeValid';
           this.rule.mime = "application/pdf"
-          this.rule.errorMessage = '';
           this.creationMode = true;
           this.rule.outcomeOnMissingFitsRecord = 'valid';
           this.rule.toolName = "Jhove";
+          this.rule.translations = new Translations();
+          this.rule.translations['de'] = '';
+          this.rule.translations['en'] = '';
         }
 
         this.ruleCopy = <FitsResultRule>Util.deepCopy(this.rule);
@@ -144,13 +146,19 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
       this.router.navigate(['../'], {relativeTo: this.route});
     }
 
-    this.form.reset({
+    let resetValues = {
       name: this.rule.ruleName,
       mime: this.rule.mime,
       types: this.rule.type,
       outcome: this.rule.outcome,
-      dspace: this.rule.errorMessage
-    });
+    }
+
+
+    for (let key of Object.keys(this.rule.translations) ) {
+      resetValues[key] = this.rule.translations[key];
+    }
+
+    this.form.reset(resetValues);
   }
 
   onSave() {
@@ -193,8 +201,12 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDspaceErrorMessageChange(ev) {
-    this.ruleCopy.errorMessage = ev.target.value;
+  // onDspaceErrorMessageChange(ev) {
+  //   this.ruleCopy.errorMessage = ev.target.value;
+  // }
+
+  trackByFn(index: any, item: any) {
+    return index;
   }
 
 }

@@ -49,7 +49,13 @@ export class BatchViewerComponent implements OnInit {
     this.searchTextSubscription = this.searchTextChanged.pipe(debounceTime(400), distinctUntilChanged()).subscribe(
       (filter) => {
         this.fileNameFilter = filter;
-        this.batchesService.getFilesPage(this.hrefToRel(this.route.parent.snapshot.data['batch'],'files'), this.fileNameFilter).subscribe(
+        const resolvedBatch: Resolved<Batch> = this.route.parent.snapshot.data['batch'];
+
+        if(!resolvedBatch.data) {
+          return;
+        }
+
+        this.batchesService.getFilesPage(this.hrefToRel(resolvedBatch.data, 'files'), this.fileNameFilter).subscribe(
           (page: FilesPage) => {
             this.filesPage = page;
           },

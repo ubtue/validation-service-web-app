@@ -18,7 +18,6 @@ export class FileNameRuleResolver implements Resolve<Resolved<FileNameRule>> {
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FileNameRule>> {
         let id = route.params['id'];
-        console.log(id);
         if (isNaN(+id)) {
             console.log(`Error loading Rule: Id is not a number: ${id} `);
             return of({ data: null, errorMessage: 'Error loading Rule: Id is not a number: ' + id});

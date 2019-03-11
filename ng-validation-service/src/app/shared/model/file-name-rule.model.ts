@@ -9,5 +9,10 @@ export class FileNameRule {
 	type: string;
 	value: string;
 	outcome: string;
-	errorMessage: string;
+	translations: Translations;
+}
+
+export interface Translations {
+	de: string;
+	en: string;
 }

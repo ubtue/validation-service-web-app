@@ -63,7 +63,6 @@ export class ConfigurationsService {
   }
 
   updateConfiguration(configuration: Configuration) {
-    console.log('putting to: ' +  Util.getHrefForRel(configuration, 'self'))
     return this.httpClient.put<Configuration>(Util.getHrefForRel(configuration, 'self'), configuration);
   }
 
@@ -116,7 +115,6 @@ export class ConfigurationsService {
   }
 
   getFitsResultRuleById(id: number) {
-    console.log('getting to: ' + this.fitsResultRulesResourceUrl + '/' + id);
     return this.httpClient.get<FitsResultRule>(this.fitsResultRulesResourceUrl + '/' + id);
   }
 
@@ -133,7 +131,6 @@ export class ConfigurationsService {
   }
 
   updateVerapdfSetup(verapdfSetup: VerapdfSetup) {
-    console.log(verapdfSetup);
     return this.httpClient.put<void>(Util.getHrefForRel(verapdfSetup, 'self'), verapdfSetup);
   }
 

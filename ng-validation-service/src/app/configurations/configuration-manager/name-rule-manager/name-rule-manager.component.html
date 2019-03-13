@@ -33,7 +33,7 @@
       <li class="list-group-item list-group-item-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'].length == 0">
         <div class="text-center">No rules found</div>
       </li>
-      <li class="list-group-item bg-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'] != 0">
+      <li class="list-group-item bg-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'].length != 0">
         <div class="text-center">{{nameRulesPage.totalCount}} Rules</div>
       </li>
 

@@ -19,7 +19,7 @@
         <li class="list-group-item list-group-item-light" *ngIf="this.fitsRulesPage._embedded['fits-result-rules'].length == 0">
           <div class="text-center">No rules found</div>
         </li>
-        <li class="list-group-item bg-light" *ngIf="this.fitsRulesPage._embedded['fits-result-rules'] != 0">
+        <li class="list-group-item bg-light" *ngIf="this.fitsRulesPage._embedded['fits-result-rules'].length != 0">
           <div class="text-center">{{fitsRulesPage.totalCount}} Rules</div>
         </li>
       </ul>

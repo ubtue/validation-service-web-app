@@ -74,6 +74,7 @@ import { SettingsService } from './settings/settings.service';
 import {ToastModule} from 'primeng/toast';
 import { ErrorsComponent } from './errors/errors.component';
 import { ErrorService } from './shared/services/error.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -111,7 +112,8 @@ import { ErrorService } from './shared/services/error.service';
     FileReportsListComponent,
     FileReportViewerComponent,
     SettingsComponent,
-    ErrorsComponent
+    ErrorsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

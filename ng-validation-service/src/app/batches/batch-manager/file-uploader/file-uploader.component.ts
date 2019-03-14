@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { Batch } from 'src/app/shared/model/batch.model';
 import { Message } from 'src/app/shared/model/primeng-message.model';
 import { ActivatedRoute, Data, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Observable, Observer } from 'rxjs';
 import { ConfirmationService } from 'primeng/api';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { FileUpload } from 'primeng/fileupload';
 
 
 @Component({
@@ -18,6 +19,8 @@ import { ErrorService } from 'src/app/shared/services/error.service';
   encapsulation: ViewEncapsulation.None
 })
 export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
+
+  @ViewChild('fileUpload') fileUpload: FileUpload;
 
   hrefToRel = Util.getHrefForRel;
   selectedBatch: Batch;
@@ -71,15 +74,19 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
 
   onBeforeUpload(event) {
     this.uploadInProgress = true;
+    this.fileUpload.showUploadButton = false;
+    this.fileUpload.disabled = true;
   }
 
   onFinishUpload(event) {
     let message = new Message();
     message.severity = 'success';
-    message.summary = 'Upload finished:'
-    message.detail = `${event.files.length} files`
+    message.summary = 'Upload finished:';
+    message.detail = `${event.files.length} files`;
     this.messages.push(message);
     this.uploadInProgress = false;
+    this.fileUpload.showUploadButton = true;
+    this.fileUpload.disabled = true;
   }
 
   onUploadError(event) {
@@ -87,12 +94,17 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
     let message = new Message();
     message.severity = 'warn';
     message.summary = 'Upload of some files failed:';
-    message.detail = `${event.files.length} files`
+    message.detail = `${event.files.length} files`;
     this.messages.push(message);
   }
 
   onClearWithoutFullUpload() {
     this.uploadInProgress = false;
   }
+
+  remove(event, file) {
+    this.fileUpload.remove(event, file);
+  }
+
 
 }

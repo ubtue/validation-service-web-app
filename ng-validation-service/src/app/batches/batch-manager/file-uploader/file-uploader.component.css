@@ -1,8 +1,8 @@
 html div.ui-fileupload-row, html div.ui-fileupload-row div, html div.ui-fileupload-files, html div.ui-fileupload-files div {
-    max-width: 330px ;
-    word-wrap: break-word ;
+    /* max-width: 330px ;
+    word-wrap: break-word ; */
 }
-/* 
+/*
 html div.ui-fileupload-files div, html div.ui-fileupload-row {
     max-width: 80% !important;
     word-wrap: break-word !important;

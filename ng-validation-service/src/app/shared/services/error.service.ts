@@ -21,6 +21,10 @@ export class ErrorService {
       summary = 'Unknown problem';
     }
 
+    if (errorResponse.error && errorResponse.error.message) {
+      description = errorResponse.error.message;
+    }
+
     this.messageService.add({key: 'globalToast', severity: 'error', summary: summary, detail: description});
   }
 

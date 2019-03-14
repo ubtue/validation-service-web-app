@@ -11,7 +11,7 @@
     <ng-template let-file pTemplate='file' pIndex="i">
     <div >
       {{ i}}
-        <p class="text-monospace td-break-all" ><strong> {{file.name}} </strong></p>
+        <div class="text-monospace td-break-all" > {{file.name}} </div>
         <small>Size: <strong> {{file.size | fileSize }} </strong></small>
 
         <div *ngIf="!this.uploadInProgress" class="text-right" style="display: table;">

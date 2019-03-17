@@ -2,3 +2,6 @@
     border: 0px;
   }
   
+ html body .ui-chkbox-label {
+  white-space: pre-wrap
+}

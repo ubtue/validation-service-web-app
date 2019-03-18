@@ -56,7 +56,7 @@ const routes: Routes = [
             {path: 'reports', component: BatchValidatorComponent, resolve: {startPage: ConfigurationsResolver} }
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'paramsChange', resolve: {startPage: ConfigurationsResolver}, children: [
+    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', resolve: {startPage: ConfigurationsResolver}, children: [
         {path: '', component: ConfigurationsListComponent, pathMatch:'full' },
         {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
         resolve: {configuration: ConfigurationResolver}, children: [

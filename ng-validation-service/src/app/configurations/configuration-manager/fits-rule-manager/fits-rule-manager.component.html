@@ -14,6 +14,7 @@
             </a>
           </span>
           <div><small><strong>Test:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
+          <div><small><strong>Mime:</strong> {{this.resolveCamelCase(rule.mime)}} </small></div>
           <div><small><strong>Outcome: </strong> {{this.resolveCamelCase(rule.outcome)}} </small></div>
         </li>
         <li class="list-group-item list-group-item-light" *ngIf="this.fitsRulesPage._embedded['fits-result-rules'].length == 0">

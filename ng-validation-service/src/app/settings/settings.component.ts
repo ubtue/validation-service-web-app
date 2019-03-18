@@ -9,6 +9,7 @@ import { CanDeactivateGuard } from '../shared/services/can-deactivate-guard.serv
 import { Observable, Observer } from 'rxjs';
 import { Resolved } from '../shared/model/resolved.model';
 import { ErrorService } from '../shared/services/error.service';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-settings',
@@ -29,6 +30,13 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
     private router: Router,
     private errorService: ErrorService) { }
 
+  /** Sorting keys in ascending order for keyvalue pipe */
+  valueAscOrder = (akv: KeyValue<string, any>, bkv: KeyValue<string, any>): number => {
+    const a = akv.value.index;
+    const b = bkv.value.index;
+    return a > b ? 1 : (b > a ? -1 : 0);
+  }
+
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
@@ -37,7 +45,6 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
-
         this.settings = resolved.data;
         this.settingsCopy = <ApplicationSettings>Util.deepCopy(this.settings);
       }

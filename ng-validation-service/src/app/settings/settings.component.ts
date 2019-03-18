@@ -90,6 +90,8 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
       parallelTasks: this.settings.parallelTasks,
       threadsPerTask: this.settings.threadsPerTask,
       pageSize: this.settings.pageSize,
+      autoDeleteBatches: this.settings.autoDeleteBatches,
+      autoDeleteHours: this.settings.autoDeleteHours,
     };
 
     // Reset translation messages

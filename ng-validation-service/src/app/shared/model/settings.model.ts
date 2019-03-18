@@ -5,8 +5,10 @@ export interface ApplicationSettings {
 	id: number;
 	parallelTasks: number;
 	threadsPerTask: number;
-  pageSize: number;
-  messageTranslations: MessageTranslation;
+  	pageSize: number;
+	messageTranslations: MessageTranslation;
+	autoDeleteBatches: boolean;
+	autoDeleteHours: number;   
 }
 
 export interface TrailerEncryptTranslation {

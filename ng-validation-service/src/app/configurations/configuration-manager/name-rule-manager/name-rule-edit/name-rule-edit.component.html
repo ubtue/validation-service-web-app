@@ -14,7 +14,7 @@
       <label for="regEx" class="control-label">Regular Expression</label>
       <input type="text" name="regEx" id="regEx" class="form-control" placeholder="Enter regular expression ..."
         aria-describedby="helpId" [(ngModel)]="ruleCopy.value" required #regEx="ngModel" />
-      <small *ngIf="regEx.untouched || regEx.valid" id="helpId" class="text-muted">A regular expression compatible <a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html" target="_blank">java pattern implementation</a> </small>
+      <small *ngIf="regEx.untouched || regEx.valid" id="helpId" class="text-muted">A regular expression with a syntax supported by the java pattern implementation (<a href="https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html" target="_blank">details</a>) </small>
       <span *ngIf="!regEx.valid && regEx.touched" class="text-danger">Please enter a regular expression</span>
     </div>
     <div class="form-group">

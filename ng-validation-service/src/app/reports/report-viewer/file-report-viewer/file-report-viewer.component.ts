@@ -98,7 +98,6 @@ export class FileReportViewerComponent implements OnInit {
 
 
   onChangeCheckTypeFilter() {
-    console.log('called');
     this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks'), this.option).subscribe(
       (checksPage: ChecksPage) => {
         this.checksPage = checksPage;
@@ -114,7 +113,6 @@ export class FileReportViewerComponent implements OnInit {
   * @param url the url of the page to load
   */
   onLoadChecksPage(url: string) {
-    console.log(url)
     this.reportsService
       .getChecksPage(url)
       .subscribe(
@@ -132,7 +130,6 @@ export class FileReportViewerComponent implements OnInit {
   * @param url the url of the page to load
   */
   onLoadAssertionsPage(url: string) {
-    console.log(url);
     this.reportsService
       .getAssertionsPage(url)
       .subscribe(

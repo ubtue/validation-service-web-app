@@ -46,7 +46,6 @@ export class BreadcrumbComponent implements OnInit {
         description: label
     };
 
-    console.log(route.children);
 
     // Remove duplicate route entries
     if (breadcrumbs.length !== 0) {

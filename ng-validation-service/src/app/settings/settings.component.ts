@@ -66,7 +66,6 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
   }
 
   onSave() {
-    console.log(this.settingsCopy);
     this.settingsService.updateSettings(this.settingsCopy).subscribe(
       (result) => {
         this.settings = <ApplicationSettings>Util.deepCopy(this.settingsCopy);

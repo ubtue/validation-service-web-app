@@ -128,7 +128,6 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
   }
 
   deleteReport(report: BatchReport) {
-    console.log(report);
     this.reportsServcie.deleteBatchReport(report).subscribe(
       () => {
         this.refreshData();

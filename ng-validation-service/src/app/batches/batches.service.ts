@@ -60,8 +60,6 @@ export class BatchesService {
     }
 
     refetchFilesPage(page: FilesPage) {
-        console.log('files')
-        console.log(page)
         return this.httpClient.get<FilesPage>(Util.getHrefForRel(page,'self'));
     }
 

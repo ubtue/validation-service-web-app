@@ -79,7 +79,16 @@
     </div>
   </div>
 
-  <h5 class="mb-3 mt-3 text-dark">File Reports</h5>
+
+  <h5 class="mb-1 mt-3 text-dark">File Reports</h5>
+  <div class="row mb-3">
+    <div class="col-md-12">
+
+      <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeOutcomeFilter($event)"></p-dropdown>
+
+    </div>
+  </div>
+
   <app-file-reports-list [fileReportsPage]="this.fileReportsPage" (fileSelected)="onSelectFileReport($event)">
   </app-file-reports-list>
 </div>

@@ -79,8 +79,12 @@ export class ReportsService {
     return this.httpClient.delete(Util.getHrefForRel(order,'self'));
   }
 
-  getFileReportsForBatchReportId(batchRepId: number) {
-    return this.httpClient.get<FileReportsPage>(this.fileReportsResourceUrl + '?batchReportId=' + batchRepId).pipe(
+  getFileReportsForBatchReportId(batchRepId: number, outcomeFilter = '') {
+    let params: HttpParams = new HttpParams();
+    if (outcomeFilter.length > 0) {
+      params = params.append('outcomeFilter', outcomeFilter);
+    }
+    return this.httpClient.get<FileReportsPage>(this.fileReportsResourceUrl + '?batchReportId=' + batchRepId,  { params: params }).pipe(
       tap((page: FileReportsPage) => {
         this.lastFetchedFileReportsPage = page;
       })

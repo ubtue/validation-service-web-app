@@ -84,13 +84,13 @@ const routes: Routes = [
       ] },
     ]},
     {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canDeactivate: [CanDeactivateGuard]},
-    {path: 'error', component: ErrorsComponent}
-    //{ path: '**', redirectTo: 'batches' }
+    {path: 'error', component: ErrorsComponent},
+    { path: '**', redirectTo: 'batches' }
 ];
 
 @NgModule({
     imports:[
-        RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
+        RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', useHash: true})
     ],
     exports: [
         RouterModule

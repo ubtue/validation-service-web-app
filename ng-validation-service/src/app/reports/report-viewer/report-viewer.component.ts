@@ -8,9 +8,10 @@ import { ViewerStateService } from './viewer-state.service';
 import { Subscription } from 'rxjs';
 import { FileReportResolver } from './file-report-resolver.service';
 import { DataService } from 'src/app/shared/services/data.service';
-import { Message } from 'primeng/api';
+import { Message, SelectItem } from 'primeng/api';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { ReportsService } from '../reports.service';
 
 @Component({
   selector: 'app-report-viewer',
@@ -19,7 +20,8 @@ import { ErrorService } from 'src/app/shared/services/error.service';
   providers: [ViewerStateService, FileReportResolver]
 })
 export class ReportViewerComponent implements OnInit, OnDestroy {
-
+  options: SelectItem[];
+  option: string;
   fileReportsPage: FileReportsPage;
   batchReport: BatchReport;
   fileReport: FileReport;
@@ -32,9 +34,19 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
     private router: Router,
     private viewerService: ViewerStateService,
     private changeDetectorRef: ChangeDetectorRef,
+    private reportsService: ReportsService,
     private errorService: ErrorService) { }
 
+
+
+
   ngOnInit() {
+
+    this.options = [
+      {label: 'All', value :'all'},
+      {label: 'Valid', value :'valid'},
+      {label: 'Problem', value :'notValid'}
+    ]
 
     this.route.data.subscribe(
       (data: Data) => {
@@ -87,6 +99,18 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
     this.fileReport = report;
     this.showingFileReport = true;
     this.router.navigate([report.id], {relativeTo: this.route});
+  }
+
+
+  onChangeOutcomeFilter() {
+    this.reportsService.getFileReportsForBatchReportId(this.batchReport.id, this.option).subscribe(
+      (fileReportsPage: FileReportsPage) => {
+        this.fileReportsPage = fileReportsPage;
+      },
+      (error) => {
+        this.errorService.raiseGlobalErrorMessage('Failed to load file reports', error);
+      }
+    );
   }
 
 }

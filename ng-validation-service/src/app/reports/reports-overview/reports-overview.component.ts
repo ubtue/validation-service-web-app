@@ -48,7 +48,7 @@ export class ReportsOverviewComponent implements OnInit, OnDestroy {
       this.refreshInterval = setInterval(
         () => {
           this.refreshData();
-        }, 6500);
+        }, 3500);
     });
 
     this.route.queryParams.subscribe(params => {

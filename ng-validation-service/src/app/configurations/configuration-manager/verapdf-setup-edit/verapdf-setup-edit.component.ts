@@ -88,7 +88,7 @@ export class VerapdfSetupEditComponent implements OnInit {
       checksPerRule: this.veraSetup.failedChecksPerRuleDisplayed,
       fail: this.veraSetup.failOnInvalidPdfA,
       trailerEncrypt: this.veraSetup.pdfPolicies.disallowEncryptInTrailer,
-      otherEncrypt: this.veraSetup.pdfPolicies.disallowOtherFormsOfEncrypt,
+      otherEncrypt: this.veraSetup.pdfPolicies.disallowEncryption,
       fonts: this.veraSetup.pdfPolicies.disallowEmbeddedFonts,
       files: this.veraSetup.pdfPolicies.disallowEmbeddedFiles,
       attachments: this.veraSetup.pdfPolicies.disallowFileAttachments,

@@ -43,7 +43,7 @@
         <legend>Custom PDF Policies</legend>
         <div class="form-group">
           <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files. Most of these are redundant if you choose to enforce PDF/A compliance.</label><!--You might however still want to enable some of them to display more specific error messages in the DSpace submission step-->
-          <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowOtherFormsOfEncrypt"
+          <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryption"
             class="form-control form-control-no-border mb-2" label="Disallow encryption (user password)"
             id="otherEncrypt"></p-checkbox>
 

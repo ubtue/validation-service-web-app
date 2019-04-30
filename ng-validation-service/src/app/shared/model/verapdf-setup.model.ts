@@ -17,7 +17,7 @@ export class VerapdfSetup {
 
 export interface PdfPolicy {
 	disallowEncryptInTrailer: boolean;
-	disallowOtherFormsOfEncrypt: boolean;
+	disallowEncryption: boolean;
 	disallowEmbeddedFonts: boolean;
 	disallowEmbeddedFiles: boolean;
 	disallowFileAttachments: boolean;

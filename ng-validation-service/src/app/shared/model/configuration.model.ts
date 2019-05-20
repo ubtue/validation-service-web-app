@@ -8,10 +8,9 @@ export interface Embedded {
 export class Configuration {
 	_links: Link[];
 	_embedded: Embedded;
-	id: number;
-	decompressArchives: boolean;
+  id: number;
+  publicIdentifier: string;
 	fitsEnabled: boolean;
-	// invalidateOnToolError: boolean;
   description: string;
   creationDate: number;
   fitsTimeOut: number;

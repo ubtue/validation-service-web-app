@@ -1,6 +1,6 @@
 export class BatchValidationOrder {
 
-  configurationId: number;
+  configurationIdentifier: string;
   batchId: number;
 
 }

@@ -74,7 +74,8 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       execMode: this.selectedConfiguration._embedded['verapdf-setup'].executionMode,
       fitsTimeOut: this.selectedConfiguration.fitsTimeOut,
       veraTimeOut: this.selectedConfiguration.veraPdfTimeOut,
-      veraMaxHeap: this.selectedConfiguration.veraPdfMaxHeapSize
+      veraMaxHeap: this.selectedConfiguration.veraPdfMaxHeapSize,
+      publicIdentifier: this.selectedConfiguration.publicIdentifier
       // invalidate: this.selectedConfiguration.invalidateOnToolError
     });
   }

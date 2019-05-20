@@ -10,6 +10,12 @@
             <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description for the configuration</small>
             <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
           </div>
+          <div class="form-group">
+            <label for="publicIdentifier">Unique Public Identifier</label>
+            <input type="text" name="publicIdentifier" id="publicIdentifier" class="form-control" placeholder="Enter a identifier ..." aria-describedby="helpId" [(ngModel)] ='configurationCopy.publicIdentifier' required #publicIdentifier="ngModel">
+            <small *ngIf="publicIdentifier.untouched || publicIdentifier.valid" id="helpId" class="text-muted">A unique identifier for the configuration used by submission clients</small>
+            <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a unique identifier</span>
+          </div>
         </fieldset>
         <fieldset>
           <legend>File Information Tool Set (FITS)</legend>

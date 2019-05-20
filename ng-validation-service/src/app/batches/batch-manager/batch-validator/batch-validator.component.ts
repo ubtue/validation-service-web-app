@@ -75,7 +75,7 @@ export class BatchValidatorComponent implements OnInit {
   onCreateValidationOrder() {
     const validationOrder = new BatchValidationOrder();
     validationOrder.batchId = this.selectedBatch.id;
-    validationOrder.configurationId = this.selecetedConfiguration.id;
+    validationOrder.configurationIdentifier = this.selecetedConfiguration.publicIdentifier;
     this.batchesService.submitValidationOrder(validationOrder).subscribe(
       () => {
         this.router.navigate(["/reports"],{queryParams: {active: true}});

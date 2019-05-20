@@ -21,7 +21,6 @@
     <thead class="  table-light">
       <tr>
         <th>Name</th>
-        <th>Id</th>
         <th>FITS</th>
         <th>VeraPDF Mode</th>
         <th>Creation Date</th>
@@ -33,7 +32,6 @@
         *ngFor="let config of this.configurationsPage._embedded.configurations"
       >
         <td>{{ config.description }}</td>
-        <td>{{ config.id }}</td>
         <td>{{ config.fitsEnabled === true ? "Enabled" : "Disabled" }}</td>
         <td>
           <span class="capitalize">{{
@@ -64,7 +62,7 @@
     >
       <tr>
         <td
-          colspan="6"
+          colspan="5"
           class="text-center"
           *ngIf="this.descriptionFilter.length > 0"
         >
@@ -75,7 +73,7 @@
           }}
         </td>
         <td
-          colspan="6"
+          colspan="5"
           class="text-center"
           *ngIf="this.descriptionFilter.length == 0"
         >

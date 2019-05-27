@@ -2,7 +2,7 @@ import { Link } from "../model/common-interfaces.model";
 import { VerapdfSetup } from "../model/verapdf-setup.model";
 
 export interface Embedded {
-	['verapdf-setup']: VerapdfSetup;
+	'verapdf-setup': VerapdfSetup;
 }
 
 export class Configuration {

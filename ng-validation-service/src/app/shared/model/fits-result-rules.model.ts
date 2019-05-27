@@ -9,5 +9,5 @@ export interface FitsResultRulesPage {
 }
 
 export interface Embedded {
-	['fits-result-rules']: FitsResultRule[];
+	'fits-result-rules': FitsResultRule[];
 }

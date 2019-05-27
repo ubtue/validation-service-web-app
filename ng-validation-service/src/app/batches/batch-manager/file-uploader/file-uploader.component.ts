@@ -28,9 +28,9 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   uploadInProgress: boolean;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private confirmationService: ConfirmationService,
-              private errorService: ErrorService) { }
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.parent.data.subscribe(

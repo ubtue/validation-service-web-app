@@ -16,7 +16,6 @@ export class FitsResultRulesResolver implements Resolve<Resolved<FitsResultRules
     constructor(private configurationsService: ConfigurationsService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FitsResultRulesPage>> {
-
         let resolved: Resolved<Configuration> = route.parent.data['configuration'];
 
         if (!resolved.data) {
@@ -28,13 +27,11 @@ export class FitsResultRulesResolver implements Resolve<Resolved<FitsResultRules
         }
 
         const config: Configuration =  resolved.data;
-
         return this.configurationsService.getFitsResultRulesPage(Util.getHrefForRel(config, 'fits-result-rules'))
             .pipe(
               map(result => ({ data: result })),
                 catchError(
                     (error) => {
-
                       console.log(`Retrieval of fits result rules failed with error: ${error}`);
                       return of({
                         data: null,

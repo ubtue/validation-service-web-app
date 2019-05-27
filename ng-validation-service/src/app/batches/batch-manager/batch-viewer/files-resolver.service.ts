@@ -17,10 +17,7 @@ import { Resolved } from "src/app/shared/model/resolved.model";
 export class FilesResolver implements Resolve<Resolved<FilesPage>> {
   constructor(private batchesService: BatchesService, private router: Router) {}
 
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<Resolved<FilesPage>> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FilesPage>> {
     let resolved: Resolved<Batch> = route.parent.data["batch"];
     if (!resolved.data) {
       return of({
@@ -32,8 +29,7 @@ export class FilesResolver implements Resolve<Resolved<FilesPage>> {
 
     let batch: Batch = resolved.data;
 
-    return this.batchesService
-      .getFilesPage(Util.getHrefForRel(batch, "files"))
+    return this.batchesService.getFilesPage(Util.getHrefForRel(batch, "files"))
       .pipe(
         map(result => ({ data: result })),
         catchError(error => {

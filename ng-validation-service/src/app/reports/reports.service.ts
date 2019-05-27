@@ -17,13 +17,13 @@ import { AssertionsPage } from '../shared/model/verapdf-assertion.model';
 @Injectable()
 export class ReportsService {
 
+  // Resource urls
   batchReportsResourceUrl: string = environment.apiBaseUrl + '/batch-reports';
   fileReportsResourceUrl: string = environment.apiBaseUrl + '/file-reports';
   queueResourceUrl: string = environment.apiBaseUrl + '/queue';
 
   lastFetchedFileReportsPage: FileReportsPage;
   lastFetchedBatchReportsPage: BatchReportsPage;
-
 
   constructor(private httpClient: HttpClient) { }
 

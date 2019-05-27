@@ -9,5 +9,5 @@ export interface BatchReportsPage {
 }
 
 export interface Embedded {
-	 ['batch-reports']: BatchReport[];
+	 'batch-reports': BatchReport[];
 }

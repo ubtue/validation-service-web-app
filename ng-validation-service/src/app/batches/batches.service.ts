@@ -14,8 +14,8 @@ import { BatchValidationOrder } from '../shared/model/batch-validation-order.mod
 @Injectable()
 export class BatchesService {
 
-    batchesResourceUrl: string = environment.apiBaseUrl+'/batches';
-    queueResourceUrl: string = environment.apiBaseUrl+'/queue';
+    batchesResourceUrl: string = environment.apiBaseUrl + '/batches';
+    queueResourceUrl: string = environment.apiBaseUrl + '/queue';
 
     resetBatchListRequested:  Subject<void> = new Subject<void>();
     batchListReloadRequested: Subject<void> = new Subject<void>();
@@ -39,20 +39,17 @@ export class BatchesService {
     }
 
     getBatchesPage(url: string, orderDatesDesc = true, descriptionFilter = '') {
-
         let params: HttpParams = new HttpParams();
         params = params.append('orderBy', orderDatesDesc ? 'DATE_DESC' : 'DATE_ASC' );
 
         if(descriptionFilter.length > 0) {
             params = params.append('descriptionFilter', descriptionFilter );
         }
-
         return this.httpClient.get<BatchPage>(url, {params: params}) ;
     }
 
     getFilesPage(url: string, fileNameFilter = '') {
         let params: HttpParams = new HttpParams();
-
         if(fileNameFilter.length > 0) {
             params = params.append('fileNameFilter', fileNameFilter );
         }

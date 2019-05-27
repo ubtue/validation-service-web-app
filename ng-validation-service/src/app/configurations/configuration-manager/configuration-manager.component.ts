@@ -14,15 +14,14 @@ import { Resolved } from 'src/app/shared/model/resolved.model';
 export class ConfigurationManagerComponent implements OnInit, OnDestroy {
 
   config: Configuration;
+  configSubscription: Subscription;
+
   constructor(private configService: ConfigurationsService,
     private route: ActivatedRoute,
     private router: Router,
     private errorService: ErrorService) { }
 
-  configSubscription: Subscription;
-
   ngOnInit() {
-
     const resolved: Resolved<Configuration> = this.route.snapshot.data['configuration'];
 
     if (!resolved || !resolved.data) {

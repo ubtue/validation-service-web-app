@@ -17,10 +17,9 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class NameRuleManagerComponent implements OnInit, OnDestroy {
 
-
   nameRulesPage: FileNameRulesPage;
-
   nameRuleChangedSubscription: Subscription;
+  resolveCamelCase = Util.unCamelCase;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -28,7 +27,7 @@ export class NameRuleManagerComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private errorService: ErrorService) { }
 
-  resolveCamelCase = Util.unCamelCase;
+
 
   ngOnInit() {
     this.route.data.subscribe(

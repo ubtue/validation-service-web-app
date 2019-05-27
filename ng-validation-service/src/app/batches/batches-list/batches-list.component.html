@@ -8,25 +8,13 @@
       #filter>
   </div>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     <table class="table  table-hover table-striped">
       <thead class="">
         <tr>
-          <th class="text-center">Batch Name
-            <!-- <br>
-                <input type="text" class="" placeholder="Search name ..." (keyup)="this.searchTextChanged.next($event.target.value)" #filter> -->
-          </th>
-          <th class="text-center">Creation Date
-            <!-- <br>
-                <div class="btn-group-sm">
-                  <button type="button" class="btn" [ngClass]="{'btn-primary': this.descendingSortOrder}" (click)="this.onChangeSortOrder(true)">
-                    <i class="fa fa-caret-down"></i></button>
-                  <button type="button" class="btn" [ngClass]="{'btn-primary': !this.descendingSortOrder}" (click)="this.onChangeSortOrder(false)"><i
-                      class="fa fa-caret-up"></i></button> -->
-            <!-- </div> -->
-          </th>
+          <th class="text-center">Batch Name</th>
+          <th class="text-center">Creation Date</th>
           <th></th>
         </tr>
       </thead>
@@ -39,13 +27,6 @@
             <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)"><i class="fa fa-trash"></i> Delete</a>
           </td>
         </tr>
-
-
-        <!-- <tr *ngIf="this.page._embedded.batches.length === 0 ">
-              <td> </td>
-              <td> </td>
-            </tr> -->
-
       </tbody>
       <tfoot class="bg-light text-dark text-monospace font-weight-bold">
         <td class="text-center" colspan="3" *ngIf="this.descriptionFilter.length > 0">
@@ -57,11 +38,7 @@
       </tfoot>
     </table>
   </div>
-
 </div>
-
-
-
 <div>
   <app-paginator [page]="this.page" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>

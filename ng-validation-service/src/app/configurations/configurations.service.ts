@@ -17,14 +17,15 @@ import { VerapdfSetup } from '../shared/model/verapdf-setup.model';
 @Injectable()
 export class ConfigurationsService {
 
+    constructor(private httpClient: HttpClient) { }
+
+  // Resource urls
   configurationsResourceUrl: string = environment.apiBaseUrl + '/configurations';
   fileNameRulesResourceUrl: string = environment.apiBaseUrl + '/file-name-rules';
   fitsResultRulesResourceUrl: string = environment.apiBaseUrl + '/fits-result-rules';
 
-  constructor(private httpClient: HttpClient) { }
-
+  // Subjects
   listItemDeleted: Subject<void> = new Subject<void>();
-  // configUpdated: Subject<void> = new Subject<void>();
   configLoaded: Subject<Configuration> = new Subject<Configuration>();
   fileNameRulesUpdated: Subject<void> = new Subject<void>();
   fitsResultRulesUpdated: Subject<void> = new Subject<void>();

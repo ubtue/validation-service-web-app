@@ -5,10 +5,10 @@ import { VeraPdfResult } from './verapdf-result.model';
 import { File } from './file.model';
 
 export interface Embedded {
-	['fits-results']: FitsResult[];
+	'fits-results': FitsResult[];
 	file: File;
 	checks: Check[];
-	['verapdf-result']?: VeraPdfResult;
+	'verapdf-result'?: VeraPdfResult;
 }
 
 export interface FileReport {

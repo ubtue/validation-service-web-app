@@ -96,7 +96,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     ];
   }
 
-
   ngOnDestroy() {
     this.listItemDeletedSubscription.unsubscribe();
   }
@@ -123,7 +122,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
   }
 
   onCancel() {
-
     if (this.creationMode) {
       this.router.navigate(['../'], {relativeTo: this.route});
     }
@@ -138,7 +136,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     for (let key of Object.keys(this.rule.translations) ) {
       resetValues[key] = this.rule.translations[key];
     }
-
     this.form.reset(resetValues);
   }
 
@@ -180,10 +177,6 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
       );
     }
   }
-
-  // onDspaceErrorMessageChange(ev) {
-  //   this.ruleCopy.errorMessage = ev.target.value;
-  // }
 
   trackByFn(index: any, item: any) {
     return index;

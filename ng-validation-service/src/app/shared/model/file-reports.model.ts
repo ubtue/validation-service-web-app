@@ -9,7 +9,7 @@ import { FileReport } from './file-report.model';
 
 
 export interface Embedded {
-	['file-reports']: FileReport[];
+	'file-reports': FileReport[];
 }
 
 export interface FileReportsPage {

@@ -48,9 +48,7 @@ export class BatchValidatorComponent implements OnInit {
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
         }
-
         this.selectedBatch = resolved.data;
-        // this.messages = [];
       }
     );
   }

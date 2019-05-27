@@ -29,7 +29,6 @@ export class ConfigurationsListComponent implements OnInit, OnDestroy {
   descriptionFilter: string = "";
   listRefreshSubscription: Subscription;
 
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,

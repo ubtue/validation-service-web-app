@@ -11,18 +11,15 @@ import { Subject } from 'rxjs';
 export class PaginatorComponent implements OnInit {
 
   @Output() navigationRequested: Subject<string> = new Subject<string>();
-
   @Input() page: { _links: Link[]};
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-    let x: URLSearchParams = new URLSearchParams();
-  }
+  ngOnInit() {}
 
   getPageNumberOfLink(url: string): number {
-    let x: number = + this.getParamValueFromUrl('page', url);
-    return x+1;
+    const x: number = + this.getParamValueFromUrl('page', url);
+    return x + 1;
   }
 
   getParamValueFromUrl(paramName: string, url:string ): string {
@@ -35,9 +32,10 @@ export class PaginatorComponent implements OnInit {
   }
 
   existsLinkWithRel(rel: string): boolean {
-    for(let link of this.page._links) {
-      if(link.rel === rel)
-        return true
+    for (const link of this.page._links) {
+      if (link.rel === rel) {
+        return true;
+      }
     }
     return false;
   }

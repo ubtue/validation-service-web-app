@@ -27,10 +27,10 @@ export class BatchViewerComponent implements OnInit {
   fileNameFilter: string = "";
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private confirmationService: ConfirmationService,
-              private batchesService: BatchesService,
-              private errorService: ErrorService) { }
+    private router: Router,
+    private confirmationService: ConfirmationService,
+    private batchesService: BatchesService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.data.subscribe(

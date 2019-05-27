@@ -18,11 +18,10 @@ import { KeyValue } from '@angular/common';
 })
 export class SettingsComponent implements OnInit, CanDeactivateGuard {
 
+  @ViewChild('form') form: NgForm;
   settings: ApplicationSettings;
   settingsCopy: ApplicationSettings;
   showTranslations = false;
-
-  @ViewChild('form') form: NgForm;
 
   constructor(private route: ActivatedRoute,
     private settingsService: SettingsService,

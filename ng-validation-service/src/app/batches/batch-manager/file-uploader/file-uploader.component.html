@@ -7,24 +7,18 @@
     (onSelect)="onSelectFiles()"
     (onError)="onUploadError($event)"
     (onClear)="onClearWithoutFullUpload()">
-
     <ng-template let-file pTemplate='file' pIndex="i">
     <div >
       {{ i}}
         <div class="text-monospace td-break-all" > {{file.name}} </div>
         <small>Size: <strong> {{file.size | fileSize }} </strong></small>
-
         <div *ngIf="!this.uploadInProgress" class="text-right" style="display: table;">
           <button class="ui-button-secondary mt-2" icon="fa fa-close" pButton type="button"  label="Remove" (click)="remove($event, file)" ></button></div>
-
         <div>
           <hr >
         </div>
     </div>
-
    </ng-template>
-
-
   </p-fileUpload>
   <p-confirmDialog header="Upload in progress ..." icon="fa fa-warning" [acceptVisible]="true" [acceptLabel]="'Leave'" [rejectLabel]="'Wait'"> </p-confirmDialog>
 

@@ -50,7 +50,6 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
 
         if (resolved) {
           this.rule = resolved.data;
-
         } else {
           this.rule = new FitsResultRule();
           this.rule.outcome = 'valid';
@@ -153,7 +152,6 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
       outcome: this.rule.outcome,
     }
 
-
     for (let key of Object.keys(this.rule.translations) ) {
       resetValues[key] = this.rule.translations[key];
     }
@@ -200,10 +198,6 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
       );
     }
   }
-
-  // onDspaceErrorMessageChange(ev) {
-  //   this.ruleCopy.errorMessage = ev.target.value;
-  // }
 
   trackByFn(index: any, item: any) {
     return index;

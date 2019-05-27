@@ -3,7 +3,7 @@ import { BatchReport } from "../model/batch-report.model";
 
 
 export interface Embedded {
-	['batch-reports']: BatchReport[];
+	'batch-reports': BatchReport[];
 }
 
 export class Batch {

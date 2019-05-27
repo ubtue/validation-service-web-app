@@ -1,7 +1,6 @@
 <div class="row">
   <div class="col-md-12 text-center">
       <h2>Oooops...</h2>
-
       <ng-container *ngIf="this.errorService.resolved; else unknownErrorTemplate">
          <h4>{{ this.errorService.resolved.errorMessage }}</h4>
          <h4 *ngIf="this.errorService.resolved.errorStatusCode">
@@ -12,7 +11,6 @@
               {{ 'HTTP ' + this.errorService.resolved.errorStatusCode }}
            </ng-template>
           </h4>
-
       </ng-container>
       <ng-template #unknownErrorTemplate>
           <h3> Unknown Error </h3>

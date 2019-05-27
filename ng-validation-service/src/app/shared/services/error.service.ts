@@ -10,7 +10,7 @@ export class ErrorService {
   constructor(private messageService: MessageService) {}
 
   raiseGlobalErrorMessage(description: string, errorResponse: HttpErrorResponse) {
-    let summary;
+    let summary: string;
     if (errorResponse) {
       if (!errorResponse.status || errorResponse.status === 0) {
         summary = 'Failure to connect';

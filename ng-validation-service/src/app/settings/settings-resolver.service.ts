@@ -12,7 +12,6 @@ export class ApplicationSettingsResolver implements Resolve<Resolved<Application
     constructor(private settingsService: SettingsService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<ApplicationSettings>> {
-
         return this.settingsService.getSettings()
             .pipe(
               map(result => ({ data: result })),

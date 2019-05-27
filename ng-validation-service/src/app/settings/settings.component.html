@@ -36,10 +36,7 @@
               </div>
               <small class="text-muted">The number of files to be validated in parallel during batch report validation.</small>
           </div>
-
         </fieldset>
-
-
         <fieldset [hidden]="this.showTranslations">
           <legend>Clean Up Task</legend>
           <div class="form-group">
@@ -55,7 +52,6 @@
             <small class="text-muted">Determines the amount of hours to wait after initial batch creation until the batch and all associated reports will be automatically deleted.</small>
           </div>
         </fieldset>
-
         <fieldset [hidden]="this.showTranslations">
             <legend>REST API</legend>
             <div class="form-group">
@@ -67,8 +63,6 @@
             </div>
         </fieldset>
 
-
-
         <fieldset [hidden]="!this.showTranslations">
           <legend class="mb-3">Error Message Translations</legend>
           <p class="mb-4">Here you can define the messages that will be displayed if veraPDF identifies some problems.</p>
@@ -79,11 +73,7 @@
               <input type="text" [(name)]="item.key + translation.key " [(id)]="item.key + '-' + k " class="form-control" placeholder="" aria-describedby="helpId" [(ngModel)]="settingsCopy.messageTranslations[item.key][translation.key]" required #name="ngModel">
               <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a value</span>
             </div>
-
-
-
           </div>
-
       </fieldset>
 
         <div class="form-group" *ngIf="!form.pristine">

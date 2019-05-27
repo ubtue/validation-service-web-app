@@ -15,9 +15,9 @@ export class BatchInfoComponent implements OnInit {
   selectedBatch: Batch;
 
   constructor(private route: ActivatedRoute,
-              private batchesService: BatchesService,
-              private router: Router,
-              private errorService: ErrorService) { }
+    private batchesService: BatchesService,
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.parent.data.subscribe(

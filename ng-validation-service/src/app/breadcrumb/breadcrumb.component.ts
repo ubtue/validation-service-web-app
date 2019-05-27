@@ -29,8 +29,7 @@ export class BreadcrumbComponent implements OnInit {
     });
   }
 
-  buildCrumbPath(route: ActivatedRoute, url: string = '',
-                breadcrumbs: Array<BreadCrumbItem> = []): Array<BreadCrumbItem> {
+  buildCrumbPath(route: ActivatedRoute, url: string = '', breadcrumbs: Array<BreadCrumbItem> = []): Array<BreadCrumbItem> {
     // If no routeConfig then we are on the root path
     if (!route.routeConfig) {
       return this.buildCrumbPath(route.firstChild, '/', []);

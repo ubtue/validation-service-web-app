@@ -1,6 +1,5 @@
 <div class="row mt-1">
   <div class="col-md-12">
-    <!-- <h4>Completed Reports</h4> -->
     <div class="table-responsive-sm">
       <table class="table table-striped ">
         <thead class="">
@@ -9,13 +8,10 @@
             <th>File</th>
             <th>FITS Execution</th>
             <th>VeraPDF Execution</th>
-
-            <!-- <th>Files total</th> -->
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <!-- [ngClass]="{'text-danger' : report.validationOutcome !== 'valid', 'text-success' :  report.validationOutcome === 'valid'}" -->
           <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
             <td [ngClass]="{'bg-danger' : report.validationOutcome !== 'valid', 'bg-success' :  report.validationOutcome === 'valid'}"
               class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">
@@ -25,10 +21,6 @@
               }} </td>
             <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
             <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
-
-            <!-- <td [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid'}"> {{ this.resolveCamelCase(report.summary.validationOutcome) }} </td>
-          <td> {{ report.summary.problematicFiles }} </td> -->
-
             <td class="text-center text-light"><a class="btn btn-secondary text-nowrap" (click)="fileSelected.next(report)"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Details</a>
             </td>
           </tr>
@@ -48,7 +40,6 @@
     </div>
   </div>
 </div>
-
 <div>
   <app-paginator [page]="this.fileReportsPage" (navigationRequested)="onLoadFileReportsPage($event)"></app-paginator>
 </div>

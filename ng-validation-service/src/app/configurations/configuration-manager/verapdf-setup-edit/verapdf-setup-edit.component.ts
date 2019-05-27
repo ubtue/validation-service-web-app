@@ -18,20 +18,17 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 export class VerapdfSetupEditComponent implements OnInit {
 
   @ViewChild('form') form: NgForm;
-
   veraSetup: VerapdfSetup;
   veraSetupCopy: VerapdfSetup;
   validationProfiles: SelectItem[];
 
-
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private configService: ConfigurationsService,
-              private confirmationService: ConfirmationService,
-              private errorService: ErrorService) { }
+    private router: Router,
+    private configService: ConfigurationsService,
+    private confirmationService: ConfirmationService,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
-
     this.route.parent.data.subscribe(
       (data: Data) => {
         let resolved: Resolved<Configuration> = data['configuration'];
@@ -54,7 +51,7 @@ export class VerapdfSetupEditComponent implements OnInit {
       {label: 'PDF/A-3a', value: '3a'},
       {label: 'PDF/A-3b', value: '3b'},
       {label: 'PDF/A-3u', value: '3u'},
-      {label: 'PDF/A-4', value: '4'},
+      // {label: 'PDF/A-4', value: '4'},
     ];
 
   }

@@ -14,7 +14,7 @@ export class BatchesResolver implements Resolve<Resolved<BatchPage>> {
     constructor(private batchesService: BatchesService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<BatchPage>> {
-        return this.batchesService.getBatchesStartPage()
+      return this.batchesService.getBatchesStartPage()
         .pipe(
           map(startPage => ({ data: startPage })),
           catchError(

@@ -6,7 +6,6 @@
       </div>
       <ul class="list-group mb-3 mt-3">
         <li [routerLink]="rule.id" routerLinkActive="list-group-item-primary" class="list-group-item list-group-item-action rule-item-text" *ngFor="let rule of this.fitsRulesPage._embedded['fits-result-rules']">
-
           <div style="max-width: 90%;"><strong>{{rule.ruleName}}</strong></div>
           <span class="float-right">
             <a class="btn btn-link btn-sm btn-danger" (click)="onDeleteRule(rule)" style="color:white">

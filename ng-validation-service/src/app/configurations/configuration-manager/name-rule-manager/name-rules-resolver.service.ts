@@ -28,7 +28,6 @@ export class FileNameRulesResolver implements Resolve<Resolved<FileNameRulesPage
       }
 
       let config: Configuration =  resolved.data;
-
       return this.configurationsService.getFileNameRulesPage(Util.getHrefForRel(config,'file-name-rules'))
         .pipe(
           map(result => ({ data: result })),

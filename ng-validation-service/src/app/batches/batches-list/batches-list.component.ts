@@ -17,10 +17,6 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class BatchesListComponent implements OnInit, OnDestroy {
 
-  // Subscription for refreshing batches when user reclicks button in main nav
-  navigationSubscription;
-
-  // the displayed page
   page: BatchPage;
 
   // subscriptions and subjects
@@ -28,6 +24,8 @@ export class BatchesListComponent implements OnInit, OnDestroy {
   listReloadRequestedSubscription: Subscription;
   resetListRequestedSubscription: Subscription;
   searchTextChanged = new Subject<string>();
+  // subscription for refreshing batches when user reclicks button in main nav
+  navigationSubscription;
 
   // ordering and filtering
   descendingSortOrder: boolean = true;
@@ -36,9 +34,9 @@ export class BatchesListComponent implements OnInit, OnDestroy {
   @ViewChild('filter') filterInput: ElementRef;
 
   constructor(private batchesService: BatchesService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private errorService: ErrorService) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     // fetch result from resolver
@@ -99,7 +97,6 @@ export class BatchesListComponent implements OnInit, OnDestroy {
         );
       }
     );
-
 
       // Reload page if user clicks on component link in the main menu while route is already active
       this.navigationSubscription = this.router.events.subscribe(

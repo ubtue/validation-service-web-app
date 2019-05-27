@@ -7,19 +7,10 @@ import { FileReportsPage } from '../model/file-reports.model';
 @Injectable()
 export class DataService implements OnInit {
 
-
-    lastShownFileReportsPage: FileReportsPage
-
+    lastShownFileReportsPage: FileReportsPage;
 
     constructor(private httpClient: HttpClient) {}
 
+    ngOnInit() {}
 
-    ngOnInit() {
-
-    }
-
-
-
-
-
-} 
+}

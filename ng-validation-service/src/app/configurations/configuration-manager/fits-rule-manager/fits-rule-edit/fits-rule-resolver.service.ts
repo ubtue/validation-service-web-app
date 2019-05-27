@@ -18,23 +18,23 @@ export class FitsResultRuleResolver implements Resolve<Resolved<FitsResultRule>>
     constructor(private configurationsService: ConfigurationsService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Resolved<FitsResultRule>> {
-        let id = route.params['id'];
-        if (isNaN(+id)) {
-          console.log(`Error loading rule: Id is not a number: ${id} `);
-          return of({ data: null, errorMessage: 'Error loading rule: Id is not a number: ' + id});
+      let id = route.params['id'];
+      if (isNaN(+id)) {
+        console.log(`Error loading rule: Id is not a number: ${id} `);
+        return of({ data: null, errorMessage: 'Error loading rule: Id is not a number: ' + id});
       }
 
-        return this.configurationsService.getFitsResultRuleById(+id)
-            .pipe(
-              map(result => ({ data: result })),
-                catchError(
-                    (error) => {
-                      console.log(`Loading of fits result rule failed with error: ${error}`);
-                      return of({ data: null, errorMessage: 'Loading of fits result rule failed', errorStatusCode: error.status });
-                    }
-                )
-            );
-
+      return this.configurationsService.getFitsResultRuleById(+id)
+        .pipe(
+          map(result => ({ data: result })),
+          catchError(
+            (error) => {
+              console.log(`Loading of fits result rule failed with error: ${error}`);
+              return of({ data: null, errorMessage: 'Loading of fits result rule failed', errorStatusCode: error.status });
+            }
+          )
+        );
     }
+
 
 }

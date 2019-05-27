@@ -20,12 +20,8 @@
     </nav>
   </div>
 </div>
-
 <p-messages [(value)]="this.errorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
-
-
 <div [hidden]="this.route.children.length === 1" *ngIf="this.batchReport.summary">
-  <!-- <h3 class="text-dark">Batch Report</h3> -->
   <div class="row mt-3">
     <div class="col-md-12">
       <h5 class="text-dark">Summary</h5>
@@ -57,8 +53,6 @@
                     <ng-template #elseTemplate>
                         <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
                     </ng-template>
-
-
                   </td>
                   <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
                   <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
@@ -70,27 +64,20 @@
                     <ng-template #noSummary>
                         {{ '0' }}
                     </ng-template>
-
-                    </td>
+                  </td>
                 </tr>
               </tbody>
             </table>
       </div>
     </div>
   </div>
-
-
   <h5 class="mb-1 mt-3 text-dark">File Reports</h5>
   <div class="row mb-3">
     <div class="col-md-12">
-
       <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeOutcomeFilter($event)"></p-dropdown>
-
     </div>
   </div>
-
   <app-file-reports-list [fileReportsPage]="this.fileReportsPage" (fileSelected)="onSelectFileReport($event)">
   </app-file-reports-list>
 </div>
-
 <router-outlet></router-outlet>

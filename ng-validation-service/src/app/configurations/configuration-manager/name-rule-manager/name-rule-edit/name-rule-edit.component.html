@@ -22,40 +22,27 @@
       <div>
         <p-dropdown [options]="this.ruleTypes" [(ngModel)]="this.ruleCopy.type" id="types" name="types"></p-dropdown>
       </div>
-      <!-- <small class="text-muted">If active, FITS will be used to identify and validate file formats. Runs before veraPDF is executed.</small> -->
     </div>
     <div class="form-group">
       <label for="outcome" class="control-label">Outcome</label>
       <div>
         <p-dropdown [options]="this.outcomeTypes" [(ngModel)]="this.ruleCopy.outcome" id="outcome" name="outcome"></p-dropdown>
       </div>
-      <!-- <small class="text-muted">Validation report will list a file as invalid, if veraPDF or FITS fail with an exception while processing.</small> -->
     </div>
   </fieldset>
   <fieldset class="form-group">
     <legend>Error Message Translations</legend>
     <div class="form-group">
-      <!-- <label for="dspace" class="control-label">Error Message</label> -->
       <p>Error messages that will be shown to DSpace user</p>
       <div class="form-group" [ngClass]="{'mt-2': i!=0}" *ngFor="let item of ruleCopy.translations | keyvalue; let k = index; trackBy:trackByFn">
-        <!-- <h6 class="text-capitalize text-dark font-weight-bold">{{this.resolveHeading(item.key)}}</h6> -->
-         <div class="mt-3">
+        <div class="mt-3">
           <label class="text-uppercase text-info" [for]="item.key">{{item.key}}</label>
           <input type="text" [(name)]="item.key" [(id)]="item.key" class="form-control" placeholder="" aria-describedby="helpId" [(ngModel)]="ruleCopy.translations[item.key]" required #name="ngModel">
           <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a value</span>
         </div>
       </div>
-      <!-- <textarea class="form-control" name="dspace" id="dspace" (change)="onDspaceErrorMessageChange($event)" required
-        [(ngModel)]="ruleCopy.errorMessage" #dspace="ngModel">{{this.ruleCopy.errorMessage}}</textarea>
-      <ng-container *ngIf="!dspace.valid && dspace.touched; else elseTemplate">
-        <span *ngIf="!dspace.valid && dspace.touched" class="text-danger">Please enter a message</span>
-      </ng-container>
-      <ng-template #elseTemplate>
-        <small class="text-muted">Will be shown to user in DSpace.</small>
-      </ng-template> -->
     </div>
   </fieldset>
-
   <div class="form-group" *ngIf="!form.pristine || creationMode">
     <div class="row mt-3">
       <div class=" col-md-6 offset-md-3 text-center ">

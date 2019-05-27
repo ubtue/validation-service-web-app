@@ -19,8 +19,7 @@ export class BatchDefineComponent implements OnInit {
     private route: ActivatedRoute,
     private errorService: ErrorService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   OnSave() {
     const batch: Batch = new Batch();

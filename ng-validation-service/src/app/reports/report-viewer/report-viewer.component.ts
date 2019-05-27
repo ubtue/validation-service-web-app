@@ -20,6 +20,7 @@ import { ReportsService } from '../reports.service';
   providers: [ViewerStateService, FileReportResolver]
 })
 export class ReportViewerComponent implements OnInit, OnDestroy {
+
   options: SelectItem[];
   option: string;
   fileReportsPage: FileReportsPage;
@@ -36,9 +37,6 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private reportsService: ReportsService,
     private errorService: ErrorService) { }
-
-
-
 
   ngOnInit() {
 

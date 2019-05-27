@@ -17,21 +17,17 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class FileReportViewerComponent implements OnInit {
 
-  resolveCamelCase = Util.unCamelCase;
   fileReport: FileReport;
-  errorMessages: Message[] = [];
-  verapdfErrorMessages: Message[] = [];
-
-  displayIndex = 0;
-
-  options: SelectItem[];
-  option: string;
-
-  failedCount = 0;
-
   checksPage: ChecksPage;
   assertionsPage: AssertionsPage;
+  errorMessages: Message[] = [];
+  verapdfErrorMessages: Message[] = [];
+  options: SelectItem[];
+  option: string;
   assertionIndex = 0;
+  displayIndex = 0;
+  failedCount = 0;
+  resolveCamelCase = Util.unCamelCase;
 
   constructor(private reportsService: ReportsService,
     private route: ActivatedRoute,
@@ -70,7 +66,7 @@ export class FileReportViewerComponent implements OnInit {
       {label: 'Fits Result Checks (' + this.fileReport.failedFitsChecks + ')', value :'fits', disabled: this.fileReport.failedFitsChecks == 0},
       {label: 'VeraPDF Policy (' + (this.fileReport._embedded['verapdf-result'] ? this.fileReport._embedded['verapdf-result'].failedPolicyChecks : 0) + ')',
         value :'verapdf', disabled: !this.fileReport._embedded['verapdf-result'] || this.fileReport._embedded['verapdf-result'] && this.fileReport._embedded['verapdf-result'].failedPolicyChecks == 0}
-    ]
+    ];
 
     if(this.failedCount > 0) {
       this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks')).subscribe(
@@ -95,7 +91,6 @@ export class FileReportViewerComponent implements OnInit {
     }
 
   }
-
 
   onChangeCheckTypeFilter() {
     this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks'), this.option).subscribe(

@@ -10,17 +10,18 @@ import { environment } from '../../environments/environment';
 import { Util } from '../shared/util';
 import { File } from '../shared/model/file.model';
 import { BatchValidationOrder } from '../shared/model/batch-validation-order.model';
+import { AppConfigService } from '../shared/services/app-config.service';
 
 @Injectable()
 export class BatchesService {
 
-    batchesResourceUrl: string = environment.apiBaseUrl + '/batches';
-    queueResourceUrl: string = environment.apiBaseUrl + '/queue';
+    batchesResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/batches';
+    queueResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/queue';
 
     resetBatchListRequested:  Subject<void> = new Subject<void>();
     batchListReloadRequested: Subject<void> = new Subject<void>();
 
-    constructor(private dataService: DataService, private httpClient: HttpClient){};
+    constructor(private dataService: DataService, private httpClient: HttpClient, private configService: AppConfigService){};
 
     createBatch(batch: Batch) {
         return this.httpClient.post<Batch>(this.batchesResourceUrl, batch);

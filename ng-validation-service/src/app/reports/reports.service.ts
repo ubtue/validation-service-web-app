@@ -12,20 +12,21 @@ import { FileReport } from '../shared/model/file-report.model';
 import { Util } from '../shared/util';
 import { VeraPdfResult } from '../shared/model/verapdf-result.model';
 import { AssertionsPage } from '../shared/model/verapdf-assertion.model';
+import { AppConfigService } from '../shared/services/app-config.service';
 
 
 @Injectable()
 export class ReportsService {
 
   // Resource urls
-  batchReportsResourceUrl: string = environment.apiBaseUrl + '/batch-reports';
-  fileReportsResourceUrl: string = environment.apiBaseUrl + '/file-reports';
-  queueResourceUrl: string = environment.apiBaseUrl + '/queue';
+  batchReportsResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/batch-reports';
+  fileReportsResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/file-reports';
+  queueResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/queue';
 
   lastFetchedFileReportsPage: FileReportsPage;
   lastFetchedBatchReportsPage: BatchReportsPage;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,  private configService: AppConfigService) { }
 
   getReportsStartPage() {
     return this.getReportsPage(this.batchReportsResourceUrl).pipe(

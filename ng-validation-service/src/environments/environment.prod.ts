@@ -1,6 +1,5 @@
-import settings from '../settings.json';
+import settings from '../assets/settings.json';
 
 export const environment = {
-  production: true,
-  apiBaseUrl: settings.apiBaseUrl
+  production: true
 };

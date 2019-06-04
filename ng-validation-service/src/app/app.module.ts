@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { BatchesComponent } from './batches/batches.component';
@@ -75,8 +75,14 @@ import {ToastModule} from 'primeng/toast';
 import { ErrorsComponent } from './errors/errors.component';
 import { ErrorService } from './shared/services/error.service';
 import { FooterComponent } from './footer/footer.component';
+import { AppConfigService } from './shared/services/app-config.service';
 
 
+const appInitializerFn = (appConfig: AppConfigService) => {
+  return () => {
+    return appConfig.loadAppConfig();
+  };
+};
 
 @NgModule({
   declarations: [
@@ -161,7 +167,14 @@ import { FooterComponent } from './footer/footer.component';
     ApplicationSettingsResolver,
     SettingsService,
     MessageService,
-    ErrorService
+    ErrorService,
+    AppConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFn,
+      multi: true,
+      deps: [AppConfigService]
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

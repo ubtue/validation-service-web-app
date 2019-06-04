@@ -13,16 +13,17 @@ import { FileNameRule } from '../shared/model/file-name-rule.model';
 import { FitsResultRulesPage } from '../shared/model/fits-result-rules.model';
 import { FitsResultRule } from '../shared/model/fits.result-rule.model';
 import { VerapdfSetup } from '../shared/model/verapdf-setup.model';
+import { AppConfigService } from '../shared/services/app-config.service';
 
 @Injectable()
 export class ConfigurationsService {
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient,  private configService: AppConfigService) { }
 
   // Resource urls
-  configurationsResourceUrl: string = environment.apiBaseUrl + '/configurations';
-  fileNameRulesResourceUrl: string = environment.apiBaseUrl + '/file-name-rules';
-  fitsResultRulesResourceUrl: string = environment.apiBaseUrl + '/fits-result-rules';
+  configurationsResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/configurations';
+  fileNameRulesResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/file-name-rules';
+  fitsResultRulesResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/fits-result-rules';
 
   // Subjects
   listItemDeleted: Subject<void> = new Subject<void>();

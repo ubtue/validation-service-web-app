@@ -12,7 +12,7 @@ export class AppConfigService {
 
 
   loadAppConfig() {
-    let settingsUrl = environment.production ? '/validationservice/assets/settings.json' : '/assets/settings.json';
+    let settingsUrl = './assets/settings.json';
 
     return this.http.get(settingsUrl)
       .toPromise()

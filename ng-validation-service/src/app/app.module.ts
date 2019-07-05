@@ -76,6 +76,7 @@ import { ErrorsComponent } from './errors/errors.component';
 import { ErrorService } from './shared/services/error.service';
 import { FooterComponent } from './footer/footer.component';
 import { AppConfigService } from './shared/services/app-config.service';
+import { AuthenticationService } from './shared/services/authentication.service';
 
 
 const appInitializerFn = (appConfig: AppConfigService) => {
@@ -169,6 +170,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     MessageService,
     ErrorService,
     AppConfigService,
+    AuthenticationService
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFn,

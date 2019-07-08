@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { tap, mapTo, catchError, map } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { AppConfigService } from './app-config.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthenticationService {
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private activeLogin: string;
@@ -12,15 +12,21 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private configService: AppConfigService, private tokenHelperService: JwtHelperService) {}
 
-  login(user: { userName: string, password: string }): Observable<boolean> {
-    return this.http.post(this.loginUrl, {login: user.userName, password: user.password}, { responseType: 'text' })
+  login(userName: string, password: string): Observable<boolean> {
+    const payload = new HttpParams()
+    .set('login', userName)
+    .set('password', password);
+
+    return this.http.post<any>(this.loginUrl, payload, {observe: 'response' })
     .pipe(
       map(
-        (token) => {
-          this.storeJwtToken(token);
+        (response) => {
+          this.storeJwtToken(response.headers.get('Authorization'));
+          console.log('ok?:' + this.isAuthenticated());
           return true;
         },
         (error) => {
+          console.log(error);
           this.removeToken();
           return false;
         }
@@ -33,12 +39,15 @@ export class AuthenticationService {
   }
 
   isAuthenticated() {
+    console.log(this.getJwtToken());
     const token = this.getJwtToken();
-    if (token) {
-      return !this.tokenHelperService.isTokenExpired(token);
-    } else {
-      return false;
+    if (token && !this.tokenHelperService.isTokenExpired(token)){
+      return true;
     }
+
+
+    return false;
+
   }
 
   getJwtToken() {
@@ -54,7 +63,7 @@ export class AuthenticationService {
   private removeToken() {
     localStorage.removeItem(this.JWT_TOKEN);
   }
-}
+
 
 
 

@@ -6,7 +6,7 @@ import { BatchesComponent } from './batches/batches.component';
 import { RoutesModule } from './app-routes.module';
 import { HeaderComponent } from './header/header.component';
 import { DataService } from './shared/services/data.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { BatchesService } from './batches/batches.service';
@@ -77,6 +77,10 @@ import { ErrorService } from './shared/services/error.service';
 import { FooterComponent } from './footer/footer.component';
 import { AppConfigService } from './shared/services/app-config.service';
 import { AuthenticationService } from './shared/services/authentication.service';
+import { LoginComponent } from './login/login.component';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { TokenInterceptor } from './shared/services/token-interceptor';
 
 
 const appInitializerFn = (appConfig: AppConfigService) => {
@@ -120,7 +124,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     FileReportViewerComponent,
     SettingsComponent,
     ErrorsComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -141,8 +146,15 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     CheckboxModule,
     DynamicDialogModule,
     PanelModule,
-    ToastModule
-
+    ToastModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+        return localStorage.getItem('JWT_TOKEN');
+        },
+        whitelistedDomains: ['localhost:8989']
+     }
+    })
   ],
   providers: [
     DataService,
@@ -152,6 +164,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     BatchResolver,
     FilesResolver,
     CanDeactivateGuard,
+    AuthGuard,
     ConfirmationService,
     ConfigurationsResolver,
     ConfigurationResolver,
@@ -170,13 +183,20 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     MessageService,
     ErrorService,
     AppConfigService,
-    AuthenticationService
+    AuthenticationService,
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFn,
       multi: true,
       deps: [AppConfigService]
     }
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [ConfigSelectorComponent]

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 
 @Injectable()
 export class AppConfigService {
   private appConfig;
-
-  constructor(private http: HttpClient) { }
-
+  private http: HttpClient;
+  constructor(private handler: HttpBackend) {
+    this.http = new HttpClient(handler);
+ }
 
 
   loadAppConfig() {
@@ -20,6 +21,8 @@ export class AppConfigService {
         this.appConfig = data;
       });
   }
+
+
 
   getConfig() {
     return this.appConfig;

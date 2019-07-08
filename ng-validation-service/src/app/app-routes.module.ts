@@ -42,10 +42,15 @@ import { FileReportResolver } from './reports/report-viewer/file-report-resolver
 import { SettingsComponent } from './settings/settings.component';
 import { ApplicationSettingsResolver } from './settings/settings-resolver.service';
 import { ErrorsComponent } from './errors/errors.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './shared/services/auth-guard.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
-    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'paramsChange', resolve: {startPage: BatchesResolver}, children: [
+    { path: 'login', children: [
+        { path: '', component: LoginComponent, pathMatch: 'full'}
+    ]},
+    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'paramsChange', canActivate:[AuthGuard], resolve: {startPage: BatchesResolver}, children: [
         {path: '', component: BatchesStartComponent, pathMatch: 'full' },
         {path: 'new', component: BatchDefineComponent },
         {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
@@ -56,7 +61,7 @@ const routes: Routes = [
             {path: 'reports', component: BatchValidatorComponent, resolve: {startPage: ConfigurationsResolver} }
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', resolve: {startPage: ConfigurationsResolver}, children: [
+    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', canActivate:[AuthGuard], resolve: {startPage: ConfigurationsResolver}, children: [
         {path: '', component: ConfigurationsListComponent, pathMatch:'full' },
         {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
         resolve: {configuration: ConfigurationResolver}, children: [
@@ -77,13 +82,13 @@ const routes: Routes = [
           {path: 'verapdf', component: VerapdfSetupEditComponent, canDeactivate:[CanDeactivateGuard] },
       ]}
     ]},
-    {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', children: [
+    {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', canActivate:[AuthGuard], children: [
       {path: '', component: ReportsOverviewComponent, pathMatch: 'full', resolve: {reportsPage: ReportsResolver, queuePage: QueueResolver} },
       {path: ':id', component: ReportViewerComponent, resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver}, children: [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
     ]},
-    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canDeactivate: [CanDeactivateGuard]},
+    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canActivate:[AuthGuard], canDeactivate: [CanDeactivateGuard]},
     {path: 'error', component: ErrorsComponent},
     { path: '**', redirectTo: 'batches' }
 ];

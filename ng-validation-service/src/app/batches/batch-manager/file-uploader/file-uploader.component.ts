@@ -10,6 +10,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { FileUpload } from 'primeng/fileupload';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private confirmationService: ConfirmationService,
+    private authenticationService: AuthenticationService,
     private errorService: ErrorService) { }
 
   ngOnInit() {
@@ -77,6 +79,12 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
     this.fileUpload.showUploadButton = false;
     this.fileUpload.disabled = true;
   }
+
+  onBeforeSend(event) {
+    event.xhr.setRequestHeader("Authorization", this.authenticationService.getJwtToken());
+  }
+
+
 
   onFinishUpload(event) {
     let message = new Message();

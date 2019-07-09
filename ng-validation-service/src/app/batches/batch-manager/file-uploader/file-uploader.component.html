@@ -3,6 +3,7 @@
   <p-fileUpload #fileUpload name="file" [url]="hrefToRel(this.selectedBatch,'files')" multiple="multiple" [previewWidth]="0"
     [showCancelButton]="false"
     (onBeforeUpload)="onBeforeUpload($event)"
+    (onBeforeSend)="onBeforeSend($event)"
     (onUpload)="onFinishUpload($event)"
     (onSelect)="onSelectFiles()"
     (onError)="onUploadError($event)"

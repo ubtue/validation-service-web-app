@@ -9,6 +9,7 @@ import { Util } from 'src/app/shared/util';
 import { NgForm } from '@angular/forms';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-fits-rule-edit',
@@ -35,6 +36,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     private router: Router,
     private configService: ConfigurationsService,
     private confirmationService: ConfirmationService,
+    private authenticationService: AuthenticationService,
     private errorService: ErrorService) { }
 
   ngOnInit() {
@@ -120,7 +122,7 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     return Observable.create((observer: Observer<boolean>) => {
-      if (this.form.pristine) {
+      if (this.form.pristine || !this.authenticationService.isAuthenticated()) {
         observer.next(true);
         observer.complete();
         return;

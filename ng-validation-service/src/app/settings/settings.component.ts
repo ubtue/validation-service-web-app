@@ -10,6 +10,7 @@ import { Observable, Observer } from 'rxjs';
 import { Resolved } from '../shared/model/resolved.model';
 import { ErrorService } from '../shared/services/error.service';
 import { KeyValue } from '@angular/common';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-settings',
@@ -27,6 +28,7 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
     private settingsService: SettingsService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    private authenticationService: AuthenticationService,
     private errorService: ErrorService) { }
 
   /** Sorting keys in ascending order for keyvalue pipe */
@@ -52,7 +54,7 @@ export class SettingsComponent implements OnInit, CanDeactivateGuard {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     return Observable.create((observer: Observer<boolean>) => {
-      if (this.form.pristine) {
+      if (this.form.pristine || !this.authenticationService.isAuthenticated()) {
         observer.next(true);
         observer.complete();
         return;

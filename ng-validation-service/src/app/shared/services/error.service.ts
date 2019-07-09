@@ -17,13 +17,16 @@ export class ErrorService {
       } else {
         summary = 'HTTP ' + errorResponse.status;
       }
+
+      if (errorResponse.error && errorResponse.error.message) {
+        description = errorResponse.error.message;
+      }
+
     } else {
       summary = 'Unknown problem';
     }
 
-    if (errorResponse.error && errorResponse.error.message) {
-      description = errorResponse.error.message;
-    }
+
 
     this.messageService.add({key: 'globalToast', severity: 'error', summary: summary, detail: description});
   }

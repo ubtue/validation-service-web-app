@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-verapdf-setup-edit',
@@ -26,6 +27,7 @@ export class VerapdfSetupEditComponent implements OnInit {
     private router: Router,
     private configService: ConfigurationsService,
     private confirmationService: ConfirmationService,
+    private authenticationService: AuthenticationService,
     private errorService: ErrorService) { }
 
   ngOnInit() {
@@ -58,7 +60,7 @@ export class VerapdfSetupEditComponent implements OnInit {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     return Observable.create((observer: Observer<boolean>) => {
-      if (this.form.pristine) {
+      if (this.form.pristine || !this.authenticationService.isAuthenticated()) {
         observer.next(true);
         observer.complete();
         return;

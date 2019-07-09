@@ -11,6 +11,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CanDeactivateGuard } from 'src/app/shared/services/can-deactivate-guard.service';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-configuration-edit',
@@ -28,6 +29,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
     private router: Router,
     private configService: ConfigurationsService,
     private confirmationService: ConfirmationService,
+    private authenticationService: AuthenticationService,
     private errorService: ErrorService) { }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     return Observable.create((observer: Observer<boolean>) => {
-      if (this.form.pristine) {
+      if (this.form.pristine || !this.authenticationService.isAuthenticated()) {
         observer.next(true);
         observer.complete();
         return;

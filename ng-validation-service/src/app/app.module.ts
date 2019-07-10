@@ -89,6 +89,10 @@ const appInitializerFn = (appConfig: AppConfigService) => {
   };
 };
 
+export function jwtTokenGetter() {
+  return localStorage.getItem('JWT_TOKEN');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,9 +153,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     ToastModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: function  tokenGetter() {
-        return localStorage.getItem('JWT_TOKEN');
-        },
+        tokenGetter: jwtTokenGetter,
         whitelistedDomains: ['localhost:8989']
      }
     })

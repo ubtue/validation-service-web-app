@@ -44,6 +44,10 @@ import { ApplicationSettingsResolver } from './settings/settings-resolver.servic
 import { ErrorsComponent } from './errors/errors.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
+import { UsersComponent } from './users/users.component';
+import { UserListResolver } from './users/user-list-resolver.service';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -87,6 +91,11 @@ const routes: Routes = [
       {path: ':id', component: ReportViewerComponent, resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver}, children: [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
+    ]},
+    {path:'users', component: UsersComponent, runGuardsAndResolvers:'always', canActivate:[AuthGuard], resolve: {startPage: UserListResolver}, children: [
+      {path: '', component: UsersListComponent, pathMatch:'full' },
+      {path: ':id', component: EditUserComponent, runGuardsAndResolvers: 'always'},
+      {path: 'new', component: EditUserComponent, runGuardsAndResolvers: 'always'},
     ]},
     {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canActivate:[AuthGuard], canDeactivate: [CanDeactivateGuard]},
     {path: 'error', component: ErrorsComponent},

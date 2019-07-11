@@ -81,6 +81,11 @@ import { LoginComponent } from './login/login.component';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { TokenInterceptor } from './shared/services/token-interceptor';
+import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { UsersService } from './users/users.service';
+import { UserListResolver } from './users/user-list-resolver.service';
+import { UsersListComponent } from './users/users-list/users-list.component';
 
 
 const appInitializerFn = (appConfig: AppConfigService) => {
@@ -129,7 +134,10 @@ export function jwtTokenGetter() {
     SettingsComponent,
     ErrorsComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
+    EditUserComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
@@ -187,6 +195,8 @@ export function jwtTokenGetter() {
     AppConfigService,
     AuthenticationService,
     JwtHelperService,
+    UsersService,
+    UserListResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

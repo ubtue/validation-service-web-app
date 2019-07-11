@@ -92,7 +92,8 @@ export class AuthenticationService {
     const decodedToken = this.tokenHelperService.decodeToken(token);
     const user = decodedToken['sub'];
     const role = decodedToken['role'];
-    this.activeLogin = `${user} (${role})`;
+    // this.activeLogin = `${user} (${role})`;
+    this.activeLogin = `${user}`;
   }
 
   private removeToken() {

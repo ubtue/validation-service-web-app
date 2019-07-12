@@ -54,7 +54,7 @@ const routes: Routes = [
     { path: 'login', children: [
         { path: '', component: LoginComponent, pathMatch: 'full'}
     ]},
-    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'paramsChange', canActivate:[AuthGuard], resolve: {startPage: BatchesResolver}, children: [
+    { path: 'batches', component: BatchesComponent, runGuardsAndResolvers: 'paramsChange', canActivate:[AuthGuard], data: {role:'user'}, resolve: {startPage: BatchesResolver}, children: [
         {path: '', component: BatchesStartComponent, pathMatch: 'full' },
         {path: 'new', component: BatchDefineComponent },
         {path: ':id', component: BatchManagerComponent, resolve: {batch: BatchResolver}, children: [
@@ -65,7 +65,7 @@ const routes: Routes = [
             {path: 'reports', component: BatchValidatorComponent, resolve: {startPage: ConfigurationsResolver} }
         ]}
     ]},
-    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', canActivate:[AuthGuard], resolve: {startPage: ConfigurationsResolver}, children: [
+    {path: 'configurations', component: ConfigurationsComponent, runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {role:'admin'}, resolve: {startPage: ConfigurationsResolver}, children: [
         {path: '', component: ConfigurationsListComponent, pathMatch:'full' },
         {path: ':id', component: ConfigurationManagerComponent, runGuardsAndResolvers: 'always',
         resolve: {configuration: ConfigurationResolver}, children: [
@@ -86,18 +86,18 @@ const routes: Routes = [
           {path: 'verapdf', component: VerapdfSetupEditComponent, canDeactivate:[CanDeactivateGuard] },
       ]}
     ]},
-    {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', canActivate:[AuthGuard], children: [
+    {path: 'reports', component: ReportsComponent,  runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {role:'user'}, children: [
       {path: '', component: ReportsOverviewComponent, pathMatch: 'full', resolve: {reportsPage: ReportsResolver, queuePage: QueueResolver} },
       {path: ':id', component: ReportViewerComponent, resolve: {fileReportsPage: FileReportsListResolver, batchReport: BatchReportResolver}, children: [
         {path: ':id', component: FileReportViewerComponent,  resolve: {fileReport: FileReportResolver} }
       ] },
     ]},
-    {path:'users', component: UsersComponent, runGuardsAndResolvers:'always', canActivate:[AuthGuard], resolve: {startPage: UserListResolver}, children: [
+    {path:'users', component: UsersComponent, runGuardsAndResolvers:'always', canActivate:[AuthGuard], data: {role:'admin'}, resolve: {startPage: UserListResolver}, children: [
       {path: '', component: UsersListComponent, pathMatch:'full' },
       {path: ':id', component: EditUserComponent, runGuardsAndResolvers: 'always'},
       {path: 'new', component: EditUserComponent, runGuardsAndResolvers: 'always'},
     ]},
-    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canActivate:[AuthGuard], canDeactivate: [CanDeactivateGuard]},
+    {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canActivate:[AuthGuard], data: {role:'admin'}, canDeactivate: [CanDeactivateGuard]},
     {path: 'error', component: ErrorsComponent},
     { path: '**', redirectTo: 'batches' }
 ];

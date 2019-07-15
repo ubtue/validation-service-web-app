@@ -16,10 +16,12 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    if(this.authenticationService.isAuthenticated()) {
+      this.authenticationService.logout();
+    } 
   }
 
   onLogin() {
-
     this.authenticationService.login(this.form.value.login, this.form.value.password).subscribe(
       (loggedIn:boolean) =>  {
         if (loggedIn) {

@@ -29,8 +29,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
   messages: Message[];
   hrefToRel = Util.getHrefForRel;
 
-
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -74,8 +72,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
             }
           );
       });
-
-
   }
 
   /**

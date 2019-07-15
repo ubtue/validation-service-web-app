@@ -36,9 +36,13 @@ export class BatchViewerComponent implements OnInit {
     this.route.data.subscribe(
       (data: Data) => {
         let resolved: Resolved<FilesPage> = data['filesPage'];
-        if(!resolved.data) {
-          this.errorService.resolved = resolved;
-          this.router.navigate(['/error']);
+        if (!resolved.data) {
+          if (resolved.errorStatusCode === 404) {
+            this.router.navigate(['../../'], { relativeTo: this.route });
+          } else {
+            this.errorService.resolved = resolved;
+            this.router.navigate(['/error']);
+          }
         }
         this.filesPage = resolved.data;
         this.messages = [];

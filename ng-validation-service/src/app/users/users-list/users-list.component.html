@@ -38,7 +38,7 @@
     </tbody>
     <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
       <tr>
-        <td colspan="5" *ngIf="this.userNameFilter.length > 0">
+        <td colspan="5" class="text-center" *ngIf="this.userNameFilter.length > 0">
           {{
             this.usersPage._embedded.users.length === 0
               ? "No Matching Users"

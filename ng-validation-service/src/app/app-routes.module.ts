@@ -48,6 +48,7 @@ import { UsersComponent } from './users/users.component';
 import { UserListResolver } from './users/user-list-resolver.service';
 import { UsersListComponent } from './users/users-list/users-list.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { UserResolver } from './users/edit-user/user.resolver.service';
 
 const routes: Routes = [
     { path: '', redirectTo: '/batches', pathMatch: 'full' },
@@ -93,9 +94,9 @@ const routes: Routes = [
       ] },
     ]},
     {path:'users', component: UsersComponent, runGuardsAndResolvers:'always', canActivate:[AuthGuard], resolve: {startPage: UserListResolver}, children: [
-      {path: '', component: UsersListComponent, pathMatch:'full' },
-      {path: ':id', component: EditUserComponent, runGuardsAndResolvers: 'always'},
-      {path: 'new', component: EditUserComponent, runGuardsAndResolvers: 'always'},
+      { path: '', component: UsersListComponent, pathMatch: 'full' },
+      { path: 'new', component: EditUserComponent },
+      { path: ':id', component: EditUserComponent, runGuardsAndResolvers: 'always', resolve: { user: UserResolver } }
     ]},
     {path: 'settings', component: SettingsComponent, resolve: {settings: ApplicationSettingsResolver}, canActivate:[AuthGuard], canDeactivate: [CanDeactivateGuard]},
     {path: 'error', component: ErrorsComponent},

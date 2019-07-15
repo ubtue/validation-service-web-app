@@ -13,11 +13,11 @@ export class UsersService {
   constructor(private configService: AppConfigService, private httpClient: HttpClient) {}
 
   getUserById(id: number) {
-    this.httpClient.get<User>(this.usersResourceUrl + '/' + id);
+    return this.httpClient.get<User>(this.usersResourceUrl + '/' + id);
   }
 
   createUser(user: User) {
-    this.httpClient.post<User>(this.usersResourceUrl, user);
+    return this.httpClient.post<User>(this.usersResourceUrl, user);
   }
 
   getUsersStartPage() {

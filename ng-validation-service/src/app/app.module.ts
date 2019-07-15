@@ -86,6 +86,7 @@ import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { UsersService } from './users/users.service';
 import { UserListResolver } from './users/user-list-resolver.service';
 import { UsersListComponent } from './users/users-list/users-list.component';
+import { UserResolver } from './users/edit-user/user.resolver.service';
 
 
 const appInitializerFn = (appConfig: AppConfigService) => {
@@ -197,6 +198,7 @@ export function jwtTokenGetter() {
     JwtHelperService,
     UsersService,
     UserListResolver,
+    UserResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="addBatchButton" datatype="html">
+        <source> <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Batch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Button for adding new batch</note>
+        <note priority="1" from="meaning">Add batch button</note>
+      </trans-unit>
+      <trans-unit id="batchSearchFieldPlaceholder" datatype="html">
+        <source>Search name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Placeholder for search in batch list</note>
+        <note priority="1" from="meaning">Batch search placeholder</note>
+      </trans-unit>
+      <trans-unit id="columnHeaderNames" datatype="html">
+        <source>Batch Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description"> Table heading for column with batch names </note>
+        <note priority="1" from="meaning">Column heading batch name </note>
+      </trans-unit>
+      <trans-unit id="columnHeaderCreationDate" datatype="html">
+        <source>Creation Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <note priority="1" from="description">Table heading for column with batch creation dates</note>
+        <note priority="1" from="meaning">Column heading batch creation date</note>
+      </trans-unit>
+      <trans-unit id="deleteBatchButton" datatype="html">
+        <source><x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/><x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/> Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">Button for deleting a batch </note>
+        <note priority="1" from="meaning">Delete batch button</note>
+      </trans-unit>
+      <trans-unit id="footerNoBatches" datatype="html">
+        <source>No matching Batches</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">Table footer description if no batches are found </note>
+        <note priority="1" from="meaning">Table Footer no batches</note>
+      </trans-unit>
+      <trans-unit id="footerFoundBatches" datatype="html">
+        <source>Matching Batches</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <note priority="1" from="description">Table footer description if number of batches are found </note>
+        <note priority="1" from="meaning">Table Footer batches</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -55,6 +55,13 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "de": {
+              "aot": true,
+              "i18nFile": "src/localization/messages.de.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "de",
+              "i18nMissingTranslation": "translationMissing"
             }
           }
         },
@@ -66,6 +73,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-validation-service:build:production"
+            },
+            "de": {
+              "browserTarget": "ng-validation-service:build:de"
             }
           }
         },

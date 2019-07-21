@@ -1,11 +1,12 @@
 <div class="row mb-3">
   <div class="  col-md-6 text-left mb-1">
     <a routerLink="/batches/new">
-      <button type="button" name="" id="" class="btn btn-primary" i18n="Add batch button|Button for adding new batch@@addBatchButton"> <i class="fa fa-plus"></i> Batch</button></a>
+      <button type="button" name="" id="" class="btn btn-primary" i18n="Add batch button|Button for adding new batch@@addBatchButton">
+        <i class="fa fa-plus"></i> Batch</button></a>
   </div>
   <div class=" col-md-6">
-    <input type="text" class="form-control" placeholder="Search name" i18n-placeholder="Batch search placeholder|Placeholder for search in batch list@@batchSearchFieldPlaceholder" (keyup)="this.searchTextChanged.next($event.target.value)"
-      #filter>
+    <input type="text" class="form-control" placeholder="Search name" i18n-placeholder="Batch name search placeholder|Placeholder for search in batch list@@batchNameSearchFieldPlaceholder"
+      (keyup)="this.searchTextChanged.next($event.target.value)" #filter>
   </div>
 </div>
 <div class="row">
@@ -13,8 +14,10 @@
     <table class="table  table-hover table-striped">
       <thead class="">
         <tr>
-          <th class="text-center" i18n="Column heading batch name | Table heading for column with batch names @@columnHeaderNames">Batch Name</th>
-          <th class="text-center" i18n="Column heading batch creation date|Table heading for column with batch creation dates@@columnHeaderCreationDate">Creation Date</th>
+          <th class="text-center" i18n="Column heading batch name|Table heading for column with batch names@@columnHeaderBatchName">Batch
+            Name</th>
+          <th class="text-center" i18n="Column heading creation date|Table heading for column with creation dates@@columnHeaderBatchCreationDate">Creation
+            Date</th>
           <th></th>
         </tr>
       </thead>
@@ -24,16 +27,15 @@
           <td class="td-break-all"> {{batch.description}}</td>
           <td>{{batch.creationDate | date:'dd.MM.y, HH:mm' }}</td>
           <td>
-            <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)" i18n="Delete batch button|Button for deleting a batch @@deleteBatchButton"><i class="fa fa-trash"></i> Delete</a>
+            <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)"
+              i18n="Delete button|Button for deleting a batch @@deleteBatchButton"><i class="fa fa-trash"></i> Delete</a>
           </td>
         </tr>
       </tbody>
       <tfoot class="bg-light text-dark text-monospace font-weight-bold">
-        <td class="text-center" colspan="3" *ngIf="this.descriptionFilter.length > 0">
-          {{ (this.page._embedded.batches.length === 0 ) ? 'No matching Batches': this.page.totalCount + ' Matching Batches' }}
-        </td>
-        <td class="text-center" colspan="3" *ngIf="this.descriptionFilter.length == 0">
-          {{ (this.page._embedded.batches.length === 0 ) ? 'No Batches': this.page.totalCount + ' Batches' }}
+        <td class="text-center" colspan="3">
+          <span i18n="Batch list footer|Details about number of found batches@@batchListFooter">{this.page.totalCount, plural, =0 {No Batches} =1 {One Batch} other {{{this.page.totalCount}}
+            Batches}}</span>
         </td>
       </tfoot>
     </table>

@@ -2,15 +2,15 @@
   <div class="col-md-12">
     <form (ngSubmit)="this.OnSave()" #form="ngForm">
       <fieldset class="form-group">
-        <legend>Create Batch</legend>
-        <label for="name">Batch name</label>
+        <legend i18n="Legend create batch|Legend for batchCreation@@legendCreateBatch">Create Batch</legend>
+        <label for="name" i18n="Batch name label|Label for batch name input@@labelBatchName">Batch name</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId" ngModel required #name="ngModel">
-        <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A short description of the material that will be uploaded for validation</small>
-        <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a name</span>
+        <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted" i18n="batch name hint|a hint for the batch name input@@batchNameHint">A short description of the material that will be uploaded for validation</small>
+        <span *ngIf="!name.valid && name.touched" class="text-muted" i18n="Batch name missing message|Message shown when no batch name was entered@@batchNameMissingMessage">Please enter a name</span>
         <div class="row mt-3">
             <div class="col-md-12  text-center ">
-                <button type="button" class="btn btn-secondary mr-1" (click)="onAbort()">Abort</button>
-                <button type="submit" class="btn btn-success" [disabled]="!form.valid" >Create</button>
+                <button type="button" class="btn btn-secondary mr-1" (click)="onAbort()" i18n="Abort batch button|Abort batch creation@@buttonAbortBatchCreation">Abort</button>
+                <button type="submit" class="btn btn-success" [disabled]="!form.valid" i18n="Create batch button|Create batch@@buttonCreateBatch">Create</button>
             </div>
         </div>
       </fieldset>

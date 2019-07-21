@@ -2,86 +2,53 @@
   <div class="col-md-4 mt-2">
     <a (click)="onCreateNew()">
       <button type="button" name="" id="" class="btn btn-success">
-        <i class="fa fa-plus"></i> Create Configuration
+        <i class="fa fa-plus"></i> <span i18n="Create configuration button|Button for creating new configuration@@createConfigButton">Create
+          Configuration</span>
       </button>
     </a>
   </div>
   <div class="offset-md-4 col-md-4 mt-2">
-    <input
-      id="nameText"
-      type="text"
-      class="form-control"
-      placeholder="Search name ..."
-      (keyup)="this.searchTextChanged.next($event.target.value)"
-    />
+    <input id="nameText" type="text" class="form-control" placeholder="Search name ..." i18n-placeholder="Config search placeholder|Search config by name@@configSearchPlaceholder"
+      (keyup)="this.searchTextChanged.next($event.target.value)" />
   </div>
 </div>
 <div class="table-responsive-sm">
   <table class="table table-striped">
     <thead class="  table-light">
       <tr>
-        <th>Name</th>
-        <th>FITS</th>
-        <th>VeraPDF Mode</th>
-        <th>Creation Date</th>
+        <th i18n="Table header config name|Describes name property of a configuration@@tableHeaderConfigName">Name</th>
+        <th i18n="Table header config fits|Describes fits tool name@@tableHeaderConfigFits">FITS</th>
+        <th i18n="Table header config verapdf mode|Describes verapdf mode of configuration@@tableHeaderConfigVeraMode">VeraPDF
+          Mode</th>
+        <th i18n="Table header config creation date|Describes creation datee@@tableHeaderConfigCreation">Creation Date</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let config of this.configurationsPage._embedded.configurations"
-      >
+      <tr *ngFor="let config of this.configurationsPage._embedded.configurations">
         <td>{{ config.description }}</td>
-        <td>{{ config.fitsEnabled === true ? "Enabled" : "Disabled" }}</td>
+        <td i18n>
+          {config.fitsEnabled, plural, one {Enabled} other {Disabled}}
+        </td>
         <td>
           <span class="capitalize">{{
             config._embedded["verapdf-setup"].executionMode
-          }}</span>
+            }}</span>
         </td>
         <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
         <td>
-          <a
-            style="color: white"
-            class="btn link btn-primary btn-block mr-2 mt-1 mb-1 text-nowrap"
-            [routerLink]="config.id + '/general'"
-            role="button"
-            ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modify</a
-          >
-          <a
-            style="color: white"
-            class="btn btn-danger btn-block mt-1 mb-1 text-nowrap"
-            role="button"
-            (click)="onDeleteConfig(config)"
-            ><i class="fa fa-trash"></i> Delete</a
-          >
+          <a style="color: white" class="btn link btn-primary btn-block mr-2 mt-1 mb-1 text-nowrap" [routerLink]="config.id + '/general'"
+            role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span i18n="Modify config button|Button for modifying a config@@modifyConfigButton">Modify</span></a>
+          <a style="color: white" class="btn btn-danger btn-block mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteConfig(config)"><i
+              class="fa fa-trash"></i> <span i18n="Delete config button|Button for deleting config@@deleteConfigButton">Delete</span></a>
         </td>
       </tr>
     </tbody>
-    <tfoot
-      class="text-monospace font-weight-bold text-dark bg-light table-bordered"
-    >
+    <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
       <tr>
-        <td
-          colspan="5"
-          class="text-center"
-          *ngIf="this.descriptionFilter.length > 0"
-        >
-          {{
-            this.configurationsPage._embedded.configurations.length === 0
-              ? "No Matching Configurations"
-              : this.configurationsPage.totalCount + " Matching Configurations"
-          }}
-        </td>
-        <td
-          colspan="5"
-          class="text-center"
-          *ngIf="this.descriptionFilter.length == 0"
-        >
-          {{
-            this.configurationsPage._embedded.configurations.length === 0
-              ? "No Configurations Found"
-              : this.configurationsPage.totalCount + " Configurations"
-          }}
+        <td colspan="5" class="text-center" i18n="Config list footer|Details about number of found configs@@configListFooter">
+          {this.configurationsPage.totalCount, plural, =0 {No Configurations} =1 {One Configuration} other
+          {{{this.configurationsPage.totalCount}} Configurations}}
         </td>
       </tr>
     </tfoot>
@@ -89,8 +56,5 @@
 </div>
 
 <div>
-  <app-paginator
-    [page]="this.configurationsPage"
-    (navigationRequested)="onLoadPage($event)"
-  ></app-paginator>
+  <app-paginator [page]="this.configurationsPage" (navigationRequested)="onLoadPage($event)"></app-paginator>
 </div>

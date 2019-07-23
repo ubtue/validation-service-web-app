@@ -4,27 +4,25 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="navbar-collapse active open" [ngClass]="{'collapse': this.navbarCollapsed}" id="collapsibleNavbar">
-    <a class="navbar-brand" href="#">Validation Service</a>
+    <a class="navbar-brand" href="#" i18n="Validation service title|Title of application in header@@validationServiceMenuTitle">Validation Service</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isAuthenticated()">
-        <a class="nav-link" routerLink="/batches"> <i class="fa fa-bars"> </i> Batches </a>
+        <a class="nav-link" routerLink="/batches"> <i class="fa fa-bars"> </i> <span class="ml-1" i18n="Batches section title| Title of link to batches section in header@@batchesMenuTitle">Batches</span>  </a>
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isAuthenticated()">
-        <a class="nav-link" routerLink="/reports"> <i class="fa fa-file-pdf-o"></i> Reports</a>
+        <a class="nav-link" routerLink="/reports"> <i class="fa fa-file-pdf-o"></i> <span class="ml-1" i18n="Reports section title|Title of link to reports section in header@@reportsMenuTitle">Reports</span></a>
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isInRoleAdmin()">
-        <a class="nav-link" routerLink="/configurations"><i class="fa fa-files-o"></i> Configurations</a>
+        <a class="nav-link" routerLink="/configurations"><i class="fa fa-files-o"></i> <span class="ml-1" i18n="Configurations section title| Title of link to configurations section in header@@configurationsMenuTitle">Configurations</span> </a>
       </li>
-    <!-- </ul> -->
-    <!-- <ul class="navbar-nav"> -->
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isInRoleAdmin()">
-        <a class="nav-link" routerLink="/settings"><i class="fa fa-cogs"></i> Settings</a>
+        <a class="nav-link" routerLink="/settings"><i class="fa fa-cogs"></i> <span class="ml-1" i18n="Settings section title| Title of link to settings section in header@@settingsMenuTitle">Settings</span> </a>
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isAuthenticated() && this.authenticationService.isInRoleAdmin()">
-          <a class="nav-link" routerLink="/users"><i class="fa fa-users"></i> Users </a>
+          <a class="nav-link" routerLink="/users"><i class="fa fa-users"></i> <span class="ml-1" i18n="Users section title| Title of link to users section in header@@usersMenuTitle">Users</span>  </a>
         </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isInRoleAdmin()">
-        <a class="nav-link" href="https://documenter.getpostman.com/view/4682945/S1TSaKdB" target="_blank"><i class="fa fa-link"></i> REST API</a>
+        <a class="nav-link" href="https://documenter.getpostman.com/view/4682945/S1TSaKdB" target="_blank"><i class="fa fa-link"></i> <span class="ml-1" i18n="Api section title| Title of link to api section in header@@apiMenuTitle">REST API</span> </a>
       </li>
     </ul>
 
@@ -32,11 +30,10 @@
     <ul class="navbar-nav">
 
       <li class="nav-item" routerLinkActive="active" *ngIf="!this.authenticationService.isAuthenticated()">
-        <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in"></i> Login</a>
+        <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in"></i> <span class="ml-1" i18n="Login section title|Title of link to login section@@loginMenuTitle">Login</span></a>
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isAuthenticated()">
-        <a class="nav-link " (click)="this.authenticationService.logout()"> <i class="fa fa-user"></i> Logout {{this.authenticationService.getActiveUser()}} </a>
-
+        <a class="nav-link " (click)="this.authenticationService.logout()"> <i class="fa fa-user"></i> <span class="ml-1 mr-1" i18n="Logout link title|Title of link for logout@@logoutMenuTitle">Logout</span>{{this.authenticationService.getActiveUser()}} </a>
       </li>
     </ul>
 

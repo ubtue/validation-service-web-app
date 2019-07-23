@@ -4,35 +4,50 @@
       <table class="table table-striped ">
         <thead class="">
           <tr>
-            <th>Result</th>
-            <th>File</th>
-            <th>FITS Execution</th>
-            <th>VeraPDF Execution</th>
+            <th i18n="@@resultColumnHeading">Result</th>
+            <th i18n="File column heading|Heading of file name column@@fileColumnHeading">File</th>
+            <th i18n="Fits execution column heading|Heading of fits execution result column@@fitsExecColumnHeading">FITS Execution</th>
+            <th i18n="Vera execution column heading|Heading of vera execution result column@@veraExecColumnHeading">VeraPDF Execution</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let report of this.fileReportsPage._embedded['file-reports']">
             <td [ngClass]="{'bg-danger' : report.validationOutcome !== 'valid', 'bg-success' :  report.validationOutcome === 'valid'}"
-              class="text-light" style="width: 90px;"><span style="font-size: 16px;" class="">
-                {{ report.validationOutcome === 'valid' ? 'Valid' : 'Problem' }}</span></td>
-            <td class="text-monospace td-break-all " style="min-width: 200px; max-width: 400px;" [ngClass]="{'text-danger': !report._embedded.file, 'text-dark': report._embedded.file}"> {{
-              report._embedded.file ? report._embedded.file.fileName : 'Deleted File'
-              }} </td>
+              class="text-light" style="width: 90px;">
+              <span style="font-size: 16px;" class="">
+                <ng-container *ngIf="report.validationOutcome === 'valid'; else problemTemplate">
+                  <ng-container i18n="File report valid|Result string if file is valid@@fileReportValid">
+                    Valid
+                  </ng-container>
+                </ng-container>
+                <ng-template #problemTemplate>
+                  <ng-container i18n="File report not valid|Result string if file is not valid@@fileReportNotValid">
+                    Not Valid
+                  </ng-container>
+                </ng-template>
+              </span>
+            </td>
+            <td class="text-monospace td-break-all " style="min-width: 200px; max-width: 400px;" [ngClass]="{'text-danger': !report._embedded.file, 'text-dark': report._embedded.file}">
+              <ng-container *ngIf="report._embedded.file; else deletedFileTemplate">
+                {{ report._embedded.file.fileName }}
+              </ng-container>
+              <ng-template #deletedFileTemplate>
+                <span i18n="@@deletedFilePLaceholder">Deleted File</span>
+              </ng-template>
+            </td>
             <td> {{ this.resolveCamelCase(report.fitsExecutionOutcome) }} </td>
             <td> {{ this.resolveCamelCase(report.veraPdfExecutionOutcome) }} </td>
-            <td class="text-center text-light"><a class="btn btn-secondary text-nowrap" (click)="fileSelected.next(report)"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Details</a>
+            <td class="text-center text-light"><a class="btn btn-secondary text-nowrap" (click)="fileSelected.next(report)">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              <span i18n="Button file report details|Label for details button@@buttonFileReportDetails" class="ml-1">Details</span> </a>
             </td>
           </tr>
         </tbody>
         <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
           <tr>
-            <td colspan="6" class="text-center">
-              {{
-              this.fileReportsPage._embedded['file-reports'].length === 0
-              ? "No Reports"
-              : this.fileReportsPage.totalCount + " Reports"
-              }}
+            <td colspan="6" class="text-center" i18n="@@fileReportsPlural">
+              {this.fileReportsPage.totalCount, plural, =0 {No Reports} =1 {One Report} other {{{this.fileReportsPage.totalCount}} Reports}}
             </td>
           </tr>
         </tfoot>

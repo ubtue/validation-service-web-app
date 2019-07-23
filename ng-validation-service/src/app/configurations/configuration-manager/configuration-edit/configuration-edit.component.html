@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    <p-confirmDialog header="Unsaved changes ..." i18n-header="Header unseaved changes|Shown when leaving with unsaved changes@@headerConfigEditChanges"
+    <p-confirmDialog header="Unsaved changes ..." i18n-header="Header unsaved changes|Shown when leaving with unsaved changes@@headerConfigEditChanges"
       icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'">
     </p-confirmDialog>
     <form (ngSubmit)="this.onSave()" #form="ngForm">
       <fieldset>
-        <legend i18n="General config edit section|Heading for section with general setup@@sectionConfigEditGeneral">General</legend>
+        <legend i18n="General config section|Heading for section with general setup@@sectionConfigEditGeneral">General</legend>
         <div class="form-group">
           <label for="name" i18n="Label config nanme|Describes the name property@@labelConfigName">Configuration Name</label>
           <input type="text" name="name" id="name" class="form-control" placeholder="Enter name ..." i18n-placeholder="Config name placeholder|Shown when no name entered@@configNamePlaceholder"
@@ -30,7 +30,7 @@
         </div>
       </fieldset>
       <fieldset>
-        <legend i18n="Fits execution section|Heading for fits execution config section@@sectionFitsExecution">File
+        <legend i18n="Fits config section|Heading for fits execution config section@@sectionFitsExecution">File
           Information Tool Set
           (FITS)</legend>
         <div class="form-group">
@@ -93,7 +93,7 @@
       <div class="form-group" *ngIf="!form.pristine">
         <div class="row mt-5">
           <div class=" col-md-4 offset-md-4 text-center ">
-            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine" 
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine"
             i18n="Button config save changes|Button for saving changes@@buttonConfigEditSave">Save
               changes</button>
             <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()"

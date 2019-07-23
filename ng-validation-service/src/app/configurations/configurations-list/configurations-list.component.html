@@ -2,7 +2,7 @@
   <div class="col-md-4 mt-2">
     <a (click)="onCreateNew()">
       <button type="button" name="" id="" class="btn btn-success">
-        <i class="fa fa-plus"></i> <span i18n="Create configuration button|Button for creating new configuration@@createConfigButton">Create
+        <i class="fa fa-plus mr-1"></i> <span i18n="Create configuration button|Button for creating new configuration@@createConfigButton">Create
           Configuration</span>
       </button>
     </a>
@@ -38,9 +38,9 @@
         <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
         <td>
           <a style="color: white" class="btn link btn-primary btn-block mr-2 mt-1 mb-1 text-nowrap" [routerLink]="config.id + '/general'"
-            role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span i18n="Modify config button|Button for modifying a config@@modifyConfigButton">Modify</span></a>
+            role="button"><i class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i> <span i18n="Modify config button|Button for modifying a config@@modifyConfigButton">Modify</span></a>
           <a style="color: white" class="btn btn-danger btn-block mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteConfig(config)"><i
-              class="fa fa-trash"></i> <span i18n="Delete config button|Button for deleting config@@deleteConfigButton">Delete</span></a>
+              class="fa fa-trash mr-1"></i> <span i18n="Delete config button|Button for deleting config@@deleteConfigButton">Delete</span></a>
         </td>
       </tr>
     </tbody>

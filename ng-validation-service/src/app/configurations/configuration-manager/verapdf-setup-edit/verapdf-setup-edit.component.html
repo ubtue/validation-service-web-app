@@ -1,57 +1,69 @@
 <div class="row">
   <div class="col-md-12">
-    <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'">
+    <p-confirmDialog header="Unsaved changes ..."
+      i18n-header="Header unsaved changes|Shown when leaving with unsaved changes@@headerVeraConfigChanges"
+      icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'">
     </p-confirmDialog>
     <form (ngSubmit)="this.onSave()" #form="ngForm">
       <fieldset class="form-group">
-        <legend>PDF/A Validation</legend>
+        <legend i18n="Label for PDF/A section|Label for PDF/A validation settings section@@legendPdfAValidation">PDF/A Validation</legend>
         <div class="form-group">
-          <label for="profiles" class="control-label">Validation Profile</label>
+          <label for="profiles" class="control-label" i18n="Label validation profile|Label for pdf/a profile picker@@validationProfileLabel">Validation Profile</label>
           <div>
             <p-dropdown [options]="this.validationProfiles" [(ngModel)]="this.veraSetupCopy.validationProfile" id="profiles"
               name="profiles"></p-dropdown>
           </div>
         </div>
         <div class="form-group">
-          <label for="threshold" class="control-label">Failed Checks Threshold</label>
+          <label for="threshold" class="control-label" i18n="Label checks threshold spinner|Label for failed checks threshold@@labelChecksThreshold">Failed Checks Threshold</label>
           <div>
               <p-spinner size="10" [(ngModel)]="this.veraSetupCopy.failedChecksThreshold" id="threshold" name="threshold" [min]="1" [max]="1000" required></p-spinner>
           </div>
-          <small class="text-muted">Abort validation pre-maturely after specified number of failed checks.</small>
+          <small class="text-muted" i18n="Hint checks threshold|Describes threshold@@hintChecksThreshold">Abort validation pre-maturely after specified number of failed checks.</small>
         </div>
         <div class="form-group">
-            <label for="checksPerRule" class="control-label">Logged Violations per Rule</label>
+            <label for="checksPerRule" class="control-label" i18n="Label logged violations|Label for violations spinner@@labelLoggedViolations">Logged Violations per Rule</label>
             <div>
                 <p-spinner size="10" [(ngModel)]="this.veraSetupCopy.failedChecksPerRuleDisplayed" id="checksPerRule" name="checksPerRule" [min]="1" [max]="1000" required></p-spinner>
             </div>
-            <small class="text-muted">How many check violations for a specific validation Rule should be logged.</small>
+            <small class="text-muted" i18n="Hint checks logging|Descibes logging option@@hintLoggedViolations">How many check violations for a specific validation Rule should be logged.</small>
           </div>
         <div class="form-group">
-          <label for="fail" class="control-label">Enforce PDF/A Compliance</label>
+          <label for="fail" class="control-label" i18n="Enforce pdf/a label|Label for enforce pdf/a validation input switch@@enforcePdfAComplianceLabel">Enforce PDF/A Compliance</label>
           <p-inputSwitch [(ngModel)]="veraSetupCopy.failOnInvalidPdfA" id="fail" name="fail" class="form-control form-control-no-border"></p-inputSwitch>
-          <small class="text-muted">Invalidate file report if file is not valid PDF/A.</small>
+          <small class="text-muted" i18n="Enforce pdf/a hint|Hint describing the enforce compliance option@@enforceComplianceHint">Invalidate file report if file is not valid PDF/A.</small>
         </div>
       </fieldset>
       <fieldset class="form-group">
-        <legend>Custom PDF Policies</legend>
+        <legend i18n="Custom pdf policies legend|Legend for custom policy config section@@legendCustomPolicies">Custom PDF Policies</legend>
         <div class="form-group">
-          <label for="trailerEncrypt" class="control-label">Policy checks to apply on all pdf files. Most of these are redundant if you choose to enforce PDF/A compliance.</label><!--You might however still want to enable some of them to display more specific error messages in the DSpace submission step-->
+          <label for="trailerEncrypt" class="control-label" i18n="Label policy checkbox|Label for custom pdf policy checkbox@@labelCustomPolicyCheckbox">Policy checks to apply on all pdf files. Most of these are redundant if you choose to enforce PDF/A compliance.</label><!--You might however still want to enable some of them to display more specific error messages in the DSpace submission step-->
           <p-checkbox name="otherEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryption"
             class="form-control form-control-no-border mb-2" label="Disallow encryption (user password)"
+            i18n-label="Label disallow encryption|Label for custom policy@@labelDisallowEncryption"
             id="otherEncrypt"></p-checkbox>
           <p-checkbox name="trailerEncrypt" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEncryptInTrailer"
-            class="form-control form-control-no-border mb-5 mb-sm-2" label="Disallow 'Encrypt' in PDF trailer dictionary (owner password)" id="trailerEncrypt"></p-checkbox>
+            class="form-control form-control-no-border mb-5 mb-sm-2" label="Disallow 'Encrypt' in PDF trailer dictionary (owner password)"
+            i18n-label="Label disallow trailer encryption|Label for custom policy@@labelDisallowTrailerEncryption"
+            id="trailerEncrypt"></p-checkbox>
           <p-checkbox name="fonts" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFonts"
-            class="form-control form-control-no-border mb-2" label="Disallow non-embedded fonts" id="fonts"></p-checkbox>
+            class="form-control form-control-no-border mb-2" label="Disallow non-embedded fonts"
+            i18n-label="Label disallow non-embedded fonts|Label for custom policy@@labelDisallowNoFonts"
+            id="fonts"></p-checkbox>
           <p-checkbox name="files" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowEmbeddedFiles"
-            class="form-control form-control-no-border mb-2" label="Disallow embedded files" id="files"></p-checkbox>
+            class="form-control form-control-no-border mb-2" label="Disallow embedded files"
+            i18n-label="Label disallow embedded files|Label for custom policy@@labelDisallowFiles"
+            id="files"></p-checkbox>
           <p-checkbox name="attachments" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowFileAttachments"
-            class="form-control form-control-no-border mb-2" label="Disallow file attachments" id="attachments"></p-checkbox>
+            class="form-control form-control-no-border mb-2" label="Disallow file attachments"
+            i18n-label="Label disallow file attachments|Label for custom policy@@labelDisallowFileAttachments"
+            id="attachments"></p-checkbox>
           <p-checkbox name="multimedia" binary="true" [(ngModel)]="this.veraSetupCopy.pdfPolicies.disallowMultimediaAnnotations"
             class="form-control form-control-no-border mb-5 mb-sm-2" label="Disallow multimedia (Annotations: Screen, Movie, Sound, 3D)"
+            i18n-label="Label disallow multimedia|Label for custom policy@@labelDisallowMultimedia"
             id="multimedia"></p-checkbox>
           <div class="mt-2 mt-md-2">
-            <small class="text-muted">Please note that encrypted PDFs will cause veraPDF execution to exit with an exception. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
+            <small class="text-muted" i18n="Hint custom pdf policies|Hint for applying custom policies@@hintCustomPdfPolicies">Please note that encrypted PDFs will cause veraPDF execution to exit with an exception. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
               DSpace uploaders will see a corresponding error message (and not just some more generic 'call system staff' message).</small>
           </div>
         </div>
@@ -59,9 +71,9 @@
       <div class="form-group" *ngIf="!form.pristine">
         <div class="row mt-5">
           <div class=" col-md-4 offset-md-4 text-center ">
-            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine" i18n="Button save vera config changes|Button for saving verapdf config changes@@buttonSaveVeraConfigChanges">Save
               changes</button>
-            <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+            <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()" i18n="Button cancel vera config changes|Label for cancel button@@buttonCancelVeraConfigChanges">Cancel</button>
           </div>
         </div>
       </div>

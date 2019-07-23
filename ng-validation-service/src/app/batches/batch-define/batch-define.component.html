@@ -5,7 +5,7 @@
         <legend i18n="Legend create batch|Legend for batchCreation@@legendCreateBatch">Create Batch</legend>
         <label for="name" i18n="Batch name label|Label for batch name input@@labelBatchName">Batch name</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId" ngModel required #name="ngModel">
-        <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted" i18n="batch name hint|a hint for the batch name input@@batchNameHint">A short description of the material that will be uploaded for validation</small>
+        <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted" i18n="Batch name hint|a hint for the batch name input@@batchNameHint">A short description of the material that will be uploaded for validation</small>
         <span *ngIf="!name.valid && name.touched" class="text-muted" i18n="Batch name missing message|Message shown when no batch name was entered@@batchNameMissingMessage">Please enter a name</span>
         <div class="row mt-3">
             <div class="col-md-12  text-center ">

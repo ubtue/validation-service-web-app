@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a [routerLink]="['../']">Users</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['../']" i18n="Users breadcrumb@@breadcrumbUsers">Users</a></li>
         <li class="breadcrumb-item active" *ngIf="this.userCopy">
           {{ this.userCopy.username }}
         </li>
@@ -13,40 +13,42 @@
 
 <form (ngSubmit)="this.onSave()" #form="ngForm">
   <fieldset class="form-group">
-    <legend>{{ this.isInCreationMode() ? 'Create User' : 'Edit User'}}</legend>
+    <legend i18n="@@usersSelect">
+      {this.isInCreationMode(), select, 1 {Create User} other {Edit User}}
+    </legend>
     <div class="form-group">
       <label for="name">User Name</label>
       <input type="text" name="name" id="name" class="form-control" placeholder="Enter user name ..."
+        i18n-placeholder="Placeholder user name@@userNamePlaceholder"
         aria-describedby="helpId" [(ngModel)]="userCopy.username" required #name="ngModel" />
-      <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted">A name for the
-        user</small>
-      <span *ngIf="!name.valid && name.touched" class="text-danger">Please enter a name</span>
+      <small *ngIf="name.untouched || name.valid" id="helpId" class="text-muted"
+        i18n="Hint for user name@@userNameHint">A name for the user</small>
+      <span *ngIf="!name.valid && name.touched" class="text-danger" i18n="User name missing message@@noUserNameMessage">Please enter a name</span>
     </div>
     <div class="form-group">
-      <label for="role" class="control-label">Role</label>
+      <label for="role" class="control-label" i18n="User role label@@labelUserRole">Role</label>
       <div>
         <p-dropdown [options]="this.roleTypes" [(ngModel)]="this.userCopy.role" id="role" #role name="role" aria-describedby="helpId"></p-dropdown>
-
       </div>
-      <small id="helpId" class="text-muted">Users can upload files and submit validation tasks. Only Admins may change configurations and settings.</small>
-
+      <small id="helpId" class="text-muted"
+        i18n="User role hint@@userRoleHint">Users can upload files and submit validation tasks. Only Admins may change configurations and settings.</small>
     </div>
     <div class="form-group">
-      <label for="password" class="control-label">Password</label>
+      <label for="password" class="control-label" i18n="Label user password@@userPasswordLabel">Password</label>
       <input type="password" name="password" id="password" class="form-control" placeholder="Enter new password ..."
         aria-describedby="helpId" [(ngModel)]="userCopy.password" #password="ngModel" [required]='this.isInCreationMode()' minlength="4"/>
-      <small *ngIf="password.untouched || password.valid" id="helpId" class="text-muted">A new login password </small>
-      <span *ngIf="!password.valid && password.touched" class="text-danger">Please enter a password with a minimum length of 4 characters</span>
+      <small *ngIf="password.untouched || password.valid" id="helpId" class="text-muted" i18n="Hint user password@@userPasswordHint">A new login password </small>
+      <span *ngIf="!password.valid && password.touched" class="text-danger" i18n="User password required message@@userPasswordMessage">Please enter a password with a minimum length of 4 characters</span>
     </div>
   </fieldset>
   <div class="form-group" *ngIf="!form.pristine || isInCreationMode()">
     <div class="row mt-3">
       <div class=" col-md-6 offset-md-3 text-center ">
-        <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid || form.pristine">
-          {{ isInCreationMode() ? "Create" : "Save changes" }}
+        <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid || form.pristine" i18n="@@createOrSaveChanges">
+          {this.isInCreationMode(),select, 1 {Create} other {Save Changes}}
         </button>
         <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine && !creationMode"
-          (click)="onCancel()">
+          (click)="onCancel()" i18n="Cancel changes button@@buttonCancelChanges">
           Cancel
         </button>
       </div>

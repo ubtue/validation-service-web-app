@@ -16,14 +16,14 @@
         </small>
         <span class="float-right">
           <a class="btn btn-link btn-sm btn-danger" (click)="onDeleteFile(file)" style="color:white">
-            <i class="fa fa-trash"></i> <span i18n="Delete file button|Button for deleting a file@@buttonDeleteFile">Delete</span>
+            <i class="fa fa-trash mr-1"></i> <span i18n="Delete file button|Button for deleting a file@@buttonDeleteFile">Delete</span>
           </a>
         </span>
       </div>
     </li>
   </ul>
   <li class="list-group-item list-group-item-light mt-0">
-    <div class="text-center text-monospace font-weight-bold">
+    <div class="text-center text-monospace font-weight-bold" i18n="@@fileManagerPlural">
       {filesPage.totalCount,plural, zero {No Files} one {One File} other {{{filesPage.totalCount}} Files} }
     </div>
   </li>

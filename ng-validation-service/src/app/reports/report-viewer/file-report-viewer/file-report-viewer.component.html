@@ -3,15 +3,16 @@
     <div class="col-md-12">
         <ul class="nav nav-pills nav-fill nav-light">
             <li class="nav-item">
-                <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 0" [ngClass]="{'active': displayIndex === 0, 'text-primary': displayIndex !== 0}">
+                <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 0" [ngClass]="{'active': displayIndex === 0, 'text-primary': displayIndex !== 0}"
+                  i18n="File report fits section|Section with fits results@@fileReportFitsSection">
                   FITS
                 </span>
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 1" [ngClass]="{'active': displayIndex === 1, 'text-primary': displayIndex !== 1}">
-                  VeraPDF
+                  <span i18n="File report verapdf section|Section with verapdf results@@fileReportFitsSection">VeraPDF</span>
                   <ng-container *ngIf="this.verapdfErrorMessages && this.verapdfErrorMessages.length !== 0; else noErrorsTemplate">
-                      <span class="badge" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ this.verapdfErrorMessages.length }}</span>
+                      <span class="badge ml-1" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ this.verapdfErrorMessages.length }}</span>
                   </ng-container>
                   <ng-template #noErrorsTemplate>
                       <ng-container *ngIf="fileReport.veraPdfExecutionOutcome !== 'didNotRun' && fileReport._embedded['verapdf-result'] && fileReport._embedded['verapdf-result'].failedRules !== 0">
@@ -22,7 +23,8 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 2" [ngClass]="{'active': displayIndex === 2, 'text-primary': displayIndex !== 2}">
-                  Identified Problems <span *ngIf="this.checksPage" class="badge badge-warning">{{ this.failedCount }}</span>
+                  <ng-container i18n="File report section prbolems|Title for section with identified problems@@fileReportProblemsSection">Identified Problems</ng-container>
+                  <span *ngIf="this.checksPage" class="badge badge-warning ml-1">{{ this.failedCount }}</span>
                 </span>
             </li>
         </ul>
@@ -35,12 +37,12 @@
     <table class="table  table-striped ">
         <thead class="table-light">
           <tr>
-            <th>Tool</th>
-            <th>Version</th>
-            <th>Format</th>
-            <th>Mime</th>
-            <th>Puid</th>
-            <th>Valid</th>
+            <th i18n="Column heading fits tool|Heading for tool column of fits result@@columnHeadingTool">Tool</th>
+            <th i18n="Column heading fits version|Heading for tool version column of fits result@@columnHeadingVersion">Version</th>
+            <th i18n="Column heading fits format|Heading for format of fits result@@columnHeadingFormat">Format</th>
+            <th i18n="Column heading fits mime|Heading for mime column of fits result@@columnHeadingMime">Mime</th>
+            <th i18n="Column heading fits puid|Heading for puid column of fits result@@columnHeadingPuid">Puid</th>
+            <th i18n="Column heading fits validity|Heading for validity column of fits result@@columnHeadingValid">Valid</th>
           </tr>
         </thead>
         <tbody>
@@ -51,18 +53,19 @@
             <td> {{ fitsResult.mime }} </td>
             <td> {{ fitsResult.puid ? fitsResult.puid : '' }} </td>
             <td *ngIf="fitsResult.valid !== null" class="font-weight-bold" [ngClass]="{'text-success' : fitsResult.valid === true, 'text-danger' : fitsResult.valid !== true}">
-              {{ fitsResult.valid === true ? 'Valid' : 'Not Valid' }}
+              <ng-container *ngIf="fitsResult.valid; else notValidTemplate">
+                <span i18n="@@fileReportValid">Valid</span>
+              </ng-container>
+              <ng-template #notValidTemplate>
+                <span i18n="@@fileReportNotValid">Not Valid</span>
+              </ng-template>
             <td *ngIf="fitsResult.valid === null" ></td>
           </tr>
         </tbody>
         <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
           <tr>
-            <td colspan="6" class="text-center" >
-              {{
-                this.fileReport._embedded['fits-results'].length === 0
-              ? "No Format Records"
-              : this.fileReport._embedded['fits-results'].length + " Format Records"
-              }}
+            <td colspan="6" class="text-center" i18n="@@fitsResultsPlural">
+              {this.fileReport._embedded['fits-results'].length, plural, =0 {No Format Records} =1 {One Format Record} other {{{this.fileReport._embedded['fits-results'].length}} Format Records}}
             </td>
           </tr>
         </tfoot>
@@ -74,63 +77,22 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 1 && fileReport !== null">
   <div class="col-md-12">
-      <!-- <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else summaryTemplate">
-        VeraPDF did not run
-      </ng-container>
-      <ng-template #summaryTemplate>
-        <ng-container *ngIf="fileReport._embedded['verapdf-result']; else noRecordTemplate">
-         <h5>Summary</h5>
-         <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
-         <div class="table-responsive ">
-            <table  class="table table-striped ">
-                <thead class="table-light">
-                    <tr>
-                      <th>Execution Outcome</th>
-                      <th>Validation Profile</th>
-                      <th>Compliant</th>
-
-                      <th>Passed Rules</th>
-                      <th>Failed Rules</th>
-                    </tr>
-                  </thead>
-                  <tbody class="bg-light">
-                    <td>{{ fileReport._embedded['verapdf-result'].executionError === false ? 'Success' : 'Error' }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].compliant }}</td>
-
-                    <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
-                    <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
-
-
-
-                  </tbody>
-            </table>
-          </div>
-        </ng-container>
-        <ng-template #noRecordTemplate>
-          No Result
-        </ng-template>
-
-
-      </ng-template> -->
-
       <h5>Summary</h5>
          <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
          <div class="table-responsive ">
             <table  class="table table-striped ">
                 <thead class="table-light">
                     <tr>
-                      <th>Execution Outcome</th>
-                      <th>Validation Profile</th>
-                      <th>Compliant</th>
-                      <!-- <th>Encrypted</th> -->
-                      <th>Passed Rules</th>
-                      <th>Failed Rules</th>
+                      <th i18n="Verapdf execution outcome column heading|Heading for column@@verapdfExecutionColumnHeading">Execution Outcome</th>
+                      <th i18n="Verapdf profile column heading|Heading for column@@verapdfProfileColumnHeading">Validation Profile</th>
+                      <th i18n="Verapdf compliance column heading|Heading for column@@verapdfComplianceColumnHeading">Compliant</th>
+                      <th i18n="Verapdf passed rules column heading|Heading for column@@verapdfPassedRulesColumnHeading">Passed Rules</th>
+                      <th i18n="Verapdf failed rules column heading|Heading for column@@verapdfFailedRulesColumnHeading">Failed Rules</th>
                     </tr>
                   </thead>
                   <tbody class="bg-light">
                     <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'didNotRun'; else didRunTemplate">
-                      <td>Did Not Run</td>
+                      <td i18n="Placeholder tool did not run|Placeholder if tool wasn't executed@@toolDidNotRunPlaceholder">Did Not Run</td>
                       <td> </td>
                       <td> </td>
                       <td> </td>
@@ -139,10 +101,10 @@
                     <ng-template #didRunTemplate>
                       <ng-container *ngIf="fileReport.veraPdfExecutionOutcome === 'failed' ||
                                           (!fileReport._embedded['verapdf-result']) || (fileReport._embedded['verapdf-result'] && fileReport._embedded['verapdf-result'].executionError); else noErrorTemplate">
-                        <td>{{ 'Error' }}</td>
+                        <td i18n="Placeholder tool error|Placeholder if tool error occured@@toolErrorPlaceholder">Error</td>
                       </ng-container>
                       <ng-template #noErrorTemplate>
-                          <td>{{ 'Success' }}</td>
+                          <td i18n="Placeholder tool run successful|Placeholder if tool exited normally@@toolSuccessfulPlaceholder">Success</td>
                       </ng-template>
                       <ng-container *ngIf="!fileReport._embedded['verapdf-result']; else resultExistsTemplate">
                           <td> </td>
@@ -167,61 +129,50 @@
 
 
     <div *ngIf="fileReport._embedded['verapdf-result'] && fileReport._embedded['verapdf-result'].executionError === false && fileReport._embedded['verapdf-result'].compliant === false">
-
         {{fileReport._embedded['verapdf-result'].errorMessage}}
-        <h5 class="mt-3">Failed Rule Checks</h5>
+        <h5 class="mt-3" i18n="Failed checks heading|Heading for the identified problems section of the file report viewer@@failedChecksHeading">Failed Rule Checks</h5>
          <div id="accordion" class="mt-4">
            <div class="card mt-1" *ngFor="let assertion of this.assertionsPage._embedded.assertions; let i = index">
              <div class="card-header bg-light">
                <h5 class="mb-0">
                  <button class="btn btn-link  text-primary" aria-expanded="true" (click)=" this.assertionIndex === i ? this.assertionIndex = -1 : this.assertionIndex = i">
-                  Specification: {{assertion.specification}}, Clause: {{assertion.clause}}, Test Number: {{assertion.testNumber}}  <span class="badge badge-danger ml-3">{{ assertion.contexts.length + ' Occurences' }} </span>
-
+                  <span i18n="Verapdf specification@@verapdfSpecification">Specification</span>: {{assertion.specification}},
+                  <span i18n="Verapdf clause@@verapdfClause">Clause</span>: {{assertion.clause}},
+                  <span i18n="Verapdf test number@@verapdfTestNumber">Test Number</span>: {{assertion.testNumber}}
+                  <span class="badge badge-danger ml-3">{{ assertion.contexts.length }} <span class="ml-1" i18n="Verapdf occurences@@verapdfOccurences">Occurences</span> </span>
                  </button>
                </h5>
              </div>
 
              <div class="collapse" [ngClass]="{'show': this.assertionIndex === i}">
                <div class="card-body">
-
-                 <strong>Description:</strong>
+                 <strong i18n="Verapdf rule description@@verapdfRuleDescription">Description:</strong>
                  <p >
                    {{assertion.description}}
                  </p>
-                 <strong>Test:</strong>
+                 <strong i18n="Verapdf rule test@@verapdfRuleTest">Test:</strong>
                  <p>
                    {{assertion.test}}
                  </p>
-
-                 <strong>Object:</strong>
+                 <strong i18n="Verapdf rule object@@verapdfRuleObject">Object:</strong>
                  <p >
                    {{assertion.object}}
                  </p>
-
-                 <strong>Locations:</strong>
+                 <strong i18n="Verapdf rule locations@@verapdfRuleLocations">Locations:</strong>
                  <p *ngFor="let location of assertion.contexts" >
-                     {{location}}
+                    {{location}}
                  </p>
 
                </div>
              </div>
            </div>
-           <!-- <div class="card-header text-center bg-light font-weight-bold text-monospace">
-             {{this.assertionsPage.totalCount}}  Infringed Rules
-           </div> -->
          </div>
          <div *ngIf="this.assertionsPage" class="mt-3">
              <app-paginator [page]="this.assertionsPage" (navigationRequested)="onLoadAssertionsPage($event)"></app-paginator>
          </div>
         </div>
-
-
-
-
   </div>
 </div>
-
-
 
 <div class="row mt-2" *ngIf="displayIndex === 2 && fileReport !== null">
   <div class="col-md-12">
@@ -230,24 +181,22 @@
     <table class="table  table-striped ">
         <thead class="table-light">
           <tr>
-            <th style="width: 20%">Check Type</th>
-            <th style="width: 80%">Error Message</th>
+            <th style="width: 20%" i18n="Identified problems check type|Column heading for result table@@identifiedCheckType">Check Type</th>
+            <th style="width: 80%" i18n="Identified problems error message|Column heading for result table@@identifiedErrorMessage">Error Message</th>
           </tr>
         </thead>
         <tbody *ngIf="this.checksPage">
           <tr *ngFor="let check of this.checksPage._embedded['checks']">
-           <td> {{check.checkType === 'fits' ? 'Fits Result Check' :(check.checkType === 'verapdf' ? 'VeraPDF Policy' : 'File Name Check')}} </td>
+           <td i18n="@@checkTypePlural">
+            {check.checkType,select, fits {Fits Result Check} verapdf {VeraPDF Policy}}
+           </td>
            <td>{{check.resultMessage}}</td>
           </tr>
         </tbody>
         <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
           <tr>
-            <td colspan="6" class="text-center" >
-              {{
-                !this.checksPage || this.checksPage.totalCount === 0
-              ? "No Failed Checks"
-              : this.checksPage.totalCount + " Failed Checks"
-              }}
+            <td colspan="6" class="text-center" i18n>
+              {this.checksPage.totalCount, plural, =0 {No Failed Checks} =1 {One Failed Check} other {{{this.checksPage.totalCount}} Failed Checks}}
             </td>
           </tr>
         </tfoot>

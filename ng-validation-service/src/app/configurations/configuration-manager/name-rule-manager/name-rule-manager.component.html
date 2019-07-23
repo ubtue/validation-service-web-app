@@ -2,25 +2,25 @@
   <div class="col-md-5">
     <div class="text-left">
       <a routerLink="new">
-        <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i> Add Rule</button></a>
+        <button type="button" name="" id="" class="btn btn-primary"> <i class="fa fa-plus"></i><span class="ml-1" i18n="Button add name rule|Label for add rule button@@addNameRuleButton">Add Rule</span></button></a>
     </div>
     <ul class="list-group mb-3 mt-3">
       <li [routerLink]="rule.id" routerLinkActive="list-group-item-primary" class="list-group-item list-group-item-action rule-item-text" *ngFor="let rule of this.nameRulesPage._embedded['file-name-rules']">
         <div style="max-width: 90%;"><strong>{{rule.ruleName}}</strong></div>
         <span class="float-right">
           <a class="btn btn-link btn-sm btn-danger" (click)="onDeleteRule(rule)" style="color:white">
-            <i class="fa fa-trash"></i> Delete
+            <i class="fa fa-trash"></i> <span class="ml-1" i18n="Button delete name rule|Label for delete button@@deleteNameRuleButton">Delete</span>
           </a>
         </span>
-        <div><small><strong>Test:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
-        <div><small><strong>Value:</strong> {{this.resolveCamelCase(rule.value)}} </small></div>
-        <div><small><strong>Outcome: </strong> {{this.resolveCamelCase(rule.outcome)}} </small></div>
+        <div><small><strong i18n="Name rule test@@Label for rule type@@nameRuleTest">Test:</strong> {{this.resolveCamelCase(rule.type)}} </small></div>
+        <div><small><strong i18n="Name rule value@@Label for rule value@@nameRuleValue">Value:</strong> {{this.resolveCamelCase(rule.value)}} </small></div>
+        <div><small><strong i18n="Name rule outcome@@Label for rule outcome@@nameRuleOutcome">Outcome: </strong> {{this.resolveCamelCase(rule.outcome)}} </small></div>
       </li>
-      <li class="list-group-item list-group-item-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'].length == 0">
-        <div class="text-center">No rules found</div>
-      </li>
-      <li class="list-group-item bg-light" *ngIf="this.nameRulesPage._embedded['file-name-rules'].length != 0">
-        <div class="text-center">{{nameRulesPage.totalCount}} Rules</div>
+      <li class="list-group-item"
+        [ngClass]="{'list-group-item-light': this.nameRulesPage._embedded['file-name-rules'].length === 0,'bg-light': this.nameRulesPage._embedded['file-name-rules'].length != 0}">
+          <div class="text-center" i18n="@@nameRulesPlural">
+            {this.nameRulesPage.totalCount, plural, =0 {No Rules} =1 {1 Rule} other {{{fitsRulesPage.totalCount}} Rules } }
+          </div>
       </li>
     </ul>
     <div>

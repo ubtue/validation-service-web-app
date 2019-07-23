@@ -3,13 +3,15 @@
     <ul class="nav nav-pills nav-fill nav-light">
       <li class="nav-item">
         <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = false" [ngClass]="{'active': !showCompleted, 'text-primary': showCompleted}">
-          Scheduled Reports <span class="badge" [ngClass]="{'badge-light': !showCompleted,'badge-primary': showCompleted}">{{
+          <span  i18n="Section scheduled reports|Title for scheduled reports section@@sectionReportsScheduled">Scheduled Reports</span>
+          <span class="badge ml-1" [ngClass]="{'badge-light': !showCompleted,'badge-primary': showCompleted}">{{
             this.queuePage.totalCount }}</span>
         </span>
       </li>
       <li class="nav-item">
         <span class="nav-link" style="cursor: pointer;" (click)="showCompleted = true" [ngClass]="{'active': showCompleted, 'text-primary': !showCompleted}">
-          Completed Reports <span class="badge" [ngClass]="{'badge-light': showCompleted,'badge-primary': !showCompleted}">{{
+          <span i18n="Section completed reports|Title for completed reports section@@sectionReportsCompleted">Completed Reports</span>
+          <span class="badge ml-1" [ngClass]="{'badge-light': showCompleted,'badge-primary': !showCompleted}">{{
             this.finishedReportsPage.totalCount }}</span>
         </span>
       </li>
@@ -24,11 +26,11 @@
       <table class="table table-striped">
         <thead class="table-light">
           <tr>
-            <th>Batch</th>
-            <th>Configuration</th>
-            <th>Processing Status</th>
-            <th>Finished</th>
-            <th>Result</th>
+            <th i18n="Table heading batch|Heading for batch column@@batchColumnHeading">Batch</th>
+            <th i18n="Table heading configuration|Heading for configuration column@@configurationColumnHeading">Configuration</th>
+            <th i18n="Table heading status|Heading for processing status column@@statusColumnHeading">Processing Status</th>
+            <th i18n="Table heading finished|Heading for finished time column@@finishedColumnHeading">Finished</th>
+            <th i18n="Table heading result|Heading for result column@@resultColumnHeading">Result</th>
             <th></th>
           </tr>
         </thead>
@@ -41,7 +43,7 @@
                   report._embedded.configuration.description }}</a>
               </ng-container>
               <ng-template #elseTemplate>
-                <em>{{ 'Deleted Configuration' }}</em>
+                <em i18n="Deleted configuration|A placeholder for a deleted configuration@@deletedConfigurationPlaceholder">Deleted Configuration</em>
               </ng-template>
             </td>
             <td>
@@ -55,30 +57,41 @@
               <ng-container *ngIf="report.summary; else noSummary">
                 <span class="font-weight-bold"
                   [ngClass]="{'text-danger' : report.summary.validationOutcome !== 'valid', 'text-success' : report.summary.validationOutcome === 'valid'}">
-                  {{ this.resolveCamelCase(report.summary.validationOutcome) === 'Valid' ? 'OK' : 'Problems' }}
+                  <ng-container *ngIf="this.resolveCamelCase(report.summary.validationOutcome) === 'Valid' ; else notValidTemplate">
+                    <span i18n="Validation outcome valid|Output if valid@@outcomeValidationSuccess">OK</span>
+                  </ng-container>
+                  <ng-template #notValidTemplate>
+                    <span i18n="Validation outcome problem|Output if problems occured@@outcomeValidationProblem">Problems</span>
+                  </ng-template>
                 </span>
               </ng-container>
               <ng-template #noSummary>
                 <span class="font-weight-bold text-danger">
-                  {{ 'Problems' }}
+                  <span i18n="Validation outcome problem|Output if summary is missing@@outcomeNoSummary">Problems</span>
                 </span>
               </ng-template>
             </td>
             <td>
-              <a class="btn btn-secondary btn-block mr-2 mt-1 mb-1 text-nowrap" [routerLink]="[report.id]"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Details</a>
-              <a class="btn btn-danger btn-block  mt-1 mb-1 text-light text-nowrap" (click)="deleteReport(report)"><i class="fa fa-trash"></i> Delete</a>
+              <a class="btn btn-secondary btn-block mr-2 mt-1 mb-1 text-nowrap" [routerLink]="[report.id]">
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+                <span class="ml-1" i18n="Button batch report details|Button for showing details of batch report@@batchReportDetailsButton">
+                  Details
+                </span>
+              </a>
+              <a class="btn btn-danger btn-block  mt-1 mb-1 text-light text-nowrap" (click)="deleteReport(report)">
+                <i class="fa fa-trash"></i>
+                <span class="ml-1" i18n="Button delete batch report|Button for deleting batch report@@batchReportDeleteButton">
+                  Delete
+                </span>
+              </a>
             </td>
             <td> </td>
           </tr>
         </tbody>
         <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
           <tr>
-            <td colspan="7" class="text-center">
-              {{
-              this.finishedReportsPage._embedded['batch-reports'].length === 0
-              ? "No Reports"
-              : this.finishedReportsPage.totalCount + " Reports"
-              }}
+            <td colspan="7" class="text-center" i18n="@@finishedReportsPlural">
+              {this.finishedReportsPage.totalCount, plural, =0 {No Reports} =1 {One Report} other {{{this.finishedReportsPage.totalCount}} Reports} }
             </td>
           </tr>
         </tfoot>
@@ -96,10 +109,10 @@
         <table class="table table-striped">
             <thead class="table-light">
               <tr>
-                <th>Batch</th>
-                <th>Configuration</th>
-                <th>Submitted</th>
-                <th>Progress</th>
+                <th i18n="@@batchColumnHeading">Batch</th>
+                <th i18n="@@configurationColumnHeading">Configuration</th>
+                <th i18n="Table heading submission date|Heading for submission date column@@submittedColumnHeading">Submitted</th>
+                <th i18n="Table heading progress|Heading for progress column@@progressColumnHeading">Progress</th>
               </tr>
             </thead>
             <tbody>
@@ -112,7 +125,10 @@
                       order._embedded.configuration.description }}</a>
                   </ng-container>
                   <ng-template #configElse>
-                    <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+                    <em class="font-weight-normal"
+                      i18n="Placeholder deleted configuration|Placeholder for a deleted configuration@@deletedConfigurationPlaceholder">
+                      Deleted Configuration
+                    </em>
                   </ng-template>
                 </td>
                 <td>
@@ -122,27 +138,23 @@
                   <div class="progress position-relative bg-secondary">
                     <div class="progress-bar progress-bar-animated bg-primary" role="progressbar" [style.width.%]="order.progress">
                       <small class="justify-content-center d-flex position-absolute w-100">
-                        <ng-container *ngIf="order.status !== 'processing'; else elseTemplate">
-                        {{'Waiting'}}
+                        <ng-container *ngIf="order.status !== 'processing'; else processingTemplate">
+                          <span i18n="Placeholder for waiting|Placeholder string for task waiting to be processed@@placeholderWaiting">Waiting</span>
                         </ng-container>
-                        <ng-template #elseTemplate>
+                        <ng-template #processingTemplate>
                             {{ order.progress/100 | percent:'1.2-5' }}
                         </ng-template>
                       </small>
                     </div>
                   </div>
-                  <a class="badge badge-danger text-center btn-block text-light" (click)="onAbortOrder(order)" >Cancel</a>
+                  <a class="badge badge-danger text-center btn-block text-light" (click)="onAbortOrder(order)"> <span i18n="Button cancel task|Label of button for cancelling a task@@buttonCancelTask">Cancel</span> </a>
                 </td>
               </tr>
             </tbody>
             <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
               <tr>
-                <td colspan="5" class="text-center">
-                  {{
-                  this.queuePage._embedded.orders.length === 0
-                  ? "No Scheduled Reports"
-                  : this.queuePage.totalCount + " Scheduled Reports"
-                  }}
+                <td colspan="5" class="text-center" i18n="@@scheduledReportsPlural">
+                  {this.queuePage.totalCount, plural, =0 {No Scheduled Reports} =1 {One Scheduled Report} other {{{this.queuePage.totalCount}} Scheduled Reports}}
                 </td>
               </tr>
             </tfoot>

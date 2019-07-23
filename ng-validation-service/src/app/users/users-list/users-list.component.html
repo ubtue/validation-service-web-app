@@ -2,12 +2,13 @@
   <div class="col-md-4 mt-2">
     <a [routerLink]="['/users/new']">
       <button type="button" name="" id="" class="btn btn-primary">
-        <i class="fa fa-plus"></i> New User
+        <i class="fa fa-plus"></i> <span class="ml-1" i18n="Button add new user@@buttonNewUser">New User</span>
       </button>
     </a>
   </div>
   <div class="offset-md-4 col-md-4 mt-2">
     <input id="nameText" type="text" class="form-control" placeholder="Search name ..."
+      i18n-placeholder="Placeholder search user@@searchUserNamePlaceholder"
       (keyup)="this.searchTextChanged.next($event.target.value)" />
   </div>
 </div>
@@ -15,10 +16,10 @@
   <table class="table table-striped">
     <thead class="  table-light">
       <tr>
-        <th>Name</th>
-        <th>Role</th>
-        <th>Creation Date</th>
-        <th>Last Modified</th>
+        <th i18n="User name column heading@@userNameColumnHeading">Name</th>
+        <th i18n="User role column heading@@userRoleColumnHeading">Role</th>
+        <th i18n="User creation date column heading@@userCreationColumnHeading">Creation Date</th>
+        <th i18n="User modified date column heading@@userModifiedColumnHeading">Last Modified</th>
       </tr>
     </thead>
     <tbody>
@@ -30,27 +31,16 @@
         <td>
           <a style="color: white" class="btn link btn-primary mr-2 mt-1 mb-1 text-nowrap btn-block"
             [routerLink]="user.id " role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            Modify</a>
+            <span i18n="Button modify user@@modifyUserButton" class="ml-1">Modify</span></a>
           <a style="color: white" class="btn btn-danger mt-1 mb-1 text-nowrap btn-block" role="button"
-            (click)="onDeleteUser(user)"><i class="fa fa-trash"></i> Delete</a>
+            (click)="onDeleteUser(user)"><i class="fa fa-trash"></i> <span i18n="Button delete user@@userDeleteButton">Delete</span>></a>
         </td>
       </tr>
     </tbody>
     <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
       <tr>
-        <td colspan="5" class="text-center" *ngIf="this.userNameFilter.length > 0">
-          {{
-            this.usersPage._embedded.users.length === 0
-              ? "No Matching Users"
-              : this.usersPage.totalCount + " Matching Users"
-          }}
-        </td>
-        <td colspan="5" class="text-center" *ngIf="this.userNameFilter.length == 0">
-          {{
-            this.usersPage._embedded.users.length === 0
-              ? "No Users Found"
-              : this.usersPage.totalCount + " Users"
-          }}
+        <td colspan="5" class="text-center" i18n="@@usersPlural">
+          {this.usersPage.totalCount, plural, =0 {No Users} =1 {One User} other {{{this.usersPage.totalCount}} Users}}
         </td>
       </tr>
     </tfoot>

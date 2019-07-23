@@ -2,12 +2,14 @@
     <div class="col-md-12">
       <ul class="nav nav-pills nav-fill nav-light">
         <li class="nav-item">
-          <span class="nav-link" style="cursor: pointer;" (click)="showTranslations = false" [ngClass]="{'active': !showTranslations, 'text-primary': showTranslations}">
+          <span class="nav-link" style="cursor: pointer;" (click)="showTranslations = false" [ngClass]="{'active': !showTranslations, 'text-primary': showTranslations}"
+            i18n="Settings service section|Title for service settings section@@settingsServiceSection">
             Service
           </span>
         </li>
         <li class="nav-item">
-          <span class="nav-link" style="cursor: pointer;" (click)="showTranslations = true" [ngClass]="{'active': showTranslations, 'text-primary': !showTranslations}">
+          <span class="nav-link" style="cursor: pointer;" (click)="showTranslations = true" [ngClass]="{'active': showTranslations, 'text-primary': !showTranslations}"
+            i18n="Settings verapdf translation section|Title for translation settings section@@settingsTranslationSection">
             VeraPDF Message Translations
           </span>
         </li>
@@ -18,60 +20,62 @@
 
 <div class="row">
     <div class="col-md-12">
-      <p-confirmDialog header="Unsaved changes ..." icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
+      <p-confirmDialog header="Unsaved changes ..."
+        i18n-header="Header unsaved changes|Shown when leaving with unsaved changes@@headerSettingsChanges"
+        icon="fa fa-warning" [acceptVisible]="true" [rejectLabel]="'cancel'"> </p-confirmDialog>
       <form (ngSubmit)="this.onSave()" #form="ngForm">
         <fieldset [hidden]="this.showTranslations">
-          <legend>Task Scheduling</legend>
+          <legend i18n="Legend task scheduling|Legend for scheduler settings@@legendTaskScheduling">Task Scheduling</legend>
           <div class="form-group">
-              <label for="parallelTasks" class="control-label">Parallel Tasks</label>
+              <label for="parallelTasks" class="control-label" i18n="Label parallel tasks|Label for picking max allowed concurrent tasks@@labelParallelTasks">Parallel Tasks</label>
               <div>
                   <p-spinner size="10" [(ngModel)]="settingsCopy.parallelTasks" id="parallelTasks" name="parallelTasks" [min]="1" [max]="15" required></p-spinner>
               </div>
-              <small class="text-muted">The numbert of batch reports to be processed at the same time.</small>
+              <small class="text-muted" i18n="Hint parallel tasks@@hintParallelTasks">The numbert of batch reports to be processed at the same time.</small>
           </div>
           <div class="form-group">
-              <label for="threadsPerTask" class="control-label">Threads Per Task</label>
+              <label for="threadsPerTask" class="control-label" i18n="Label threads per task||Label for input setting the threads allowed per task@@labelThreadsPerTask">Threads Per Task</label>
               <div>
                   <p-spinner size="10" [(ngModel)]="settingsCopy.threadsPerTask" id="threadsPerTask" name="threadsPerTask" [min]="1" [max]="15" required></p-spinner>
               </div>
-              <small class="text-muted">The number of files to be validated in parallel during batch report validation.</small>
+              <small class="text-muted" i18n="Hint threads per task@@hintThreadsTask">The number of files to be validated in parallel during batch report validation.</small>
           </div>
         </fieldset>
         <fieldset [hidden]="this.showTranslations">
           <legend>Clean Up Task</legend>
           <div class="form-group">
-            <label for="autoDeleteBatches" class="control-label">Automatically Delete Older Batches</label>
+            <label for="autoDeleteBatches" class="control-label" i18n="Label auto delete old batches@@labelAutoDeleteOldBatches">Automatically Delete Older Batches</label>
             <p-inputSwitch [(ngModel)]="settingsCopy.autoDeleteBatches" id="autoDeleteBatches" name="autoDeleteBatches"  class="form-control form-control-no-border"></p-inputSwitch>
-            <small class="text-muted">If active, file batches (and associated reports) will be deleted after a specified amount of time.</small>
+            <small class="text-muted" i18n="Hint auto delete old batches@@hintAutoDeleteOldBatches">If active, file batches (and associated reports) will be deleted after a specified amount of time.</small>
           </div>
           <div class="form-group" *ngIf="settingsCopy.autoDeleteBatches">
-            <label for="autoDeleteHours" class="control-label">Deletion Threshold (Hours)</label>
+            <label for="autoDeleteHours" class="control-label" i18n="Label for batch deletion threshold|Threshold in hours@@labelBatchDeletionHours">Deletion Threshold (Hours)</label>
             <div>
                 <p-spinner size="10" [(ngModel)]="settingsCopy.autoDeleteHours" id="autoDeleteHours" name="autoDeleteHours" [min]="1" [max]="1000" required></p-spinner>
             </div>
-            <small class="text-muted">Determines the amount of hours to wait after initial batch creation until the batch and all associated reports will be automatically deleted.</small>
+            <small class="text-muted" i18n="Hint batch hours auto deletion@@hintDeleteBatchAfterHours">Determines the amount of hours to wait after initial batch creation until the batch and all associated reports will be automatically deleted.</small>
           </div>
         </fieldset>
         <fieldset [hidden]="this.showTranslations">
-            <legend>REST API</legend>
+            <legend i18n="Legend for settings of rest api@@legendRestApi">REST API</legend>
             <div class="form-group">
-                <label for="pageSize" class="control-label">Page Size</label>
+                <label for="pageSize" class="control-label" i18n="Label for page size input spinner|Rest api page size@@labelApiPageSize">Page Size</label>
                 <div>
                     <p-spinner size="10" [(ngModel)]="settingsCopy.pageSize" id="pageSize" name="pageSize" [min]="1" [max]="100" required></p-spinner>
                 </div>
-                <small class="text-muted">Size of collection pages delivered by REST API.</small>
+                <small class="text-muted" i18n="Hint page size@@hintApiPageSize">Size of collection pages delivered by REST API.</small>
             </div>
         </fieldset>
 
         <fieldset [hidden]="!this.showTranslations">
-          <legend class="mb-3">Error Message Translations</legend>
-          <p class="mb-4">Here you can define the messages that will be displayed if veraPDF identifies some problems.</p>
+          <legend class="mb-3" i18n="Legend for verapdf error message translations@@veraErrorMessageTranslations">Error Message Translations</legend>
+          <p class="mb-4" i18n="Hint describing verapdf message translations@@hintWhyMessageTranslations">Here you can define the messages that will be displayed if veraPDF identifies some problems.</p>
           <div class="form-group" [ngClass]="{'mt-5': i!=0}" *ngFor="let item of settingsCopy.messageTranslations | keyvalue: valueAscOrder; let i = index; trackBy:trackByFn;">
             <h6 class="text-capitalize text-dark font-weight-bold">{{this.resolveHeading(item.key)}}</h6>
              <div class="mt-3" *ngFor="let translation of settingsCopy.messageTranslations[item.key] | keyvalue; let k = index; trackBy:trackByFn2;">
               <label class="text-uppercase text-info" [for]="item.key + '-' + k ">{{translation.key}}</label>
               <input type="text" [(name)]="item.key + translation.key " [(id)]="item.key + '-' + k " class="form-control" placeholder="" aria-describedby="helpId" [(ngModel)]="settingsCopy.messageTranslations[item.key][translation.key]" required #name="ngModel">
-              <span *ngIf="!name.valid && name.touched" class="text-muted">Please enter a value</span>
+              <span *ngIf="!name.valid && name.touched" class="text-muted" i18n="Missing value@@errorMessageValueMissing">Please enter a value</span>
             </div>
           </div>
       </fieldset>
@@ -79,8 +83,8 @@
         <div class="form-group" *ngIf="!form.pristine">
           <div class="row mt-5">
             <div class=" col-md-4 offset-md-4 text-center ">
-              <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine">Save changes</button>
-              <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()">Cancel</button>
+              <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid  || form.pristine" i18n="Button save changes@@buttonSaveSettingChanges">Save changes</button>
+              <button type="button" class="btn btn-secondary btn-block mr-1" [disabled]="form.pristine" (click)="onCancel()"  i18n="Button cancel changes@@buttonCancelSettingChanges">Cancel</button>
             </div>
           </div>
         </div>

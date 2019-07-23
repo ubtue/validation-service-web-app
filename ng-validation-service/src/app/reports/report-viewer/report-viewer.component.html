@@ -5,16 +5,23 @@
         <li class="breadcrumb-item"><a [routerLink]="['../']">Reports</a></li>
         <li class="breadcrumb-item disabled" [ngClass]="{ active: !this.showingFileReport }">
           <ng-container *ngIf="this.showingFileReport; else elseReport">
-            <a (click)="showingFileReport = false" [routerLink]="'./'">{{
-              "Batch Report " + this.batchReport.id
-              }}</a>
+            <a (click)="showingFileReport = false" [routerLink]="'./'">
+              <span i18n="Batch report|Localization of term batch report@@batchReport" class="mr-1">Batch Report</span> {{ this.batchReport.id }}
+            </a>
           </ng-container>
           <ng-template #elseReport>
-            {{ "Batch Report " + this.batchReport.id }}
+            <span i18n="Batch report@@batchReport" class="mr-1">Batch Report</span> {{ this.batchReport.id }}
           </ng-template>
         </li>
         <li class="breadcrumb-item active" *ngIf="this.showingFileReport">
-          {{ this.fileReport._embedded.file ? this.fileReport._embedded.file.fileName : 'Deleted File' }}
+          <ng-container *ngIf="this.fileReport._embedded.file; else deletedFileTemplate">
+            {{ this.fileReport._embedded.file.fileName }}
+          </ng-container>
+          <ng-template #deletedFileTemplate>
+            <span i18n="Deleted file placeholder|Placeholder for representing a deleted file@@deletedFilePLaceholder">Deleted File</span>
+          </ng-template>
+
+
         </li>
       </ol>
     </nav>
@@ -29,12 +36,12 @@
           <table class="table table-striped mt-3 mb-4">
               <thead class="">
                 <tr>
-                  <th>Batch</th>
-                  <th>Configuration</th>
-                  <th>Processing Status</th>
-                  <th>Submitted</th>
-                  <th>Finished</th>
-                  <th>Problematic Files</th>
+                  <th i18n="@@batchColumnHeading">Batch</th>
+                  <th i18n="@@configurationColumnHeading">Configuration</th>
+                  <th i18n="@@statusColumnHeading">Processing Status</th>
+                  <th i18n="@@submittedColumnHeading">Submitted</th>
+                  <th i18n="@@finishedColumnHeading">Finished</th>
+                  <th i18n="Heading problematic files|Heading for column with number of problematic files@@columnProblematicFiles">Problematic Files</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,7 +58,7 @@
                         </a>
                     </ng-container>
                     <ng-template #elseTemplate>
-                        <em class="font-weight-normal">{{ 'Deleted Configuration' }}</em>
+                        <em class="font-weight-normal" i18n="@@deletedConfigurationPlaceholder">Deleted Configuration</em>
                     </ng-template>
                   </td>
                   <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
@@ -71,7 +78,7 @@
       </div>
     </div>
   </div>
-  <h5 class="mb-1 mt-3 text-dark">File Reports</h5>
+  <h5 class="mb-1 mt-3 text-dark" i18n="Heading file reports list|Heading for file reports@@headingFileValidationReports">File Reports</h5>
   <div class="row mb-3">
     <div class="col-md-12">
       <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeOutcomeFilter($event)"></p-dropdown>

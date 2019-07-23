@@ -1,11 +1,13 @@
 <div class="row mb-3">
   <div class="  col-md-6 text-left mb-1">
     <a routerLink="/batches/new">
-      <button type="button" name="" id="" class="btn btn-primary" i18n="Add batch button|Button for adding new batch@@addBatchButton">
-        <i class="fa fa-plus"></i> Batch</button></a>
+      <button type="button" name="" id="" class="btn btn-primary">
+        <i class="fa fa-plus mr-1"></i> <ng-container i18n="Add batch button|Button for adding new batch@@addBatchButton">Batch</ng-container>
+      </button>
+    </a>
   </div>
   <div class=" col-md-6">
-    <input type="text" class="form-control" placeholder="Search name" i18n-placeholder="Batch name search placeholder|Placeholder for search in batch list@@batchNameSearchFieldPlaceholder"
+    <input type="text" class="form-control" placeholder="Search name" i18n-placeholder="Batch search placeholder|Placeholder for name search@@batchNameSearchPlaceholder"
       (keyup)="this.searchTextChanged.next($event.target.value)" #filter>
   </div>
 </div>
@@ -27,15 +29,17 @@
           <td class="td-break-all"> {{batch.description}}</td>
           <td>{{batch.creationDate | date:'dd.MM.y, HH:mm' }}</td>
           <td>
-            <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)"
-              i18n="Delete button|Button for deleting a batch @@deleteBatchButton"><i class="fa fa-trash"></i> Delete</a>
+            <a style="color: white; " class="btn btn-danger mt-1 mb-1 text-nowrap" role="button" (click)="onDeleteBatch(batch)">
+              <i class="fa fa-trash mr-1"></i>
+              <ng-container i18n="Delete button|Button for deleting a batch@@deleteBatchButton">Delete</ng-container>
+            </a>
           </td>
         </tr>
       </tbody>
       <tfoot class="bg-light text-dark text-monospace font-weight-bold">
         <td class="text-center" colspan="3">
-          <span i18n="Batch list footer|Details about number of found batches@@batchListFooter">{this.page.totalCount, plural, =0 {No Batches} =1 {One Batch} other {{{this.page.totalCount}}
-            Batches}}</span>
+          <span i18n="Batch list footer|Details about number of found batches@@batchListFooter">
+            {this.page.totalCount, plural, =0 {No Batches} =1 {One Batch} other {{{this.page.totalCount}} Batches}}</span>
         </td>
       </tfoot>
     </table>

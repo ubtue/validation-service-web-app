@@ -195,8 +195,15 @@
         </tbody>
         <tfoot class="text-monospace font-weight-bold text-dark bg-light table-bordered">
           <tr>
-            <td colspan="6" class="text-center" i18n>
-              {this.checksPage.totalCount, plural, =0 {No Failed Checks} =1 {One Failed Check} other {{{this.checksPage.totalCount}} Failed Checks}}
+            <td colspan="6" class="text-center">
+              <ng-container *ngIf="this.checksPage; else noPageTemplate" i18n>
+                  {this.checksPage.totalCount, plural, =0 {No Failed Checks} =1 {One Failed Check} other {{{this.checksPage.totalCount}} Failed Checks}}
+              </ng-container>
+              <ng-template #noPageTemplate>
+                  <span i18n="Footer no failed checks|Shown when no identified problems available@@footerTableNoIdentifiedProblems">No Failed Checks</span>
+              </ng-template>
+              
+              
             </td>
           </tr>
         </tfoot>

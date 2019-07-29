@@ -10,7 +10,7 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" style="cursor: pointer;" (click)="displayIndex = 1" [ngClass]="{'active': displayIndex === 1, 'text-primary': displayIndex !== 1}">
-                  <span i18n="File report verapdf section|Section with verapdf results@@fileReportFitsSection">VeraPDF</span>
+                  <span i18n="File report verapdf section|Section with verapdf results@@fileReportVeraPDFSection" class="mr-1">VeraPDF</span>
                   <ng-container *ngIf="this.verapdfErrorMessages && this.verapdfErrorMessages.length !== 0; else noErrorsTemplate">
                       <span class="badge ml-1" [ngClass]="{'badge-warning': !showCompleted,'badge-danger': showCompleted}">{{ this.verapdfErrorMessages.length }}</span>
                   </ng-container>
@@ -77,7 +77,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 1 && fileReport !== null">
   <div class="col-md-12">
-      <h5>Summary</h5>
+      <h5 i18n="VeraPDF summary|Heading for veraPDF summary@@veraPDFSummaryHeading">Summary</h5>
          <p-messages [(value)]="this.verapdfErrorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
          <div class="table-responsive ">
             <table  class="table table-striped ">
@@ -115,7 +115,12 @@
                       <ng-template #resultExistsTemplate>
                           <td>{{ fileReport._embedded['verapdf-result'].validationProfile }}</td>
                           <td [ngClass]="{'text-success': fileReport._embedded['verapdf-result'].compliant,'text-danger': !fileReport._embedded['verapdf-result'].compliant}" class="font-weight-bold">
-                            {{ fileReport._embedded['verapdf-result'].compliant }}
+                            <ng-container *ngIf="fileReport._embedded['verapdf-result'].compliant; else notCompliantTemplate">
+                              <span i18n="Fits valid|Output of positive validation result@@fitsValid">valid</span>
+                            </ng-container>
+                            <ng-template #notCompliantTemplate>
+                              <span i18n="Fits not valid|Output of negative validation result@@fitsNotValid">not valid</span>
+                            </ng-template>
                           </td>
                           <td>{{ fileReport._embedded['verapdf-result'].passedRules }}</td>
                           <td>{{ fileReport._embedded['verapdf-result'].failedRules }}</td>
@@ -176,7 +181,7 @@
 
 <div class="row mt-2" *ngIf="displayIndex === 2 && fileReport !== null">
   <div class="col-md-12">
-    <h5>Failed Rule Checks</h5>
+    <h5 i18n="Heading failed checks|Heading for failed checks@@failedCustomChecksHeading">Failed Rule Checks</h5>
     <p-dropdown class="float-right" [options]="this.options" [(ngModel)]="this.option" id="options" name="options" (onChange)="onChangeCheckTypeFilter($event)"></p-dropdown>
     <table class="table  table-striped ">
         <thead class="table-light">

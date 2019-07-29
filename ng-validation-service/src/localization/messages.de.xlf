@@ -126,7 +126,7 @@
       <trans-unit id="columnHeaderBatchCreationDate" datatype="html">
         <source>Creation
             Date</source>
-        <target>Erstellt am</target>
+        <target>Erstellt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/batches/batches-list/batches-list.component.html</context>
           <context context-type="linenumber">21</context>
@@ -411,7 +411,7 @@
       </trans-unit>
       <trans-unit id="tableHeaderConfigCreation" datatype="html">
         <source>Creation Date</source>
-        <target>Erstellt am</target>
+        <target>Erstellt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
           <context context-type="linenumber">23</context>
@@ -687,7 +687,7 @@
       <trans-unit id="labelFitsTimeOut" datatype="html">
         <source>Execution
             Time Out (Seconds)</source>
-        <target>Time Out(Sekunden)</target>
+        <target>Time Out (Sekunden)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/configuration-edit/configuration-edit.component.html</context>
           <context context-type="linenumber">45</context>
@@ -749,7 +749,7 @@
       </trans-unit>
       <trans-unit id="labelVeraModeFits" datatype="html">
         <source>Run when a tool in FITS reports mime of type application/pdf</source>
-        <target>Ausführen, falls ein Tool in FITS den MIME Type application/pdf erkennt</target>
+        <target>Ausführen, falls Tool in FITS den MIME Type application/pdf erkennt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/configuration-edit/configuration-edit.component.html</context>
           <context context-type="linenumber">67</context>
@@ -770,7 +770,7 @@
       <trans-unit id="labelVerapdfTimeout" datatype="html">
         <source>Execution
             Time Out (Seconds)</source>
-        <target>Time Out(Sekunden)</target>
+        <target>Time Out (Sekunden)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/configuration-edit/configuration-edit.component.html</context>
           <context context-type="linenumber">73</context>
@@ -790,9 +790,8 @@
         <note priority="1" from="meaning">Hint verapdf timeout</note>
       </trans-unit>
       <trans-unit id="labelVerapdfHeap" datatype="html">
-        <source>Max
-            Heapgröße (Megabyte)</source>
-        <target>Heap Size(Megabyte)</target>
+        <source>Heap Size (Megabyte)</source>
+        <target>Heapgröße (Megabyte)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/configuration-edit/configuration-edit.component.html</context>
           <context context-type="linenumber">83</context>
@@ -803,7 +802,7 @@
       <trans-unit id="hintVerapdfHeap" datatype="html">
         <source>The max
             heap size when executing veraPDF.</source>
-        <target>Die maximale Heapgröße bei der Ausführung von veraPDF</target>
+        <target>Die maximale Heapgröße bei der Ausführung von veraPDF.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/configuration-edit/configuration-edit.component.html</context>
           <context context-type="linenumber">89</context>
@@ -893,7 +892,7 @@
       </trans-unit>
       <trans-unit id="a7bad89f08793f629b5ceef09421db606b299266" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Rules} =1 {1 Rule} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Rules } }</source>
-        <target>{VAR_PLURAL, plural, =0 {keine Regeln} =1 {Eine Regel} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Regeln } }</target>
+        <target>{VAR_PLURAL, plural, =0 {Keine Regeln} =1 {Eine Regel} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Regeln } }</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-manager.component.html</context>
           <context context-type="linenumber">22</context>
@@ -971,7 +970,7 @@
       </trans-unit>
       <trans-unit id="regexHint" datatype="html">
         <source>A regular expression with a syntax supported by the java pattern implementation</source>
-        <target>Ein regulärer Ausdruck mit Syntax, die von der Java Patter Implementierung unterstützt wird</target>
+        <target>Ein regulärer Ausdruck mit Syntax, die von der Java Pattern Implementierung unterstützt wird</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component.html</context>
           <context context-type="linenumber">19</context>
@@ -1021,7 +1020,7 @@
       </trans-unit>
       <trans-unit id="nameRuleTranslationDescription" datatype="html">
         <source>Error messages that will be shown to DSpace user</source>
-        <target>Fehlermeldungen, die dem DSpace Nutzer angezeigt werden</target>
+        <target>Bei Regelverstoß angezeigte Fehlermeldung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1217,7 +1216,7 @@
       </trans-unit>
       <trans-unit id="fitsTranslationDescription" datatype="html">
         <source>Error messages that will be shown to DSpace user</source>
-        <target>Fehlermeldungen, die dem DSpace Nutzer angezeigt werden</target>
+        <target>Bei Regelverstoß angezeigte Fehlermeldung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component.html</context>
           <context context-type="linenumber">29</context>
@@ -1297,7 +1296,6 @@
       <trans-unit id="labelChecksThreshold" datatype="html">
         <source>Failed Checks Threshold</source>
         <target>Schwellwert für Regelverstöße</target>
-        <target></target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">18</context>
@@ -1307,7 +1305,7 @@
       </trans-unit>
       <trans-unit id="hintChecksThreshold" datatype="html">
         <source>Abort validation pre-maturely after specified number of failed checks.</source>
-        <target>Die Validierung wird nach o.g. Anzahl an Reglverstößen vorzeitig abgebrochen</target>
+        <target>Die Validierung wird nach o.g. Anzahl an Regelverstößen vorzeitig abgebrochen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">22</context>
@@ -1347,7 +1345,7 @@
       </trans-unit>
       <trans-unit id="enforceComplianceHint" datatype="html">
         <source>Invalidate file report if file is not valid PDF/A.</source>
-        <target>Dokument wird als nicht valide betrachtet, falls kein valides PDF/A</target>
+        <target>Dokument wird als Problem eingestuft, falls kein valides PDF/A</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1367,7 +1365,7 @@
       </trans-unit>
       <trans-unit id="labelCustomPolicyCheckbox" datatype="html">
         <source>Policy checks to apply on all pdf files. Most of these are redundant if you choose to enforce PDF/A compliance.</source>
-        <target>Validierungsregeln, die auf alle PDF-Dateien angewendet werden. Die meisten dieser Regeln sind redundant, falls bereits auf valides PDF/A überprüft wird.</target>
+        <target>Policies, die auf alle PDF-Dateien angewendet werden. Die meisten dieser Regeln sind redundant, falls bereits auf valides PDF/A überprüft wird.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1438,7 +1436,7 @@
       <trans-unit id="hintCustomPdfPolicies" datatype="html">
         <source>Please note that encrypted PDFs will cause veraPDF execution to exit with an exception. If you are not enforcing PDF/A compliance you should check the disallow encryption policy. This will make sure that
               DSpace uploaders will see a corresponding error message (and not just some more generic &apos;call system staff&apos; message).</source>
-        <target>Falls keine Validierung auf gültiges PDF/A erfolgt, sollte die Regel zum Verbot von Dokumenten mit Kennwort zum Öffnen aktiviert sein. Hierdurch wird sichergestellt, dass dem Dspace Nutzer eine Fehlermeldung mit konkreter Problemstellung anstatt einer generischen Nachricht angezeigt wird.</target>
+        <target>Falls PDF/A-Konformität keine Rolle spielt, sollte die Regel zum Verbot von Dokumenten mit Kennwortschutz aktiviert sein. Hierdurch wird sichergestellt, dass dem DSpace Nutzer eine Fehlermeldung mit konkreter Problemstellung anstatt einer generischen &apos;Wenden Sie sich an den Betreiber&apos; Nachricht angezeigt wird.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">66</context>
@@ -1573,7 +1571,7 @@
       </trans-unit>
       <trans-unit id="resultColumnHeading" datatype="html">
         <source>Result</source>
-        <target>Resultat</target>
+        <target>Ergebnis</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1803,7 +1801,7 @@
       </trans-unit>
       <trans-unit id="fitsExecColumnHeading" datatype="html">
         <source>FITS Execution</source>
-        <target>FITS AUsführung</target>
+        <target>FITS Ausführung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context>
           <context context-type="linenumber">9</context>
@@ -1962,7 +1960,7 @@
       </trans-unit>
       <trans-unit id="columnHeadingValid" datatype="html">
         <source>Valid</source>
-        <target>Valid</target>
+        <target>Validität</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1993,7 +1991,7 @@
       </trans-unit>
       <trans-unit id="verapdfExecutionColumnHeading" datatype="html">
         <source>Execution Outcome</source>
-        <target>Ausführungsergebnis</target>
+        <target>Ausführung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">86</context>
@@ -2033,7 +2031,7 @@
       </trans-unit>
       <trans-unit id="verapdfFailedRulesColumnHeading" datatype="html">
         <source>Failed Rules</source>
-        <target>Nicht-Eingehaltene Regeln</target>
+        <target>Nicht eingehaltene Regeln</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">90</context>
@@ -2101,7 +2099,7 @@
       </trans-unit>
       <trans-unit id="verapdfTestNumber" datatype="html">
         <source>Test Number</source>
-        <target>Tsetnummer</target>
+        <target>Testnummer</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">141</context>
@@ -2292,7 +2290,7 @@
       </trans-unit>
       <trans-unit id="hintThreadsTask" datatype="html">
         <source>The number of files to be validated in parallel during batch report validation.</source>
-        <target>Die Anzahl an Dateie, die gleichzeitig während der Stapelvalidierung untersucht werden sollen.</target>
+        <target>Die Anzahl an Dateien, die gleichzeitig während der Stapelvalidierung untersucht werden sollen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/settings/settings.component.html</context>
           <context context-type="linenumber">41</context>
@@ -2634,7 +2632,7 @@
       </trans-unit>
       <trans-unit id="userCreationColumnHeading" datatype="html">
         <source>Creation Date</source>
-        <target>Erstellt am</target>
+        <target>Erstellt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/users/users-list/users-list.component.html</context>
           <context context-type="linenumber">21</context>
@@ -2643,7 +2641,7 @@
       </trans-unit>
       <trans-unit id="userModifiedColumnHeading" datatype="html">
         <source>Last Modified</source>
-        <target>Geändert am</target>
+        <target>Geändert</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/users/users-list/users-list.component.html</context>
           <context context-type="linenumber">22</context>

@@ -54,7 +54,7 @@
       </fieldset>
       <fieldset>
         <legend i18n="VeraPDF execution section|Heading for veraPDF execution config section@@sectionVerapdfExecution">VeraPDF</legend>
-        <div class="form-group">
+        <div class="form-group" *ngIf="configurationCopy._embedded['verapdf-setup']">
           <label for="execMode" class="control-label" i18n="Label verapdf mode|Label describes verapdf execution mode input@@labelVerapdfMode">Execution
             Mode</label>
           <p-radioButton name="execMode" value="always" [(ngModel)]="configurationCopy._embedded['verapdf-setup'].executionMode"

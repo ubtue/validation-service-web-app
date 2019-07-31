@@ -10,7 +10,7 @@ import { AuthenticationService } from '../shared/services/authentication.service
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
 
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this.authenticationService.isAuthenticated()) {
       this.authenticationService.logout();
-    } 
+    }
   }
 
   onLogin() {

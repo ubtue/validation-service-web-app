@@ -1,4 +1,4 @@
-<div class="row mt-4">
+<div class="row mt-4" *ngIf="this.batchReport">
   <div class="col-md-12">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -20,15 +20,13 @@
           <ng-template #deletedFileTemplate>
             <span i18n="Deleted file placeholder|Placeholder for representing a deleted file@@deletedFilePLaceholder">Deleted File</span>
           </ng-template>
-
-
         </li>
       </ol>
     </nav>
   </div>
 </div>
 <p-messages [(value)]="this.errorMessages" [closable]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'"></p-messages>
-<div [hidden]="this.route.children.length === 1" *ngIf="this.batchReport.summary">
+<div [hidden]="this.route.children.length === 1" *ngIf="this.batchReport && this.batchReport.summary">
   <div class="row mt-3">
     <div class="col-md-12">
       <h5 class="text-dark">Summary</h5>

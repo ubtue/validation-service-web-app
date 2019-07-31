@@ -1,8 +1,8 @@
 <div class="ui-fluid ">
   <p-messages [(value)]="this.messages"></p-messages>
   <p-fileUpload #fileUpload name="file" [url]="hrefToRel(this.selectedBatch,'files')" multiple="multiple"
-    [previewWidth]="0" [showCancelButton]="false" (onBeforeUpload)="onBeforeUpload($event)" (onBeforeSend)="onBeforeSend($event)"
-    (onUpload)="onFinishUpload($event)" (onSelect)="onSelectFiles()" (onError)="onUploadError($event)" (onClear)="onClearWithoutFullUpload()">
+    [previewWidth]="0" [showCancelButton]="false" (onBeforeUpload)="onBeforeUpload($event)" (onUpload)="onFinishUpload($event)" (onSelect)="onSelectFiles()"
+    (onError)="onUploadError($event)" (onClear)="onClearWithoutFullUpload()" [headers]="this.authHeader">
     <ng-template let-file pTemplate='file' pIndex="i">
       <div>
         {{i}}

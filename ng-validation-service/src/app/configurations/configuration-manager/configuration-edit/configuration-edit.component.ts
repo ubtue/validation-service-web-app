@@ -20,7 +20,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
   selectedConfiguration: Configuration;
   configurationCopy: Configuration;

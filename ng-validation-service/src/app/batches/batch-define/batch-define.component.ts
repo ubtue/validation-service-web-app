@@ -12,7 +12,7 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 })
 export class BatchDefineComponent implements OnInit {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
   constructor(private batchesService: BatchesService,
     private router: Router,

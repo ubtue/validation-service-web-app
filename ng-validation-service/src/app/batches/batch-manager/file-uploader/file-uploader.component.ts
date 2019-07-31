@@ -11,7 +11,7 @@ import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { FileUpload } from 'primeng/fileupload';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
-
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-file-uploader',
@@ -21,8 +21,9 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
 
-  @ViewChild('fileUpload') fileUpload: FileUpload;
+  @ViewChild('fileUpload', { static: false }) fileUpload: FileUpload;
 
+  authHeader: HttpHeaders;
   hrefToRel = Util.getHrefForRel;
   selectedBatch: Batch;
   messages: Message[];
@@ -46,6 +47,8 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
         this.messages = [];
       }
     );
+
+    this.authHeader = new HttpHeaders().set('Authorization', this.authenticationService.getJwtToken());
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -79,12 +82,6 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
     this.fileUpload.showUploadButton = false;
     this.fileUpload.disabled = true;
   }
-
-  onBeforeSend(event) {
-    event.xhr.setRequestHeader("Authorization", this.authenticationService.getJwtToken());
-  }
-
-
 
   onFinishUpload(event) {
     let message = new Message();

@@ -15,7 +15,7 @@ import { SelectItem } from 'primeng/api';
 })
 export class EditUserComponent implements OnInit {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
   private creationMode = false;
   private user: User;

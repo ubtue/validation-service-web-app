@@ -19,7 +19,7 @@ import { AuthenticationService } from '../shared/services/authentication.service
 })
 export class SettingsComponent implements OnInit, CanDeactivateGuard {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
   settings: ApplicationSettings;
   settingsCopy: ApplicationSettings;
   showTranslations = false;

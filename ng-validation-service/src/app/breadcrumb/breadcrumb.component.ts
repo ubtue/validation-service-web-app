@@ -3,7 +3,6 @@ import { BreadCrumbItem } from './breadcrumb-item.model';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { IfStmt } from '@angular/compiler';
-import { last } from '@angular/router/src/utils/collection';
 
 
 @Component({

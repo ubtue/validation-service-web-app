@@ -18,7 +18,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class FitsRuleEditComponent implements OnInit, OnDestroy {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
   rule: FitsResultRule;
   ruleCopy: FitsResultRule;

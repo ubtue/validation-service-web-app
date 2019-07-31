@@ -31,7 +31,7 @@ export class BatchesListComponent implements OnInit, OnDestroy {
   descendingSortOrder: boolean = true;
   descriptionFilter: string = "";
 
-  @ViewChild('filter') filterInput: ElementRef;
+  @ViewChild('filter', { static: false }) filterInput: ElementRef;
 
   constructor(private batchesService: BatchesService,
     private route: ActivatedRoute,

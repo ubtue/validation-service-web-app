@@ -18,7 +18,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class VerapdfSetupEditComponent implements OnInit {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
   veraSetup: VerapdfSetup;
   veraSetupCopy: VerapdfSetup;
   validationProfiles: SelectItem[];

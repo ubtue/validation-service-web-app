@@ -62,7 +62,7 @@ export class ReportViewerComponent implements OnInit, OnDestroy {
 
         this.fileReportsPage = resolvedFileReportsPage.data;
         this.batchReport = resolvedBatchReport.data;
-        if (!this.batchReport.summary) {
+        if (this.batchReport && !this.batchReport.summary) {
           const message: Message = {severity: 'error', summary:'Error:', detail:'Batch processing failed. Check server log for details', closable:false, sticky:true};
           this.errorMessages.push(message);
         }

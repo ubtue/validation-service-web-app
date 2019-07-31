@@ -9,7 +9,6 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { Util } from 'src/app/shared/util';
 import { FileNameRulesPage } from 'src/app/shared/model/file-name-rules.model';
 import { Configuration } from 'src/app/shared/model/configuration.model';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Resolved } from 'src/app/shared/model/resolved.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { Translations } from 'src/app/shared/model/fits.result-rule.model';
@@ -23,7 +22,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
 
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
 
   rule: FileNameRule;
   ruleCopy: FileNameRule;

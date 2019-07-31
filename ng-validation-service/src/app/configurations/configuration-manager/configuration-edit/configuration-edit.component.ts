@@ -20,7 +20,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 })
 export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
 
-  @ViewChild('form', { static: false }) form: NgForm;
+  @ViewChild('form', { static: true }) form: NgForm;
 
   selectedConfiguration: Configuration;
   configurationCopy: Configuration;
@@ -37,11 +37,12 @@ export class ConfigurationEditComponent implements OnInit, CanDeactivateGuard {
       (data: Data) => {
         const resolved: Resolved<Configuration> = data['configuration'];
         if (!resolved.data) {
+          this.selectedConfiguration = new Configuration();
           this.errorService.resolved = resolved;
           this.router.navigate(['/error']);
+        } else {
+          this.selectedConfiguration = resolved.data;
         }
-
-        this.selectedConfiguration = resolved.data;
         this.configurationCopy = <Configuration>Util.deepCopy(this.selectedConfiguration);
         this.configService.configLoaded.next(this.configurationCopy);
       }

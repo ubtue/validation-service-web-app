@@ -45,26 +45,27 @@ export class FitsRuleEditComponent implements OnInit, OnDestroy {
     this.route.data.subscribe(
       (data: Data) => {
         const resolved: Resolved<FitsResultRule> = data['fitsResultRule'];
-        if (resolved && !resolved.data) {
-          this.errorService.resolved = resolved;
-          this.router.navigate(['/error']);
-        }
 
         if (resolved) {
-          this.rule = resolved.data;
+          if (!resolved.data) {
+            this.rule = new FitsResultRule();
+            this.errorService.resolved = resolved;
+            this.router.navigate(['/error']);
+          } else {
+            this.rule = resolved.data;
+          }
         } else {
+          this.creationMode = true;
           this.rule = new FitsResultRule();
           this.rule.outcome = 'valid';
           this.rule.type = 'mimeValid';
           this.rule.mime = "application/pdf"
-          this.creationMode = true;
           this.rule.outcomeOnMissingFitsRecord = 'valid';
           this.rule.toolName = "Jhove";
           this.rule.translations = new Translations();
           this.rule.translations['de'] = '';
           this.rule.translations['en'] = '';
         }
-
         this.ruleCopy = <FitsResultRule>Util.deepCopy(this.rule);
       }
     );

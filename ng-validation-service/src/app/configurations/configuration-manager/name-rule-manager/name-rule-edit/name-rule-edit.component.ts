@@ -46,18 +46,20 @@ export class NameRuleEditComponent implements OnInit, CanDeactivateGuard {
     this.route.data.subscribe(
       (data: Data) => {
         const resolved: Resolved<FileNameRule> = data['fileNameRule'];
-        if (resolved && !resolved.data) {
-          this.errorService.resolved = resolved;
-          this.router.navigate(['/error']);
-        }
 
         if (resolved) {
-          this.rule = resolved.data;
+          if (!resolved.data) {
+            this.rule = new FileNameRule();
+            this.errorService.resolved = resolved;
+            this.router.navigate(['/error']);
+          } else {
+            this.rule = resolved.data;
+          }
         } else {
+          this.creationMode = true;
           this.rule = new FileNameRule();
           this.rule.outcome = 'valid';
           this.rule.type = 'matchesRegularExpression';
-          this.creationMode = true;
           this.rule.translations = new Translations();
           this.rule.translations['de'] = '';
           this.rule.translations['en'] = '';

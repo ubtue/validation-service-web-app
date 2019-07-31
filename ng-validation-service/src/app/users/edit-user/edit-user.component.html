@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<form (ngSubmit)="this.onSave()" #form="ngForm">
+<form (ngSubmit)="this.onSave()" #form="ngForm" *ngIf="userCopy">
   <fieldset class="form-group">
     <legend i18n="@@usersSelect">
       {this.isInCreationMode(), select, 1 {Create User} other {Edit User}}

@@ -47,17 +47,23 @@ export class FileReportViewerComponent implements OnInit {
         this.fileReport = resolved.data;
         this.viewerService.selectedFileReport.next(this.fileReport);
         for (const errorMessage of this.fileReport.errorMessages) {
-          let message: Message = {severity: 'error', summary: 'Error:', detail: errorMessage, closable: false, sticky: true};
+          let message: Message = { severity: 'error', summary: 'Error:', detail: errorMessage, closable: false, sticky: true };
           this.errorMessages.push(message);
         }
 
-        if (this.fileReport._embedded['verapdf-result']) {
-          if(this.fileReport._embedded['verapdf-result'].errorMessage)
-            this.verapdfErrorMessages.push({severity: 'warn', summary: 'VeraPDF: ', detail: this.fileReport._embedded['verapdf-result'].errorMessage, closable: false, sticky: true});
+        let verapdfResult = this.fileReport._embedded['verapdf-result'];
+
+        if (verapdfResult && verapdfResult.errorMessage) {
+          this.verapdfErrorMessages.push({
+            severity: 'warn',
+            summary: 'VeraPDF: ',
+            detail: this.fileReport._embedded['verapdf-result'].errorMessage,
+            closable: false, sticky: true
+          });
         }
 
       }
-    )
+    );
 
     this.failedCount = this.fileReport.failedFitsChecks + this.fileReport.failedNameChecks + (this.fileReport._embedded['verapdf-result'] ? this.fileReport._embedded['verapdf-result'].failedPolicyChecks : 0);
     this.options = [

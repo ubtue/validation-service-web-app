@@ -39,13 +39,13 @@ export class EditUserComponent implements OnInit {
       (data) => {
         const resolved: Resolved<User> = data['user'];
 
-        if (resolved && !resolved.data) {
-          this.errorService.resolved = resolved;
-          this.router.navigate(['/error']);
-        }
-
         if (resolved) {
-          this.user = resolved.data;
+          if (!resolved.data) {
+            this.errorService.resolved = resolved;
+            this.router.navigate(['/error']);
+          } else {
+            this.user = resolved.data;
+          }
         } else {
           this.user = new User();
           this.user.username = '';

@@ -1924,8 +1924,8 @@
                   FITS
                 </source>
         <target>FITS</target>
-        
-        
+
+
         <note priority="1" from="description">Section with fits results</note>
         <note priority="1" from="meaning">File report fits section</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit><trans-unit id="fileReportVeraPDFSection" datatype="html">
@@ -2060,7 +2060,7 @@
       </trans-unit>
       <trans-unit id="verapdfComplianceColumnHeading" datatype="html">
         <source>Compliant</source>
-        <target>Valide</target>
+        <target>Validität</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">88</context>
@@ -2139,56 +2139,56 @@
       <trans-unit id="failedChecksHeading" datatype="html">
         <source>Failed Rule Checks</source>
         <target>Fehlgeschlagene Regelprüfungen</target>
-        
+
         <note priority="1" from="description">Heading for the identified problems section of the file report viewer</note>
         <note priority="1" from="meaning">Failed checks heading</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">138</context></context-group></trans-unit>
       <trans-unit id="verapdfSpecification" datatype="html">
         <source>Specification</source>
         <target>Spezifikation</target>
-        
+
         <note priority="1" from="description">Verapdf specification</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">144</context></context-group></trans-unit>
       <trans-unit id="verapdfClause" datatype="html">
         <source>Clause</source>
         <target>Klausel</target>
-        
+
         <note priority="1" from="description">Verapdf clause</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">145</context></context-group></trans-unit>
       <trans-unit id="verapdfTestNumber" datatype="html">
         <source>Test Number</source>
         <target>Testnummer</target>
-        
+
         <note priority="1" from="description">Verapdf test number</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">146</context></context-group></trans-unit>
       <trans-unit id="verapdfOccurences" datatype="html">
         <source>Occurences</source>
         <target>Vorkommnisse</target>
-        
+
         <note priority="1" from="description">Verapdf occurences</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">147</context></context-group></trans-unit>
       <trans-unit id="verapdfRuleDescription" datatype="html">
         <source>Description:</source>
         <target>Beschreibung:</target>
-        
+
         <note priority="1" from="description">Verapdf rule description</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">154</context></context-group></trans-unit>
       <trans-unit id="verapdfRuleTest" datatype="html">
         <source>Test:</source>
         <target>Test:</target>
-        
+
         <note priority="1" from="description">Verapdf rule test</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">158</context></context-group></trans-unit>
       <trans-unit id="verapdfRuleObject" datatype="html">
         <source>Object:</source>
         <target>Objekt:</target>
-        
+
         <note priority="1" from="description">Verapdf rule object</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">162</context></context-group></trans-unit>
       <trans-unit id="verapdfRuleLocations" datatype="html">
         <source>Locations:</source>
         <target>Stellen:</target>
-        
+
         <note priority="1" from="description">Verapdf rule locations</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">166</context></context-group></trans-unit><trans-unit id="failedCustomChecksHeading" datatype="html">
         <source>Failed Rule Checks</source>
@@ -2203,14 +2203,14 @@
       <trans-unit id="identifiedCheckType" datatype="html">
         <source>Check Type</source>
         <target>Regeltyp</target>
-        
+
         <note priority="1" from="description">Column heading for result table</note>
         <note priority="1" from="meaning">Identified problems check type</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">189</context></context-group></trans-unit>
       <trans-unit id="identifiedErrorMessage" datatype="html">
         <source>Error Message</source>
         <target>Fehlermeldung</target>
-        
+
         <note priority="1" from="description">Column heading for result table</note>
         <note priority="1" from="meaning">Identified problems error message</note>
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">190</context></context-group></trans-unit>
@@ -2223,12 +2223,12 @@
 
 </target>
 
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">195</context></context-group></trans-unit>
       <trans-unit id="3aca1d499f7dfc684aadbbdb86b157805362f6e7" datatype="html">
         <source>{VAR_SELECT, select, fits {Fits Result Check} verapdf {VeraPDF Policy} }</source>
         <target>{VAR_SELECT, select, fits {Fits Ergebnisregel} verapdf {VeraPDF Policy} }</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">196</context></context-group></trans-unit><trans-unit id="49e5920be05a8fe7f2f4b46b9e957188add613cb" datatype="html">
         <source>
                   <x id="ICU" equiv-text="{this.checksPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -2240,13 +2240,14 @@
           <context context-type="linenumber">204</context>
         </context-group>
       </trans-unit>
-      
+
       <trans-unit id="9412d31960da9fdb9c65fbe6428f0e9b80d86197" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Failed Checks} =1 {One Failed Check} other {<x id="INTERPOLATION" equiv-text="{{this.checksPage.totalCount}}"/> Failed Checks} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Regelverstöße} =1 {Ein Regelverstoß} other {<x id="INTERPOLATION" equiv-text="{{this.checksPage.totalCount}}"/> Regelverstöße} }</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">205</context></context-group></trans-unit><trans-unit id="footerTableNoIdentifiedProblems" datatype="html">
-        <source>No Failed Checks</source><target state="new">No Failed Checks</target>
+        <source>No Failed Checks</source>
+        <target state="new">Keine Regelverstöße</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">208</context>

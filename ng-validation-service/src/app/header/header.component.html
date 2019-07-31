@@ -33,7 +33,7 @@
         <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in"></i> <span class="ml-1" i18n="Login section title|Title of link to login section@@loginMenuTitle">Login</span></a>
       </li>
       <li class="nav-item" routerLinkActive="active" *ngIf="this.authenticationService.isAuthenticated()">
-        <a class="nav-link " (click)="this.authenticationService.logout()"> <i class="fa fa-user"></i> <span class="ml-1 mr-1" i18n="Logout link title|Title of link for logout@@logoutMenuTitle">Logout</span>{{this.authenticationService.getActiveUser()}} </a>
+        <a class="nav-link " (click)="this.authenticationService.logout()"> <i class="fa fa-user"></i> <span class="ml-1 mr-1" i18n="Logout link title|Title of link for logout@@logoutMenuTitle">Logout</span>({{this.authenticationService.getActiveUser()}}) </a>
       </li>
     </ul>
 

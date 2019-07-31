@@ -104,11 +104,12 @@ export class ReportsService {
     );
   }
 
-  getChecksPage(url: string, typeFilter = '') {
+  getChecksPage(url: string, typeFilter = '', locale = 'en') {
     let params: HttpParams = new HttpParams();
     if (typeFilter.length > 0) {
       params = params.append('type', typeFilter);
     }
+    params = params.append('locale', locale);
     return this.httpClient.get<ChecksPage>(url, { params: params });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, LOCALE_ID, Inject } from '@angular/core';
 import { FileReport } from 'src/app/shared/model/file-report.model';
 import { SelectItem, Message } from 'primeng/api';
 import { ChecksPage } from 'src/app/shared/model/checks.model';
@@ -33,7 +33,8 @@ export class FileReportViewerComponent implements OnInit {
     private route: ActivatedRoute,
     private viewerService: ViewerStateService,
     private router: Router,
-    private errorService: ErrorService) { }
+    private errorService: ErrorService,
+    @Inject(LOCALE_ID) protected localeId: string) { }
 
   ngOnInit() {
     this.route.data.subscribe(
@@ -75,7 +76,7 @@ export class FileReportViewerComponent implements OnInit {
     ];
 
     if(this.failedCount > 0) {
-      this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks')).subscribe(
+      this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks'), '', this.localeId).subscribe(
         (checksPage: ChecksPage) => {
           this.checksPage = checksPage;
         },
@@ -99,7 +100,7 @@ export class FileReportViewerComponent implements OnInit {
   }
 
   onChangeCheckTypeFilter() {
-    this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks'), this.option).subscribe(
+    this.reportsService.getChecksPage(Util.getHrefForRel(this.fileReport, 'checks'), this.option, this.localeId).subscribe(
       (checksPage: ChecksPage) => {
         this.checksPage = checksPage;
       },

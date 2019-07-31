@@ -18,3 +18,7 @@ html body .ui-messages {
   /* padding-top: 0%; */
 
 }
+
+[type=button], p-button {
+    -webkit-appearance: unset;
+}

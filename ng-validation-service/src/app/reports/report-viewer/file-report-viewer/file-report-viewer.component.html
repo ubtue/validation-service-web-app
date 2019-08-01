@@ -193,7 +193,7 @@
         <tbody *ngIf="this.checksPage">
           <tr *ngFor="let check of this.checksPage._embedded['checks']">
            <td i18n="@@checkTypePlural">
-            {check.checkType,select, fits {Fits Result Check} verapdf {VeraPDF Policy}}
+            {check.checkType,select, fits {Fits Result Check} name {Name Rule Check} verapdf {VeraPDF Policy}}
            </td>
            <td>{{check.resultMessage}}</td>
           </tr>
@@ -207,8 +207,8 @@
               <ng-template #noPageTemplate>
                   <span i18n="Footer no failed checks|Shown when no identified problems available@@footerTableNoIdentifiedProblems">No Failed Checks</span>
               </ng-template>
-              
-              
+
+
             </td>
           </tr>
         </tfoot>

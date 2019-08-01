@@ -1423,64 +1423,34 @@
       </trans-unit>
       <trans-unit id="batchColumnHeading" datatype="html">
         <source>Batch</source><target state="final">Batch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">112</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
+        
+        
+        
         <note priority="1" from="description">Heading for batch column</note>
         <note priority="1" from="meaning">Table heading batch</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">29</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">112</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="configurationColumnHeading" datatype="html">
         <source>Configuration</source><target state="final">Configuration</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">113</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
+        
+        
+        
         <note priority="1" from="description">Heading for configuration column</note>
         <note priority="1" from="meaning">Table heading configuration</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">113</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit>
       <trans-unit id="statusColumnHeading" datatype="html">
         <source>Processing Status</source><target state="final">Processing Status</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
+        
+        
         <note priority="1" from="description">Heading for processing status column</note>
         <note priority="1" from="meaning">Table heading status</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">31</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit>
       <trans-unit id="finishedColumnHeading" datatype="html">
         <source>Finished</source><target state="final">Finished</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
+        
+        
         <note priority="1" from="description">Heading for finished time column</note>
         <note priority="1" from="meaning">Table heading finished</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">32</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">41</context></context-group></trans-unit>
       <trans-unit id="resultColumnHeading" datatype="html">
         <source>Result</source><target state="final">Result</target>
         <context-group purpose="location">
@@ -1496,21 +1466,12 @@
       </trans-unit>
       <trans-unit id="deletedConfigurationPlaceholder" datatype="html">
         <source>Deleted Configuration</source><target state="final">Deleted Configuration</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">129</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">61</context>
-        </context-group>
+        
+        
+        
         <note priority="1" from="description">A placeholder for a deleted configuration</note>
         <note priority="1" from="meaning">Deleted configuration</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">46</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">129</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">59</context></context-group></trans-unit>
       <trans-unit id="outcomeValidationSuccess" datatype="html">
         <source>OK</source><target state="final">OK</target>
         <context-group purpose="location">
@@ -1584,17 +1545,11 @@
       </trans-unit>
       <trans-unit id="submittedColumnHeading" datatype="html">
         <source>Submitted</source><target state="final">Submitted</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
+        
+        
         <note priority="1" from="description">Heading for submission date column</note>
         <note priority="1" from="meaning">Table heading submission date</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">114</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit>
       <trans-unit id="progressColumnHeading" datatype="html">
         <source>Progress</source><target state="final">Progress</target>
         <context-group purpose="location">
@@ -1668,22 +1623,16 @@
       </trans-unit>
       <trans-unit id="columnProblematicFiles" datatype="html">
         <source>Problematic Files</source><target state="final">Problematic Files</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
+        
         <note priority="1" from="description">Heading for column with number of problematic files</note>
         <note priority="1" from="meaning">Heading problematic files</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit>
       <trans-unit id="headingFileValidationReports" datatype="html">
         <source>File Reports</source><target state="final">File Reports</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">81</context>
-        </context-group>
+        
         <note priority="1" from="description">Heading for file reports</note>
         <note priority="1" from="meaning">Heading file reports list</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">79</context></context-group></trans-unit>
       <trans-unit id="fileColumnHeading" datatype="html">
         <source>File</source><target state="final">File</target>
         <context-group purpose="location">
@@ -2076,22 +2025,22 @@
       </trans-unit>
       <trans-unit id="checkTypePlural" datatype="html">
         <source>
-            <x id="ICU" equiv-text="{check.checkType, select, fits {...} verapdf {...}}"/>
+            <x id="ICU" equiv-text="{check.checkType, select, fits {...} name {...} verapdf {...}}"/>
            </source><target state="final">
-            <x id="ICU" equiv-text="{check.checkType, select, fits {...} verapdf {...}}"/>
+            <x id="ICU" equiv-text="{check.checkType, select, fits {...} name {...} verapdf {...}}"/>
            </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">195</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="3aca1d499f7dfc684aadbbdb86b157805362f6e7" datatype="html">
-        <source>{VAR_SELECT, select, fits {Fits Result Check} verapdf {VeraPDF Policy} }</source><target state="final">{VAR_SELECT, select, fits {Fits Result Check} verapdf {VeraPDF Policy} }</target>
+      </trans-unit><trans-unit id="0ac9a406019649a465542dd3389988ba82243913" datatype="html">
+        <source>{VAR_SELECT, select, fits {Fits Result Check} name {Name Rule Check} verapdf {VeraPDF Policy} }</source><target state="final">{VAR_SELECT, select, fits {Fits Result Check} name {Name Rule Check} verapdf {VeraPDF Policy} }</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
+      
       <trans-unit id="49e5920be05a8fe7f2f4b46b9e957188add613cb" datatype="html">
         <source>
                   <x id="ICU" equiv-text="{this.checksPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>

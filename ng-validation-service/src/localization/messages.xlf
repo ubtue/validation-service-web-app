@@ -1391,7 +1391,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <note priority="1" from="description">Heading for batch column</note>
         <note priority="1" from="meaning">Table heading batch</note>
@@ -1408,7 +1408,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <note priority="1" from="description">Heading for configuration column</note>
         <note priority="1" from="meaning">Table heading configuration</note>
@@ -1421,7 +1421,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <note priority="1" from="description">Heading for processing status column</note>
         <note priority="1" from="meaning">Table heading status</note>
@@ -1434,7 +1434,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <note priority="1" from="description">Heading for finished time column</note>
         <note priority="1" from="meaning">Table heading finished</note>
@@ -1464,7 +1464,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <note priority="1" from="description">A placeholder for a deleted configuration</note>
         <note priority="1" from="meaning">Deleted configuration</note>
@@ -1542,7 +1542,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <note priority="1" from="description">Heading for submission date column</note>
         <note priority="1" from="meaning">Table heading submission date</note>
@@ -1620,7 +1620,7 @@
         <source>Problematic Files</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <note priority="1" from="description">Heading for column with number of problematic files</note>
         <note priority="1" from="meaning">Heading problematic files</note>
@@ -1629,7 +1629,7 @@
         <source>File Reports</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">79</context>
         </context-group>
         <note priority="1" from="description">Heading for file reports</note>
         <note priority="1" from="meaning">Heading file reports list</note>
@@ -2016,15 +2016,15 @@
       </trans-unit>
       <trans-unit id="checkTypePlural" datatype="html">
         <source>
-            <x id="ICU" equiv-text="{check.checkType, select, fits {...} verapdf {...}}"/>
+            <x id="ICU" equiv-text="{check.checkType, select, fits {...} name {...} verapdf {...}}"/>
            </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3aca1d499f7dfc684aadbbdb86b157805362f6e7" datatype="html">
-        <source>{VAR_SELECT, select, fits {Fits Result Check} verapdf {VeraPDF Policy} }</source>
+      <trans-unit id="0ac9a406019649a465542dd3389988ba82243913" datatype="html">
+        <source>{VAR_SELECT, select, fits {Fits Result Check} name {Name Rule Check} verapdf {VeraPDF Policy} }</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
           <context context-type="linenumber">196</context>

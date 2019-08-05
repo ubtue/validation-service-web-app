@@ -1147,7 +1147,7 @@
       </trans-unit>
       <trans-unit id="4b27a496871e79eb327f0bd4d48440aef52c491b" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Rules} =1 {1 Rule} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Rules } }</source>
-        <target>{VAR_PLURAL, plural, =0 {Keine Regeln} =1 {Eine Regeln} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Regeln } }</target>
+        <target>{VAR_PLURAL, plural, =0 {Keine Regeln} =1 {Eine Regel} other {<x id="INTERPOLATION" equiv-text="{{fitsRulesPage.totalCount}}"/> Regeln } }</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/fits-rule-manager/fits-rule-manager.component.html</context>
           <context context-type="linenumber">21</context>

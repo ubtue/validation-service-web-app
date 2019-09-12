@@ -17,7 +17,7 @@
       {this.isInCreationMode(), select, 1 {Create User} other {Edit User}}
     </legend>
     <div class="form-group">
-      <label for="name">User Name</label>
+      <label for="name" i18n="User name heading@@editUserNameHeading">User Name</label>
       <input type="text" name="name" id="name" class="form-control" placeholder="Enter user name ..."
         i18n-placeholder="Placeholder user name@@userNamePlaceholder"
         aria-describedby="helpId" [(ngModel)]="userCopy.username" required #name="ngModel" />

@@ -31,9 +31,12 @@
           {config.fitsEnabled, plural, one {Enabled} other {Disabled}}
         </td>
         <td>
-          <span class="capitalize">{{
-            config._embedded["verapdf-setup"].executionMode
-            }}</span>
+          <span class="capitalize">
+            <span *ngIf="config._embedded['verapdf-setup'].executionMode.toUpperCase() === 'ALWAYS'" i18n="Verapdf always mode|Label for execution mode@@veraPdfAlways">Always</span>
+            <span *ngIf="config._embedded['verapdf-setup'].executionMode.toUpperCase() === 'FITS'" i18n="Verapdf fits mode|Label for execution mode@@veraPdfFits">Fits</span>
+            <span *ngIf="config._embedded['verapdf-setup'].executionMode.toUpperCase() === 'NEVER'" i18n="Verapdf never mode|Label for execution mode@@veraPdfNever">Never</span>
+            <span *ngIf="config._embedded['verapdf-setup'].executionMode.toUpperCase() === 'EXTENSION'" i18n="Verapdf extension mode|Label for execution mode@@veraPdfExtension">Extension</span>
+          </span>
         </td>
         <td>{{ config.creationDate | date: "dd.MM.y, HH:mm" }}</td>
         <td>

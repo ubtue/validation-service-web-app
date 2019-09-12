@@ -390,44 +390,32 @@
       <trans-unit id="tableHeaderConfigName" datatype="html">
         <source>Name</source>
         <target>Name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
+
         <note priority="1" from="description">Describes name property of a configuration</note>
         <note priority="1" from="meaning">Table header config name</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="tableHeaderConfigFits" datatype="html">
         <source>FITS</source>
         <target>FITS</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
+
         <note priority="1" from="description">Describes fits tool name</note>
         <note priority="1" from="meaning">Table header config fits</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">20</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="tableHeaderConfigVeraMode" datatype="html">
         <source>VeraPDF
           Mode</source>
         <target>VeraPDF Modus</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
+
         <note priority="1" from="description">Describes verapdf mode of configuration</note>
         <note priority="1" from="meaning">Table header config verapdf mode</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">21</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="tableHeaderConfigCreation" datatype="html">
         <source>Creation Date</source>
         <target>Erstellt</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
+
         <note priority="1" from="description">Describes creation datee</note>
         <note priority="1" from="meaning">Table header config creation date</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">23</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="9ef62182db3e3219ff38fc7429e1731cea75eb9c" datatype="html">
         <source>
           <x id="ICU" equiv-text="{config.fitsEnabled, plural, one {...} other {...}}"/>
@@ -443,31 +431,46 @@
       <trans-unit id="23474d643c650ddf8427268cf5a2bfa84bb2cc0e" datatype="html">
         <source>{VAR_PLURAL, plural, one {Enabled} other {Disabled} }</source>
         <target>{VAR_PLURAL, plural, one {Aktiviert} other {Deaktiviert}}</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
+
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">31</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="veraPdfAlways" datatype="html">
+        <source>Always</source><target state="new">Always</target>
+        <target>Immer</target>
+
+        <note priority="1" from="description">Label for execution mode</note>
+        <note priority="1" from="meaning">Verapdf always mode</note>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">35</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit><trans-unit id="veraPdfFits" datatype="html">
+        <source>Fits</source><target state="new">Fits</target>
+        <target>FITS-Ergebnis</target>
+
+        <note priority="1" from="description">Label for execution mode</note>
+        <note priority="1" from="meaning">Verapdf fits mode</note>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">36</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">22</context></context-group></trans-unit><trans-unit id="veraPdfNever" datatype="html">
+        <source>Never</source><target state="new">Never</target>
+        <target>Deaktiviert</target>
+
+        <note priority="1" from="description">Label for execution mode</note>
+        <note priority="1" from="meaning">Verapdf never mode</note>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">37</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="veraPdfExtension" datatype="html">
+        <source>Extension</source><target state="new">Extension</target>
+        <target>Dateiendung</target>
+
+        <note priority="1" from="description">Label for execution mode</note>
+        <note priority="1" from="meaning">Verapdf extension mode</note>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">38</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit>
       <trans-unit id="modifyConfigButton" datatype="html">
         <source>Modify</source>
          <target>Bearbeiten</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
+
         <note priority="1" from="description">Button for modifying a config</note>
         <note priority="1" from="meaning">Modify config button</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="deleteConfigButton" datatype="html">
         <source>Delete</source>
         <target>Löschen</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
+
         <note priority="1" from="description">Button for deleting config</note>
         <note priority="1" from="meaning">Delete config button</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit>
       <trans-unit id="configListFooter" datatype="html">
         <source>
           <x id="ICU" equiv-text="{this.configurationsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -475,21 +478,15 @@
         <target>
  <x id="ICU" equiv-text="{this.configurationsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
 </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
+
         <note priority="1" from="description">Details about number of found configs</note>
         <note priority="1" from="meaning">Config list footer</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="39b1dc3525c45faacfdd80a4e58ca526bb5dd16f" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Configurations} =1 {One Configuration} other {<x id="INTERPOLATION" equiv-text="{{this.configurationsPage.totalCount}}"/> Configurations} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Konfigurationen} =1 {Eine Konfiguration} other {<x id="INTERPOLATION" equiv-text="{{this.configurationsPage.totalCount}}"/> Konfigurationen} }</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
+
+      <context-group purpose="location"><context context-type="sourcefile">app/configurations/configurations-list/configurations-list.component.html</context><context context-type="linenumber">53</context></context-group></trans-unit>
       <trans-unit id="breadcrumbConfigurations" datatype="html">
         <source>Configurations</source>
         <target>Konfigurationen</target>
@@ -949,7 +946,7 @@
       </trans-unit>
       <trans-unit id="nameRuleNameHint" datatype="html">
         <source>A short description for the rule</source>
-        <target>Eine kurze Beschreibung der Regel</target>
+        <target>Eine kurze Beschreibung der Regel.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component.html</context>
           <context context-type="linenumber">11</context>
@@ -989,7 +986,7 @@
       </trans-unit>
       <trans-unit id="regexHint" datatype="html">
         <source>A regular expression with a syntax supported by the java pattern implementation</source>
-        <target>Ein regulärer Ausdruck mit Syntax, die von der Java Pattern Implementierung unterstützt wird</target>
+        <target>Ein regulärer Ausdruck mit Syntax, die von der Java Pattern Implementierung unterstützt wird.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component.html</context>
           <context context-type="linenumber">19</context>
@@ -1039,7 +1036,7 @@
       </trans-unit>
       <trans-unit id="nameRuleTranslationDescription" datatype="html">
         <source>Error messages that will be shown to DSpace user</source>
-        <target>Bei Regelverstoß angezeigte Fehlermeldung</target>
+        <target>Bei Regelverstoß angezeigte Fehlermeldung.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/name-rule-manager/name-rule-edit/name-rule-edit.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1175,7 +1172,7 @@
       </trans-unit>
       <trans-unit id="hintFitsRuleName" datatype="html">
         <source>A short description for the rule</source>
-        <target>Eine kurze Umschreibung der Regel</target>
+        <target>Eine kurze Beschreibung der Regel.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1195,7 +1192,7 @@
       </trans-unit>
       <trans-unit id="labelFitsRuleTest" datatype="html">
         <source>Test</source>
-        <target>Test</target>
+        <target>Prüfbedingung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1235,7 +1232,7 @@
       </trans-unit>
       <trans-unit id="fitsTranslationDescription" datatype="html">
         <source>Error messages that will be shown to DSpace user</source>
-        <target>Bei Regelverstoß angezeigte Fehlermeldung</target>
+        <target>Bei Regelverstoß angezeigte Fehlermeldung.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/fits-rule-manager/fits-rule-edit/fits-rule-edit.component.html</context>
           <context context-type="linenumber">29</context>
@@ -1364,7 +1361,7 @@
       </trans-unit>
       <trans-unit id="enforceComplianceHint" datatype="html">
         <source>Invalidate file report if file is not valid PDF/A.</source>
-        <target>Dokument wird als Problem eingestuft, falls kein valides PDF/A</target>
+        <target>Dokument wird als Problem eingestuft, falls kein valides PDF/A.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/configurations/configuration-manager/verapdf-setup-edit/verapdf-setup-edit.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1483,7 +1480,14 @@
         </context-group>
         <note priority="1" from="description">Label for cancel button</note>
         <note priority="1" from="meaning">Button cancel vera config changes</note>
-      </trans-unit><trans-unit id="headingCreateReport" datatype="html">
+      </trans-unit><trans-unit id="e8e9d95c6d8548a451589765f82e97e786a1612a" datatype="html">
+        <source>
+              <x id="ICU" equiv-text="{config.fitsEnabled, plural, one {...} other {...}}"/>
+            </source><target state="new">
+              <x id="ICU" equiv-text="{config.fitsEnabled, plural, one {...} other {...}}"/>
+            </target>
+
+      <context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="headingCreateReport" datatype="html">
         <source>Create New Batch Report</source>
         <target state="new">Neuen Stapelbericht erstellen</target>
         <context-group purpose="location">
@@ -1505,13 +1509,10 @@
       <trans-unit id="selectValidationConfigButton" datatype="html">
         <source>Select</source>
         <target>Auswählen</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/batches/batch-manager/batch-validator/batch-validator.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
+
         <note priority="1" from="description">Button for selecting validator config</note>
         <note priority="1" from="meaning">Select configuration button</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/config-selector/config-selector.component.html</context><context context-type="linenumber">29</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/batches/batch-manager/batch-validator/batch-validator.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="submitValidationButton" datatype="html">
         <source>Create Batch Report</source>
         <target>Stapelbericht erstellen</target>
@@ -1760,6 +1761,15 @@
         </context-group>
         <note priority="1" from="description">Placeholder for representing a deleted file</note>
         <note priority="1" from="meaning">Deleted file placeholder</note>
+      </trans-unit><trans-unit id="batchReportSummaryHeading" datatype="html">
+        <source>Summary</source><target state="new">Summary</target>
+        <target state="new">Zusammenfassung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <note priority="1" from="description">Heading for summary</note>
+        <note priority="1" from="meaning">Batch report summary</note>
       </trans-unit>
       <trans-unit id="columnProblematicFiles" datatype="html">
         <source>Problematic Files</source>
@@ -1840,13 +1850,10 @@
       <trans-unit id="buttonFileReportDetails" datatype="html">
         <source>Details</source>
         <target>Details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
+
         <note priority="1" from="description">Label for details button</note>
         <note priority="1" from="meaning">Button file report details</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit>
       <trans-unit id="fileReportsPlural" datatype="html">
         <source>
               <x id="ICU" equiv-text="{this.fileReportsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -1855,19 +1862,13 @@
 <x id="ICU" equiv-text="{this.fileReportsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
 </target>
 
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
+
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="0c77c1ee8330b08f720a0ac6d806dffa9684da5d" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Reports} =1 {One Report} other {<x id="INTERPOLATION" equiv-text="{{this.fileReportsPage.totalCount}}"/> Reports} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Berichte} =1 {Eine Bericht} other {<x id="INTERPOLATION" equiv-text="{{this.fileReportsPage.totalCount}}"/> Berichte} }</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
+
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">56</context></context-group></trans-unit>
       <trans-unit id="fileReportFitsSection" datatype="html">
         <source>
                   FITS
@@ -1896,6 +1897,15 @@
         </context-group>
         <note priority="1" from="description">Title for section with identified problems</note>
         <note priority="1" from="meaning">File report section prbolems</note>
+      </trans-unit><trans-unit id="headingFitsResultSummary" datatype="html">
+        <source>Identified Formats</source><target state="new">Identified Formats</target>
+        <target>Identifizierte Formate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <note priority="1" from="description">Heading for fits results</note>
+        <note priority="1" from="meaning">Heading fits results</note>
       </trans-unit>
       <trans-unit id="columnHeadingTool" datatype="html">
         <source>Tool</source>
@@ -2048,25 +2058,19 @@
         <note priority="1" from="meaning">Placeholder tool did not run</note>
       </trans-unit>
       <trans-unit id="toolErrorPlaceholder" datatype="html">
-        <source>Error</source>
+        <source>Failed</source>
         <target>Fehler</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
-          <context context-type="linenumber">104</context>
-        </context-group>
-        <note priority="1" from="description">Placeholder if tool error occured</note>
-        <note priority="1" from="meaning">Placeholder tool error</note>
-      </trans-unit>
+
+
+
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">41</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">104</context></context-group></trans-unit>
       <trans-unit id="toolSuccessfulPlaceholder" datatype="html">
         <source>Success</source>
         <target>Erfolgreich</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
-          <context context-type="linenumber">107</context>
-        </context-group>
-        <note priority="1" from="description">Placeholder if tool exited normally</note>
-        <note priority="1" from="meaning">Placeholder tool run successful</note>
-      </trans-unit><trans-unit id="fitsValid" datatype="html">
+
+
+
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">40</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">44</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit><trans-unit id="fitsValid" datatype="html">
         <source>valid</source>
         <target state="new">Valide</target>
         <context-group purpose="location">
@@ -2491,6 +2495,14 @@
           <context context-type="sourcefile">app/users/edit-user/edit-user.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
+      </trans-unit><trans-unit id="editUserNameHeading" datatype="html">
+        <source>User Name</source><target state="new">User Name</target>
+        <target>Benutzername</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/users/edit-user/edit-user.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">User name heading</note>
       </trans-unit>
       <trans-unit id="userNamePlaceholder" datatype="html">
         <source>Enter user name ...</source>
@@ -2503,7 +2515,7 @@
       </trans-unit>
       <trans-unit id="userNameHint" datatype="html">
         <source>A name for the user</source>
-        <target>Ein Name für den Benutzer</target>
+        <target>Der Anmeldename des Benutzers</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/users/edit-user/edit-user.component.html</context>
           <context context-type="linenumber">25</context>
@@ -2530,7 +2542,7 @@
       </trans-unit>
       <trans-unit id="userRoleHint" datatype="html">
         <source>Users can upload files and submit validation tasks. Only Admins may change configurations and settings.</source>
-        <target>User kännen Dateien hochladen nd Stapelvalidierungen in Auftrag geben. Nur Admins können Konfigurationen und Einstellungen anpassen.</target>
+        <target>User können Dateien hochladen und Stapelvalidierungen in Auftrag geben. Nur Admins können Konfigurationen und Einstellungen anpassen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/users/edit-user/edit-user.component.html</context>
           <context context-type="linenumber">34</context>

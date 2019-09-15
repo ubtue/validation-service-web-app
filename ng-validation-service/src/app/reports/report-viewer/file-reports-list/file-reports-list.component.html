@@ -39,10 +39,12 @@
             <td>
               <span *ngIf="report.fitsExecutionOutcome.toUpperCase() === 'SUCCESS'" i18n="@@toolSuccessfulPlaceholder">Success</span>
               <span *ngIf="report.fitsExecutionOutcome.toUpperCase() === 'FAILED'" i18n="@@toolErrorPlaceholder">Failed</span>
+              <span *ngIf="report.fitsExecutionOutcome.toUpperCase() === 'DIDNOTRUN'" i18n="@@toolDidNotRunPlaceholder">Did Not Run</span>
             </td>
             <td>
               <span *ngIf="report.veraPdfExecutionOutcome.toUpperCase() === 'SUCCESS'" i18n="@@toolSuccessfulPlaceholder">Success</span>
               <span *ngIf="report.veraPdfExecutionOutcome.toUpperCase() === 'FAILED'" i18n="@@toolErrorPlaceholder">Failed</span>
+              <span *ngIf="report.veraPdfExecutionOutcome.toUpperCase() === 'DIDNOTRUN'" i18n="@@toolDidNotRunPlaceholder">Did Not Run</span>
             </td>
             <td class="text-center text-light"><a class="btn btn-secondary text-nowrap" (click)="fileSelected.next(report)">
               <i class="fa fa-lightbulb-o" aria-hidden="true"></i>

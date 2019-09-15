@@ -1551,7 +1551,7 @@
 
         <note priority="1" from="description">Heading for batch column</note>
         <note priority="1" from="meaning">Table heading batch</note>
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">29</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">112</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">29</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">114</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="configurationColumnHeading" datatype="html">
         <source>Configuration</source>
         <target>Konfiguration</target>
@@ -1560,7 +1560,7 @@
 
         <note priority="1" from="description">Heading for configuration column</note>
         <note priority="1" from="meaning">Table heading configuration</note>
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">113</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">115</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit>
       <trans-unit id="statusColumnHeading" datatype="html">
         <source>Processing Status</source>
         <target>Bearbeitungsstatus</target>
@@ -1599,61 +1599,62 @@
 
         <note priority="1" from="description">A placeholder for a deleted configuration</note>
         <note priority="1" from="meaning">Deleted configuration</note>
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">46</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">129</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">59</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">46</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">131</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">59</context></context-group></trans-unit><trans-unit id="reportStatusFinished" datatype="html">
+        <source>Finished</source><target state="new">Fertiggestellt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">Status for finished report</note>
+        <note priority="1" from="meaning">Report status finished</note>
+      </trans-unit><trans-unit id="reportStatusFailed" datatype="html">
+        <source>Failed</source><target state="new">Fehlgeschlagen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">Status for failed report</note>
+        <note priority="1" from="meaning">Report status failed</note>
+      </trans-unit>
       <trans-unit id="outcomeValidationSuccess" datatype="html">
         <source>OK</source>
         <target>OK</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">61</context>
-        </context-group>
+        
         <note priority="1" from="description">Output if valid</note>
         <note priority="1" from="meaning">Validation outcome valid</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit>
       <trans-unit id="outcomeValidationProblem" datatype="html">
         <source>Problems</source>
         <target>Probleme</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">64</context>
-        </context-group>
+        
         <note priority="1" from="description">Output if problems occured</note>
         <note priority="1" from="meaning">Validation outcome problem</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">66</context></context-group></trans-unit>
       <trans-unit id="outcomeNoSummary" datatype="html">
         <source>Problems</source>
         <target>Probleme</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">70</context>
-        </context-group>
+        
         <note priority="1" from="description">Output if summary is missing</note>
         <note priority="1" from="meaning">Validation outcome problem</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">72</context></context-group></trans-unit>
       <trans-unit id="batchReportDetailsButton" datatype="html">
         <source>
                   Details
                 </source>
         <target>Details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">77</context>
-        </context-group>
+        
         <note priority="1" from="description">Button for showing details of batch report</note>
         <note priority="1" from="meaning">Button batch report details</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">79</context></context-group></trans-unit>
       <trans-unit id="batchReportDeleteButton" datatype="html">
         <source>
                   Delete
                 </source>
         <target>Löschen</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">83</context>
-        </context-group>
+        
         <note priority="1" from="description">Button for deleting batch report</note>
         <note priority="1" from="meaning">Button delete batch report</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">85</context></context-group></trans-unit>
       <trans-unit id="finishedReportsPlural" datatype="html">
         <source>
               <x id="ICU" equiv-text="{this.finishedReportsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -1662,19 +1663,13 @@
  <x id="ICU" equiv-text="{this.finishedReportsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
 </target>
 
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">93</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">95</context></context-group></trans-unit>
       <trans-unit id="49c01835e7a5744453599dd265a655beaf8ea162" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Reports} =1 {One Report} other {<x id="INTERPOLATION" equiv-text="{{this.finishedReportsPage.totalCount}}"/> Reports} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Berichte} =1 {Ein Bericht} other {<x id="INTERPOLATION" equiv-text="{{this.finishedReportsPage.totalCount}}"/> Berichte} }</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">96</context></context-group></trans-unit>
       <trans-unit id="submittedColumnHeading" datatype="html">
         <source>Submitted</source>
         <target>Übermittelt</target>
@@ -1682,37 +1677,28 @@
 
         <note priority="1" from="description">Heading for submission date column</note>
         <note priority="1" from="meaning">Table heading submission date</note>
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">114</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">116</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/report-viewer.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit>
       <trans-unit id="progressColumnHeading" datatype="html">
         <source>Progress</source>
         <target>Fortschritt</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">115</context>
-        </context-group>
+        
         <note priority="1" from="description">Heading for progress column</note>
         <note priority="1" from="meaning">Table heading progress</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">117</context></context-group></trans-unit>
       <trans-unit id="placeholderWaiting" datatype="html">
         <source>Waiting</source>
         <target>Warten</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">142</context>
-        </context-group>
+        
         <note priority="1" from="description">Placeholder string for task waiting to be processed</note>
         <note priority="1" from="meaning">Placeholder for waiting</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">144</context></context-group></trans-unit>
       <trans-unit id="buttonCancelTask" datatype="html">
         <source>Cancel</source>
         <target>Abbrechen</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">150</context>
-        </context-group>
+        
         <note priority="1" from="description">Label of button for cancelling a task</note>
         <note priority="1" from="meaning">Button cancel task</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">152</context></context-group></trans-unit>
       <trans-unit id="scheduledReportsPlural" datatype="html">
         <source>
                   <x id="ICU" equiv-text="{this.queuePage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -1721,19 +1707,13 @@
                 <target>
 <x id="ICU" equiv-text="{this.queuePage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
 </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">156</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">158</context></context-group></trans-unit>
       <trans-unit id="348d6556318b8f8150dcbda06e1ce93e602544f5" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Scheduled Reports} =1 {One Scheduled Report} other {<x id="INTERPOLATION" equiv-text="{{this.queuePage.totalCount}}"/> Scheduled Reports} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Berichte} =1 {Ein Bericht} other {<x id="INTERPOLATION" equiv-text="{{this.queuePage.totalCount}}"/> Berichte} }</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context>
-          <context context-type="linenumber">157</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/reports-overview/reports-overview.component.html</context><context context-type="linenumber">159</context></context-group></trans-unit>
       <trans-unit id="batchReport" datatype="html">
         <source>Batch Report</source>
         <target>Stapelbericht</target>
@@ -1853,7 +1833,7 @@
 
         <note priority="1" from="description">Label for details button</note>
         <note priority="1" from="meaning">Button file report details</note>
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">51</context></context-group></trans-unit>
       <trans-unit id="fileReportsPlural" datatype="html">
         <source>
               <x id="ICU" equiv-text="{this.fileReportsPage.totalCount, plural, =0 {...} =1 {...} other {...}}"/>
@@ -1863,12 +1843,12 @@
 </target>
 
 
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit>
       <trans-unit id="0c77c1ee8330b08f720a0ac6d806dffa9684da5d" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {No Reports} =1 {One Report} other {<x id="INTERPOLATION" equiv-text="{{this.fileReportsPage.totalCount}}"/> Reports} }</source>
         <target>{VAR_PLURAL, plural, =0 {Keine Berichte} =1 {Eine Bericht} other {<x id="INTERPOLATION" equiv-text="{{this.fileReportsPage.totalCount}}"/> Berichte} }</target>
 
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">56</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">58</context></context-group></trans-unit>
       <trans-unit id="fileReportFitsSection" datatype="html">
         <source>
                   FITS
@@ -2050,27 +2030,24 @@
       <trans-unit id="toolDidNotRunPlaceholder" datatype="html">
         <source>Did Not Run</source>
         <target>Nicht ausgeführt</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context>
-          <context context-type="linenumber">95</context>
-        </context-group>
-        <note priority="1" from="description">Placeholder if tool wasn't executed</note>
-        <note priority="1" from="meaning">Placeholder tool did not run</note>
-      </trans-unit>
+        
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">42</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">47</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">95</context></context-group></trans-unit>
       <trans-unit id="toolErrorPlaceholder" datatype="html">
         <source>Failed</source>
         <target>Fehler</target>
 
 
 
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">41</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">104</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">41</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">46</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">104</context></context-group></trans-unit>
       <trans-unit id="toolSuccessfulPlaceholder" datatype="html">
         <source>Success</source>
         <target>Erfolgreich</target>
 
 
 
-      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">40</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">44</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit><trans-unit id="fitsValid" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">40</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-reports-list/file-reports-list.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/reports/report-viewer/file-report-viewer/file-report-viewer.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit><trans-unit id="fitsValid" datatype="html">
         <source>valid</source>
         <target state="new">Valide</target>
         <context-group purpose="location">

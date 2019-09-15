@@ -59,7 +59,10 @@
                         <em class="font-weight-normal" i18n="@@deletedConfigurationPlaceholder">Deleted Configuration</em>
                     </ng-template>
                   </td>
-                  <td>{{ this.resolveCamelCase(this.batchReport.status) }}</td>
+                  <td>
+                    <span *ngIf="this.batchReport.status.toUpperCase() === 'FINISHED'" i18n="@@reportStatusFinished">Finished</span>
+                    <span *ngIf="this.batchReport.status.toUpperCase() === 'FAILED'" i18n="@@reportStatusFailed">Failed</span>
+                  </td>
                   <td>{{ this.batchReport.creationDate | date: "HH:mm:ss" }}</td>
                   <td>{{ this.batchReport.finishedDate | date: "HH:mm:ss" }}</td>
                   <td>

@@ -48,7 +48,8 @@
             </td>
             <td>
               <span [ngClass]="{'text-danger' : report.status !== 'finished', 'font-weight-bold' : report.status !== 'finished'}">
-                  {{ this.resolveCamelCase(report.status) }}
+                  <span *ngIf="report.status.toUpperCase() === 'FINISHED'" i18n="Report status finished|Status for finished report@@reportStatusFinished">Finished</span>
+                  <span *ngIf="report.status.toUpperCase() === 'FAILED'" i18n="Report status failed|Status for failed report@@reportStatusFailed">Failed</span>
               </span>
             </td>
             <td> {{ report.finishedDate | date:'dd.MM.y, HH:mm' }} </td>

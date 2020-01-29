@@ -1,6 +1,5 @@
 .selected-row{
     outline: none;
-    /* border: 3px solid black; */
     background-color:#b8daff !important;
 }
 
@@ -11,4 +10,3 @@
 .table thead>tr>th {
     border-top: 0px solid hsl(0, 0%, 87%);
  }
-  

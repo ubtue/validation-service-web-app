@@ -3,7 +3,6 @@ import { BatchPage } from 'src/app/shared/model/batches.model';
 import { BatchesService } from '../batches.service';
 import { ActivatedRoute, Data, Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
-
 import { debounceTime, distinctUntilChanged, mergeMap, map } from 'rxjs/operators';
 import { Util } from 'src/app/shared/util';
 import { Batch } from 'src/app/shared/model/batch.model';
@@ -28,8 +27,8 @@ export class BatchesListComponent implements OnInit, OnDestroy {
   navigationSubscription;
 
   // ordering and filtering
-  descendingSortOrder: boolean = true;
-  descriptionFilter: string = "";
+  descendingSortOrder = true;
+  descriptionFilter = '';
 
   @ViewChild('filter', { static: false }) filterInput: ElementRef;
 
@@ -98,17 +97,17 @@ export class BatchesListComponent implements OnInit, OnDestroy {
       }
     );
 
-      // Reload page if user clicks on component link in the main menu while route is already active
-      this.navigationSubscription = this.router.events.subscribe(
-        (e: any) => {
-          // If it is a NavigationEnd event re-initalise the component
-          if (e instanceof NavigationEnd) {
-            if ( e.url === ('/batches')) {
-              this.loadStartPage();
-            }
+    // Reload page if user clicks on component link in the main menu while route is already active
+    this.navigationSubscription = this.router.events.subscribe(
+      (e: any) => {
+        // If it is a NavigationEnd event re-initalise the component
+        if (e instanceof NavigationEnd) {
+          if (e.url === ('/batches')) {
+            this.loadStartPage();
           }
         }
-      );
+      }
+    );
   }
 
   /**
@@ -155,14 +154,14 @@ export class BatchesListComponent implements OnInit, OnDestroy {
 
   onDeleteBatch(batch: Batch) {
     this.batchesService.deleteBatch(batch).subscribe(
-      (success) =>{
+      (success) => {
         this.batchesService.batchListReloadRequested.next();
-        this.router.navigate(["../"],{relativeTo: this.route});
+        this.router.navigate(['../'], { relativeTo: this.route });
       },
       (error) => {
         if (error.status === 404) {
           this.batchesService.batchListReloadRequested.next();
-          this.router.navigate(["../"],{relativeTo: this.route});
+          this.router.navigate(['../'], { relativeTo: this.route });
         } else {
           this.errorService.raiseGlobalErrorMessage('Could not delete batch', error);
         }

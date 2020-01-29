@@ -21,18 +21,18 @@ export class BatchValidatorComponent implements OnInit {
 
   configurationsPage: ConfigurationsPage;
   selecetedConfiguration: Configuration;
-  configurationDescription = "";
+  configurationDescription = '';
   selectedBatch: Batch;
 
   constructor(public dialogService: DialogService,
     private route: ActivatedRoute,
     private batchesService: BatchesService,
     private router: Router,
-    private errorService: ErrorService) {}
+    private errorService: ErrorService) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      const resolved: Resolved<ConfigurationsPage> = data["startPage"];
+      const resolved: Resolved<ConfigurationsPage> = data['startPage'];
       if (!resolved.data) {
         this.errorService.resolved = resolved;
         this.router.navigate(['/error']);
@@ -64,10 +64,10 @@ export class BatchValidatorComponent implements OnInit {
 
     ref.onClose.subscribe((config: Configuration) => {
       if (config) {
-          this.selecetedConfiguration = config;
-          this.configurationDescription = config.description;
+        this.selecetedConfiguration = config;
+        this.configurationDescription = config.description;
       }
-     });
+    });
   }
 
   onCreateValidationOrder() {
@@ -76,7 +76,7 @@ export class BatchValidatorComponent implements OnInit {
     validationOrder.configurationIdentifier = this.selecetedConfiguration.publicIdentifier;
     this.batchesService.submitValidationOrder(validationOrder).subscribe(
       () => {
-        this.router.navigate(["/reports"],{queryParams: {active: true}});
+        this.router.navigate(['/reports'], { queryParams: { active: true } });
       },
       (error) => {
         this.errorService.raiseGlobalErrorMessage('Failed to submit validation order', error);

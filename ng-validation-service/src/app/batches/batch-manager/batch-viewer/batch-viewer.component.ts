@@ -24,7 +24,7 @@ export class BatchViewerComponent implements OnInit {
   hrefToRel = Util.getHrefForRel;
   searchTextSubscription: Subscription;
   searchTextChanged = new Subject<string>();
-  fileNameFilter: string = "";
+  fileNameFilter = '';
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -35,7 +35,7 @@ export class BatchViewerComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(
       (data: Data) => {
-        let resolved: Resolved<FilesPage> = data['filesPage'];
+        const resolved: Resolved<FilesPage> = data['filesPage'];
         if (!resolved.data) {
           if (resolved.errorStatusCode === 404) {
             this.router.navigate(['../../'], { relativeTo: this.route });
@@ -55,7 +55,7 @@ export class BatchViewerComponent implements OnInit {
         this.fileNameFilter = filter;
         const resolvedBatch: Resolved<Batch> = this.route.parent.snapshot.data['batch'];
 
-        if(!resolvedBatch.data) {
+        if (!resolvedBatch.data) {
           return;
         }
 

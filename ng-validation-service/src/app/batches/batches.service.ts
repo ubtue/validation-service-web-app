@@ -15,59 +15,59 @@ import { AppConfigService } from '../shared/services/app-config.service';
 @Injectable()
 export class BatchesService {
 
-    batchesResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/batches';
-    queueResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/queue';
+  batchesResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/batches';
+  queueResourceUrl: string = this.configService.getConfig()['apiBaseUrl'] + '/queue';
 
-    resetBatchListRequested:  Subject<void> = new Subject<void>();
-    batchListReloadRequested: Subject<void> = new Subject<void>();
+  resetBatchListRequested: Subject<void> = new Subject<void>();
+  batchListReloadRequested: Subject<void> = new Subject<void>();
 
-    constructor(private dataService: DataService, private httpClient: HttpClient, private configService: AppConfigService){};
+  constructor(private dataService: DataService, private httpClient: HttpClient, private configService: AppConfigService) { };
 
-    createBatch(batch: Batch) {
-        return this.httpClient.post<Batch>(this.batchesResourceUrl, batch);
+  createBatch(batch: Batch) {
+    return this.httpClient.post<Batch>(this.batchesResourceUrl, batch);
+  }
+
+  getBatchById(id: number) {
+    return this.httpClient.get<Batch>(this.batchesResourceUrl + '/' + id);
+  }
+
+  deleteBatch(batch: Batch) {
+    return this.httpClient.delete(Util.getHrefForRel(batch, 'self'));
+  }
+
+  getBatchesStartPage() {
+    return this.httpClient.get<BatchPage>(this.batchesResourceUrl);
+  }
+
+  getBatchesPage(url: string, orderDatesDesc = true, descriptionFilter = '') {
+    let params: HttpParams = new HttpParams();
+    params = params.append('orderBy', orderDatesDesc ? 'DATE_DESC' : 'DATE_ASC');
+
+    if (descriptionFilter.length > 0) {
+      params = params.append('descriptionFilter', descriptionFilter);
     }
+    return this.httpClient.get<BatchPage>(url, { params: params });
+  }
 
-    getBatchById(id: number) {
-        return this.httpClient.get<Batch>(this.batchesResourceUrl + '/' +id);
+  getFilesPage(url: string, fileNameFilter = '') {
+    let params: HttpParams = new HttpParams();
+    if (fileNameFilter.length > 0) {
+      params = params.append('fileNameFilter', fileNameFilter);
     }
+    return this.httpClient.get<FilesPage>(url, { params: params });
+  }
 
-    deleteBatch(batch: Batch) {
-        return this.httpClient.delete(Util.getHrefForRel(batch,'self'));
-    }
+  refetchFilesPage(page: FilesPage) {
+    return this.httpClient.get<FilesPage>(Util.getHrefForRel(page, 'self'));
+  }
 
-    getBatchesStartPage() {
-        return this.httpClient.get<BatchPage>(this.batchesResourceUrl);
-    }
+  deleteFile(file: File) {
+    return this.httpClient.delete(Util.getHrefForRel(file, 'self'));
+  }
 
-    getBatchesPage(url: string, orderDatesDesc = true, descriptionFilter = '') {
-        let params: HttpParams = new HttpParams();
-        params = params.append('orderBy', orderDatesDesc ? 'DATE_DESC' : 'DATE_ASC' );
-
-        if(descriptionFilter.length > 0) {
-            params = params.append('descriptionFilter', descriptionFilter );
-        }
-        return this.httpClient.get<BatchPage>(url, {params: params}) ;
-    }
-
-    getFilesPage(url: string, fileNameFilter = '') {
-        let params: HttpParams = new HttpParams();
-        if(fileNameFilter.length > 0) {
-            params = params.append('fileNameFilter', fileNameFilter );
-        }
-        return this.httpClient.get<FilesPage>(url, {params: params});
-    }
-
-    refetchFilesPage(page: FilesPage) {
-        return this.httpClient.get<FilesPage>(Util.getHrefForRel(page,'self'));
-    }
-
-    deleteFile(file: File) {
-        return this.httpClient.delete(Util.getHrefForRel(file,'self'));
-    }
-
-    submitValidationOrder(order: BatchValidationOrder) {
-      return this.httpClient.post<void>(this.queueResourceUrl, order);
-    }
+  submitValidationOrder(order: BatchValidationOrder) {
+    return this.httpClient.post<void>(this.queueResourceUrl, order);
+  }
 
 
 }

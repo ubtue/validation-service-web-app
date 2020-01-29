@@ -34,9 +34,9 @@ export class BatchInfoComponent implements OnInit {
 
   onDeleteBatch() {
     this.batchesService.deleteBatch(this.selectedBatch).subscribe(
-      (success) =>{
+      (success) => {
         this.batchesService.batchListReloadRequested.next();
-        this.router.navigate(["../../"],{relativeTo: this.route});
+        this.router.navigate(["../../"], { relativeTo: this.route });
       },
       (error) => {
         this.errorService.raiseGlobalErrorMessage('Deleting batch failed', error);

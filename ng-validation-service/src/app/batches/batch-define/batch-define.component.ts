@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Batch} from '../../shared/model/batch.model';
+import { Batch } from '../../shared/model/batch.model';
 import { BatchesService } from '../batches.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorService } from 'src/app/shared/services/error.service';
@@ -19,7 +19,7 @@ export class BatchDefineComponent implements OnInit {
     private route: ActivatedRoute,
     private errorService: ErrorService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   OnSave() {
     const batch: Batch = new Batch();
@@ -27,7 +27,7 @@ export class BatchDefineComponent implements OnInit {
     this.batchesService.createBatch(batch).subscribe(
       (batch: Batch) => {
         this.batchesService.resetBatchListRequested.next();
-        this.router.navigate(['../', batch.id], {relativeTo: this.route});
+        this.router.navigate(['../', batch.id], { relativeTo: this.route });
       },
       (error) => {
         this.errorService.raiseGlobalErrorMessage('Batch could not be created', error);
@@ -36,7 +36,7 @@ export class BatchDefineComponent implements OnInit {
   }
 
   onAbort() {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
 

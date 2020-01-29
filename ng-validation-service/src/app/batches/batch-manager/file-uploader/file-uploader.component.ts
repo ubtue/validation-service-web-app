@@ -84,7 +84,7 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   }
 
   onFinishUpload(event) {
-    let message = new Message();
+    const message = new Message();
     message.severity = 'success';
     message.summary = 'Upload finished:';
     message.detail = `${event.files.length} files`;
@@ -96,7 +96,7 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
 
   onUploadError(event) {
     this.uploadInProgress = false;
-    let message = new Message();
+    const message = new Message();
     message.severity = 'warn';
     message.summary = 'Upload of some files failed:';
     message.detail = `${event.files.length} files`;
@@ -110,7 +110,7 @@ export class FileUploaderComponent implements OnInit, CanDeactivateGuard {
   }
 
   remove(event, file) {
-    this.fileUpload.remove(event,  this.fileUpload.files.indexOf(file));
+    this.fileUpload.remove(event, this.fileUpload.files.indexOf(file));
 
   }
 
